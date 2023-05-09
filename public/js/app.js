@@ -3070,6 +3070,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      cartItemCount: 0,
       items: [{
         id: 1,
         item_id: 12,
@@ -5093,11 +5094,11 @@ var render = function render() {
       content: _vm.cartItemCount ? _vm.cartItemCount : "0",
       overlap: ""
     }
-  }, [_c("v-btn", _vm._g(_vm._b({
+  }, [_c("v-btn", {
     attrs: {
       icon: ""
     }
-  }, "v-btn", _vm.attrs, false), _vm.on), [_c("v-icon", {
+  }, [_c("v-icon", {
     attrs: {
       dark: ""
     }

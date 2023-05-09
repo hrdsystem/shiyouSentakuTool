@@ -11,8 +11,6 @@
             >
                 <v-btn
                     icon
-                    v-bind="attrs"
-                    v-on="on"
                 >
                     <v-icon dark>mdi-cart</v-icon>
                 </v-btn>
@@ -214,6 +212,7 @@
 export default{
     data() {
         return {
+            cartItemCount: 0,
             items :[
                 {id: 1, item_id: 12, name: '便器', icon:'mdi-toilet', item_contents: []},
                 {id: 2, item_id: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', item_contents: []},
