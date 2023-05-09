@@ -1,0 +1,112 @@
+<<template>
+   <v-app id="inspire">
+        <v-app-bar 
+        app 
+        clipped-left
+        elevation="0" 
+        color="primary" 
+        >
+            <!--<v-app-bar-nav-icon color="black" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
+                <v-toolbar-title 
+                    style = "text-align: left !important; display: flex; padding-top: 15px;"
+                    >
+                    <h3 style="font-family: 'Noto Sans JP', sans-serif;  
+                    font-size: 25px; 
+                    font-weight: 700;
+                    color: white;">しようせんたくツール</h3> 
+
+                    <p style="font-size: 25px; color: white">&nbsp;(Shiyou Sentaku Tool)</p>  
+                </v-toolbar-title>
+                <!-- <v-btn icon><v-icon>mdi-cart</v-icon></v-btn>
+                <v-btn icon><v-icon>mdi-account</v-icon></v-btn> -->
+        </v-app-bar>
+        <!-- expand-on-hover -->
+        <v-navigation-drawer
+        permanent
+        v-model="drawer"
+        app
+        clipped>
+           <v-list dense >
+                <!-- <v-subheader>LIST COMPONENTS:</v-subheader> -->
+                <v-list-group 
+                :key="i"
+                v-for="(category, i) in categories"
+                v-if="category.subMenu.length > 0" 
+
+                >
+                    <template v-slot:activator>
+                        <v-list-item-icon>
+                            <v-icon>{{category.icon}}</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>{{category.text}}</v-list-item-title>
+                    </template>
+                    <v-list-item
+                        v-for="(item, i) in category.subMenu"
+                        :key="i"
+                        link
+                    >
+                        <v-list-item-title v-text="item.ITEM_1_MEI"></v-list-item-title>
+                    </v-list-item>
+                </v-list-group>
+
+                <v-list-item v-for="(category, i) in categories" :key="i" v-if="category.subMenu.length == 0">
+                    <v-list-item-icon>
+                        <v-icon>{{category.icon}}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>{{category.text}}</v-list-item-title>
+                </v-list-item>
+                
+            </v-list>
+       </v-navigation-drawer>
+
+       <v-main class="ma-2">
+           <router-view></router-view>
+       </v-main>
+</v-app>
+</template>
+
+<script>
+  export default {
+     data: () => ({
+        drawer: null,
+        categories:[
+        
+            {icon:'mdi-alpha-g-box-outline', text:'外部', SHIYOSHO_KBN : 1, subMenu : []},//gaibu
+            {icon:'mdi-alpha-s-box-outline', text:'設備', SHIYOSHO_KBN : 2, subMenu : []},
+            {icon:'mdi-alpha-n-box-outline', text:'内部', SHIYOSHO_KBN : 3, subMenu : []},
+            {icon:'mdi-alpha-c-box-outline', text:'週の', SHIYOSHO_KBN : 4, subMenu : []},
+            {icon:'mdi-alpha-a-box-outline', text:'エアコン', SHIYOSHO_KBN : 5, subMenu : []},
+        ],
+        item1List : [],
+     }),
+
+
+     methods:{
+        selectCategory(category){
+        }
+     },
+
+     mounted(){
+        axios({
+            method: 'get',
+            url:'api/navigationDrawer/selectCategory',
+        }).then(res => {
+            console.log(res.data, 'asdasdasd')
+            // this.item1List = res.data
+            res.data.forEach(e1 => {
+                this.categories.forEach(e2 => {
+                    if(e1.SHIYOSHO_KBN == e2.SHIYOSHO_KBN){
+                        e2.subMenu.push(e1)
+                    }
+                })
+            });
+
+            console.log(this.categories,'categories')
+        })   
+     }
+  }
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap');
+</style>
