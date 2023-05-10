@@ -1,10 +1,11 @@
 <template>
     <div>
+        <!-- <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;"> -->
         <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;">
             <h1 class="s-title">トイレ</h1>
             <v-spacer></v-spacer>
             <v-badge
-                style="margin-top: 8px;"
+                style="margin-top: 10px;"
                 color="red lighten-2"
                 :content="cartItemCount ? cartItemCount : '0'"
                 overlap
@@ -20,13 +21,14 @@
         <template>
             <v-list dense >
                 <v-list-group
+                dense
                 no-action
                 sub-group
-                v-for="(item, i) in items"
+                v-for="(item, i) in sub_items"
                 :key="i"
                 >
                     <template v-slot:activator>
-                        <v-list-item-icon>
+                        <v-list-item-icon class="pt-1">
                             <v-icon>{{item.icon}}</v-icon>
                         </v-list-item-icon>
                         &nbsp;
@@ -36,7 +38,7 @@
                         </v-list-item-title>
                     </template>
 
-                    <v-card v-show="item.item_contents[0] != undefined" style="display: flex; padding-right: 50%;">
+                    <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">
                         <v-list-item>
                             <template v-slot:default="{ active }">
                                 <v-list-item-action style="display: block:  !important;">
@@ -104,9 +106,9 @@
                     
 
                         <div id="s-d"
-                        v-if="item.item_contents[0] != undefined"
+                        v-if="item.products[0] != undefined"
                         >
-                            <v-card v-for="(item, i) in item.item_contents" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="550" height="350" elevation="0">
+                            <v-card v-for="(item, i) in item.products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
                                 <v-col>
                                     <v-row>
                                         <v-col style="display: flex;">
@@ -199,7 +201,7 @@
                                 </v-col>
                             </v-card>
                         </div>
-                        <div v-if="item.item_contents[0] == undefined">
+                        <div v-if="item.products[0] == undefined">
                             <p>no items available as of the moment</p>
                         </div>
                 </v-list-group>
@@ -213,65 +215,65 @@ export default{
     data() {
         return {
             cartItemCount: 0,
-            items :[
-                {id: 1, item_id: 12, name: '便器', icon:'mdi-toilet', item_contents: []},
-                {id: 2, item_id: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', item_contents: []},
-                {id: 3, item_id: 12, name: 'ペーパーホルダー', icon:'mdi-paper-roll', item_contents: []},
-                {id: 4, item_id: 12, name: 'トイレ収納 ', icon:'mdi-archive', item_contents: []},
-                {id: 5, item_id: 12, name: '次の項目のサンプル', icon:'mdi-dots-horizontal-circle', item_contents: []},
+            sub_items :[
+                {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
+                {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
+                {id: 3, category_code: 12, name: 'ペーパーホルダー', icon:'mdi-paper-roll', products: []},
+                {id: 4, category_code: 12, name: 'トイレ収納 ', icon:'mdi-archive', products: []},
+                {id: 5, category_code: 12, name: '次の項目のサンプル', icon:'mdi-dots-horizontal-circle', products: []},
             ],
 
-            contents :[
-                {contents_id: 1, color_id: 1, title: '蛇口', 
+            products :[
+                {id: 1, item_id: 1, color_id: 1, title: '蛇口', 
                     img: require('../../images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg'),
                     add_img: require('../../images/toilet/toiletBowl/30.jpg'),
                     price: '53,350円',
                     description: '※オート洗浄機能',
                     accessories_content: [],
                 color_content: []},
-                {contents_id: 1, color_id: 2, title: 'カバー', 
+                {id: 2, item_id: 1, color_id: 2, title: 'カバー', 
                     img: require('../../images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg'),
                     add_img: require('../../images/toilet/toiletBowl/14.jpg'),
                     price: '45,650円',
                     description: '',
                     accessories_content: [],
                 color_content: []},
-                {contents_id: 1, color_id: 3, title: '丼鉢', 
+                {id: 3, item_id: 1, color_id: 3, title: '丼鉢', 
                     img: require('../../images/toilet/toiletBowl/L150K.jpg'),
                     add_img: require('../../images/toilet/toiletBowl/CA193AC30020.jpg'),
                     price: '148,390円',
                     description: '※オート開閉･温風乾燥･オート洗浄･やわらかライト',
                 accessories_content: [],    
                 color_content: []},
-                {contents_id: 2,  title: 'タオルリング', 
+                {id: 4, item_id: 2,  title: 'タオルリング', 
                     img: require('../../images/toilet/toiletBowl/31.jpg'),
                     add_img: '',
                     price: '4,070 円',
                     description: '※標準個数: 平屋 : 2 ヵ所, ２階建て : 3 ヶ所, 3 階建て : 4 ヶ所',
                     accessories_content: [],
                 color_content: []},
-                {contents_id: 2,  title: 'バスタオル掛け', 
+                {id: 5,item_id: 2,  title: 'バスタオル掛け', 
                     img: require('../../images/toilet/toiletBowl/33.jpg'),
                     add_img: '',
                     price: '4,400 円',
                     description: '※長さは 60cm です。',
                     accessories_content: [],
                 color_content: []},
-                {contents_id: 3,  title: '1連式', 
+                {id: 6, item_id: 3,  title: '1連式', 
                     img: require('../../images/toilet/toiletBowl/ペーパーホルダー1連式.jpg'),
                     add_img: '',
                     price: '',
                     description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
                     accessories_content: [],
                 color_content: []},
-                {contents_id: 3,  title: '2連式', 
+                {id: 7, item_id: 3,  title: '2連式', 
                     img: require('../../images/toilet/toiletBowl/ペーパーホルダー2連式.jpg'),
                     add_img: '',
                     price: '',
                     description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
                     accessories_content: [],
                 color_content: []},
-                {contents_id: 3,  title: 'シルバータイプ（TOTO）', 
+                {id: 8, item_id: 3,  title: 'シルバータイプ（TOTO）', 
                     img: require('../../images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg'),
                     add_img: '',
                     price: '2,200円',
@@ -285,18 +287,18 @@ export default{
             ],
 
             colors :[
-                {color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg')},
-                {color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/オフホワイト.jpg')},
-                {color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ブルーグレー.jpg')},
-                {color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピンク.jpg')},
-                {color_id: 2, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/white.jpg')},
-                {color_id: 2, name: 'pink', color_img: require('../../images/toilet/ToiletBowlColors/pink.jpg')},
-                {color_id: 2, name: 'ivory', color_img: require('../../images/toilet/ToiletBowlColors/ivory.jpg')},
-                {color_id: 3, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/L150K.jpg')},
-                {color_id: 3, name: 'ebony', color_img: require('../../images/toilet/ToiletBowlColors/ebony.jpg')},
-                {color_id: 3, name: 'crimson', color_img: require('../../images/toilet/ToiletBowlColors/crimson.jpg')},
-                {color_id: 3, name: 'gold', color_img: require('../../images/toilet/ToiletBowlColors/gold.jpg')},
-                {color_id: 3, name: 'copper', color_img: require('../../images/toilet/ToiletBowlColors/copper.jpg')},
+                {id: 1, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg')},
+                {id: 2, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/オフホワイト.jpg')},
+                {id: 3, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ブルーグレー.jpg')},
+                {id: 4, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピンク.jpg')},
+                {id: 5, color_id: 2, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/white.jpg')},
+                {id: 6, color_id: 2, name: 'pink', color_img: require('../../images/toilet/ToiletBowlColors/pink.jpg')},
+                {id: 7, color_id: 2, name: 'ivory', color_img: require('../../images/toilet/ToiletBowlColors/ivory.jpg')},
+                {id: 8, color_id: 3, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/L150K.jpg')},
+                {id: 9, color_id: 3, name: 'ebony', color_img: require('../../images/toilet/ToiletBowlColors/ebony.jpg')},
+                {id: 10, color_id: 3, name: 'crimson', color_img: require('../../images/toilet/ToiletBowlColors/crimson.jpg')},
+                {id: 11, color_id: 3, name: 'gold', color_img: require('../../images/toilet/ToiletBowlColors/gold.jpg')},
+                {id: 12, color_id: 3, name: 'copper', color_img: require('../../images/toilet/ToiletBowlColors/copper.jpg')},
             ]
         }
     },
@@ -305,19 +307,21 @@ export default{
         getItems(item){
             console.log(item)
         }
+
+        
     },
 
     mounted(){
-        this.contents.forEach(e1 => {
-            this.items.forEach(e2 => {
-                if(e1.contents_id == e2.id){
-                    e2.item_contents.push(e1)
+        this.products.forEach(e1 => {
+            this.sub_items.forEach(e2 => {
+                if(e1.item_id == e2.id){
+                    e2.products.push(e1)
                 }
             })
         });
 
         this.colors.forEach(e1 => {
-            this.contents.forEach(e2 =>{
+            this.products.forEach(e2 =>{
                 if(e1.color_id == e2.color_id){
                     e2.color_content.push(e1)
                 }
@@ -325,8 +329,8 @@ export default{
         })
 
         // document.getElementById("colors").innerHTML = 'yci dna delacs';
-        console.log(this.contents)
-        // console.log(this.items[0].item_contents) 
+        console.log(this.products)
+        // console.log(this.sub_items[0].products) 
     }
     
 }
