@@ -1,40 +1,33 @@
 <template>
-    <div>
-        <h1>Gaibu</h1>
-        <div>
-            <v-row dense>
-                <!-- <v-col cols="4" v-for="(item,index) in masterCategories" :key="index">
-                    <v-card> {{ item.text }} </v-card>
-                </v-col> -->
-                <v-col cols="4" >
-                    <v-card class="pa-1" rounded width="" flat>
-                        <v-toolbar >
-                            <v-list>
-                                <v-list-item-title style="font-size: 12px; cursor: default;" >
-                                    項目分類マスタ保守
-                                </v-list-item-title>
-                                v-list-sub
-                            </v-list>
-                        </v-toolbar>
-                    </v-card>
-                </v-col>
-                <!-- <v-col cols="4" >
-                    <v-card> Item_2 </v-card>
-                </v-col>
-                <v-col cols="4" >
-                    <v-card> Product </v-card>
-                </v-col> -->
-            </v-row>
-        
-            <!-- <v-row dense> -->
-                <!-- <v-col cols="4" >
-                    <v-card> Color </v-card>
-                </v-col> -->
-                <!-- <v-col cols="4" >
-                    <v-card> Directory </v-card>
-                </v-col> -->
-            <!-- </v-row> -->
-        </div>
+    <div class="pa-8" style="transform-origin: center top 0px;">
+        <v-row dense>
+            <v-col  v-for="(item, z) in gaibuMaintance" :key="z"   cols="4" >
+                <v-card class="pa-1" rounded width="" flat>
+                    <v-toolbar>
+                        <v-row align="center" justify="center" >
+                            <v-col cols="8">
+                                <v-list>
+                                    <v-list-item-title style="font-size: 12px; cursor: default;" >
+                                        {{item.kanji }}
+                                    </v-list-item-title>
+                                    <v-list-item-subtitle style="font-size: 12px; cursor: default;" >
+                                        {{ item.title }}
+                                    </v-list-item-subtitle>
+                                </v-list>
+                            </v-col>
+                            <v-col cols="4">
+                                <div class="d-flex justify-end">
+                                    <v-btn :to="item.path"  rounded x-small outlined color="primary">
+                                        <span>View</span>
+                                        <v-icon>mdi-arrow-right-thin</v-icon>
+                                    </v-btn>
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-toolbar>
+                </v-card>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -42,6 +35,13 @@
     export default {
         data() {
             return {
+                gaibuMaintance : [
+                    {
+                        title : 'Item',
+                        kanji : "項目分類マスタ保守",
+                        path : '/gaibu_master_item1'
+                    }
+                ],
                 masterCategories:[
                     {text:'外部', to: "/gaibu_master"},
                     {text:'設備', to: "/setsubi_master"},

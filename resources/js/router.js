@@ -37,6 +37,14 @@ import NaibuMaster from './components/Master_Maintenance/Naibu'
 
 import Toilet from './components/tabs/Toilet'
 
+import GaibuItem1 from './components/Master_Maintenance/Gaibu/GaibuItem1'
+
+import SetsubiItem1 from './components/Master_Maintenance/Setsubi/SetsubiItem1'
+import SetsubiProducts from './components/Master_Maintenance/Setsubi/SetsubiProducts'
+import SetsubiColors from './components/Master_Maintenance/Setsubi/SetsubiColors'
+
+import NaibuItem1 from './components/Master_Maintenance/Naibu/NaibuItem1'
+
 export default new VueRouter({
     mode: 'history',
     routes: [
@@ -79,6 +87,31 @@ export default new VueRouter({
             path: '/toilet',
             name: 'toilet',
             component : Toilet
+        },
+        {
+            path: '/gaibu_master_item1',
+            name: '/gaibu_master_item1',
+            component : GaibuItem1
+        },
+        {
+            path: '/setsubi_master_item1',
+            name: '/setsubi_master_item1',
+            component : SetsubiItem1
+        },
+        {
+            path: '/setsubi_master_products',
+            name: '/setsubi_master_products',
+            component : SetsubiProducts
+        },
+        {
+            path: '/setsubi_master_colors',
+            name: '/setsubi_master_colors',
+            component : SetsubiColors
+        },
+        {
+            path: '/naibu_master_item1',
+            name: '/naibu_master_item1',
+            component : NaibuItem1
         },
     ],
 });
