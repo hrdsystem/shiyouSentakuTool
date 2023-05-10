@@ -41,7 +41,7 @@ class MasterMaintenanceController extends Controller
                 category_code,
                 item_name
             FROM m_main_items
-            -- ORDER BY id DESC
+            ORDER BY id DESC
             "
         )); 
     }

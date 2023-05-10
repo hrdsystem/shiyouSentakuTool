@@ -1,8 +1,9 @@
 <template>
+    <div>
     <v-container fluid v-resize="onResize">
         <v-row>
             <v-col>
-                <v-btn rounded small outlined class="text-none mt-2" color="primary" to="/setsubi_master">
+                <v-btn rounded small outlined class="text-none mt-2" color="grey" to="/setsubi_master">
                     <v-icon>mdi-arrow-left-bold</v-icon>
                     <span>Back</span>
                 </v-btn>
@@ -28,7 +29,7 @@
                     </v-col>
                 </v-row>
 
-                <v-data-table  hide-default-header :headers="headers" :items="mastersData" :items-per-page="15" class="elevation-1 processTable" @dblclick:row="($event, {item})=>getItem2(item)">
+                <v-data-table  hide-default-header :headers="headers" :items="mastersData" :items-per-page="15" class="elevation-1" @dblclick:row="($event, {item})=>getItem2(item)">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -79,7 +80,7 @@
                     </v-col>
                 </v-row>
 
-                <v-data-table  hide-default-header :headers="subheaders" :items="mastersSubData" class="elevation-1 processTable" >
+                <v-data-table  hide-default-header :headers="subheaders" :items="mastersSubData" class="elevation-1" >
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -108,7 +109,7 @@
         </v-row>
 
         <!-- DIALOG FOR ADD AND EDIT -->
-        <v-dialog v-model="dialog" max-width="20%" persistent>
+        <!-- <v-dialog v-model="item1Dialog " max-width="20%" persistent>
                 <v-card>
                     <v-card-title style="background-color: #1E88E5; color: #ffffff;">{{ action }} DATA
                     <v-spacer/>
@@ -129,62 +130,68 @@
                     </v-btn>
                     </v-card-actions>
                 </v-card>
-        </v-dialog>
+        </v-dialog> -->
     </v-container>
+    <item1
+    :dialog="item1Dialog"></item1>
+</div>
 </template>
 
 <script>
     import Swal from "sweetalert2";
     import axios from 'axios'
+    import item1 from '../Dialog/Item1Dialog.vue'
 
     export default {
+        components : {item1},
         data: () => ({
             headers: [              
                 { 
-                    text: 'カテゴリーコード', value: 'category_code', align: 'centered', sortable: false 
+                    text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: 'コード', value: 'CODE', align: 'left', sortable: false 
+                    text: 'コード', value: 'CODE', align: 'center', sortable: false 
                 },
                 { 
                     text: '項目名', value: 'item_name', align: 'centered', sortable: false 
                 },
                 { 
-                    text: '行動', value: 'actions', align: 'centered', sortable: false 
+                    text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
             subheaders: [              
                 { 
-                    text: 'カテゴリーコード', value: 'category_code', align: 'centered', sortable: false 
+                    text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: '本体コード', value: 'main_items_code', align: 'centered', sortable: false 
+                    text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: 'コード', value: 'sub_item_code', align: 'left', sortable: false 
+                    text: 'コード', value: 'sub_item_code', align: 'center', sortable: false 
                 },
                 { 
                     text: 'サブアイテム名', value: 'sub_item_name', align: 'centered', sortable: false 
                 },
                 { 
-                    text: '行動', value: 'actions', align: 'centered', sortable: false 
+                    text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
 
-            addEdit: {},
+            
             itemName:null,
             code:null,
             category:null,
             disabledItem2btn: true,
             windowSize: { x: 0, y: 0 },
-            loading: false,
 
+            addEdit: {},
+            item1Dialog : false,
+            mastersData: [],
             action: '',
+
             // DIALOGS
-            dialog: false,
             dialogDelete: false,
 
-            mastersData: [],
             mastersSubData: [],
             editedIndex: -1,
             editedItem: {
@@ -203,7 +210,7 @@
         },
 
         watch: {
-            dialog (val) {
+            item1Dialog  (val) {
                 val || this.close()
             },
             // dialogDelete (val) {
@@ -218,7 +225,7 @@
         methods: {
 
             close() {
-                this.dialog = false
+                this.item1Dialog  = false
                 this.$nextTick(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
@@ -226,45 +233,36 @@
             },
 
             addItem1(action) {
+                this.item1Dialog = true
                 this.category = ""
                 this.code = ""
                 this.itemName = ""
-                this.dialog = true
+                // this.item1Dialog  = true
                 this.action = 'ADD NEW'
             },
-            closeDialogItem1(){
-                this.dialog = false
+            closeDialogItem1( val ){
+                this.getItem1();
+                this.item1Dialog  = val;
             },
             closeEditDialog1(){
                 this.category = ""
                 this.code = ""
                 this.itemName = ""
-                this.dialog = false
+                this.item1Dialog  = false
                 this.action = 'EDIT'
-            },
-
-
-            editItem1(item) {
-                this.item1Status = "UPDATE";
-                this.ObjItem1 = item;
-                this.item1Dialog = true;
             },
 
 
             editItem1(item){
-                this.editedIndex = this.mastersData.indexOf(item)
-                this.editedItem = Object.assign({}, item)
-                this.dialog = true
                 this.action = 'EDIT'
+                this.item1Dialog  = true
             },
             
 
 
             saveItem1(){
                 this.close()
-
                 let data = {}
-
                 if(this.action == "ADD NEW"){
                     data = {
                         action : this.action,
