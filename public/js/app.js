@@ -5087,7 +5087,7 @@ var render = function render() {
     staticClass: "s-title"
   }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("v-badge", {
     staticStyle: {
-      "margin-top": "8px"
+      "margin-top": "10px"
     },
     attrs: {
       color: "red lighten-2",
@@ -5237,7 +5237,7 @@ var render = function render() {
           gap: "10px"
         },
         attrs: {
-          width: "550",
+          width: "520",
           height: "350",
           elevation: "0"
         }
@@ -6035,7 +6035,6 @@ __webpack_require__.r(__webpack_exports__);
 // Imports
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap);"]);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.active{\n    background-color: #0080ff;\n    margin-bottom: 4px;\n    border: 1px solid #0080ff;\n    color: white !important;\n}\n", ""]);
 // Exports

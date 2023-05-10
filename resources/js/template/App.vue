@@ -177,8 +177,6 @@
 </script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap');
-
     .active{
         background-color: #0080ff;
         margin-bottom: 4px;

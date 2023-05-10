@@ -1,10 +1,11 @@
 <template>
     <div>
+        <!-- <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;"> -->
         <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;">
             <h1 class="s-title">トイレ</h1>
             <v-spacer></v-spacer>
             <v-badge
-                style="margin-top: 8px;"
+                style="margin-top: 10px;"
                 color="red lighten-2"
                 :content="cartItemCount ? cartItemCount : '0'"
                 overlap
@@ -106,7 +107,7 @@
                         <div id="s-d"
                         v-if="item.item_contents[0] != undefined"
                         >
-                            <v-card v-for="(item, i) in item.item_contents" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="550" height="350" elevation="0">
+                            <v-card v-for="(item, i) in item.item_contents" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
                                 <v-col>
                                     <v-row>
                                         <v-col style="display: flex;">
