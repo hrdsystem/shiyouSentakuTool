@@ -27,6 +27,7 @@
                 v-for="(item, i) in sub_items"
                 :key="i"
                 >
+                {{ item }}
                     <template v-slot:activator>
                         <v-list-item-icon class="pt-1">
                             <v-icon>{{item.icon}}</v-icon>
@@ -34,11 +35,11 @@
                         &nbsp;
                         &nbsp;
                         <v-list-item-title class="s-sub-header" style="color: black;">
-                            <h3>{{item.name}}</h3>
+                            <h3>{{item.item_name}}</h3>
                         </v-list-item-title>
                     </template>
 
-                    <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">
+                    <!-- <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">
                         <v-list-item>
                             <template v-slot:default="{ active }">
                                 <v-list-item-action style="display: block:  !important;">
@@ -102,10 +103,10 @@
                         small
                         outlined
                         >メモ</v-btn>
-                    </v-card>
+                    </v-card> -->
                     
 
-                        <div id="s-d"
+                        <!-- <div id="s-d"
                         v-if="item.products[0] != undefined"
                         >
                             <v-card v-for="(item, i) in item.products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
@@ -203,7 +204,7 @@
                         </div>
                         <div v-if="item.products[0] == undefined">
                             <p>no items available as of the moment</p>
-                        </div>
+                        </div> -->
                 </v-list-group>
             </v-list>
         </template>
@@ -215,121 +216,143 @@ export default{
     data() {
         return {
             cartItemCount: 0,
-            sub_items :[
-                {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
-                {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
-                {id: 3, category_code: 12, name: 'ペーパーホルダー', icon:'mdi-paper-roll', products: []},
-                {id: 4, category_code: 12, name: 'トイレ収納 ', icon:'mdi-archive', products: []},
-                {id: 5, category_code: 12, name: '次の項目のサンプル', icon:'mdi-dots-horizontal-circle', products: []},
-            ],
+            sub_items: [],
+            products: [],
+            // sub_items :[
+            //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
+            //     {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
+            //     {id: 3, category_code: 12, name: 'ペーパーホルダー', icon:'mdi-paper-roll', products: []},
+            //     {id: 4, category_code: 12, name: 'トイレ収納 ', icon:'mdi-archive', products: []},
+            //     {id: 5, category_code: 12, name: '次の項目のサンプル', icon:'mdi-dots-horizontal-circle', products: []},
+            // ],
 
-            products :[
-                {id: 1, item_id: 1, color_id: 1, title: '蛇口', 
-                    img: require('../../images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg'),
-                    add_img: require('../../images/toilet/toiletBowl/30.jpg'),
-                    price: '53,350円',
-                    description: '※オート洗浄機能',
-                    accessories_content: [],
-                color_content: []},
-                {id: 2, item_id: 1, color_id: 2, title: 'カバー', 
-                    img: require('../../images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg'),
-                    add_img: require('../../images/toilet/toiletBowl/14.jpg'),
-                    price: '45,650円',
-                    description: '',
-                    accessories_content: [],
-                color_content: []},
-                {id: 3, item_id: 1, color_id: 3, title: '丼鉢', 
-                    img: require('../../images/toilet/toiletBowl/L150K.jpg'),
-                    add_img: require('../../images/toilet/toiletBowl/CA193AC30020.jpg'),
-                    price: '148,390円',
-                    description: '※オート開閉･温風乾燥･オート洗浄･やわらかライト',
-                accessories_content: [],    
-                color_content: []},
-                {id: 4, item_id: 2,  title: 'タオルリング', 
-                    img: require('../../images/toilet/toiletBowl/31.jpg'),
-                    add_img: '',
-                    price: '4,070 円',
-                    description: '※標準個数: 平屋 : 2 ヵ所, ２階建て : 3 ヶ所, 3 階建て : 4 ヶ所',
-                    accessories_content: [],
-                color_content: []},
-                {id: 5,item_id: 2,  title: 'バスタオル掛け', 
-                    img: require('../../images/toilet/toiletBowl/33.jpg'),
-                    add_img: '',
-                    price: '4,400 円',
-                    description: '※長さは 60cm です。',
-                    accessories_content: [],
-                color_content: []},
-                {id: 6, item_id: 3,  title: '1連式', 
-                    img: require('../../images/toilet/toiletBowl/ペーパーホルダー1連式.jpg'),
-                    add_img: '',
-                    price: '',
-                    description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
-                    accessories_content: [],
-                color_content: []},
-                {id: 7, item_id: 3,  title: '2連式', 
-                    img: require('../../images/toilet/toiletBowl/ペーパーホルダー2連式.jpg'),
-                    add_img: '',
-                    price: '',
-                    description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
-                    accessories_content: [],
-                color_content: []},
-                {id: 8, item_id: 3,  title: 'シルバータイプ（TOTO）', 
-                    img: require('../../images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg'),
-                    add_img: '',
-                    price: '2,200円',
-                    description: '※LIXIL/Panasonic製便器でも 選択可能です。',
-                    accessories_content: [],
-                color_content: []}
-            ],
+            // products :[
+            //     {id: 1, item_id: 1, color_id: 1, title: '蛇口', 
+            //         img: require('../../images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg'),
+            //         add_img: require('../../images/toilet/toiletBowl/30.jpg'),
+            //         price: '53,350円',
+            //         description: '※オート洗浄機能',
+            //         accessories_content: [],
+            //     color_content: []},
+            //     {id: 2, item_id: 1, color_id: 2, title: 'カバー', 
+            //         img: require('../../images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg'),
+            //         add_img: require('../../images/toilet/toiletBowl/14.jpg'),
+            //         price: '45,650円',
+            //         description: '',
+            //         accessories_content: [],
+            //     color_content: []},
+            //     {id: 3, item_id: 1, color_id: 3, title: '丼鉢', 
+            //         img: require('../../images/toilet/toiletBowl/L150K.jpg'),
+            //         add_img: require('../../images/toilet/toiletBowl/CA193AC30020.jpg'),
+            //         price: '148,390円',
+            //         description: '※オート開閉･温風乾燥･オート洗浄･やわらかライト',
+            //     accessories_content: [],    
+            //     color_content: []},
+            //     {id: 4, item_id: 2,  title: 'タオルリング', 
+            //         img: require('../../images/toilet/toiletBowl/31.jpg'),
+            //         add_img: '',
+            //         price: '4,070 円',
+            //         description: '※標準個数: 平屋 : 2 ヵ所, ２階建て : 3 ヶ所, 3 階建て : 4 ヶ所',
+            //         accessories_content: [],
+            //     color_content: []},
+            //     {id: 5,item_id: 2,  title: 'バスタオル掛け', 
+            //         img: require('../../images/toilet/toiletBowl/33.jpg'),
+            //         add_img: '',
+            //         price: '4,400 円',
+            //         description: '※長さは 60cm です。',
+            //         accessories_content: [],
+            //     color_content: []},
+            //     {id: 6, item_id: 3,  title: '1連式', 
+            //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー1連式.jpg'),
+            //         add_img: '',
+            //         price: '',
+            //         description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
+            //         accessories_content: [],
+            //     color_content: []},
+            //     {id: 7, item_id: 3,  title: '2連式', 
+            //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー2連式.jpg'),
+            //         add_img: '',
+            //         price: '',
+            //         description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
+            //         accessories_content: [],
+            //     color_content: []},
+            //     {id: 8, item_id: 3,  title: 'シルバータイプ（TOTO）', 
+            //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg'),
+            //         add_img: '',
+            //         price: '2,200円',
+            //         description: '※LIXIL/Panasonic製便器でも 選択可能です。',
+            //         accessories_content: [],
+            //     color_content: []}
+            // ],
 
-            accessories: [
-                {},
-            ],
+            // accessories: [
+            //     {},
+            // ],
 
-            colors :[
-                {id: 1, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg')},
-                {id: 2, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/オフホワイト.jpg')},
-                {id: 3, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ブルーグレー.jpg')},
-                {id: 4, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピンク.jpg')},
-                {id: 5, color_id: 2, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/white.jpg')},
-                {id: 6, color_id: 2, name: 'pink', color_img: require('../../images/toilet/ToiletBowlColors/pink.jpg')},
-                {id: 7, color_id: 2, name: 'ivory', color_img: require('../../images/toilet/ToiletBowlColors/ivory.jpg')},
-                {id: 8, color_id: 3, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/L150K.jpg')},
-                {id: 9, color_id: 3, name: 'ebony', color_img: require('../../images/toilet/ToiletBowlColors/ebony.jpg')},
-                {id: 10, color_id: 3, name: 'crimson', color_img: require('../../images/toilet/ToiletBowlColors/crimson.jpg')},
-                {id: 11, color_id: 3, name: 'gold', color_img: require('../../images/toilet/ToiletBowlColors/gold.jpg')},
-                {id: 12, color_id: 3, name: 'copper', color_img: require('../../images/toilet/ToiletBowlColors/copper.jpg')},
-            ]
+            // colors :[
+            //     {id: 1, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg')},
+            //     {id: 2, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/オフホワイト.jpg')},
+            //     {id: 3, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ブルーグレー.jpg')},
+            //     {id: 4, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピンク.jpg')},
+            //     {id: 5, color_id: 2, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/white.jpg')},
+            //     {id: 6, color_id: 2, name: 'pink', color_img: require('../../images/toilet/ToiletBowlColors/pink.jpg')},
+            //     {id: 7, color_id: 2, name: 'ivory', color_img: require('../../images/toilet/ToiletBowlColors/ivory.jpg')},
+            //     {id: 8, color_id: 3, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/L150K.jpg')},
+            //     {id: 9, color_id: 3, name: 'ebony', color_img: require('../../images/toilet/ToiletBowlColors/ebony.jpg')},
+            //     {id: 10, color_id: 3, name: 'crimson', color_img: require('../../images/toilet/ToiletBowlColors/crimson.jpg')},
+            //     {id: 11, color_id: 3, name: 'gold', color_img: require('../../images/toilet/ToiletBowlColors/gold.jpg')},
+            //     {id: 12, color_id: 3, name: 'copper', color_img: require('../../images/toilet/ToiletBowlColors/copper.jpg')},
+            // ]
         }
     },
 
     methods: {
-        getItems(item){
-            console.log(item)
-        }
+        // getItems(item){
+        //     console.log(item)
+        // }
+        getSubItems(){
+            axios({
+                method: 'get',
+                url: 'api/getSubItems',
+            }).then (res => {
+                this.sub_items = res.data;
+                console.log(res.data, 'sub-items')
+            })
+        },
 
+        getProducts(){
+            axios({
+                method: 'get',
+                url: 'api/getProducts',
+            }).then (res => {
+                this.products = res.data;
+                console.log(res.data, 'products')
+            })
+        }
         
     },
 
     mounted(){
-        this.products.forEach(e1 => {
-            this.sub_items.forEach(e2 => {
-                if(e1.item_id == e2.id){
-                    e2.products.push(e1)
-                }
-            })
-        });
+        this.getSubItems();
+        this.getProducts();
+        // this.products.forEach(e1 => {
+        //     this.sub_items.forEach(e2 => {
+        //         if(e1.item_id == e2.id){
+        //             e2.products.push(e1)
+        //         }
+        //     })
+        // });
 
-        this.colors.forEach(e1 => {
-            this.products.forEach(e2 =>{
-                if(e1.color_id == e2.color_id){
-                    e2.color_content.push(e1)
-                }
-            })
-        })
+        // this.colors.forEach(e1 => {
+        //     this.products.forEach(e2 =>{
+        //         if(e1.color_id == e2.color_id){
+        //             e2.color_content.push(e1)
+        //         }
+        //     })
+        // })
 
         // document.getElementById("colors").innerHTML = 'yci dna delacs';
-        console.log(this.products)
+        // console.log(this.products)
         // console.log(this.sub_items[0].products) 
     }
     

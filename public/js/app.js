@@ -3547,209 +3547,142 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cartItemCount: 0,
-      sub_items: [{
-        id: 1,
-        category_code: 12,
-        name: '便器',
-        icon: 'mdi-toilet',
-        products: []
-      }, {
-        id: 2,
-        category_code: 12,
-        name: 'タオル掛け',
-        icon: 'mdi-align-vertical-top',
-        products: []
-      }, {
-        id: 3,
-        category_code: 12,
-        name: 'ペーパーホルダー',
-        icon: 'mdi-paper-roll',
-        products: []
-      }, {
-        id: 4,
-        category_code: 12,
-        name: 'トイレ収納 ',
-        icon: 'mdi-archive',
-        products: []
-      }, {
-        id: 5,
-        category_code: 12,
-        name: '次の項目のサンプル',
-        icon: 'mdi-dots-horizontal-circle',
-        products: []
-      }],
-      products: [{
-        id: 1,
-        item_id: 1,
-        color_id: 1,
-        title: '蛇口',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg */ "./resources/js/images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg"),
-        add_img: __webpack_require__(/*! ../../images/toilet/toiletBowl/30.jpg */ "./resources/js/images/toilet/toiletBowl/30.jpg"),
-        price: '53,350円',
-        description: '※オート洗浄機能',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 2,
-        item_id: 1,
-        color_id: 2,
-        title: 'カバー',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg */ "./resources/js/images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg"),
-        add_img: __webpack_require__(/*! ../../images/toilet/toiletBowl/14.jpg */ "./resources/js/images/toilet/toiletBowl/14.jpg"),
-        price: '45,650円',
-        description: '',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 3,
-        item_id: 1,
-        color_id: 3,
-        title: '丼鉢',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/L150K.jpg */ "./resources/js/images/toilet/toiletBowl/L150K.jpg"),
-        add_img: __webpack_require__(/*! ../../images/toilet/toiletBowl/CA193AC30020.jpg */ "./resources/js/images/toilet/toiletBowl/CA193AC30020.jpg"),
-        price: '148,390円',
-        description: '※オート開閉･温風乾燥･オート洗浄･やわらかライト',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 4,
-        item_id: 2,
-        title: 'タオルリング',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/31.jpg */ "./resources/js/images/toilet/toiletBowl/31.jpg"),
-        add_img: '',
-        price: '4,070 円',
-        description: '※標準個数: 平屋 : 2 ヵ所, ２階建て : 3 ヶ所, 3 階建て : 4 ヶ所',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 5,
-        item_id: 2,
-        title: 'バスタオル掛け',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/33.jpg */ "./resources/js/images/toilet/toiletBowl/33.jpg"),
-        add_img: '',
-        price: '4,400 円',
-        description: '※長さは 60cm です。',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 6,
-        item_id: 3,
-        title: '1連式',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/ペーパーホルダー1連式.jpg */ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー1連式.jpg"),
-        add_img: '',
-        price: '',
-        description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 7,
-        item_id: 3,
-        title: '2連式',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/ペーパーホルダー2連式.jpg */ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー2連式.jpg"),
-        add_img: '',
-        price: '',
-        description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
-        accessories_content: [],
-        color_content: []
-      }, {
-        id: 8,
-        item_id: 3,
-        title: 'シルバータイプ（TOTO）',
-        img: __webpack_require__(/*! ../../images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg */ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg"),
-        add_img: '',
-        price: '2,200円',
-        description: '※LIXIL/Panasonic製便器でも 選択可能です。',
-        accessories_content: [],
-        color_content: []
-      }],
-      accessories: [{}],
-      colors: [{
-        id: 1,
-        color_id: 1,
-        name: 'white',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg */ "./resources/js/images/toilet/ToiletBowlColors/ピュアホワイト.jpg")
-      }, {
-        id: 2,
-        color_id: 1,
-        name: 'white',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/オフホワイト.jpg */ "./resources/js/images/toilet/ToiletBowlColors/オフホワイト.jpg")
-      }, {
-        id: 3,
-        color_id: 1,
-        name: 'white',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/ブルーグレー.jpg */ "./resources/js/images/toilet/ToiletBowlColors/ブルーグレー.jpg")
-      }, {
-        id: 4,
-        color_id: 1,
-        name: 'white',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/ピンク.jpg */ "./resources/js/images/toilet/ToiletBowlColors/ピンク.jpg")
-      }, {
-        id: 5,
-        color_id: 2,
-        name: 'white',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/white.jpg */ "./resources/js/images/toilet/ToiletBowlColors/white.jpg")
-      }, {
-        id: 6,
-        color_id: 2,
-        name: 'pink',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/pink.jpg */ "./resources/js/images/toilet/ToiletBowlColors/pink.jpg")
-      }, {
-        id: 7,
-        color_id: 2,
-        name: 'ivory',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/ivory.jpg */ "./resources/js/images/toilet/ToiletBowlColors/ivory.jpg")
-      }, {
-        id: 8,
-        color_id: 3,
-        name: 'white',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/L150K.jpg */ "./resources/js/images/toilet/ToiletBowlColors/L150K.jpg")
-      }, {
-        id: 9,
-        color_id: 3,
-        name: 'ebony',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/ebony.jpg */ "./resources/js/images/toilet/ToiletBowlColors/ebony.jpg")
-      }, {
-        id: 10,
-        color_id: 3,
-        name: 'crimson',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/crimson.jpg */ "./resources/js/images/toilet/ToiletBowlColors/crimson.jpg")
-      }, {
-        id: 11,
-        color_id: 3,
-        name: 'gold',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/gold.jpg */ "./resources/js/images/toilet/ToiletBowlColors/gold.jpg")
-      }, {
-        id: 12,
-        color_id: 3,
-        name: 'copper',
-        color_img: __webpack_require__(/*! ../../images/toilet/ToiletBowlColors/copper.jpg */ "./resources/js/images/toilet/ToiletBowlColors/copper.jpg")
-      }]
+      sub_items: [],
+      products: []
+      // sub_items :[
+      //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
+      //     {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
+      //     {id: 3, category_code: 12, name: 'ペーパーホルダー', icon:'mdi-paper-roll', products: []},
+      //     {id: 4, category_code: 12, name: 'トイレ収納 ', icon:'mdi-archive', products: []},
+      //     {id: 5, category_code: 12, name: '次の項目のサンプル', icon:'mdi-dots-horizontal-circle', products: []},
+      // ],
+
+      // products :[
+      //     {id: 1, item_id: 1, color_id: 1, title: '蛇口', 
+      //         img: require('../../images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg'),
+      //         add_img: require('../../images/toilet/toiletBowl/30.jpg'),
+      //         price: '53,350円',
+      //         description: '※オート洗浄機能',
+      //         accessories_content: [],
+      //     color_content: []},
+      //     {id: 2, item_id: 1, color_id: 2, title: 'カバー', 
+      //         img: require('../../images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg'),
+      //         add_img: require('../../images/toilet/toiletBowl/14.jpg'),
+      //         price: '45,650円',
+      //         description: '',
+      //         accessories_content: [],
+      //     color_content: []},
+      //     {id: 3, item_id: 1, color_id: 3, title: '丼鉢', 
+      //         img: require('../../images/toilet/toiletBowl/L150K.jpg'),
+      //         add_img: require('../../images/toilet/toiletBowl/CA193AC30020.jpg'),
+      //         price: '148,390円',
+      //         description: '※オート開閉･温風乾燥･オート洗浄･やわらかライト',
+      //     accessories_content: [],    
+      //     color_content: []},
+      //     {id: 4, item_id: 2,  title: 'タオルリング', 
+      //         img: require('../../images/toilet/toiletBowl/31.jpg'),
+      //         add_img: '',
+      //         price: '4,070 円',
+      //         description: '※標準個数: 平屋 : 2 ヵ所, ２階建て : 3 ヶ所, 3 階建て : 4 ヶ所',
+      //         accessories_content: [],
+      //     color_content: []},
+      //     {id: 5,item_id: 2,  title: 'バスタオル掛け', 
+      //         img: require('../../images/toilet/toiletBowl/33.jpg'),
+      //         add_img: '',
+      //         price: '4,400 円',
+      //         description: '※長さは 60cm です。',
+      //         accessories_content: [],
+      //     color_content: []},
+      //     {id: 6, item_id: 3,  title: '1連式', 
+      //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー1連式.jpg'),
+      //         add_img: '',
+      //         price: '',
+      //         description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
+      //         accessories_content: [],
+      //     color_content: []},
+      //     {id: 7, item_id: 3,  title: '2連式', 
+      //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー2連式.jpg'),
+      //         add_img: '',
+      //         price: '',
+      //         description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
+      //         accessories_content: [],
+      //     color_content: []},
+      //     {id: 8, item_id: 3,  title: 'シルバータイプ（TOTO）', 
+      //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg'),
+      //         add_img: '',
+      //         price: '2,200円',
+      //         description: '※LIXIL/Panasonic製便器でも 選択可能です。',
+      //         accessories_content: [],
+      //     color_content: []}
+      // ],
+
+      // accessories: [
+      //     {},
+      // ],
+
+      // colors :[
+      //     {id: 1, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg')},
+      //     {id: 2, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/オフホワイト.jpg')},
+      //     {id: 3, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ブルーグレー.jpg')},
+      //     {id: 4, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピンク.jpg')},
+      //     {id: 5, color_id: 2, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/white.jpg')},
+      //     {id: 6, color_id: 2, name: 'pink', color_img: require('../../images/toilet/ToiletBowlColors/pink.jpg')},
+      //     {id: 7, color_id: 2, name: 'ivory', color_img: require('../../images/toilet/ToiletBowlColors/ivory.jpg')},
+      //     {id: 8, color_id: 3, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/L150K.jpg')},
+      //     {id: 9, color_id: 3, name: 'ebony', color_img: require('../../images/toilet/ToiletBowlColors/ebony.jpg')},
+      //     {id: 10, color_id: 3, name: 'crimson', color_img: require('../../images/toilet/ToiletBowlColors/crimson.jpg')},
+      //     {id: 11, color_id: 3, name: 'gold', color_img: require('../../images/toilet/ToiletBowlColors/gold.jpg')},
+      //     {id: 12, color_id: 3, name: 'copper', color_img: require('../../images/toilet/ToiletBowlColors/copper.jpg')},
+      // ]
     };
   },
+
   methods: {
-    getItems: function getItems(item) {
-      console.log(item);
+    // getItems(item){
+    //     console.log(item)
+    // }
+    getSubItems: function getSubItems() {
+      var _this = this;
+      axios({
+        method: 'get',
+        url: 'api/getSubItems'
+      }).then(function (res) {
+        _this.sub_items = res.data;
+        console.log(res.data, 'sub-items');
+      });
+    },
+    getProducts: function getProducts() {
+      var _this2 = this;
+      axios({
+        method: 'get',
+        url: 'api/getProducts'
+      }).then(function (res) {
+        _this2.products = res.data;
+        console.log(res.data, 'products');
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
-    this.products.forEach(function (e1) {
-      _this.sub_items.forEach(function (e2) {
-        if (e1.item_id == e2.id) {
-          e2.products.push(e1);
-        }
-      });
-    });
-    this.colors.forEach(function (e1) {
-      _this.products.forEach(function (e2) {
-        if (e1.color_id == e2.color_id) {
-          e2.color_content.push(e1);
-        }
-      });
-    });
+    this.getSubItems();
+    this.getProducts();
+    // this.products.forEach(e1 => {
+    //     this.sub_items.forEach(e2 => {
+    //         if(e1.item_id == e2.id){
+    //             e2.products.push(e1)
+    //         }
+    //     })
+    // });
+
+    // this.colors.forEach(e1 => {
+    //     this.products.forEach(e2 =>{
+    //         if(e1.color_id == e2.color_id){
+    //             e2.color_content.push(e1)
+    //         }
+    //     })
+    // })
 
     // document.getElementById("colors").innerHTML = 'yci dna delacs';
-    console.log(this.products);
+    // console.log(this.products)
     // console.log(this.sub_items[0].products) 
   }
 });
@@ -6694,293 +6627,11 @@ var render = function render() {
             staticStyle: {
               color: "black"
             }
-          }, [_c("h3", [_vm._v(_vm._s(item.name))])])];
+          }, [_c("h3", [_vm._v(_vm._s(item.item_name))])])];
         },
         proxy: true
       }], null, true)
-    }, [_vm._v(" "), _c("v-card", {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: item.products[0] != undefined,
-        expression: "item.products[0] != undefined"
-      }],
-      staticStyle: {
-        display: "flex",
-        "padding-right": "50%"
-      }
-    }, [_c("v-list-item", {
-      scopedSlots: _vm._u([{
-        key: "default",
-        fn: function fn(_ref) {
-          var active = _ref.active;
-          return [_c("v-list-item-action", {
-            staticStyle: {
-              display: "block:  !important"
-            }
-          }, [_c("v-checkbox", {
-            attrs: {
-              "input-value": active,
-              color: "primary"
-            }
-          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
-            staticClass: "s-sub-header"
-          }, [_vm._v("要")])], 1)];
-        }
-      }], null, true)
-    }), _vm._v(" "), _c("v-list-item", {
-      scopedSlots: _vm._u([{
-        key: "default",
-        fn: function fn(_ref2) {
-          var active = _ref2.active;
-          return [_c("v-list-item-action", {
-            staticStyle: {
-              display: "block:  !important"
-            }
-          }, [_c("v-checkbox", {
-            attrs: {
-              "input-value": active,
-              color: "primary"
-            }
-          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
-            staticClass: "s-sub-header"
-          }, [_vm._v("設計に相談したい")])], 1)];
-        }
-      }], null, true)
-    }), _vm._v(" "), _c("v-list-item", {
-      scopedSlots: _vm._u([{
-        key: "default",
-        fn: function fn(_ref3) {
-          var active = _ref3.active;
-          return [_c("v-list-item-action", {
-            staticStyle: {
-              display: "block:  !important"
-            }
-          }, [_c("v-checkbox", {
-            attrs: {
-              "input-value": active,
-              color: "primary"
-            }
-          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
-            staticClass: "s-sub-header"
-          }, [_vm._v("不要")])], 1)];
-        }
-      }], null, true)
-    }), _vm._v(" "), _c("v-list-item", {
-      scopedSlots: _vm._u([{
-        key: "default",
-        fn: function fn(_ref4) {
-          var active = _ref4.active;
-          return [_c("v-list-item-action", {
-            staticStyle: {
-              display: "block:  !important"
-            }
-          }, [_c("v-checkbox", {
-            attrs: {
-              "input-value": active,
-              color: "primary"
-            }
-          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
-            staticClass: "s-sub-header"
-          }, [_vm._v("追加")])], 1)];
-        }
-      }], null, true)
-    }), _vm._v(" "), _c("v-btn", {
-      staticClass: "s-title",
-      staticStyle: {
-        "margin-top": "10px",
-        "background-color": "whitesmoke"
-      },
-      attrs: {
-        width: "100",
-        small: "",
-        outlined: ""
-      }
-    }, [_vm._v("メモ")])], 1), _vm._v(" "), item.products[0] != undefined ? _c("div", {
-      attrs: {
-        id: "s-d"
-      }
-    }, _vm._l(item.products, function (item, i) {
-      return _c("v-card", {
-        key: i,
-        staticStyle: {
-          border: "1px solid #ddd",
-          "flex-wrap": "wrap",
-          "justify-content": "center",
-          gap: "10px"
-        },
-        attrs: {
-          width: "520",
-          height: "350",
-          elevation: "0"
-        }
-      }, [_c("v-col", [_c("v-row", [_c("v-col", {
-        staticStyle: {
-          display: "flex"
-        }
-      }, [_c("v-list-item-title", {
-        staticClass: "s-title",
-        staticStyle: {
-          "font-size": "20px"
-        }
-      }, [_vm._v(_vm._s(item.title))]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), [_c("div", {
-        staticClass: "text-left"
-      }, [_c("v-menu", {
-        staticStyle: {
-          "background-color": "white"
-        },
-        attrs: {
-          "close-on-content-click": false,
-          "nudge-width": 50,
-          "offset-y": "",
-          location: "start"
-        },
-        scopedSlots: _vm._u([{
-          key: "activator",
-          fn: function fn(_ref5) {
-            var on = _ref5.on,
-              attrs = _ref5.attrs;
-            return [_c("v-btn", _vm._g(_vm._b({
-              attrs: {
-                icon: ""
-              }
-            }, "v-btn", attrs, false), on), [_c("v-icon", {
-              attrs: {
-                color: "#FF8F00"
-              }
-            }, [_vm._v("mdi-crown")])], 1)];
-          }
-        }], null, true)
-      }, [_vm._v(" "), _c("v-card", {
-        staticStyle: {
-          "background-color": "white"
-        },
-        attrs: {
-          elevation: "0"
-        }
-      }, [_c("p", {
-        staticClass: "s-header"
-      }, [_vm._v('"I want to put a mark of popularity.\n                                                        '), _c("br"), _vm._v(' Gold, silver, copper, etc. in the crown mark."')])])], 1)], 1)]], 2)], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
-        staticStyle: {
-          display: "flex"
-        }
-      }, [_c("v-img", {
-        attrs: {
-          src: item.add_img,
-          alt: "",
-          "max-height": "100",
-          "max-width": "100"
-        }
-      }), _vm._v(" "), _c("v-img", {
-        attrs: {
-          src: item.img,
-          alt: "",
-          "max-height": "250",
-          "max-width": "250"
-        }
-      })], 1), _vm._v(" "), _c("v-col", [[_c("div", {
-        staticClass: "text-left"
-      }, [_c("v-menu", {
-        attrs: {
-          "close-on-content-click": false,
-          "offset-x": ""
-        },
-        scopedSlots: _vm._u([{
-          key: "activator",
-          fn: function fn(_ref6) {
-            var on = _ref6.on,
-              attrs = _ref6.attrs;
-            return [_c("v-btn", _vm._g(_vm._b({
-              attrs: {
-                small: "",
-                color: "indigo",
-                dark: ""
-              }
-            }, "v-btn", attrs, false), on), [_vm._v(" \n                                                    採用\n                                                    ")])];
-          }
-        }], null, true)
-      }, [_vm._v(" "), item.color_content[0] != undefined ? _c("div", {
-        attrs: {
-          id: "s-s"
-        }
-      }, _vm._l(item.color_content, function (item, a) {
-        return _c("v-card", {
-          key: a,
-          staticStyle: {
-            "text-align": "center",
-            cursor: "pointer",
-            border: "1px solid #ddd",
-            "flex-wrap": "wrap",
-            "justify-content": "center",
-            gap: "10px"
-          },
-          attrs: {
-            width: "100",
-            height: "100",
-            elevation: "0"
-          }
-        }, [_c("v-img", {
-          staticStyle: {
-            width: "100%",
-            height: "100%",
-            "object-fit": "cover"
-          },
-          attrs: {
-            src: item.color_img,
-            alt: item.name,
-            id: "s-s-h"
-          }
-        })], 1);
-      }), 1) : _vm._e(), _vm._v(" "), item.color_content[0] == undefined ? _c("div", {
-        attrs: {
-          id: "s-s"
-        }
-      }, [_c("v-card", {
-        staticStyle: {
-          "text-align": "center",
-          cursor: "pointer",
-          border: "1px solid #ddd",
-          "flex-wrap": "wrap",
-          "justify-content": "center",
-          gap: "10px"
-        },
-        attrs: {
-          width: "100",
-          height: "100",
-          elevation: "0"
-        }
-      }, [_c("v-img", {
-        staticStyle: {
-          width: "100%",
-          height: "100%",
-          "object-fit": "cover"
-        },
-        attrs: {
-          src: "../../images/default.jpg",
-          alt: "default image",
-          id: "s-s-h"
-        }
-      })], 1)], 1) : _vm._e()])], 1)], _vm._v("\n                                        \n                                         \n\n                                        "), _c("h5", {
-        staticClass: "s-header"
-      }, [_vm._v("価格: \n                                            "), _c("v-icon", {
-        staticStyle: {
-          "font-size": "15px",
-          "margin-bottom": "3px"
-        }
-      }, [_vm._v("\n                                                mdi-currency-jpy\n                                            ")]), _vm._v(_vm._s(item.price ? item.price : "No Indicated Value") + "\n                                        ")], 1), _vm._v("\n\n                                         \n\n                                        "), _c("p", {
-        staticClass: "s-sub-header"
-      }, [_vm._v("\n                                            " + _vm._s(item.description ? item.description : "説明なしxx") + "  \n                                        ")]), _vm._v(" "), _c("v-btn", {
-        staticClass: "s-header",
-        attrs: {
-          block: ""
-        },
-        on: {
-          click: function click($event) {
-            return _vm.getItems(item);
-          }
-        }
-      }, [_c("v-icon", [_vm._v("\n                                                mdi-cart\n                                            ")]), _vm._v("add\n                                        ")], 1)], 2)], 1)], 1)], 1);
-    }), 1) : _vm._e(), _vm._v(" "), item.products[0] == undefined ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e()], 1);
+    }, [_vm._v("\n            " + _vm._s(item) + "\n                ")]);
   }), 1)]], 2);
 };
 var staticRenderFns = [];
@@ -7845,236 +7496,6 @@ module.exports = function (url, options) {
 /***/ ((module) => {
 
 module.exports = "/images/background.png?b5a000b9dd5681a513ea2c3bdd3f1c11";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/L150K.jpg":
-/*!***************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/L150K.jpg ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/L150K.jpg?eeecc9cf2f4321ba5c66c3f7d86b6c48";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/copper.jpg":
-/*!****************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/copper.jpg ***!
-  \****************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/copper.jpg?fbf1ca1049f806ac107012ec4231304c";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/crimson.jpg":
-/*!*****************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/crimson.jpg ***!
-  \*****************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/crimson.jpg?0c1b8921b230583902cf0ccf364fc2a5";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/ebony.jpg":
-/*!***************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/ebony.jpg ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ebony.jpg?7f44b45a61175e51c2fe1baaa8024377";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/gold.jpg":
-/*!**************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/gold.jpg ***!
-  \**************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/gold.jpg?853762a46c36592986b303a476b023b3";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/ivory.jpg":
-/*!***************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/ivory.jpg ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ivory.jpg?521e3c213c24d0400171bba243af69e5";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/pink.jpg":
-/*!**************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/pink.jpg ***!
-  \**************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/pink.jpg?efc3f2f1052fd26098c75b048b5d4687";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/white.jpg":
-/*!***************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/white.jpg ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/white.jpg?dfdc3d77e32fba27012d53baaf4430c3";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/オフホワイト.jpg":
-/*!****************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/オフホワイト.jpg ***!
-  \****************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/オフホワイト.jpg?a617bcea3c94018c7e261afbfbe0f9e6";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/ピュアホワイト.jpg":
-/*!*****************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/ピュアホワイト.jpg ***!
-  \*****************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ピュアホワイト.jpg?725bcdd04ed3983eb060ddafdccaa1ae";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/ピンク.jpg":
-/*!*************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/ピンク.jpg ***!
-  \*************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ピンク.jpg?1f5fcc341fcc7aa2e9602f41062a3329";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/ToiletBowlColors/ブルーグレー.jpg":
-/*!****************************************************************!*\
-  !*** ./resources/js/images/toilet/ToiletBowlColors/ブルーグレー.jpg ***!
-  \****************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ブルーグレー.jpg?65f122068c537408a09b9b64738fd700";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/14.jpg":
-/*!******************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/14.jpg ***!
-  \******************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/14.jpg?2e3b789289d7a2f2c910addaf641e191";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/30.jpg":
-/*!******************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/30.jpg ***!
-  \******************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/30.jpg?24f190b1f7de8b6d139eab0ec7c9f050";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/31.jpg":
-/*!******************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/31.jpg ***!
-  \******************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/31.jpg?849429a3d67b404ee289989890f54a3a";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/33.jpg":
-/*!******************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/33.jpg ***!
-  \******************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/33.jpg?d343fa50682c1c700d5e3aed862f9099";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/CA193AC30020.jpg":
-/*!****************************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/CA193AC30020.jpg ***!
-  \****************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/CA193AC30020.jpg?d9356d8eea94878dc1eacfc90b24d47d";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg":
-/*!******************************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg ***!
-  \******************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/F3A(ｵｰﾄ便器洗浄付) .jpg?c15e3c66cd146a32e396cc1b8efd8685";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/L150K.jpg":
-/*!*********************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/L150K.jpg ***!
-  \*********************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/L150K.jpg?eeecc9cf2f4321ba5c66c3f7d86b6c48";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg":
-/*!******************************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg ***!
-  \******************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ベーシアハーモ(LIXIL).jpg?9bf92ec973f11fc35e0cb688a7ab7920";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー1連式.jpg":
-/*!***************************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/ペーパーホルダー1連式.jpg ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ペーパーホルダー1連式.jpg?f66c8c35cf6aee100107e02d2fcea0dc";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー2連式.jpg":
-/*!***************************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/ペーパーホルダー2連式.jpg ***!
-  \***************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ペーパーホルダー2連式.jpg?b587def2e1cf435a853e9edb74b91acd";
-
-/***/ }),
-
-/***/ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg":
-/*!********************************************************************!*\
-  !*** ./resources/js/images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg ***!
-  \********************************************************************/
-/***/ ((module) => {
-
-module.exports = "/images/ペーパーホルダー_シルバータイプ.jpg?90bcaeeccfe1c9d01c2e9fa55fd895ad";
 
 /***/ }),
 

@@ -88,5 +88,12 @@ Route::post('/masterMaintenance/colors',[MasterMaintenanceController::class,'col
 
 Route::post('/masterMaintenance/deleteData',[MasterMaintenanceController::class,'deleteData']);
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// * * * * * * * * * * *             NEW             * * * * * * * * * * * * * 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+Route::get('/getSubItems',[ShiyoushoCatalogController::class,'getSubItems']);
+Route::get('/getProducts',[ShiyoushoCatalogController::class,'getProducts']);
 

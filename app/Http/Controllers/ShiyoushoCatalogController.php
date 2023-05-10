@@ -41,9 +41,9 @@ class ShiyoushoCatalogController extends Controller
         return response()->json($id . ' ' . 'is successfully deleted');
     }
 
-     // ==================== 03-15-2023 ==================== //
-    //GET DATA FROM HRDSQL8
-    // public function getDataHRDSQL8(){
+        // ==================== 03-15-2023 ==================== //
+        //GET DATA FROM HRDSQL8
+        // public function getDataHRDSQL8(){
         public function getDataHRDSQL7(){
             // return  $HRDSQL8 = DB::connection('ShiyoushoCommon_Test')
                 $HRDSQL7 = DB::connection('HRDSQL7(ShiyoushoCommon)')
@@ -1046,8 +1046,29 @@ class ShiyoushoCatalogController extends Controller
                 AND M_CDM031.ITEM_CD_2 = '$ITEM_2_CD'
                 AND M_CDM031.GOODS_CD NOT IN ('7777777', '7777778', '8888888', '9999999')
             ")
-        );
-    }
+            );
+        }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * *             NEW             * * * * * * * * * * * * * 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+        public function getSubItems(){
+            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            ->table('m_sub_items')
+            ->where('main_items_code','=','0200')
+            ->get();
+        } 
+
+        public function getProducts(){
+            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            ->table('m_products')
+            ->get();
+        }    
+
+
     
 }
 

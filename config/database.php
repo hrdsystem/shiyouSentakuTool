@@ -167,6 +167,19 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'HRDAPPS31(j_shiyou_sentaku_main)'=> [ 
+            'driver' => 'mysql', 
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_10', 'HRDAPPS31'), 
+            'port' => env('DB_PORT_10', '3314'), 
+            'database' => env('DB_DATABASE_10', 'j_shiyou_sentaku_main'), 
+            'username' => env('DB_USERNAME_10', 'romel006995'), 
+            'password' => env('DB_PASSWORD_10', '006995'), 
+            'charset' => 'utf8', 
+            'prefix' => '', 
+            'prefix_indexes' => true, 
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
