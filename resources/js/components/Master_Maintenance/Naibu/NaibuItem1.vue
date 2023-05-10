@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Sana all</h1>
+        <h1>NaibuItem1</h1>
     </div>
 </template>
 

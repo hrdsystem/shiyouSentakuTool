@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Ang arti</h1>
+        <h1>GaibuItem1</h1>
     </div>
 </template>
 
