@@ -89,6 +89,7 @@ Route::post('/masterMaintenance/deleteData',[MasterMaintenanceController::class,
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+Route::get('/getDataToilet',[ShiyoushoCatalogController::class,'getDataToilet']);
 Route::get('/getSubItems',[ShiyoushoCatalogController::class,'getSubItems']);
-Route::get('/getProducts',[ShiyoushoCatalogController::class,'getProducts']);
+Route::post('/getProducts',[ShiyoushoCatalogController::class,'getProducts']);
 

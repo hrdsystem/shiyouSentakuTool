@@ -221,11 +221,14 @@
         }),
 
         methods: {
+            getItems(){
+                console.log(this.items,'items');
+            }
             
         },
 
         mounted() {
-            
+            this.getItems();
         },
 
         created () {

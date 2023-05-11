@@ -2502,6 +2502,27 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['dialog'],
+  data: function data() {
+    return {};
+  },
+  watch: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Gaibu.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Gaibu.vue?vue&type=script&lang=js& ***!
@@ -2670,22 +2691,22 @@ __webpack_require__.r(__webpack_exports__);
       headers: [{
         text: 'カラーコード',
         value: 'color_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '色名',
         value: 'color_name',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '画像パス',
         value: 'image_path',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '行動',
         value: 'actions',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }],
       mastersData: [],
@@ -2729,25 +2750,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-var _methods;
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+/* harmony import */ var _Dialog_Item1Dialog_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Dialog/Item1Dialog.vue */ "./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    item1: _Dialog_Item1Dialog_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       headers: [{
         text: 'カテゴリーコード',
         value: 'category_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: 'コード',
         value: 'CODE',
-        align: 'left',
+        align: 'center',
         sortable: false
       }, {
         text: '項目名',
@@ -2757,23 +2778,23 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }, {
         text: '行動',
         value: 'actions',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }],
       subheaders: [{
         text: 'カテゴリーコード',
         value: 'category_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '本体コード',
         value: 'main_items_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: 'コード',
         value: 'sub_item_code',
-        align: 'left',
+        align: 'center',
         sortable: false
       }, {
         text: 'サブアイテム名',
@@ -2783,10 +2804,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }, {
         text: '行動',
         value: 'actions',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }],
-      addEdit: {},
       itemName: null,
       code: null,
       category: null,
@@ -2795,12 +2815,12 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         x: 0,
         y: 0
       },
-      loading: false,
+      addEdit: {},
+      item1Dialog: false,
+      mastersData: [],
       action: '',
       // DIALOGS
-      dialog: false,
       dialogDelete: false,
-      mastersData: [],
       mastersSubData: [],
       editedIndex: -1,
       editedItem: {
@@ -2818,7 +2838,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     }
   },
   watch: {
-    dialog: function dialog(val) {
+    item1Dialog: function item1Dialog(val) {
       val || this.close();
     } // dialogDelete (val) {
     //     val || this.closeDelete()
@@ -2827,121 +2847,122 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   created: function created() {
     this.getItem1();
   },
-  methods: (_methods = {
+  methods: {
     close: function close() {
       var _this = this;
-      this.dialog = false;
+      this.item1Dialog = false;
       this.$nextTick(function () {
         _this.editedItem = Object.assign({}, _this.defaultItem);
         _this.editedIndex = -1;
       });
     },
     addItem1: function addItem1(action) {
+      this.item1Dialog = true;
       this.category = "";
       this.code = "";
       this.itemName = "";
-      this.dialog = true;
+      // this.item1Dialog  = true
       this.action = 'ADD NEW';
     },
-    closeDialogItem1: function closeDialogItem1() {
-      this.dialog = false;
+    closeDialogItem1: function closeDialogItem1(val) {
+      this.getItem1();
+      this.item1Dialog = val;
     },
     closeEditDialog1: function closeEditDialog1() {
       this.category = "";
       this.code = "";
       this.itemName = "";
-      this.dialog = false;
+      this.item1Dialog = false;
       this.action = 'EDIT';
     },
     editItem1: function editItem1(item) {
-      this.item1Status = "UPDATE";
-      this.ObjItem1 = item;
+      this.action = 'EDIT';
       this.item1Dialog = true;
-    }
-  }, _defineProperty(_methods, "editItem1", function editItem1(item) {
-    this.editedIndex = this.mastersData.indexOf(item);
-    this.editedItem = Object.assign({}, item);
-    this.dialog = true;
-    this.action = 'EDIT';
-  }), _defineProperty(_methods, "saveItem1", function saveItem1() {
-    var _this2 = this;
-    this.close();
-    var data = {};
-    if (this.action == "ADD NEW") {
-      data = {
-        action: this.action,
-        category_code: this.category,
-        CODE: this.code,
-        item_name: this.itemName
-      };
-    } else {
-      data = Object.assign({}, this.saveEdit);
-      data.productId = this.productId;
-      console.log(data, 'saveFunction');
-    }
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: 'post',
-      url: 'api/masterMaintenance/updateData',
-      data: data
-      // {
-      //     category_code:this.category,
-      //     CODE:this.code,
-      //     item_name:this.itemName,
-      //     action:this.action
-      // }
-    }).then(function (res) {
-      _this2.getItem1();
-      console.log(res.data, 'saveItem1...');
-      if (res.data == 'Existing') {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-          icon: 'error',
-          title: 'Item is Already Existing!',
-          footer: 'Click OK to continue!'
-        });
-      } else if (res.data == 'EDITED') {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-          icon: 'success',
-          title: 'Item Updated',
-          footer: 'Click OK to continue!'
-        });
+    },
+    saveItem1: function saveItem1() {
+      var _this2 = this;
+      this.close();
+      var data = {};
+      if (this.action == "ADD NEW") {
+        data = {
+          action: this.action,
+          category_code: this.category,
+          CODE: this.code,
+          item_name: this.itemName
+        };
       } else {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-          icon: 'success',
-          title: 'Item Saved',
-          footer: 'Click OK to continue!'
-        });
+        data = Object.assign({}, this.saveEdit);
+        data.productId = this.productId;
+        console.log(data, 'saveFunction');
       }
-    });
-  }), _defineProperty(_methods, "openDialogItem2", function openDialogItem2() {
-    //
-  }), _defineProperty(_methods, "getItem1", function getItem1() {
-    var _this3 = this;
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: 'get',
-      url: 'api/masterMaintenance/getItem1'
-    }).then(function (res) {
-      _this3.mastersData = res.data;
-      console.log(res.data, 'getItem1...');
-    });
-  }), _defineProperty(_methods, "getItem2", function getItem2(item) {
-    var _this4 = this;
-    this.disabledItem2btn = false;
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: 'post',
-      url: 'api/masterMaintenance/getItem2',
-      data: {
-        main_items_code: item.CODE
-      }
-    }).then(function (res) {
-      _this4.mastersSubData = res.data;
-      console.log(res.data);
-    });
-  }), _defineProperty(_methods, "onResize", function onResize() {
-    this.windowSize = {
-      x: window.innerWidth,
-      y: window.innerHeight
-    };
-  }), _methods)
+      axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: 'post',
+        url: 'api/masterMaintenance/updateData',
+        data: data
+        // {
+        //     category_code:this.category,
+        //     CODE:this.code,
+        //     item_name:this.itemName,
+        //     action:this.action
+        // }
+      }).then(function (res) {
+        _this2.getItem1();
+        console.log(res.data, 'saveItem1...');
+        if (res.data == 'Existing') {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            icon: 'error',
+            title: 'Item is Already Existing!',
+            footer: 'Click OK to continue!'
+          });
+        } else if (res.data == 'EDITED') {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            icon: 'success',
+            title: 'Item Updated',
+            footer: 'Click OK to continue!'
+          });
+        } else {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+            icon: 'success',
+            title: 'Item Saved',
+            footer: 'Click OK to continue!'
+          });
+        }
+      });
+    },
+    openDialogItem2: function openDialogItem2() {
+      //
+    },
+    getItem1: function getItem1() {
+      var _this3 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: 'get',
+        url: 'api/masterMaintenance/getItem1'
+      }).then(function (res) {
+        _this3.mastersData = res.data;
+        console.log(res.data, 'getItem1...');
+      });
+    },
+    getItem2: function getItem2(item) {
+      var _this4 = this;
+      this.disabledItem2btn = false;
+      axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: 'post',
+        url: 'api/masterMaintenance/getItem2',
+        data: {
+          main_items_code: item.CODE
+        }
+      }).then(function (res) {
+        _this4.mastersSubData = res.data;
+        console.log(res.data);
+      });
+    },
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -2969,47 +2990,47 @@ __webpack_require__.r(__webpack_exports__);
       headers: [{
         text: 'カテゴリーコード',
         value: 'category_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '本体コード',
         value: 'main_items_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: 'サブアイテムコード',
         value: 'sub_items_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: 'コード',
         value: 'CODE',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '商品名',
         value: 'product_name',
-        align: 'centered',
+        align: 'left',
         sortable: false
       }, {
         text: 'メーカーコード',
         value: 'maker_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: 'カラーコード',
         value: 'color_code',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }, {
         text: '画像パス',
         value: 'image_path',
-        align: 'centered',
+        align: 'left',
         sortable: false
       }, {
         text: '行動',
         value: 'actions',
-        align: 'centered',
+        align: 'center',
         sortable: false
       }],
       mastersData: [],
@@ -3032,6 +3053,12 @@ __webpack_require__.r(__webpack_exports__);
         console.log(res.data, 'PRODUCTS');
         _this.mastersData = res.data;
       });
+    },
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
     }
   }
 });
@@ -3543,12 +3570,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       cartItemCount: 0,
+      dialog: false,
       sub_items: [],
-      products: []
+      products: [],
+      cartItems: [],
+      cart: [{
+        type: '',
+        image: '',
+        accesories_image: '',
+        item_name: '',
+        product_name: '',
+        // color_name: '',
+        price: '',
+        description: ''
+      }]
+
       // sub_items :[
       //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
       //     {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
@@ -3638,9 +3681,6 @@ __webpack_require__.r(__webpack_exports__);
   },
 
   methods: {
-    // getItems(item){
-    //     console.log(item)
-    // }
     getSubItems: function getSubItems() {
       var _this = this;
       axios({
@@ -3651,20 +3691,97 @@ __webpack_require__.r(__webpack_exports__);
         console.log(res.data, 'sub-items');
       });
     },
-    getProducts: function getProducts() {
+    getProducts: function getProducts(item) {
       var _this2 = this;
       axios({
-        method: 'get',
-        url: 'api/getProducts'
+        method: 'post',
+        url: 'api/getProducts',
+        data: item
       }).then(function (res) {
         _this2.products = res.data;
         console.log(res.data, 'products');
+      });
+    },
+    selectItem: function selectItem(item) {
+      console.log(item, 'clicked!!');
+    },
+    getData: function getData() {
+      var _this3 = this;
+      axios({
+        method: 'get',
+        url: 'api/getDataToilet'
+      }).then(function (res) {
+        _this3.cartItems = res.data;
+        _this3.cartItemCount = res.data.length;
+      });
+    },
+    // getToCart(item){
+    //     console.log(item, 'items to be cart-ed')
+    // },
+    addToCart: function addToCart(item) {
+      console.log(item, 'item');
+      this.cart.filter(function (r) {
+        r.type = 'トイレ';
+        r.image = item.image_path;
+        r.accesories_image = item.add_image;
+        r.item_name = item.item_name;
+        r.product_name = item.product_name;
+        // r.color_name = item.color;
+        r.price = item.price;
+        r.description = item.description;
+      });
+      console.log(this.cart, 'cart');
+      axios({
+        method: 'post',
+        url: 'api/save',
+        data: this.cart
+      }).then(function (r) {
+        console.log(r);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire("you're item is added!", 'Item successfully cart-ed!', 'success');
+      });
+      this.getData();
+    },
+    removeItem: function removeItem(id) {
+      var _this4 = this;
+      console.log(id);
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+        title: 'Are you sure to remove this item?',
+        text: "You can add this anytime, anyways.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e57373',
+        cancelButtonColor: 'gray',
+        confirmButtonText: 'Yes, remove it!',
+        cancelButtonText: 'No, i changed my mind'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios({
+            method: 'post',
+            url: "api/remove/".concat(id)
+          }).then(function (res) {
+            var i = _this4.cartItems.map(function (item) {
+              return item.id;
+            }).indexOf(id);
+            _this4.cartItems.splice(i, 1);
+            console.log(i);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'your item is removed!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            _this4.getData();
+          });
+        }
       });
     }
   },
   mounted: function mounted() {
     this.getSubItems();
     this.getProducts();
+    this.getData();
+
     // this.products.forEach(e1 => {
     //     this.sub_items.forEach(e2 => {
     //         if(e1.item_id == e2.id){
@@ -3708,87 +3825,134 @@ __webpack_require__.r(__webpack_exports__);
       drawer: null,
       items: [
       // { icon:'mdi-alpha-g-box-outline', title: '選択した設備仕様を確認'},
+      // { icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},
+      // { icon:'mdi-alpha-w-box-outline', title: '窓', to:'/any1'},
+      // { icon:'mdi-alpha-b-box-outline', title: 'バルコニー', to:'/any2'},
+      // { icon:'mdi-alpha-o-box-outline', title: '外まわり', to:'/any3'},
+      // { icon:'mdi-alpha-f-box-outline', title: '玄関', to:'/any4'},
+      // { icon:'mdi-alpha-r-box-outline', title: '洋室', to:'/any5'},
+      // { icon:'mdi-alpha-s-box-outline', title: '階段', to:'/any6'},
+      // { icon:'mdi-alpha-j-box-outline', title: '和室', to:'/any7'},
+      // { icon:'mdi-alpha-k-box-outline', title: 'キッチン', to:'/any8'},
+      // { icon:'mdi-alpha-u-box-outline', title: 'ユーティリティ', to:'/any9'},
+      // { icon:'mdi-alpha-u-box-outline', title: '浴室', to:'/any10'},
+      // { icon:'mdi-alpha-t-box-outline', title: 'トイレ', to:'/toilet'},
+      // { icon:'mdi-alpha-i-box-outline',title: '玄関ホール', to:'/any12'},
+      // { icon:'mdi-alpha-l-box-outline', title: 'リビング', to:'/any13'},
+      // { icon:'mdi-alpha-z-box-outline', title: '収納', to:'/any14'},
+      // { icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/master_maintenance_tool'},
+
       {
+        subMenu: [],
         icon: 'mdi-alpha-e-box-outline',
         title: '外観',
         to: '/any'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-w-box-outline',
         title: '窓',
         to: '/any1'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-b-box-outline',
         title: 'バルコニー',
         to: '/any2'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-o-box-outline',
         title: '外まわり',
         to: '/any3'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-f-box-outline',
         title: '玄関',
         to: '/any4'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-r-box-outline',
         title: '洋室',
         to: '/any5'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-s-box-outline',
         title: '階段',
         to: '/any6'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-j-box-outline',
         title: '和室',
         to: '/any7'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-k-box-outline',
         title: 'キッチン',
         to: '/any8'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-u-box-outline',
         title: 'ユーティリティ',
         to: '/any9'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-u-box-outline',
         title: '浴室',
         to: '/any10'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-t-box-outline',
         title: 'トイレ',
         to: '/toilet'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-i-box-outline',
         title: '玄関ホール',
         to: '/any12'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-l-box-outline',
         title: 'リビング',
         to: '/any13'
       }, {
+        subMenu: [],
         icon: 'mdi-alpha-z-box-outline',
         title: '収納',
         to: '/any14'
-      }
-      // { icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/master_maintenance_tool'},
-      ],
-
-      masterCategories: [{
-        text: '外部',
-        to: "/gaibu_master"
       }, {
-        text: '設備',
-        to: "/setsubi_master"
-      }, {
-        text: '内部',
-        to: "/naibu_master"
-      }],
-      categories: ''
+        subMenu: [{
+          text: '外部',
+          to: "/gaibu_master"
+        }, {
+          text: '設備',
+          to: "/setsubi_master"
+        }, {
+          text: '内部',
+          to: "/naibu_master"
+        }],
+        icon: 'mdi-alpha-m-box-outline',
+        title: 'マスターメンテナンス',
+        to: '/any156'
+      }]
+      // masterCategories:[
+      //     {text:'外部', to: "/gaibu_master"},
+      //     {text:'設備', to: "/setsubi_master"},
+      //     {text:'内部', to: "/naibu_master"},
+      // ],
+      // categories: ''
     };
   },
-  methods: {},
-  mounted: function mounted() {},
+
+  methods: {
+    getItems: function getItems() {
+      console.log(this.items, 'items');
+    }
+  },
+  mounted: function mounted() {
+    this.getItems();
+  },
   created: function created() {
-    this.$router.push('/home');
+    if (this.$route.path !== '/home') {
+      this.$router.push('/home');
+    }
   }
 });
 
@@ -5002,6 +5166,61 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("v-dialog", {
+    attrs: {
+      persistent: "",
+      width: "400px",
+      transition: "dialog-transition"
+    },
+    model: {
+      value: _vm.dialog,
+      callback: function callback($$v) {
+        _vm.dialog = $$v;
+      },
+      expression: "dialog"
+    }
+  }, [_c("v-toolbar", {
+    staticStyle: {
+      "font-size": "14px"
+    },
+    attrs: {
+      dark: "",
+      color: "#0548b2",
+      dense: ""
+    }
+  }, [_c("h3", [_vm._v("Item 1")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("v-icon", [_vm._v("mdi-close")])], 1), _vm._v(" "), _c("v-card", [_c("v-card-title", [_c("v-text-field", {
+    attrs: {
+      dense: "",
+      outlined: ""
+    }
+  }), _vm._v(" "), _c("v-text-field", {
+    attrs: {
+      dense: "",
+      outlined: ""
+    }
+  })], 1), _vm._v(" "), _c("v-card-actions", [_c("v-btn")], 1)], 1)], 1)], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Gaibu.vue?vue&type=template&id=fe881918&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Gaibu.vue?vue&type=template&id=fe881918&scoped=true& ***!
@@ -5402,35 +5621,64 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("center", [_c("v-overlay", {
+  return _c("v-container", {
+    directives: [{
+      name: "resize",
+      rawName: "v-resize",
+      value: _vm.onResize,
+      expression: "onResize"
+    }],
     attrs: {
-      value: _vm.loading,
-      color: "white"
+      fluid: ""
     }
-  }, [_c("v-progress-circular", {
-    attrs: {
-      color: "#74b1ed",
-      indeterminate: "",
-      size: "100",
-      width: "10"
-    }
-  }, [_c("v-row", {
-    staticClass: "d-flex align-center"
-  }, [_c("h1", {
-    staticClass: "blink",
-    staticStyle: {
-      "font-size": "10px",
-      color: "black"
-    }
-  }, [_vm._v("LOADING"), _c("br"), _vm._v("DATA")])])], 1)], 1)], 1), _vm._v(" "), _c("div", [_c("v-btn", {
+  }, [_c("v-row", [_c("v-col", [_c("v-btn", {
+    staticClass: "text-none mt-2",
     attrs: {
       rounded: "",
-      "x-small": "",
+      small: "",
       outlined: "",
-      color: "primary",
+      color: "grey",
       to: "/setsubi_master"
     }
-  }, [_c("v-icon", [_vm._v("mdi-arrow-left-bold")]), _vm._v(" "), _c("span", [_vm._v("Back")])], 1)], 1), _vm._v(" "), _c("v-data-table", {
+  }, [_c("v-icon", [_vm._v("mdi-arrow-left-bold")]), _vm._v(" "), _c("span", [_vm._v("Back")])], 1)], 1)], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-row", [_c("v-col", [_c("v-toolbar", {
+    attrs: {
+      flat: ""
+    }
+  }, [_c("v-spacer"), _vm._v(" "), _c("v-tooltip", {
+    attrs: {
+      left: "",
+      color: "warning"
+    },
+    scopedSlots: _vm._u([{
+      key: "activator",
+      fn: function fn(_ref) {
+        var on = _ref.on,
+          attrs = _ref.attrs;
+        return [_c("v-btn", _vm._g(_vm._b({
+          staticClass: "text-none mt-2",
+          staticStyle: {
+            "float": "right",
+            "margin-bottom": "5px"
+          },
+          attrs: {
+            fab: "",
+            outlined: "",
+            "x-small": "",
+            color: "primary"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.addItem1("ADD");
+            }
+          }
+        }, "v-btn", attrs, false), on), [_c("v-icon", {
+          attrs: {
+            dark: ""
+          }
+        }, [_vm._v("mdi-plus")])], 1)];
+      }
+    }])
+  }, [_vm._v(" "), _c("span", [_vm._v("Add New")])])], 1)], 1)], 1), _vm._v(" "), _c("v-data-table", {
     staticClass: "elevation-1 processTable",
     staticStyle: {
       "max-width": "100%"
@@ -5442,70 +5690,27 @@ var render = function render() {
     },
     scopedSlots: _vm._u([{
       key: "header",
-      fn: function fn(_ref) {
-        var headers = _ref.props.headers;
+      fn: function fn(_ref2) {
+        var headers = _ref2.props.headers;
         return [_c("thead", {
           staticStyle: {
             "background-color": "#1E88E5"
           }
         }, [_c("tr", _vm._l(headers, function (h) {
-          return _c("th", [_c("span", {
+          return _c("th", {
+            staticStyle: {
+              "background-color": "#4c7cc8",
+              color: "white",
+              "font-weight": "normal"
+            },
+            attrs: {
+              id: "border"
+            }
+          }, [_c("span", {
             staticClass: "header-text-color"
           }, [_vm._v(_vm._s(h.text))])]);
         }), 0)])];
       }
-    }, {
-      key: "top",
-      fn: function fn() {
-        return [_c("v-row", [_c("v-col", {
-          attrs: {
-            cols: "4"
-          }
-        }), _vm._v(" "), _c("v-col", {
-          attrs: {
-            cols: "4"
-          }
-        }), _vm._v(" "), _c("v-col", {
-          attrs: {
-            cols: "4"
-          }
-        }, [_c("v-toolbar", {
-          attrs: {
-            flat: ""
-          }
-        }, [_c("v-spacer"), _vm._v(" "), _c("v-tooltip", {
-          attrs: {
-            left: "",
-            color: "warning"
-          },
-          scopedSlots: _vm._u([{
-            key: "activator",
-            fn: function fn(_ref2) {
-              var on = _ref2.on,
-                attrs = _ref2.attrs;
-              return [_c("v-btn", _vm._g(_vm._b({
-                staticClass: "mx-2",
-                attrs: {
-                  "elevation-10": "",
-                  fab: "",
-                  "x-small": "",
-                  color: "info"
-                },
-                on: {
-                  click: function click($event) {
-                    return _vm.addDialog("ADD");
-                  }
-                }
-              }, "v-btn", attrs, false), on), [_c("v-icon", {
-                attrs: {
-                  dark: ""
-                }
-              }, [_vm._v("mdi-plus")])], 1)];
-            }
-          }])
-        }, [_vm._v(" "), _c("span", [_vm._v("Add New")])])], 1)], 1)], 1)];
-      },
-      proxy: true
     }, {
       key: "item.actions",
       fn: function fn(_ref3) {
@@ -5520,7 +5725,7 @@ var render = function render() {
               return _vm.editItem(item);
             }
           }
-        }, [_vm._v("\n                mdi-pencil\n            ")]), _vm._v(" "), _c("v-icon", {
+        }, [_vm._v("\n                        mdi-pencil\n                    ")]), _vm._v(" "), _c("v-icon", {
           attrs: {
             color: "error"
           },
@@ -5529,7 +5734,7 @@ var render = function render() {
               return _vm.deleteItem(item);
             }
           }
-        }, [_vm._v("\n                mdi-delete\n            ")])];
+        }, [_vm._v("\n                        mdi-delete\n                    ")])];
       }
     }, {
       key: "item.image",
@@ -5579,7 +5784,7 @@ var render = function render() {
         })], 1)], 1)];
       }
     }])
-  })], 1);
+  })], 1)], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5602,7 +5807,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("v-container", {
+  return _c("div", [_c("v-container", {
     directives: [{
       name: "resize",
       rawName: "v-resize",
@@ -5618,7 +5823,7 @@ var render = function render() {
       rounded: "",
       small: "",
       outlined: "",
-      color: "primary",
+      color: "grey",
       to: "/setsubi_master"
     }
   }, [_c("v-icon", [_vm._v("mdi-arrow-left-bold")]), _vm._v(" "), _c("span", [_vm._v("Back")])], 1)], 1)], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-row", [_c("v-col", [_c("v-toolbar", {
@@ -5660,7 +5865,7 @@ var render = function render() {
       }
     }])
   }, [_vm._v(" "), _c("span", [_vm._v("Add New")])])], 1)], 1)], 1), _vm._v(" "), _c("v-data-table", {
-    staticClass: "elevation-1 processTable",
+    staticClass: "elevation-1",
     attrs: {
       "hide-default-header": "",
       headers: _vm.headers,
@@ -5710,7 +5915,7 @@ var render = function render() {
               return _vm.editItem1(item);
             }
           }
-        }, [_vm._v("\n                        mdi-pencil\n                    ")]), _vm._v(" "), _c("v-icon", {
+        }, [_vm._v("\n                            mdi-pencil\n                        ")]), _vm._v(" "), _c("v-icon", {
           attrs: {
             color: "error"
           },
@@ -5719,7 +5924,7 @@ var render = function render() {
               return _vm.deleteItem(item);
             }
           }
-        }, [_vm._v("\n                        mdi-delete\n                    ")])];
+        }, [_vm._v("\n                            mdi-delete\n                        ")])];
       }
     }, {
       key: "item.image",
@@ -5809,7 +6014,7 @@ var render = function render() {
       }
     }])
   }, [_vm._v(" "), _c("span", [_vm._v("Add New")])])], 1)], 1)], 1), _vm._v(" "), _c("v-data-table", {
-    staticClass: "elevation-1 processTable",
+    staticClass: "elevation-1",
     attrs: {
       "hide-default-header": "",
       headers: _vm.subheaders,
@@ -5852,7 +6057,7 @@ var render = function render() {
               return _vm.editItem2(item);
             }
           }
-        }, [_vm._v("\n                        mdi-pencil\n                    ")]), _vm._v(" "), _c("v-icon", {
+        }, [_vm._v("\n                            mdi-pencil\n                        ")]), _vm._v(" "), _c("v-icon", {
           attrs: {
             color: "error"
           },
@@ -5861,7 +6066,7 @@ var render = function render() {
               return _vm.deleteItem(item);
             }
           }
-        }, [_vm._v("\n                        mdi-delete\n                    ")])];
+        }, [_vm._v("\n                            mdi-delete\n                        ")])];
       }
     }, {
       key: "item.image",
@@ -5883,89 +6088,11 @@ var render = function render() {
         })])];
       }
     }])
-  })], 1)], 1), _vm._v(" "), _c("v-dialog", {
+  })], 1)], 1)], 1), _vm._v(" "), _c("item1", {
     attrs: {
-      "max-width": "20%",
-      persistent: ""
-    },
-    model: {
-      value: _vm.dialog,
-      callback: function callback($$v) {
-        _vm.dialog = $$v;
-      },
-      expression: "dialog"
+      dialog: _vm.item1Dialog
     }
-  }, [_c("v-card", [_c("v-card-title", {
-    staticStyle: {
-      "background-color": "#1E88E5",
-      color: "#ffffff"
-    }
-  }, [_vm._v(_vm._s(_vm.action) + " DATA\n                "), _c("v-spacer"), _vm._v(" "), _c("v-icon", {
-    attrs: {
-      color: "#ffffff"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.close();
-      }
-    }
-  }, [_vm._v("mdi-close")])], 1), _vm._v(" "), _c("v-card-text", [_c("br"), _vm._v(" "), _c("v-text-field", {
-    attrs: {
-      outlined: "",
-      dense: "",
-      rounded: "",
-      label: "Category"
-    },
-    model: {
-      value: _vm.category,
-      callback: function callback($$v) {
-        _vm.category = $$v;
-      },
-      expression: "category"
-    }
-  }), _vm._v(" "), _c("v-text-field", {
-    attrs: {
-      outlined: "",
-      dense: "",
-      rounded: "",
-      label: "Code"
-    },
-    model: {
-      value: _vm.code,
-      callback: function callback($$v) {
-        _vm.code = $$v;
-      },
-      expression: "code"
-    }
-  }), _vm._v(" "), _c("v-text-field", {
-    attrs: {
-      outlined: "",
-      dense: "",
-      rounded: "",
-      label: "Item Name"
-    },
-    model: {
-      value: _vm.itemName,
-      callback: function callback($$v) {
-        _vm.itemName = $$v;
-      },
-      expression: "itemName"
-    }
-  })], 1), _vm._v(" "), _c("v-card-actions", [_c("v-btn", {
-    staticStyle: {
-      height: "35px !important"
-    },
-    attrs: {
-      block: "",
-      dense: "",
-      color: "primary"
-    },
-    on: {
-      click: function click($event) {
-        return _vm.saveItem1();
-      }
-    }
-  }, [_c("v-icon", [_vm._v("mdi-content-save")]), _vm._v("\n                    SAVE\n                ")], 1)], 1)], 1)], 1)], 1);
+  })], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5988,35 +6115,64 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("center", [_c("v-overlay", {
+  return _c("v-container", {
+    directives: [{
+      name: "resize",
+      rawName: "v-resize",
+      value: _vm.onResize,
+      expression: "onResize"
+    }],
     attrs: {
-      value: _vm.loading,
-      color: "white"
+      fluid: ""
     }
-  }, [_c("v-progress-circular", {
-    attrs: {
-      color: "#74b1ed",
-      indeterminate: "",
-      size: "100",
-      width: "10"
-    }
-  }, [_c("v-row", {
-    staticClass: "d-flex align-center"
-  }, [_c("h1", {
-    staticClass: "blink",
-    staticStyle: {
-      "font-size": "10px",
-      color: "black"
-    }
-  }, [_vm._v("LOADING"), _c("br"), _vm._v("DATA")])])], 1)], 1)], 1), _vm._v(" "), _c("div", [_c("v-btn", {
+  }, [_c("v-row", [_c("v-col", [_c("v-btn", {
+    staticClass: "text-none mt-2",
     attrs: {
       rounded: "",
-      "x-small": "",
+      small: "",
       outlined: "",
-      color: "primary",
+      color: "grey",
       to: "/setsubi_master"
     }
-  }, [_c("v-icon", [_vm._v("mdi-arrow-left-bold")]), _vm._v(" "), _c("span", [_vm._v("Back")])], 1)], 1), _vm._v(" "), _c("v-data-table", {
+  }, [_c("v-icon", [_vm._v("mdi-arrow-left-bold")]), _vm._v(" "), _c("span", [_vm._v("Back")])], 1)], 1)], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-row", [_c("v-col", [_c("v-toolbar", {
+    attrs: {
+      flat: ""
+    }
+  }, [_c("v-spacer"), _vm._v(" "), _c("v-tooltip", {
+    attrs: {
+      left: "",
+      color: "warning"
+    },
+    scopedSlots: _vm._u([{
+      key: "activator",
+      fn: function fn(_ref) {
+        var on = _ref.on,
+          attrs = _ref.attrs;
+        return [_c("v-btn", _vm._g(_vm._b({
+          staticClass: "text-none mt-2",
+          staticStyle: {
+            "float": "right",
+            "margin-bottom": "5px"
+          },
+          attrs: {
+            fab: "",
+            outlined: "",
+            "x-small": "",
+            color: "primary"
+          },
+          on: {
+            click: function click($event) {
+              return _vm.addItem1("ADD");
+            }
+          }
+        }, "v-btn", attrs, false), on), [_c("v-icon", {
+          attrs: {
+            dark: ""
+          }
+        }, [_vm._v("mdi-plus")])], 1)];
+      }
+    }])
+  }, [_vm._v(" "), _c("span", [_vm._v("Add New")])])], 1)], 1)], 1), _vm._v(" "), _c("v-data-table", {
     staticClass: "elevation-1 processTable",
     staticStyle: {
       "max-width": "100%"
@@ -6028,70 +6184,27 @@ var render = function render() {
     },
     scopedSlots: _vm._u([{
       key: "header",
-      fn: function fn(_ref) {
-        var headers = _ref.props.headers;
+      fn: function fn(_ref2) {
+        var headers = _ref2.props.headers;
         return [_c("thead", {
           staticStyle: {
             "background-color": "#1E88E5"
           }
         }, [_c("tr", _vm._l(headers, function (h) {
-          return _c("th", [_c("span", {
+          return _c("th", {
+            staticStyle: {
+              "background-color": "#4c7cc8",
+              color: "white",
+              "font-weight": "normal"
+            },
+            attrs: {
+              id: "border"
+            }
+          }, [_c("span", {
             staticClass: "header-text-color"
           }, [_vm._v(_vm._s(h.text))])]);
         }), 0)])];
       }
-    }, {
-      key: "top",
-      fn: function fn() {
-        return [_c("v-row", [_c("v-col", {
-          attrs: {
-            cols: "4"
-          }
-        }), _vm._v(" "), _c("v-col", {
-          attrs: {
-            cols: "4"
-          }
-        }), _vm._v(" "), _c("v-col", {
-          attrs: {
-            cols: "4"
-          }
-        }, [_c("v-toolbar", {
-          attrs: {
-            flat: ""
-          }
-        }, [_c("v-spacer"), _vm._v(" "), _c("v-tooltip", {
-          attrs: {
-            left: "",
-            color: "warning"
-          },
-          scopedSlots: _vm._u([{
-            key: "activator",
-            fn: function fn(_ref2) {
-              var on = _ref2.on,
-                attrs = _ref2.attrs;
-              return [_c("v-btn", _vm._g(_vm._b({
-                staticClass: "mx-2",
-                attrs: {
-                  "elevation-10": "",
-                  fab: "",
-                  "x-small": "",
-                  color: "info"
-                },
-                on: {
-                  click: function click($event) {
-                    return _vm.addDialog("ADD");
-                  }
-                }
-              }, "v-btn", attrs, false), on), [_c("v-icon", {
-                attrs: {
-                  dark: ""
-                }
-              }, [_vm._v("mdi-plus")])], 1)];
-            }
-          }])
-        }, [_vm._v(" "), _c("span", [_vm._v("Add New")])])], 1)], 1)], 1)];
-      },
-      proxy: true
     }, {
       key: "item.actions",
       fn: function fn(_ref3) {
@@ -6106,7 +6219,7 @@ var render = function render() {
               return _vm.editItem(item);
             }
           }
-        }, [_vm._v("\n                mdi-pencil\n            ")]), _vm._v(" "), _c("v-icon", {
+        }, [_vm._v("\n                        mdi-pencil\n                    ")]), _vm._v(" "), _c("v-icon", {
           attrs: {
             color: "error"
           },
@@ -6115,7 +6228,7 @@ var render = function render() {
               return _vm.deleteItem(item);
             }
           }
-        }, [_vm._v("\n                mdi-delete\n            ")])];
+        }, [_vm._v("\n                        mdi-delete\n                    ")])];
       }
     }, {
       key: "item.image",
@@ -6165,7 +6278,7 @@ var render = function render() {
         })], 1)], 1)];
       }
     }])
-  })], 1);
+  })], 1)], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -6597,15 +6710,118 @@ var render = function render() {
       content: _vm.cartItemCount ? _vm.cartItemCount : "0",
       overlap: ""
     }
-  }, [_c("v-btn", {
+  }, [[_c("div", {
+    staticClass: "text-right"
+  }, [_c("v-dialog", {
     attrs: {
-      icon: ""
+      width: "1280",
+      heigth: "700"
+    },
+    scopedSlots: _vm._u([{
+      key: "activator",
+      fn: function fn(_ref) {
+        var on = _ref.on,
+          attrs = _ref.attrs;
+        return [_c("v-badge", {
+          attrs: {
+            color: "red lighten-2",
+            content: _vm.cartItemCount,
+            overlap: ""
+          }
+        }, [_c("v-btn", _vm._g(_vm._b({
+          attrs: {
+            icon: ""
+          }
+        }, "v-btn", attrs, false), on), [_c("v-icon", {
+          attrs: {
+            dark: ""
+          }
+        }, [_vm._v("mdi-cart")])], 1)], 1)];
+      }
+    }]),
+    model: {
+      value: _vm.dialog,
+      callback: function callback($$v) {
+        _vm.dialog = $$v;
+      },
+      expression: "dialog"
     }
-  }, [_c("v-icon", {
-    attrs: {
-      dark: ""
-    }
-  }, [_vm._v("mdi-cart")])], 1)], 1)], 1), _vm._v(" "), [_c("v-list", {
+  }, [_vm._v(" "), _c("v-card", [_c("v-simple-table", {
+    staticStyle: {
+      padding: "25px"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn() {
+        return [_c("thead", [_c("tr", [_c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                No.\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Type\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Images\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Item\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Product\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Color\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Price\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Description\n                                            ")]), _vm._v(" "), _c("th", {
+          staticClass: "text-center"
+        }, [_vm._v("\n                                                Actions\n                                            ")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.cartItems, function (item, i) {
+          return _c("tr", {
+            key: i
+          }, [_c("td", {
+            staticClass: "text-center"
+          }, [_vm._v(_vm._s(i + 1))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center",
+            staticStyle: {
+              width: "100px"
+            }
+          }, [_vm._v(_vm._s(item.type))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center",
+            staticStyle: {
+              "padding-left": "50px"
+            }
+          }, [_c("v-img", {
+            attrs: {
+              "max-height": "100",
+              "max-width": "100",
+              src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(item.image))
+            }
+          })], 1), _vm._v(" "), _c("td", {
+            staticClass: "text-center"
+          }, [_vm._v(_vm._s(item.item))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center"
+          }, [_vm._v(_vm._s(item.product))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center"
+          }, [_vm._v(_vm._s(item.color ? item.color : "default"))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center"
+          }, [_vm._v(_vm._s(item.price))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center",
+            staticStyle: {
+              width: "35px"
+            }
+          }, [_vm._v(_vm._s(item.description))]), _vm._v(" "), _c("td", {
+            staticClass: "text-center"
+          }, [_c("v-btn", {
+            attrs: {
+              color: "red lighten-2"
+            },
+            on: {
+              click: function click($event) {
+                return _vm.removeItem(item.id);
+              }
+            }
+          }, [_vm._v(" 削除\n                                                    "), _c("v-icon", [_vm._v("mdi-delete")])], 1)], 1)]);
+        }), 0)];
+      },
+      proxy: true
+    }])
+  })], 1)], 1)], 1)]], 2)], 1), _vm._v(" "), [_c("v-list", {
     attrs: {
       dense: ""
     }
@@ -6613,16 +6829,20 @@ var render = function render() {
     return _c("v-list-group", {
       key: i,
       attrs: {
-        dense: "",
         "no-action": "",
-        "sub-group": ""
+        dense: ""
+      },
+      on: {
+        click: function click($event) {
+          return _vm.getProducts(item);
+        }
       },
       scopedSlots: _vm._u([{
         key: "activator",
         fn: function fn() {
           return [_c("v-list-item-icon", {
             staticClass: "pt-1"
-          }, [_c("v-icon", [_vm._v(_vm._s(item.icon))])], 1), _vm._v("\n                     \n                     \n                    "), _c("v-list-item-title", {
+          }, [_c("v-icon", [_vm._v(_vm._s(item.icon))])], 1), _vm._v(" "), _c("v-list-item-title", {
             staticClass: "s-sub-header",
             staticStyle: {
               color: "black"
@@ -6631,7 +6851,200 @@ var render = function render() {
         },
         proxy: true
       }], null, true)
-    }, [_vm._v("\n            " + _vm._s(item) + "\n                ")]);
+    }, [_vm._v(" "), _c("v-card", {
+      staticStyle: {
+        display: "flex",
+        "padding-right": "50%"
+      }
+    }, [_c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref2) {
+          var active = _ref2.active;
+          return [_c("v-list-item-action", {
+            staticStyle: {
+              display: "block:  !important"
+            }
+          }, [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("要")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref3) {
+          var active = _ref3.active;
+          return [_c("v-list-item-action", {
+            staticStyle: {
+              display: "block:  !important"
+            }
+          }, [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("設計に相談したい")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref4) {
+          var active = _ref4.active;
+          return [_c("v-list-item-action", {
+            staticStyle: {
+              display: "block:  !important"
+            }
+          }, [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("不要")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref5) {
+          var active = _ref5.active;
+          return [_c("v-list-item-action", {
+            staticStyle: {
+              display: "block:  !important"
+            }
+          }, [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("追加")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-btn", {
+      staticClass: "s-title",
+      staticStyle: {
+        "margin-top": "10px",
+        "background-color": "whitesmoke"
+      },
+      attrs: {
+        width: "100",
+        small: "",
+        outlined: ""
+      }
+    }, [_vm._v("メモ")])], 1), _vm._v(" "), _vm.products[0] ? _c("div", {
+      attrs: {
+        id: "s-d"
+      }
+    }, _vm._l(_vm.products, function (item, i) {
+      return _c("v-card", {
+        key: i,
+        staticStyle: {
+          border: "1px solid #ddd",
+          "flex-wrap": "wrap",
+          "justify-content": "center",
+          gap: "10px"
+        },
+        attrs: {
+          width: "520",
+          height: "350",
+          elevation: "0"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.selectItem(item);
+          }
+        }
+      }, [_c("v-col", [_c("v-row", [_c("v-col", {
+        staticStyle: {
+          display: "flex"
+        }
+      }, [_c("v-list-item-title", {
+        staticClass: "s-title",
+        staticStyle: {
+          "font-size": "20px"
+        }
+      }, [_vm._v(_vm._s(item.product_name))]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), [_c("div", {
+        staticClass: "text-left"
+      }, [_c("v-menu", {
+        staticStyle: {
+          "background-color": "white"
+        },
+        attrs: {
+          "close-on-content-click": false,
+          "nudge-width": 50,
+          "offset-y": "",
+          location: "start"
+        },
+        scopedSlots: _vm._u([{
+          key: "activator",
+          fn: function fn(_ref6) {
+            var on = _ref6.on,
+              attrs = _ref6.attrs;
+            return [_c("v-btn", _vm._g(_vm._b({
+              attrs: {
+                icon: ""
+              }
+            }, "v-btn", attrs, false), on), [_c("v-icon", {
+              attrs: {
+                color: "#FF8F00"
+              }
+            }, [_vm._v("mdi-crown")])], 1)];
+          }
+        }], null, true)
+      }, [_vm._v(" "), _c("v-card", {
+        staticStyle: {
+          "background-color": "white"
+        },
+        attrs: {
+          elevation: "0"
+        }
+      }, [_c("p", {
+        staticClass: "s-header"
+      }, [_vm._v('"I want to put a mark of popularity.\n                                                        '), _c("br"), _vm._v(' Gold, silver, copper, etc. in the crown mark."')])])], 1)], 1)]], 2)], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
+        staticStyle: {
+          display: "flex"
+        }
+      }, [_c("v-img", {
+        attrs: {
+          "max-height": "250",
+          "max-width": "250",
+          src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(item.image_path))
+        }
+      })], 1), _vm._v(" "), _c("v-col", [[_c("div", {
+        staticClass: "text-left"
+      })], _vm._v("\n                                        \n                                         \n\n                                        "), _c("h5", {
+        staticClass: "s-header"
+      }, [_vm._v("価格: \n                                            "), _c("v-icon", {
+        staticStyle: {
+          "font-size": "15px",
+          "margin-bottom": "3px"
+        }
+      }, [_vm._v("\n                                                mdi-currency-jpy\n                                            ")]), _vm._v("\n                                            " + _vm._s(item.price ? item.price : "No Indicated Value") + "\n                                        ")], 1), _vm._v("\n\n                                         \n\n                                        "), _c("p", {
+        staticClass: "s-sub-header"
+      }, [_vm._v("\n                                            " + _vm._s(item.description ? item.description : "No Indicated Description") + "  \n                                        ")]), _vm._v(" "), _c("v-btn", {
+        staticClass: "s-header",
+        attrs: {
+          block: ""
+        },
+        on: {
+          click: function click($event) {
+            return _vm.addToCart(item);
+          }
+        }
+      }, [_c("v-icon", [_vm._v("\n                                                mdi-cart\n                                            ")]), _vm._v("add\n                                        ")], 1)], 2)], 1)], 1)], 1);
+    }), 1) : _vm._e()], 1);
   }), 1)]], 2);
 };
 var staticRenderFns = [];
@@ -6679,19 +7092,7 @@ var render = function render() {
       "font-weight": "700",
       color: "white"
     }
-  }, [_c("a", {
-    staticStyle: {
-      "text-decoration": "none",
-      color: "white"
-    },
-    attrs: {
-      href: "/home"
-    }
-  }, [_vm._v("\n                仕様選択ツール\n            ")]), _vm._v(" "), _c("b", {
-    staticStyle: {
-      color: "#1976d2"
-    }
-  }, [_vm._v(".")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("仕様選択ツール")]), _vm._v(" "), _c("p", {
     staticStyle: {
       "font-size": "25px",
       color: "white"
@@ -6736,85 +7137,38 @@ var render = function render() {
         light: "",
         dense: ""
       }
-    }, [_c("v-list-item", {
+    }, [item.subMenu == 0 ? _c("v-list-item", {
       attrs: {
         link: "",
         "active-class": "active",
         to: item.to
       }
-    }, [_c("v-list-item-icon", [_c("v-icon", [_vm._v(_vm._s(item.icon))])], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])], 1)], 1)], 1);
-  }), 1), _vm._v(" "), _c("v-card", {
-    staticClass: "mb-1",
-    staticStyle: {
-      border: "1x solid black",
-      "background-color": "#1976d2",
-      "font-size": "12px",
-      cursor: "default"
-    },
-    attrs: {
-      light: "",
-      dense: ""
-    }
-  }, [_vm._l(_vm.categories, function (category, i) {
-    return category.subMenu.length > 0 ? _c("v-list-group", {
-      key: i,
+    }, [_c("v-list-item-icon", [_c("v-icon", [_vm._v(_vm._s(item.icon))])], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", [_vm._v(_vm._s(item.title))])], 1)], 1) : _c("v-list-group", {
+      attrs: {
+        "active-class": "active"
+      },
       scopedSlots: _vm._u([{
         key: "activator",
         fn: function fn() {
-          return [_c("v-list-item-icon", [_c("v-icon", [_vm._v(_vm._s(category.icon))])], 1), _vm._v(" "), _c("v-list-item-title", [_vm._v(_vm._s(category.text))])];
+          return [_c("v-list-item-icon", [_c("v-icon", [_vm._v(_vm._s(item.icon))])], 1), _vm._v(" "), _c("v-list-item-title", [_vm._v(_vm._s(item.title))])];
         },
         proxy: true
       }], null, true)
-    }, [_vm._v(" "), _vm._l(category.subMenu, function (item, i) {
+    }, [_vm._v(" "), _vm._l(item.subMenu, function (item1, index) {
       return _c("v-list-item", {
-        key: i,
+        key: index,
         attrs: {
-          to: "home"
-        },
-        on: {
-          click: function click($event) {
-            return _vm.selectCategory(item);
-          }
+          link: "",
+          to: item1.to,
+          "active-class": "active"
         }
       }, [_c("v-list-item-title", {
         domProps: {
-          textContent: _vm._s(item.item_name)
+          textContent: _vm._s(item1.text)
         }
       })], 1);
-    })], 2) : _vm._e();
-  }), _vm._v(" "), _vm._l(_vm.categories, function (category, i) {
-    return category.subMenu.length == 0 ? _c("v-list-item", {
-      key: i + "a",
-      attrs: {
-        link: ""
-      }
-    }, [_c("v-list-item-icon", [_c("v-icon", [_vm._v(_vm._s(category.icon))])], 1), _vm._v(" "), _c("v-list-item-title", [_vm._v(_vm._s(category.text))])], 1) : _vm._e();
-  }), _vm._v(" "), _c("v-list-group", {
-    scopedSlots: _vm._u([{
-      key: "activator",
-      fn: function fn() {
-        return [_c("v-list-item-icon", [_c("v-icon", [_vm._v("mdi-alpha-m-box-outline")])], 1), _vm._v(" "), _c("v-list-item-title", [_vm._v("マスターメンテナンス")])];
-      },
-      proxy: true
-    }])
-  }, [_vm._v(" "), _vm._l(_vm.masterCategories, function (item, i) {
-    return _c("v-list-item", {
-      key: i,
-      attrs: {
-        link: "",
-        to: item.to
-      },
-      on: {
-        click: function click($event) {
-          return _vm.selectMasterCategory(item);
-        }
-      }
-    }, [_c("v-list-item-title", {
-      domProps: {
-        textContent: _vm._s(item.text)
-      }
-    })], 1);
-  })], 2)], 2)], 1)], 1), _vm._v(" "), _c("v-main", {
+    })], 2)], 1);
+  }), 1)], 1)], 1), _vm._v(" "), _c("v-main", {
     staticClass: "ma-2"
   }, [_c("router-view")], 1)], 1);
 };
@@ -7266,7 +7620,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.processTable[data-v-45d7226e] thead th {\n    padding: 3px;\n    position: sticky;\n    top: 0;\n    z-index: 1;\n    width: 13vw;\n    font-family:sans-serif;\n    border-top: 0.5px solid #e0e0e0;\n    border-left: 0.5px solid #e0e0e0;\n    border-right: 0.5px solid #e0e0e0;\n    border-bottom: 0.5px solid #e0e0e0;\n    /* border: 0.5px solid black; */\n}\n.processTable[data-v-45d7226e] tbody td {\n    /* border: 0.5px solid black; */\n    font-size: 12px;\n    font-family: arial;\n    height: 4px;\n    padding: 5px;\n    border-left: 0.5px solid #e0e0e0;\n    border-right: 0.5px solid #e0e0e0;\n    border-bottom: 0.5px solid #e0e0e0;\n    /* font-family:sans-serif; */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#border[data-v-45d7226e] {\n    border: 1px solid rgba(199, 199, 199, 0.542);\n    border: 1px solid rgba(199, 199, 199, 0.542);\n}\nth[data-v-45d7226e] {\n    text-align: center !important;\n    padding: 0 !important;\n    font-size: 13px !important;\n}\ntd[data-v-45d7226e] {\n    font-size: 13px !important;\n    padding: 3px !important;\n    border: 1px solid rgba(199, 199, 199, 0.542);\n    border: 1px solid rgba(199, 199, 199, 0.542);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7314,7 +7668,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.processTable[data-v-2a888706] thead th {\n    padding: 3px;\n    position: sticky;\n    top: 0;\n    z-index: 1;\n    width: 13vw;\n    font-family:sans-serif;\n    border-top: 0.5px solid #e0e0e0;\n    border-left: 0.5px solid #e0e0e0;\n    border-right: 0.5px solid #e0e0e0;\n    border-bottom: 0.5px solid #e0e0e0;\n    /* border: 0.5px solid black; */\n}\n.processTable[data-v-2a888706] tbody td {\n    /* border: 0.5px solid black; */\n    font-size: 12px;\n    font-family: arial;\n    height: 4px;\n    padding: 5px;\n    border-left: 0.5px solid #e0e0e0;\n    border-right: 0.5px solid #e0e0e0;\n    border-bottom: 0.5px solid #e0e0e0;\n    /* font-family:sans-serif; */\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#border[data-v-2a888706] {\n    border: 1px solid rgba(199, 199, 199, 0.542);\n    border: 1px solid rgba(199, 199, 199, 0.542);\n}\nth[data-v-2a888706] {\n    text-align: center !important;\n    padding: 0 !important;\n    font-size: 13px !important;\n}\ntd[data-v-2a888706] {\n    font-size: 13px !important;\n    padding: 3px !important;\n    border: 1px solid rgba(199, 199, 199, 0.542);\n    border: 1px solid rgba(199, 199, 199, 0.542);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7496,6 +7850,666 @@ module.exports = function (url, options) {
 /***/ ((module) => {
 
 module.exports = "/images/background.png?b5a000b9dd5681a513ea2c3bdd3f1c11";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/10.jpg":
+/*!************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/10.jpg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/10.jpg?9e6839f0e07b402302dcd20faee79b81";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/11.jpg":
+/*!************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/11.jpg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/11.jpg?0136a79ed736e09df02719cf4e67ff0b";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/41.jpg":
+/*!************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/41.jpg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/41.jpg?725bcdd04ed3983eb060ddafdccaa1ae";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/42.jpg":
+/*!************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/42.jpg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/42.jpg?a617bcea3c94018c7e261afbfbe0f9e6";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/43.jpg":
+/*!************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/43.jpg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/43.jpg?65f122068c537408a09b9b64738fd700";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/44.jpg":
+/*!************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/44.jpg ***!
+  \************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/44.jpg?1f5fcc341fcc7aa2e9602f41062a3329";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/9.jpg":
+/*!***********************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/9.jpg ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/9.jpg?935d0a1ec055f0d8b98251d1e695ac09";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/L150K.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/L150K.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/L150K.jpg?eeecc9cf2f4321ba5c66c3f7d86b6c48";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/copper.jpg":
+/*!****************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/copper.jpg ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/copper.jpg?fbf1ca1049f806ac107012ec4231304c";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/crimson.jpg":
+/*!*****************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/crimson.jpg ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/crimson.jpg?0c1b8921b230583902cf0ccf364fc2a5";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/ebony.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/ebony.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ebony.jpg?7f44b45a61175e51c2fe1baaa8024377";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/gold.jpg":
+/*!**************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/gold.jpg ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/gold.jpg?853762a46c36592986b303a476b023b3";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/ivory.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/ivory.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ivory.jpg?521e3c213c24d0400171bba243af69e5";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/pink.jpg":
+/*!**************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/pink.jpg ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/pink.jpg?efc3f2f1052fd26098c75b048b5d4687";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/white.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/white.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/white.jpg?dfdc3d77e32fba27012d53baaf4430c3";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/オフホワイト.jpg":
+/*!****************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/オフホワイト.jpg ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/オフホワイト.jpg?a617bcea3c94018c7e261afbfbe0f9e6";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/ピュアホワイト.jpg":
+/*!*****************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/ピュアホワイト.jpg ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ピュアホワイト.jpg?725bcdd04ed3983eb060ddafdccaa1ae";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/ピンク.jpg":
+/*!*************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/ピンク.jpg ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ピンク.jpg?1f5fcc341fcc7aa2e9602f41062a3329";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/ToiletBowlColors/ブルーグレー.jpg":
+/*!****************************************************************!*\
+  !*** ./resources/js/images/toilet/ToiletBowlColors/ブルーグレー.jpg ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ブルーグレー.jpg?65f122068c537408a09b9b64738fd700";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/bowl_cleaning_unit/bowl_cleaning_unit.png":
+/*!******************************************************************************!*\
+  !*** ./resources/js/images/toilet/bowl_cleaning_unit/bowl_cleaning_unit.png ***!
+  \******************************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/bowl_cleaning_unit.png?95635304e494774dd850b3bcf560b3e1";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/paper_roll/paper_roll.jpg":
+/*!**************************************************************!*\
+  !*** ./resources/js/images/toilet/paper_roll/paper_roll.jpg ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/paper_roll.jpg?90bcaeeccfe1c9d01c2e9fa55fd895ad";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote/Apricot-F1AF3-1.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/remote/Apricot-F1AF3-1.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/Apricot-F1AF3-1.jpg?842e1172fc10c02a11cbc37ef13ac1da";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote/Apricot-F1AF3.jpg":
+/*!*************************************************************!*\
+  !*** ./resources/js/images/toilet/remote/Apricot-F1AF3.jpg ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/Apricot-F1AF3.jpg?c15e3c66cd146a32e396cc1b8efd8685";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote/J1.jpg":
+/*!**************************************************!*\
+  !*** ./resources/js/images/toilet/remote/J1.jpg ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/J1.jpg?e67c73d51308d4b93f60e205b91417c9";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote/S1-1.jpg":
+/*!****************************************************!*\
+  !*** ./resources/js/images/toilet/remote/S1-1.jpg ***!
+  \****************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/S1-1.jpg?2710ffb192dbcb5270687c398375450a";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote/S1.jpg":
+/*!**************************************************!*\
+  !*** ./resources/js/images/toilet/remote/S1.jpg ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/S1.jpg?50db62c856061220c25fe2e8c14eb231";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote_controller/Apricot-F1AF3-1.jpg":
+/*!**************************************************************************!*\
+  !*** ./resources/js/images/toilet/remote_controller/Apricot-F1AF3-1.jpg ***!
+  \**************************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/Apricot-F1AF3-1.jpg?842e1172fc10c02a11cbc37ef13ac1da";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote_controller/S1-1.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/remote_controller/S1-1.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/S1-1.jpg?2710ffb192dbcb5270687c398375450a";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/remote_controller/remote.jpg":
+/*!*****************************************************************!*\
+  !*** ./resources/js/images/toilet/remote_controller/remote.jpg ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/remote.jpg?4fa7a07ce4d863848403d7362f982651";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/standard/HWTank.jpg":
+/*!********************************************************!*\
+  !*** ./resources/js/images/toilet/standard/HWTank.jpg ***!
+  \********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/HWTank.jpg?b9fb4052bd03c27a8f85c86f2abda638";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/standard/Tank.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/standard/Tank.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/Tank.jpg?39b5379b26c2d3bbdf513d425a6632a7";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/1.jpg":
+/*!*****************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/1.jpg ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/1.jpg?aec65c2e5993e48095de4324d7535869";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/12.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/12.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/12.jpg?d7e24285292f24d06ed5ee1c1353d9c2";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/14.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/14.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/14.jpg?2e3b789289d7a2f2c910addaf641e191";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/15.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/15.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/15.jpg?01d3b5152dd25a7a554b90bde83404e6";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/17.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/17.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/17.jpg?9b69eb58770f66a1b7f5ef90cf93cfa1";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/29.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/29.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/29.jpg?64760eb5f717eca2042fb5d26a0fa207";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/30.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/30.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/30.jpg?24f190b1f7de8b6d139eab0ec7c9f050";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/31.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/31.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/31.jpg?849429a3d67b404ee289989890f54a3a";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/33.jpg":
+/*!******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/33.jpg ***!
+  \******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/33.jpg?d343fa50682c1c700d5e3aed862f9099";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/4.jpg":
+/*!*****************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/4.jpg ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/4.jpg?3a5cca1e19a6b55a764b6420bd378771";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/CA193AC30020.jpg":
+/*!****************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/CA193AC30020.jpg ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/CA193AC30020.jpg?d9356d8eea94878dc1eacfc90b24d47d";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/F1A(ｵｰﾄ便器洗浄付).jpg":
+/*!*****************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/F1A(ｵｰﾄ便器洗浄付).jpg ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/F1A(ｵｰﾄ便器洗浄付).jpg?c15e3c66cd146a32e396cc1b8efd8685";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg":
+/*!******************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/F3A(ｵｰﾄ便器洗浄付) .jpg?c15e3c66cd146a32e396cc1b8efd8685";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/GG-Jーシルエット型.png":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/GG-Jーシルエット型.png ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/GG-Jーシルエット型.png?302faa4bb39822a8afb100d269fee60f";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/L150K.jpg":
+/*!*********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/L150K.jpg ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/L150K.jpg?eeecc9cf2f4321ba5c66c3f7d86b6c48";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/P_Integrated.jpg":
+/*!****************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/P_Integrated.jpg ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/P_Integrated.jpg?52883140eb83c38b713cafedf1c24cf1";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/P_Pastel_Ivory.jpg":
+/*!******************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/P_Pastel_Ivory.jpg ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/P_Pastel_Ivory.jpg?cd011beea2a238e74bb8b4e36394783a";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/P_Pastel_Pink.jpg":
+/*!*****************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/P_Pastel_Pink.jpg ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/P_Pastel_Pink.jpg?fa1e1a357317e462a612eb3b928c0c62";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/S160.jpg":
+/*!********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/S160.jpg ***!
+  \********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/S160.jpg?5855163e215585b96beb34f4dcc74282";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ZJ2.jpg":
+/*!*******************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ZJ2.jpg ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ZJ2.jpg?2f4fdfe7e211d4c73c28466121ed2515";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/copper.jpg":
+/*!**********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/copper.jpg ***!
+  \**********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/copper.jpg?fbf1ca1049f806ac107012ec4231304c";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/crimson.jpg":
+/*!***********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/crimson.jpg ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/crimson.jpg?0c1b8921b230583902cf0ccf364fc2a5";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ebony.jpg":
+/*!*********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ebony.jpg ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ebony.jpg?7f44b45a61175e51c2fe1baaa8024377";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/gold.jpg":
+/*!********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/gold.jpg ***!
+  \********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/gold.jpg?853762a46c36592986b303a476b023b3";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/sakin.jpg":
+/*!*********************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/sakin.jpg ***!
+  \*********************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/sakin.jpg?853762a46c36592986b303a476b023b3";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/サティス(LIXIL).jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/サティス(LIXIL).jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/サティス(LIXIL).jpg?db0e069c6e3ab48f9c9163b1efc3bcd4";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/タンクレストイレ_追加.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/タンクレストイレ_追加.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/タンクレストイレ_追加.jpg?233ca4678815f7560800a6b5e511d3a0";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/タンク上手洗い あり.jpg":
+/*!**************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/タンク上手洗い あり.jpg ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/タンク上手洗い あり.jpg?587fb5035fc7b6d294d744c8e9930676";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/タンク上手洗い・なし.jpg":
+/*!**************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/タンク上手洗い・なし.jpg ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/タンク上手洗い・なし.jpg?d10d82283d8117d02838e49a0d9dbf73";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ネオレスト(TOTO).jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ネオレスト(TOTO).jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ネオレスト(TOTO).jpg?a07873fe04fe0e2a37df77a588c41c81";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg":
+/*!******************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg ***!
+  \******************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ベーシアハーモ(LIXIL).jpg?9bf92ec973f11fc35e0cb688a7ab7920";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー1連式.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ペーパーホルダー1連式.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ペーパーホルダー1連式.jpg?f66c8c35cf6aee100107e02d2fcea0dc";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー2連式.jpg":
+/*!***************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ペーパーホルダー2連式.jpg ***!
+  \***************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ペーパーホルダー2連式.jpg?b587def2e1cf435a853e9edb74b91acd";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg":
+/*!********************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg ***!
+  \********************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ペーパーホルダー_シルバータイプ.jpg?90bcaeeccfe1c9d01c2e9fa55fd895ad";
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet/toiletBowl/ｳｫｼｭﾚｯﾄS1.jpg":
+/*!*************************************************************!*\
+  !*** ./resources/js/images/toilet/toiletBowl/ｳｫｼｭﾚｯﾄS1.jpg ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+module.exports = "/images/ｳｫｼｭﾚｯﾄS1.jpg?50db62c856061220c25fe2e8c14eb231";
 
 /***/ }),
 
@@ -32681,6 +33695,45 @@ component.options.__file = "resources/js/components/Home_Deployed.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Item1Dialog_vue_vue_type_template_id_47423a46_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true& */ "./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true&");
+/* harmony import */ var _Item1Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Item1Dialog.vue?vue&type=script&lang=js& */ "./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Item1Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Item1Dialog_vue_vue_type_template_id_47423a46_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Item1Dialog_vue_vue_type_template_id_47423a46_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "47423a46",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Master_Maintenance/Gaibu.vue":
 /*!**************************************************************!*\
   !*** ./resources/js/components/Master_Maintenance/Gaibu.vue ***!
@@ -33168,6 +34221,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Item1Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Item1Dialog.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Item1Dialog_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Master_Maintenance/Gaibu.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/Master_Maintenance/Gaibu.vue?vue&type=script&lang=js& ***!
@@ -33391,6 +34460,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_Deployed_vue_vue_type_template_id_595993eb___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_Deployed_vue_vue_type_template_id_595993eb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home_Deployed.vue?vue&type=template&id=595993eb& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Home_Deployed.vue?vue&type=template&id=595993eb&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true& ***!
+  \**********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Item1Dialog_vue_vue_type_template_id_47423a46_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Item1Dialog_vue_vue_type_template_id_47423a46_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Item1Dialog_vue_vue_type_template_id_47423a46_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Master_Maintenance/Dialog/Item1Dialog.vue?vue&type=template&id=47423a46&scoped=true&");
 
 
 /***/ }),
@@ -96622,6 +97708,103 @@ var index = {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (index);
 
 
+
+/***/ }),
+
+/***/ "./resources/js/images/toilet sync recursive ^\\.\\/.*$":
+/*!***************************************************!*\
+  !*** ./resources/js/images/toilet/ sync ^\.\/.*$ ***!
+  \***************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./ToiletBowlColors/10.jpg": "./resources/js/images/toilet/ToiletBowlColors/10.jpg",
+	"./ToiletBowlColors/11.jpg": "./resources/js/images/toilet/ToiletBowlColors/11.jpg",
+	"./ToiletBowlColors/41.jpg": "./resources/js/images/toilet/ToiletBowlColors/41.jpg",
+	"./ToiletBowlColors/42.jpg": "./resources/js/images/toilet/ToiletBowlColors/42.jpg",
+	"./ToiletBowlColors/43.jpg": "./resources/js/images/toilet/ToiletBowlColors/43.jpg",
+	"./ToiletBowlColors/44.jpg": "./resources/js/images/toilet/ToiletBowlColors/44.jpg",
+	"./ToiletBowlColors/9.jpg": "./resources/js/images/toilet/ToiletBowlColors/9.jpg",
+	"./ToiletBowlColors/L150K.jpg": "./resources/js/images/toilet/ToiletBowlColors/L150K.jpg",
+	"./ToiletBowlColors/copper.jpg": "./resources/js/images/toilet/ToiletBowlColors/copper.jpg",
+	"./ToiletBowlColors/crimson.jpg": "./resources/js/images/toilet/ToiletBowlColors/crimson.jpg",
+	"./ToiletBowlColors/ebony.jpg": "./resources/js/images/toilet/ToiletBowlColors/ebony.jpg",
+	"./ToiletBowlColors/gold.jpg": "./resources/js/images/toilet/ToiletBowlColors/gold.jpg",
+	"./ToiletBowlColors/ivory.jpg": "./resources/js/images/toilet/ToiletBowlColors/ivory.jpg",
+	"./ToiletBowlColors/pink.jpg": "./resources/js/images/toilet/ToiletBowlColors/pink.jpg",
+	"./ToiletBowlColors/white.jpg": "./resources/js/images/toilet/ToiletBowlColors/white.jpg",
+	"./ToiletBowlColors/オフホワイト.jpg": "./resources/js/images/toilet/ToiletBowlColors/オフホワイト.jpg",
+	"./ToiletBowlColors/ピュアホワイト.jpg": "./resources/js/images/toilet/ToiletBowlColors/ピュアホワイト.jpg",
+	"./ToiletBowlColors/ピンク.jpg": "./resources/js/images/toilet/ToiletBowlColors/ピンク.jpg",
+	"./ToiletBowlColors/ブルーグレー.jpg": "./resources/js/images/toilet/ToiletBowlColors/ブルーグレー.jpg",
+	"./bowl_cleaning_unit/bowl_cleaning_unit.png": "./resources/js/images/toilet/bowl_cleaning_unit/bowl_cleaning_unit.png",
+	"./paper_roll/paper_roll.jpg": "./resources/js/images/toilet/paper_roll/paper_roll.jpg",
+	"./remote/Apricot-F1AF3-1.jpg": "./resources/js/images/toilet/remote/Apricot-F1AF3-1.jpg",
+	"./remote/Apricot-F1AF3.jpg": "./resources/js/images/toilet/remote/Apricot-F1AF3.jpg",
+	"./remote/J1.jpg": "./resources/js/images/toilet/remote/J1.jpg",
+	"./remote/S1-1.jpg": "./resources/js/images/toilet/remote/S1-1.jpg",
+	"./remote/S1.jpg": "./resources/js/images/toilet/remote/S1.jpg",
+	"./remote_controller/Apricot-F1AF3-1.jpg": "./resources/js/images/toilet/remote_controller/Apricot-F1AF3-1.jpg",
+	"./remote_controller/S1-1.jpg": "./resources/js/images/toilet/remote_controller/S1-1.jpg",
+	"./remote_controller/remote.jpg": "./resources/js/images/toilet/remote_controller/remote.jpg",
+	"./standard/HWTank.jpg": "./resources/js/images/toilet/standard/HWTank.jpg",
+	"./standard/Tank.jpg": "./resources/js/images/toilet/standard/Tank.jpg",
+	"./toiletBowl/1.jpg": "./resources/js/images/toilet/toiletBowl/1.jpg",
+	"./toiletBowl/12.jpg": "./resources/js/images/toilet/toiletBowl/12.jpg",
+	"./toiletBowl/14.jpg": "./resources/js/images/toilet/toiletBowl/14.jpg",
+	"./toiletBowl/15.jpg": "./resources/js/images/toilet/toiletBowl/15.jpg",
+	"./toiletBowl/17.jpg": "./resources/js/images/toilet/toiletBowl/17.jpg",
+	"./toiletBowl/29.jpg": "./resources/js/images/toilet/toiletBowl/29.jpg",
+	"./toiletBowl/30.jpg": "./resources/js/images/toilet/toiletBowl/30.jpg",
+	"./toiletBowl/31.jpg": "./resources/js/images/toilet/toiletBowl/31.jpg",
+	"./toiletBowl/33.jpg": "./resources/js/images/toilet/toiletBowl/33.jpg",
+	"./toiletBowl/4.jpg": "./resources/js/images/toilet/toiletBowl/4.jpg",
+	"./toiletBowl/CA193AC30020.jpg": "./resources/js/images/toilet/toiletBowl/CA193AC30020.jpg",
+	"./toiletBowl/F1A(ｵｰﾄ便器洗浄付).jpg": "./resources/js/images/toilet/toiletBowl/F1A(ｵｰﾄ便器洗浄付).jpg",
+	"./toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg": "./resources/js/images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg",
+	"./toiletBowl/GG-Jーシルエット型.png": "./resources/js/images/toilet/toiletBowl/GG-Jーシルエット型.png",
+	"./toiletBowl/L150K.jpg": "./resources/js/images/toilet/toiletBowl/L150K.jpg",
+	"./toiletBowl/P_Integrated.jpg": "./resources/js/images/toilet/toiletBowl/P_Integrated.jpg",
+	"./toiletBowl/P_Pastel_Ivory.jpg": "./resources/js/images/toilet/toiletBowl/P_Pastel_Ivory.jpg",
+	"./toiletBowl/P_Pastel_Pink.jpg": "./resources/js/images/toilet/toiletBowl/P_Pastel_Pink.jpg",
+	"./toiletBowl/S160.jpg": "./resources/js/images/toilet/toiletBowl/S160.jpg",
+	"./toiletBowl/ZJ2.jpg": "./resources/js/images/toilet/toiletBowl/ZJ2.jpg",
+	"./toiletBowl/copper.jpg": "./resources/js/images/toilet/toiletBowl/copper.jpg",
+	"./toiletBowl/crimson.jpg": "./resources/js/images/toilet/toiletBowl/crimson.jpg",
+	"./toiletBowl/ebony.jpg": "./resources/js/images/toilet/toiletBowl/ebony.jpg",
+	"./toiletBowl/gold.jpg": "./resources/js/images/toilet/toiletBowl/gold.jpg",
+	"./toiletBowl/sakin.jpg": "./resources/js/images/toilet/toiletBowl/sakin.jpg",
+	"./toiletBowl/サティス(LIXIL).jpg": "./resources/js/images/toilet/toiletBowl/サティス(LIXIL).jpg",
+	"./toiletBowl/タンクレストイレ_追加.jpg": "./resources/js/images/toilet/toiletBowl/タンクレストイレ_追加.jpg",
+	"./toiletBowl/タンク上手洗い あり.jpg": "./resources/js/images/toilet/toiletBowl/タンク上手洗い あり.jpg",
+	"./toiletBowl/タンク上手洗い・なし.jpg": "./resources/js/images/toilet/toiletBowl/タンク上手洗い・なし.jpg",
+	"./toiletBowl/ネオレスト(TOTO).jpg": "./resources/js/images/toilet/toiletBowl/ネオレスト(TOTO).jpg",
+	"./toiletBowl/ベーシアハーモ(LIXIL).jpg": "./resources/js/images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg",
+	"./toiletBowl/ペーパーホルダー1連式.jpg": "./resources/js/images/toilet/toiletBowl/ペーパーホルダー1連式.jpg",
+	"./toiletBowl/ペーパーホルダー2連式.jpg": "./resources/js/images/toilet/toiletBowl/ペーパーホルダー2連式.jpg",
+	"./toiletBowl/ペーパーホルダー_シルバータイプ.jpg": "./resources/js/images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg",
+	"./toiletBowl/ｳｫｼｭﾚｯﾄS1.jpg": "./resources/js/images/toilet/toiletBowl/ｳｫｼｭﾚｯﾄS1.jpg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./resources/js/images/toilet sync recursive ^\\.\\/.*$";
 
 /***/ }),
 

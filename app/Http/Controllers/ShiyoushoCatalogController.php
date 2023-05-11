@@ -20,26 +20,26 @@ class ShiyoushoCatalogController extends Controller
     }
 
     //SAVE
-    public function saveCart(Request $req)
-    {
+    // public function saveCart(Request $req)
+    // {
         // return $req->type;
-        DB::table('cart')
-        ->insert([
-            "item" => $req->item,
-            "image" => $req->image,
-            "kind" => $req->kind,
-            "color" => $req->color,
-            "color_img" => $req->color_img,
-            "type" => $req->type,
-            "added_date" => date('Y-m-d H:i:s')
-        ]);
-    }
+    //     DB::table('cart')
+    //     ->insert([
+    //         "item" => $req->item,
+    //         "image" => $req->image,
+    //         "kind" => $req->kind,
+    //         "color" => $req->color,
+    //         "color_img" => $req->color_img,
+    //         "type" => $req->type,
+    //         "added_date" => date('Y-m-d H:i:s')
+    //     ]);
+    // }
     
     // DELETE
-    public function removeItem($id){ //back-end deletion
-        $id = DB::table('cart')->where('id', $id)->delete();
-        return response()->json($id . ' ' . 'is successfully deleted');
-    }
+    // public function removeItem($id){ //back-end deletion
+    //     $id = DB::table('cart')->where('id', $id)->delete();
+    //     return response()->json($id . ' ' . 'is successfully deleted');
+    // }
 
         // ==================== 03-15-2023 ==================== //
         //GET DATA FROM HRDSQL8
@@ -1005,8 +1005,7 @@ class ShiyoushoCatalogController extends Controller
             // $maker = DB::connection('ShiyoushoCommon_Test')
             return DB::connection('HRDSQL7(ShiyoushoCommon)')
             ->select(
-                DB::raw("
-                SELECT DISTINCT
+                DB::raw("SELECT DISTINCT
                     M_CDM031.SHIYOSHO_KBN,
                     M_CDM031.ITEM_CD_1,
                     M_CDM031.ITEM_CD_2,
@@ -1055,6 +1054,30 @@ class ShiyoushoCatalogController extends Controller
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
+        public function getDataToilet()
+        {
+            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            ->table('cart')->get();
+            
+        }
+
+        public function saveCart(Request $req)
+        {
+            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            ->table('cart')
+            ->insert([
+                "type" => $req[0]['type'],
+                "image" => $req[0]['image'],
+                "item" => $req[0]['item_name'],
+                "product" => $req[0]['product_name'],
+                // "color" => $req[0]['color'],
+                // "color_img" => $req[0]['color_img'],
+                "price" => $req[0]['price'],
+                "description" => $req[0]['description'],
+                "added_date" => date('Y-m-d H:i:s')
+            ]);
+        }
+
         public function getSubItems(){
             return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
             ->table('m_sub_items')
@@ -1062,13 +1085,66 @@ class ShiyoushoCatalogController extends Controller
             ->get();
         } 
 
-        public function getProducts(){
+        public function removeItem($id){ //back-end deletion
+            
+            $id = DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            ->table('cart')->where('id', $id)->delete();
+            return response()->json($id . ' ' . 'is successfully deleted');
+        }
+
+        public function getProducts(Request $request){
             return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
-            ->table('m_products')
-            ->get();
+            ->select(
+                DB::raw("SELECT 
+                    m_sub_items.main_items_code,
+                    m_sub_items.code,
+                    m_sub_items.icon,
+                    m_sub_items.item_name,
+                    m_products.sub_items_code,
+                    m_products.sub_items_code,
+                    m_products.code,
+                    m_products.product_name,
+                    m_products.price,
+                    m_products.maker_code,
+                    m_products.color_code,
+                    m_products.description,
+                    m_products.image_path,
+                    m_products.add_image
+                from m_sub_items 
+                inner join( 
+                    SELECT 
+                        m_products.sub_items_code,
+                        m_products.code,
+                        m_products.product_name,
+                        m_products.price,
+                        m_products.maker_code,
+                        m_products.color_code,
+                        m_products.description,
+                        m_products.image_path,
+                        m_products.add_image
+                    from m_products
+                    WHERE m_products.sub_items_code = '$request->code'
+                ) AS m_products 
+                on m_sub_items.code = m_products.sub_items_code 
+                where m_sub_items.main_items_code = '0200'    
+                and m_sub_items.code = '$request->code'")
+
+            );
+            // ->select(
+            //     DB::raw("SELECT 
+            //             m_sub_items.*, 
+            //             m_products.*
+            //         from m_sub_items 
+            //     Inner join( 
+            //         SELECT m_products.* 
+            //         from m_products
+            //     ) AS m_products 
+            //     on m_sub_items.code = m_products.sub_items_code 
+            // where m_sub_items.code = '$request->code'")
+            // );
         }    
 
+        // next up colors
 
-    
 }
 
