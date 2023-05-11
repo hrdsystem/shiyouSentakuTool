@@ -1,9 +1,15 @@
 <template>
-    <div>
     <v-container fluid v-resize="onResize">
         <v-row>
             <v-col>
-                <v-btn rounded small outlined class="text-none mt-2" color="grey" to="/setsubi_master">
+                <v-btn 
+                    rounded 
+                    small 
+                    outlined 
+                    class="text-none mt-2" 
+                    color="grey" 
+                    to="/setsubi_master"
+                >
                     <v-icon>mdi-arrow-left-bold</v-icon>
                     <span>Back</span>
                 </v-btn>
@@ -18,7 +24,18 @@
                             <v-spacer/>
                             <v-tooltip left color="warning">
                                 <template v-slot:activator="{ on, attrs }">
-                                    <v-btn fab  style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem1('ADD')"
+                                    <v-btn 
+                                        fab  
+                                        style="
+                                            float: right; 
+                                            margin-bottom: 5px"
+                                        outlined 
+                                        x-small 
+                                        class="text-none mt-2" 
+                                        color="primary" 
+                                        v-bind="attrs" 
+                                        v-on="on" 
+                                        @click="addItem1('ADD')"
                                     >
                                         <v-icon dark>mdi-plus</v-icon>
                                     </v-btn>
@@ -29,22 +46,36 @@
                     </v-col>
                 </v-row>
 
-                <v-data-table  hide-default-header :headers="headers" :items="mastersData" :items-per-page="15" class="elevation-1" @dblclick:row="($event, {item})=>getItem2(item)">
+                <v-data-table  
+                    hide-default-header
+                    :headers="headers" 
+                    :items="mastersData" 
+                    :items-per-page="15" 
+                    class="elevation-1" 
+                    @dblclick:row="($event, {item})=>getItem2(item)"
+                >
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
-                                <th style="background-color: #4c7cc8; color: white; font-weight: normal"
-                                id="border" v-for="h in headers" >
+                                <th 
+                                    style="
+                                        background-color: #4c7cc8; 
+                                        color: white; 
+                                        font-weight: normal
+                                    "
+                                    id="border" 
+                                    v-for="h in headers" 
+                                >
                                     <span class="header-text-color">{{h.text}}</span>
                                 </th>
                             </tr>
                         </thead>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem1(item)">
+                        <v-icon color="primary" class="mr-2" @click="editItem1(item.id)">
                             mdi-pencil
                         </v-icon>
-                        <v-icon color="error" @click="deleteItem(item)">
+                        <v-icon disabled color="error" @click="deleteItem1(item)">
                             mdi-delete
                         </v-icon>
                     </template>
@@ -54,7 +85,15 @@
                         </div>
                         <v-dialog v-model="imgDialog" width="330px" height="330px">
                             <v-card style="padding: 0;" class="align-items-end">
-                                <v-img style="margin: 0; height: 350px; max-width: 330px;" :src="Dialogimg" hide-details alt=""/>
+                                <v-img 
+                                    style="
+                                        margin: 0; 
+                                        height: 350px; 
+                                        max-width: 330px;
+                                    " 
+                                    :src="Dialogimg" 
+                                    hide-details 
+                                    alt=""/>
                             </v-card>
                         </v-dialog>
                     </template>
@@ -69,7 +108,20 @@
                             <v-spacer/>
                             <v-tooltip left color="warning">
                                 <template v-slot:activator="{ on, attrs }">
-                                    <v-btn fab :disabled="disabledItem2btn" style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="openDialogItem2('ADD')"
+                                    <v-btn 
+                                        fab 
+                                        :disabled="disabledItem2btn" 
+                                        style="
+                                            float: right; 
+                                            margin-bottom: 5px
+                                        " 
+                                        outlined 
+                                        x-small 
+                                        class="text-none mt-2" 
+                                        color="primary" 
+                                        v-bind="attrs" 
+                                        v-on="on" 
+                                        @click="addItem2('ADD')"
                                     >
                                         <v-icon dark>mdi-plus</v-icon>
                                     </v-btn>
@@ -80,7 +132,12 @@
                     </v-col>
                 </v-row>
 
-                <v-data-table  hide-default-header :headers="subheaders" :items="mastersSubData" class="elevation-1" >
+                <v-data-table  
+                    hide-default-header 
+                    :headers="subheaders" 
+                    :items="mastersSubData" 
+                    class="elevation-1" 
+                >
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -92,7 +149,7 @@
                         </thead>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem2(item)">
+                        <v-icon color="primary" class="mr-2" @click="editItem2(item.id)">
                             mdi-pencil
                         </v-icon>
                         <v-icon color="error" @click="deleteItem(item)">
@@ -108,49 +165,76 @@
             </v-col>
         </v-row>
 
-        <!-- DIALOG FOR ADD AND EDIT -->
-        <!-- <v-dialog v-model="item1Dialog " max-width="20%" persistent>
+        <!-- DIALOG FOR ADD AND EDIT FOR ITEM1-->
+        <v-dialog v-model="dialog" max-width="20%" persistent>
                 <v-card>
-                    <v-card-title style="background-color: #1E88E5; color: #ffffff;">{{ action }} DATA
-                    <v-spacer/>
-                    <v-icon color="#ffffff" @click="close()">mdi-close</v-icon>
+                    <v-card-title style="background-color: #1E88E5; color: #ffffff;">{{action}} DATA
+                        <v-spacer/>
+                        <v-icon color="#ffffff" @click="close()">mdi-close</v-icon>
                     </v-card-title>
                     <v-card-text>
                         <br/>
-                        <v-text-field outlined dense rounded label="Category" v-model="category"></v-text-field>
-                        <v-text-field outlined dense rounded label="Code" v-model="code"></v-text-field>
+                        <!-- <span> -->
+                            <v-text-field  outlined dense rounded readonly label="Category Code" v-model="category"
+                            ></v-text-field>
+                            <!-- <v-text-field v-else-if="this.category == null" outlined dense rounded readonly label="Category Code" v-model="category"
+                            ></v-text-field>
+                        </span> -->
+                        <v-text-field outlined dense rounded label="Code" v-model="code" type="number"
+                        onKeyPress="if(this.value.length==4)return false;"
+                        ></v-text-field>
                         <v-text-field outlined dense rounded label="Item Name" v-model="itemName"></v-text-field>
                     </v-card-text>
                     <v-card-actions>
-                    <v-btn
-                        @click="saveItem1()" block dense color="primary" style="height: 35px !important"
-                    >
+                        <v-btn
+                            @click="saveItem1()" block dense color="primary" style="height: 35px !important"
+                        >
+                            <v-icon>mdi-content-save</v-icon>
+                            SAVE
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+        </v-dialog>
+
+        <!-- DIALOG FOR ADD AND EDIT FOR ITEM2 -->.
+        <v-dialog v-model="item2Dialog" max-width="20%" persistent>
+            <v-card>
+                <v-card-title style="background-color: #1E88E5; color: #ffffff">
+                    {{ action2 }} DATA
+                    <v-spacer/>
+                    <v-icon color="#ffffff" @click="close2()">mdi-close</v-icon>
+                </v-card-title>
+                <v-card-text>
+                    <br/>
+                    <v-text-field outlined dense rounded readonly label="Category Code" v-model="category2"></v-text-field>
+                    <v-text-field outlined dense rounded readonly label="Main Item Code" v-model="mainCode"></v-text-field>
+                    <v-text-field outlined dense rounded label="Code" type="number" v-model="code2" onKeyPress="if(this.value.length==4)return false;">
+                    </v-text-field>
+                    <v-text-field outlined dense rounded label="Item Name" v-model="itemName2"></v-text-field>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn @click="saveItem2()" block dense color="primary" style="height:35px !important">
                         <v-icon>mdi-content-save</v-icon>
                         SAVE
                     </v-btn>
-                    </v-card-actions>
-                </v-card>
-        </v-dialog> -->
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-container>
-    <item1
-    :dialog="item1Dialog"></item1>
-</div>
 </template>
 
 <script>
     import Swal from "sweetalert2";
     import axios from 'axios'
-    import item1 from '../Dialog/Item1Dialog.vue'
 
     export default {
-        components : {item1},
         data: () => ({
             headers: [              
                 { 
                     text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: 'コード', value: 'CODE', align: 'center', sortable: false 
+                    text: 'コード', value: 'main_code', align: 'center', sortable: false 
                 },
                 { 
                     text: '項目名', value: 'item_name', align: 'centered', sortable: false 
@@ -177,29 +261,29 @@
                 },
             ],
 
-            
-            itemName:null,
-            code:null,
-            category:null,
+            addEdit: {},
+            id: -1,
+            mainCode: null,
+            itemName: null,
+            itemName2: null,
+            code: null,
+            code2: null,
+            category: null,
+            category2: null,
             disabledItem2btn: true,
             windowSize: { x: 0, y: 0 },
-
-            addEdit: {},
-            item1Dialog : false,
-            mastersData: [],
+            loading: false,
             action: '',
+            action2: '',
 
             // DIALOGS
+            dialog: false,
+            item2Dialog: false,
             dialogDelete: false,
 
+            mastersData: [],
             mastersSubData: [],
             editedIndex: -1,
-            editedItem: {
-                id: '',
-                CODE: 0,
-                category_code: 0,
-                item_name: 0,
-            },
             editData:[],
         }),
 
@@ -210,7 +294,7 @@
         },
 
         watch: {
-            item1Dialog  (val) {
+            dialog (val) {
                 val || this.close()
             },
             // dialogDelete (val) {
@@ -223,44 +307,55 @@
         },
 
         methods: {
-
+            close2() {
+                this.item2Dialog = false
+            },
             close() {
-                this.item1Dialog  = false
-                this.$nextTick(() => {
-                    this.editedItem = Object.assign({}, this.defaultItem)
-                    this.editedIndex = -1
-                })
+                this.dialog = false
             },
 
-            addItem1(action) {
-                this.item1Dialog = true
-                this.category = ""
+            addItem1() {
+                this.category = 2
                 this.code = ""
                 this.itemName = ""
-                // this.item1Dialog  = true
+                this.dialog = true
                 this.action = 'ADD NEW'
             },
-            closeDialogItem1( val ){
-                this.getItem1();
-                this.item1Dialog  = val;
+            closeDialogItem1(){
+                this.dialog = false
             },
             closeEditDialog1(){
                 this.category = ""
                 this.code = ""
                 this.itemName = ""
-                this.item1Dialog  = false
+                this.dialog = false
                 this.action = 'EDIT'
             },
 
 
-            editItem1(item){
+            editItem1(id){
+                // console.log(id, 'IDDDD')
+                this.id = id
+                this.dialog = true
                 this.action = 'EDIT'
-                this.item1Dialog  = true
+                axios({
+                    method:'get',
+                    url: `api/masterMaintenance/editItems/${id}`,
+                }).then((res)=>{
+                    // console.log(res.data, 'ID')
+                    this.category = res.data.category_code
+                    this.code = res.data.code
+                    this.itemName = res.data.item_name
+                })
             },
             
 
 
             saveItem1(){
+                // console.log(this.category, this.code, this.itemName)
+                // console.log(this.action)
+                this.id
+                console.log(this.id)
                 this.close()
                 let data = {}
                 if(this.action == "ADD NEW"){
@@ -270,21 +365,10 @@
                         CODE: this.code,
                         item_name: this.itemName
                     }
-                }else{
-                    data =  Object.assign({},this.saveEdit)
-                    data.productId = this.productId
-                    console.log(data,'saveFunction')
-                }
-                axios({
+                    axios({
                     method : 'post',
                     url: 'api/masterMaintenance/updateData',
                     data: data
-                    // {
-                    //     category_code:this.category,
-                    //     CODE:this.code,
-                    //     item_name:this.itemName,
-                    //     action:this.action
-                    // }
                 }).then(res=>{
                     this.getItem1()
                     console.log(res.data,'saveItem1...')
@@ -292,12 +376,6 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Item is Already Existing!',
-                            footer: 'Click OK to continue!'
-                        })
-                    }else if(res.data == 'EDITED'){
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Item Updated',
                             footer: 'Click OK to continue!'
                         })
                     }else{
@@ -308,12 +386,87 @@
                         })
                     }
                 })
+                }else if(this.action == "EDIT"){
+                    Swal.fire({
+                        title:'Are you sure you want update this data?',
+                        icon:'question',
+                        showCancelButton:true,
+                        confirmButtonColor:'grey',
+                        cancelButtonColor:'#d33',
+                        confirmButtonText:'Yes'
+                    }).then((result) => {
+                        if (result.isConfirmed){
+                            axios({
+                                method: 'post',
+                                url: `api/masterMaintenance/updateItem1/${this.id}`,
+                                data:{
+                                    code:this.code,
+                                    item_name:this.itemName
+                                    }
+                            }).then((res)=>{
+                                // console.log(res.data, 'updated')
+                                this.getItem1()
+                            })
+                        }
+                    })
+                }
             },
 
+            addItem2() {
+                // console.log(this.mastersSubData[0].main_code)
+                this.category2 = 2
+                this.mainCode = this.mastersSubData[0].main_items_code
+                this.code2 = ""
+                this.itemName2 = ""
+                this.item2Dialog = true
+                this.action2 = 'ADD NEW'
+            },
 
+            saveItem2(){
+                if(this.action2 == 'ADD NEW')
+                axios({
+                    method: 'post',
+                    url: 'api/mastermaintenance/saveItem2',
+                    data:{
+                        category_code: this.category2,
+                        main_items_code: this.mainCode,
+                        code: this.code2,
+                        item_name:this.itemName2
+                    }
+                }).then((res)=>{
+                    this.getItem2();
+                    if(res.data == 'Existing'){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Item is Already Existing!',
+                            footer: 'Click OK to continue!'
+                        })
+                    }else{
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Item Saved',
+                            footer: 'Click OK to continue!'
+                        })
+                    }
+                    this.item2Dialog = false
+                })
+            },
 
-            openDialogItem2() {
-                //
+            editItem2(id){
+                console.log(id, 'IDDDD')
+                this.id = id
+                this.item2Dialog = true
+                this.action2 = 'EDIT'
+                axios({
+                    method:'get',
+                    url: `api/masterMaintenance/editItem2/${id}`,
+                }).then((res)=>{
+                    console.log(res.data, 'ID')
+                    this.category2 = res.data.category_code
+                    this.mainCode = res.data.main_items_code
+                    this.code2 = res.data.code
+                    this.itemName2 = res.data.item_name
+                })
             },
 
             getItem1(){
@@ -327,12 +480,13 @@
             },
 
             getItem2(item){
+                console.log(item)
                 this.disabledItem2btn = false;
 
                 axios({
                     method:'post',
                     url:'api/masterMaintenance/getItem2',
-                    data:{main_items_code:item.CODE}
+                    data:{main_items_code:item.main_code}
                 }).then((res)=>{
                     this.mastersSubData = res.data;
                     console.log(res.data );
@@ -347,31 +501,6 @@
 </script>
 
 <style scoped>
-    .processTable >>> thead th {
-        /* padding: 3px;
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        width: 13vw;
-        font-family:sans-serif;
-        border-top: 0.5px solid #e0e0e0;
-        border-left: 0.5px solid #e0e0e0;
-        border-right: 0.5px solid #e0e0e0;
-        border-bottom: 0.5px solid #e0e0e0; */
-        /* border: 0.5px solid black; */
-    }
-
-    .processTable >>> tbody td {
-        /* border: 0.5px solid black; */
-        /* font-size: 12px;
-        font-family: arial;
-        height: 4px;
-        padding: 5px;
-        border-left: 0.5px solid #e0e0e0;
-        border-right: 0.5px solid #e0e0e0;
-        border-bottom: 0.5px solid #e0e0e0; */
-        /* font-family:sans-serif; */
-    }
 
     #border {
         border: 1px solid rgba(199, 199, 199, 0.542);
