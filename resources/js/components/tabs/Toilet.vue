@@ -100,80 +100,6 @@
                         </v-dialog>
                     </div>
                 </template>
-                <!-- <template>
-                    <div class="text-right">
-                        <v-dialog
-                            v-model="dialog"
-                            width="1280"
-                            heigth="700"
-                        >
-                            <template v-slot:activator="{ on, attrs } ">
-                                <v-badge
-                                    color="red lighten-2"
-                                    :content="cartItemCount"
-                                    overlap
-                                >
-                                    <v-btn
-                                        icon
-                                        v-bind="attrs"
-                                        v-on="on"
-                                    >
-                                        <v-icon dark>mdi-cart</v-icon>
-                                    </v-btn>
-                                </v-badge>
-                            </template>
-
-                            <v-card>
-                                <v-simple-table style="padding: 25px;">
-                                    <template v-slot:default>
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">
-                                                    No.
-                                                </th>
-                                                <th class="text-center">
-                                                    Image
-                                                </th>
-                                                <th class="text-center">
-                                                    Item
-                                                </th>
-                                                <th class="text-center">
-                                                    Color
-                                                </th>
-                                                <th class="text-center">
-                                                    Kind
-                                                </th>
-                                                <th class="text-center">
-                                                    Type
-                                                </th>
-                                                <th class="text-center">
-                                                    Actions
-                                                </th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(item,i) in cartItems" :key="i">
-                                                <td class="text-center">{{ i + 1 }}</td> 
-                                                <td class="text-center">
-                                                    <img style="width: 80px; height: 80px;" :src="item.image" alt=""> 
-                                                </td>
-                                                <td class="text-center">{{ item.type }}</td>
-                                                <td class="text-center">{{ item.color }}</td>
-                                                <td class="text-center">{{ item.kind }}</td>
-                                                <td class="text-center">{{ item.item }}</td>
-                                                <td class="text-center">
-                                                    <v-btn @click="removeItem(item.id)" color="red lighten-2"> 削除
-                                                        <v-icon>mdi-delete</v-icon>
-                                                    </v-btn>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </template>
-                                </v-simple-table>
-                            </v-card>
-                        </v-dialog>
-                    </div>
-                </template> -->
             </v-badge>
         </v-card>
         
@@ -265,11 +191,11 @@
                     </v-card>
                     
 
-                        <!-- <div id="s-d"
-                        v-if="item.products[0] != undefined"
-                        >-->
-                        <div id="s-d">
-                            <v-card v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
+                        <div id="s-d"
+                        v-if="products[0]"
+                        >
+                        <!-- <div id="s-d"> -->
+                            <v-card @click="selectItem(item)" v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
                                 <!-- {{ item }} -->
                                 <v-col>
                                     <v-row>
@@ -366,7 +292,7 @@
                                 </v-col>
                             </v-card>
                         </div>
-                        <!-- <div v-if="item.products[0] == undefined">
+                        <!-- <div v-if="products[0] == []">
                             <p>no items available as of the moment</p>
                         </div> -->
                 </v-list-group>
@@ -493,7 +419,6 @@ export default{
                 method: 'get',
                 url: 'api/getSubItems',
             }).then (res => {
-                res.data.products = this.products
                 this.sub_items = res.data;
 
                 console.log(res.data, 'sub-items')
@@ -509,6 +434,10 @@ export default{
                 this.products = res.data;
                 console.log(res.data, 'products')
             })
+        },
+
+        selectItem(item){
+            console.log(item,'clicked!!')
         },
 
         getData(){

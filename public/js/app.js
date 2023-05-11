@@ -3687,7 +3687,6 @@ __webpack_require__.r(__webpack_exports__);
         method: 'get',
         url: 'api/getSubItems'
       }).then(function (res) {
-        res.data.products = _this.products;
         _this.sub_items = res.data;
         console.log(res.data, 'sub-items');
       });
@@ -3702,6 +3701,9 @@ __webpack_require__.r(__webpack_exports__);
         _this2.products = res.data;
         console.log(res.data, 'products');
       });
+    },
+    selectItem: function selectItem(item) {
+      console.log(item, 'clicked!!');
     },
     getData: function getData() {
       var _this3 = this;
@@ -6941,7 +6943,7 @@ var render = function render() {
         small: "",
         outlined: ""
       }
-    }, [_vm._v("メモ")])], 1), _vm._v(" "), _c("div", {
+    }, [_vm._v("メモ")])], 1), _vm._v(" "), _vm.products[0] ? _c("div", {
       attrs: {
         id: "s-d"
       }
@@ -6958,6 +6960,11 @@ var render = function render() {
           width: "520",
           height: "350",
           elevation: "0"
+        },
+        on: {
+          click: function click($event) {
+            return _vm.selectItem(item);
+          }
         }
       }, [_c("v-col", [_c("v-row", [_c("v-col", {
         staticStyle: {
@@ -7037,7 +7044,7 @@ var render = function render() {
           }
         }
       }, [_c("v-icon", [_vm._v("\n                                                mdi-cart\n                                            ")]), _vm._v("add\n                                        ")], 1)], 2)], 1)], 1)], 1);
-    }), 1)], 1);
+    }), 1) : _vm._e()], 1);
   }), 1)]], 2);
 };
 var staticRenderFns = [];
