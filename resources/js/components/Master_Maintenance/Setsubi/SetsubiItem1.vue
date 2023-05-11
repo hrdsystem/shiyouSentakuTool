@@ -404,7 +404,7 @@
                                     item_name:this.itemName
                                     }
                             }).then((res)=>{
-                                // console.log(res.data, 'updated')
+                                console.log(res.data, 'updated')
                                 this.getItem1()
                             })
                         }
