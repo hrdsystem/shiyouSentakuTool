@@ -15,8 +15,28 @@ class CreateCartTable extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('item', 255);
+            $table->string('image', 255);
+            $table->string('kind', 255);
+            $table->string('color', 255);
+            $table->string('color_img', 255);
+            $table->string('type', 255);
+            $table->timestamp('added_date');
+            $table->dateTime('modified_date');
+            $table->dateTime('deleted_date');
         });
+        // Schema::create('cart', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('item', 255);
+        //     $table->string('image', 255);
+        //     $table->string('kind', 255);
+        //     $table->string('color', 255);
+        //     $table->string('color_img', 255);
+        //     $table->string('type', 255);
+        //     $table->timestamp('added_date');
+        //     $table->dateTime('modified_date');
+        //     $table->dateTime('deleted_date');
+        // });
     }
 
     /**

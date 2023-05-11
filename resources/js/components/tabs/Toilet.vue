@@ -10,36 +10,195 @@
                 :content="cartItemCount ? cartItemCount : '0'"
                 overlap
             >
-                <v-btn
+                <!-- <v-btn
                     icon
                 >
                     <v-icon dark>mdi-cart</v-icon>
-                </v-btn>
+                </v-btn> -->
+                <template>
+                    <div class="text-right">
+                        <v-dialog
+                            v-model="dialog"
+                            width="1280"
+                            heigth="700"
+                        >
+                            <template v-slot:activator="{ on, attrs } ">
+                                <v-badge
+                                    color="red lighten-2"
+                                    :content="cartItemCount"
+                                    overlap
+                                >
+                                    <v-btn
+                                        icon
+                                        v-bind="attrs"
+                                        v-on="on"
+                                    >
+                                        <v-icon dark>mdi-cart</v-icon>
+                                    </v-btn>
+                                </v-badge>
+                            </template>
+
+                            <v-card>
+                                <v-simple-table style="padding: 25px;">
+                                    <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    No.
+                                                </th>
+                                                <th class="text-center">
+                                                    Type
+                                                </th>
+                                                <th class="text-center">
+                                                    Images
+                                                </th>
+                                                <th class="text-center">
+                                                    Item
+                                                </th>
+                                                <th class="text-center">
+                                                    Product
+                                                </th>
+                                                <th class="text-center">
+                                                    Color
+                                                </th>
+                                                <th class="text-center">
+                                                    Price
+                                                </th>
+                                                <th class="text-center">
+                                                    Description
+                                                </th>
+                                                <th class="text-center">
+                                                    Actions
+                                                </th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(item,i) in cartItems" :key="i">
+                                                <!-- {{ item }} -->
+                                                <td class="text-center">{{ i + 1 }}</td> 
+                                                <td class="text-center" style="width: 100px;">{{ item.type }}</td>
+                                                <td class="text-center" style="padding-left: 50px;">
+                                                    <!-- <img style="width: 80px; height: 80px;" :src="item.image" alt="">  -->
+                                                    <!-- {{ item.image }} -->
+                                                    <v-img max-height="100" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
+                                                </td>
+                                                <td class="text-center">{{ item.item }}</td>
+                                                <td class="text-center">{{ item.product }}</td>
+                                                <td class="text-center">{{ item.color ? item.color : 'default'}}</td>
+                                                <td class="text-center">{{ item.price }}</td>
+                                                <td class="text-center" style="width: 35px;">{{ item.description }}</td>
+                                                <td class="text-center">
+                                                    <v-btn @click="removeItem(item.id)" color="red lighten-2"> 削除
+                                                        <v-icon>mdi-delete</v-icon>
+                                                    </v-btn>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-card>
+                        </v-dialog>
+                    </div>
+                </template>
+                <!-- <template>
+                    <div class="text-right">
+                        <v-dialog
+                            v-model="dialog"
+                            width="1280"
+                            heigth="700"
+                        >
+                            <template v-slot:activator="{ on, attrs } ">
+                                <v-badge
+                                    color="red lighten-2"
+                                    :content="cartItemCount"
+                                    overlap
+                                >
+                                    <v-btn
+                                        icon
+                                        v-bind="attrs"
+                                        v-on="on"
+                                    >
+                                        <v-icon dark>mdi-cart</v-icon>
+                                    </v-btn>
+                                </v-badge>
+                            </template>
+
+                            <v-card>
+                                <v-simple-table style="padding: 25px;">
+                                    <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    No.
+                                                </th>
+                                                <th class="text-center">
+                                                    Image
+                                                </th>
+                                                <th class="text-center">
+                                                    Item
+                                                </th>
+                                                <th class="text-center">
+                                                    Color
+                                                </th>
+                                                <th class="text-center">
+                                                    Kind
+                                                </th>
+                                                <th class="text-center">
+                                                    Type
+                                                </th>
+                                                <th class="text-center">
+                                                    Actions
+                                                </th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(item,i) in cartItems" :key="i">
+                                                <td class="text-center">{{ i + 1 }}</td> 
+                                                <td class="text-center">
+                                                    <img style="width: 80px; height: 80px;" :src="item.image" alt=""> 
+                                                </td>
+                                                <td class="text-center">{{ item.type }}</td>
+                                                <td class="text-center">{{ item.color }}</td>
+                                                <td class="text-center">{{ item.kind }}</td>
+                                                <td class="text-center">{{ item.item }}</td>
+                                                <td class="text-center">
+                                                    <v-btn @click="removeItem(item.id)" color="red lighten-2"> 削除
+                                                        <v-icon>mdi-delete</v-icon>
+                                                    </v-btn>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-card>
+                        </v-dialog>
+                    </div>
+                </template> -->
             </v-badge>
         </v-card>
         
         <template>
             <v-list dense >
+                
                 <v-list-group
-                dense
                 no-action
-                sub-group
+                dense
                 v-for="(item, i) in sub_items"
                 :key="i"
+                @click="getProducts(item)"
                 >
-                {{ item }}
+                <!-- {{ item }} -->
                     <template v-slot:activator>
                         <v-list-item-icon class="pt-1">
                             <v-icon>{{item.icon}}</v-icon>
                         </v-list-item-icon>
-                        &nbsp;
-                        &nbsp;
                         <v-list-item-title class="s-sub-header" style="color: black;">
                             <h3>{{item.item_name}}</h3>
                         </v-list-item-title>
                     </template>
 
-                    <!-- <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">
+                    <!-- <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">-->
+                    <v-card style="display: flex; padding-right: 50%;">
                         <v-list-item>
                             <template v-slot:default="{ active }">
                                 <v-list-item-action style="display: block:  !important;">
@@ -103,17 +262,19 @@
                         small
                         outlined
                         >メモ</v-btn>
-                    </v-card> -->
+                    </v-card>
                     
 
                         <!-- <div id="s-d"
                         v-if="item.products[0] != undefined"
-                        >
-                            <v-card v-for="(item, i) in item.products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
+                        >-->
+                        <div id="s-d">
+                            <v-card v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
+                                <!-- {{ item }} -->
                                 <v-col>
                                     <v-row>
                                         <v-col style="display: flex;">
-                                            <v-list-item-title class="s-title" style="font-size: 20px;">{{ item.title }}</v-list-item-title>
+                                            <v-list-item-title class="s-title" style="font-size: 20px;">{{ item.product_name }}</v-list-item-title>
                                             <v-spacer/>
                                             <template>
                                                 <div class="text-left">
@@ -144,13 +305,15 @@
                                     </v-row>
                                     <v-row>
                                         <v-col style="display: flex;">
-                                            <v-img :src="item.add_img" alt="" max-height="100" max-width="100"></v-img>
-                                            <v-img :src="item.img" alt="" max-height="250" max-width="250"></v-img>
+                                            <!-- {{ item.image_path }} -->
+                                            <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
+                                            <!-- <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img> -->
+                                            <!-- <v-img v-else="img.image_path == undefined" max-height="250" max-width="250" :src="require('../images/No_Image_Available.jpg')"></v-img> -->
                                         </v-col>
                                         <v-col>
                                             <template>
                                                 <div class="text-left">
-                                                    <v-menu
+                                                    <!-- <v-menu
                                                     :close-on-content-click="false"
                                                     offset-x
                                                     >
@@ -175,7 +338,7 @@
                                                                 <v-img style="width: 100%; height: 100%; object-fit: cover;" src="../../images/default.jpg" alt="default image" id="s-s-h"/>
                                                             </v-card>
                                                         </div>   
-                                                    </v-menu>
+                                                    </v-menu> -->
                                                 </div>
                                             </template>
                                             
@@ -184,15 +347,16 @@
                                             <h5 class="s-header">価格: 
                                                 <v-icon style="font-size: 15px; margin-bottom: 3px;">
                                                     mdi-currency-jpy
-                                                </v-icon>{{ item.price ? item.price : 'No Indicated Value'}}
+                                                </v-icon>
+                                                {{ item.price ? item.price : 'No Indicated Value'}}
                                             </h5>
 
                                             &nbsp;
 
                                             <p class="s-sub-header">
-                                                {{ item.description ? item.description : '説明なしxx' }}  
+                                                {{ item.description ? item.description : 'No Indicated Description' }}  
                                             </p>
-                                            <v-btn class="s-header" block @click="getItems(item)">
+                                            <v-btn class="s-header" block @click="addToCart(item)">
                                                 <v-icon>
                                                     mdi-cart
                                                 </v-icon>add
@@ -202,7 +366,7 @@
                                 </v-col>
                             </v-card>
                         </div>
-                        <div v-if="item.products[0] == undefined">
+                        <!-- <div v-if="item.products[0] == undefined">
                             <p>no items available as of the moment</p>
                         </div> -->
                 </v-list-group>
@@ -212,12 +376,29 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default{
     data() {
         return {
             cartItemCount: 0,
+            dialog: false,
+
             sub_items: [],
             products: [],
+            cartItems: [],
+            cart: [
+                {
+                type: '',
+                image: '',
+                accesories_image: '',
+                item_name: '',
+                product_name: '',
+                // color_name: '',
+                price: '',
+                description: '',
+                }
+            ],
+
             // sub_items :[
             //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
             //     {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
@@ -307,34 +488,119 @@ export default{
     },
 
     methods: {
-        // getItems(item){
-        //     console.log(item)
-        // }
         getSubItems(){
             axios({
                 method: 'get',
                 url: 'api/getSubItems',
             }).then (res => {
+                res.data.products = this.products
                 this.sub_items = res.data;
+
                 console.log(res.data, 'sub-items')
             })
         },
 
-        getProducts(){
+        getProducts(item){
             axios({
-                method: 'get',
+                method: 'post',
                 url: 'api/getProducts',
+                data: item
             }).then (res => {
                 this.products = res.data;
                 console.log(res.data, 'products')
             })
-        }
+        },
+
+        getData(){
+            axios({
+                method: 'get',
+                url: 'api/getDataToilet'
+            }).then((res)=>{
+                this.cartItems = res.data;
+                this.cartItemCount = res.data.length;
+            })
+        },
+
+        // getToCart(item){
+        //     console.log(item, 'items to be cart-ed')
+        // },
+        
+        addToCart(item){
+            console.log(item, 'item')
+
+            this.cart.filter(r=>{
+                r.type = 'トイレ';
+                r.image = item.image_path;
+                r.accesories_image = item.add_image;
+                r.item_name = item.item_name;
+                r.product_name = item.product_name;
+                // r.color_name = item.color;
+                r.price = item.price;
+                r.description = item.description;
+            })
+
+            console.log(this.cart, 'cart')
+
+            axios({
+                method: 'post',
+                url: 'api/save',
+                data: this.cart
+            }).then(r=>{
+                console.log(r)
+                Swal.fire(
+                    "you're item is added!",
+                    'Item successfully cart-ed!',
+                    'success'
+                    )
+            })
+            this.getData();
+        },
+
+        removeItem(id){
+                console.log(id)
+
+                Swal.fire({
+                    title: 'Are you sure to remove this item?',
+                    text: "You can add this anytime, anyways.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e57373',
+                    cancelButtonColor: 'gray',
+                    confirmButtonText: 'Yes, remove it!',
+                    cancelButtonText: 'No, i changed my mind'
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+                        axios({
+                            method: 'post',
+                            url: `api/remove/${id}`,
+                        }).then((res)=>{
+                            let i = this.cartItems.map(item => item.id).indexOf(id);
+                            this.cartItems.splice(i, 1);
+                            console.log(i)
+
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'your item is removed!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+
+                            this.getData();
+                        })
+                    }
+
+                })
+            },
         
     },
 
     mounted(){
         this.getSubItems();
         this.getProducts();
+        this.getData();
+
         // this.products.forEach(e1 => {
         //     this.sub_items.forEach(e2 => {
         //         if(e1.item_id == e2.id){
