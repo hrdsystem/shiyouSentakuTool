@@ -47,16 +47,11 @@ Route::post('/getColor',[ShiyoushoCatalogController::class,'getColor']);
 
 //MASTER MAINTENANCE TOOL(G) 
 Route::post('/masterMaintenance/getData/{id}',[MasterMaintenanceController::class,'getData']);
-Route::post('/masterMaintenance/editItems/{id}',[MasterMaintenanceController::class,'editItems']);
-Route::post('/masterMaintenance/updateData/{id}', [MasterMaintenanceController::class, 'updateData']);
-Route::post('/masterMaintenance/updateData/{id}', [MasterMaintenanceController::class, 'updateData']);
-
-Route::get('/masterMaintenance/getData/{id}',[MasterMaintenanceController::class,'getData']);
 Route::get('/masterMaintenance/editItems/{id}',[MasterMaintenanceController::class,'editItems']);
-Route::get('/masterMaintenance/updateData/{id}', [MasterMaintenanceController::class, 'updateData']);
-Route::get('/masterMaintenance/updateData/{id}', [MasterMaintenanceController::class, 'updateData']);
-
-
+Route::post('/masterMaintenance/updateData/{id}', [MasterMaintenanceController::class, 'updateData']);
+Route::post('/masterMaintenance/updateItem1/{id}', [MasterMaintenanceController::class, 'updateItem1']);
+Route::post('/mastermaintenance/saveItem2', [MasterMaintenanceController::class, 'saveItem2']);
+Route::get('/masterMaintenance/editItem2/{id}',[MasterMaintenanceController::class,'editItem2']);
 
 Route::post('/masterMaintenance/getData',[MasterMaintenanceController::class,'getData']);
 Route::post('/masterMaintenance/editItems',[MasterMaintenanceController::class,'editItems']);
@@ -69,7 +64,7 @@ Route::get('/masterMaintenance/updateData', [MasterMaintenanceController::class,
 Route::get('/masterMaintenance/saveData', [MasterMaintenanceController::class, 'saveData']);
 
 
-
+// GEETING OF ITEMS
 Route::get('/masterMaintenance/getItem1',[MasterMaintenanceController::class,'getItem1']);
 Route::get('/masterMaintenance/getItem2',[MasterMaintenanceController::class,'getItem2']);
 Route::get('/masterMaintenance/products',[MasterMaintenanceController::class,'products']);
