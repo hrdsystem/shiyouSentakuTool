@@ -111,6 +111,7 @@ class MasterMaintenanceController extends Controller
             // return $request;
         if($request->action == 'ADD NEW'){
             //        *     *     *      SAVE     *     *     *        //
+            // $test = 'sample';
             $data = DB::connection('mysql')
             ->table('m_main_items')
             ->where('category_code',$request->category_code)
