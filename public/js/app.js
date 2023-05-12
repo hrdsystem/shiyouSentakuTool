@@ -6959,7 +6959,7 @@ var render = function render() {
           }, [_vm._v(_vm._s(item.type))]), _vm._v(" "), _c("td", {
             staticClass: "text-center",
             staticStyle: {
-              "padding-left": "50px"
+              width: "20px"
             }
           }, [_c("v-img", {
             attrs: {
@@ -6978,7 +6978,7 @@ var render = function render() {
           }, [_vm._v(_vm._s(item.price))]), _vm._v(" "), _c("td", {
             staticClass: "text-center",
             staticStyle: {
-              width: "35px"
+              width: "300px"
             }
           }, [_vm._v(_vm._s(item.description))]), _vm._v(" "), _c("td", {
             staticClass: "text-center"

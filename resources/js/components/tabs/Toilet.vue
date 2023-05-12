@@ -77,7 +77,7 @@
                                                 <!-- {{ item }} -->
                                                 <td class="text-center">{{ i + 1 }}</td> 
                                                 <td class="text-center" style="width: 100px;">{{ item.type }}</td>
-                                                <td class="text-center" style="padding-left: 50px;">
+                                                <td class="text-center" style="width: 20px;">
                                                     <!-- <img style="width: 80px; height: 80px;" :src="item.image" alt="">  -->
                                                     <!-- {{ item.image }} -->
                                                     <v-img max-height="100" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
@@ -86,7 +86,7 @@
                                                 <td class="text-center">{{ item.product }}</td>
                                                 <td class="text-center">{{ item.color ? item.color : 'default'}}</td>
                                                 <td class="text-center">{{ item.price }}</td>
-                                                <td class="text-center" style="width: 35px;">{{ item.description }}</td>
+                                                <td class="text-center" style="width: 300px;">{{ item.description }}</td>
                                                 <td class="text-center">
                                                     <v-btn @click="removeItem(item.id)" color="red lighten-2"> 削除
                                                         <v-icon>mdi-delete</v-icon>
