@@ -96,7 +96,7 @@ return [
         //     'prefix_indexes' => true, 
         // ],
 
-        'HRDAPPS31(shiyou_sentaku_main_test2)'=> [ 
+        'mysql'=> [ 
             'driver' => 'mysql', 
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST_1', 'HRDAPPS31'), 

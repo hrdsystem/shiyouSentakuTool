@@ -13,8 +13,8 @@
 /* MaterialDesignIcons.com */
 @font-face {
   font-family: "Material Design Icons";
-  src: url(/fonts/vendor/@mdi/materialdesignicons-webfont.eot?de316c4d7c49351893235ebee55a9756);
-  src: url(/fonts/vendor/@mdi/materialdesignicons-webfont.eot?de316c4d7c49351893235ebee55a9756?#iefix&v=6.9.96) format("embedded-opentype"), url(/fonts/vendor/@mdi/materialdesignicons-webfont.woff2?d5cba82059f88bfa469ecd8a0e313676) format("woff2"), url(/fonts/vendor/@mdi/materialdesignicons-webfont.woff?059ea00c378aeafc39fc680ecc5ef66b) format("woff"), url(/fonts/vendor/@mdi/materialdesignicons-webfont.ttf?ac55aef662342c261b21af3611b5e746) format("truetype");
+  src: url(/shiyou_sentaku_tool/fonts/vendor/@mdi/materialdesignicons-webfont.eot?de316c4d7c49351893235ebee55a9756);
+  src: url(/shiyou_sentaku_tool/fonts/vendor/@mdi/materialdesignicons-webfont.eot?de316c4d7c49351893235ebee55a9756?#iefix&v=6.9.96) format("embedded-opentype"), url(/shiyou_sentaku_tool/fonts/vendor/@mdi/materialdesignicons-webfont.woff2?d5cba82059f88bfa469ecd8a0e313676) format("woff2"), url(/shiyou_sentaku_tool/fonts/vendor/@mdi/materialdesignicons-webfont.woff?059ea00c378aeafc39fc680ecc5ef66b) format("woff"), url(/shiyou_sentaku_tool/fonts/vendor/@mdi/materialdesignicons-webfont.ttf?ac55aef662342c261b21af3611b5e746) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
