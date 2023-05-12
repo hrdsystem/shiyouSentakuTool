@@ -29,7 +29,7 @@ class CreateMProductsTable extends Migration
             $table->dateTime('Created_at')->useCurrent();
             $table->dateTime('Updated_Date')->nullable(); 
             $table->dateTime('Deleted_Date')->nullable(); 
-            $table->string('Updated_by', 50)->nullable();
+            $table->string('Updated_by',50)->nullable();
         });
     }
 
