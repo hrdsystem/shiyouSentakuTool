@@ -124,7 +124,7 @@
                     </template>
 
                     <!-- <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">-->
-                    <v-card style="display: flex; padding-right: 50%;">
+                    <v-card v-if="products[0]" style="display: flex; padding-right: 50%;">
                         <v-list-item>
                             <template v-slot:default="{ active }">
                                 <v-list-item-action style="display: block:  !important;">
@@ -188,6 +188,8 @@
                         small
                         outlined
                         >メモ</v-btn>
+                    </v-card>
+                    <v-card v-if="!products[0]">
                     </v-card>
                     
 
@@ -292,9 +294,9 @@
                                 </v-col>
                             </v-card>
                         </div>
-                        <!-- <div v-if="products[0] == []">
+                        <div v-if="!products[0]">
                             <p>no items available as of the moment</p>
-                        </div> -->
+                        </div>
                 </v-list-group>
             </v-list>
         </template>

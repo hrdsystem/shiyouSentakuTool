@@ -7026,7 +7026,7 @@ var render = function render() {
         },
         proxy: true
       }], null, true)
-    }, [_vm._v(" "), _c("v-card", {
+    }, [_vm._v(" "), _vm.products[0] ? _c("v-card", {
       staticStyle: {
         display: "flex",
         "padding-right": "50%"
@@ -7118,7 +7118,7 @@ var render = function render() {
         small: "",
         outlined: ""
       }
-    }, [_vm._v("メモ")])], 1), _vm._v(" "), _vm.products[0] ? _c("div", {
+    }, [_vm._v("メモ")])], 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("v-card") : _vm._e(), _vm._v(" "), _vm.products[0] ? _c("div", {
       attrs: {
         id: "s-d"
       }
@@ -7219,7 +7219,7 @@ var render = function render() {
           }
         }
       }, [_c("v-icon", [_vm._v("\n                                                mdi-cart\n                                            ")]), _vm._v("add\n                                        ")], 1)], 2)], 1)], 1)], 1);
-    }), 1) : _vm._e()], 1);
+    }), 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e()], 1);
   }), 1)]], 2);
 };
 var staticRenderFns = [];

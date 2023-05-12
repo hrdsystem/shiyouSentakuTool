@@ -1056,14 +1056,16 @@ class ShiyoushoCatalogController extends Controller
 
         public function getDataToilet()
         {
-            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
             ->table('cart')->get();
             
         }
 
         public function saveCart(Request $req)
         {
-            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
             ->table('cart')
             ->insert([
                 "type" => $req[0]['type'],
@@ -1079,7 +1081,8 @@ class ShiyoushoCatalogController extends Controller
         }
 
         public function getSubItems(){
-            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
             ->table('m_sub_items')
             ->where('main_items_code','=','0200')
             ->get();
@@ -1087,13 +1090,15 @@ class ShiyoushoCatalogController extends Controller
 
         public function removeItem($id){ //back-end deletion
             
-            $id = DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            // $id = DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            $id = DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
             ->table('cart')->where('id', $id)->delete();
             return response()->json($id . ' ' . 'is successfully deleted');
         }
 
         public function getProducts(Request $request){
-            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
+            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
             ->select(
                 DB::raw("SELECT 
                     m_sub_items.main_items_code,
