@@ -52,6 +52,7 @@ Route::post('/masterMaintenance/updateData/{id}', [MasterMaintenanceController::
 Route::post('/masterMaintenance/updateItem1/{id}', [MasterMaintenanceController::class, 'updateItem1']);
 Route::post('/mastermaintenance/saveItem2', [MasterMaintenanceController::class, 'saveItem2']);
 Route::get('/masterMaintenance/editItem2/{id}',[MasterMaintenanceController::class,'editItem2']);
+Route::post('/masterMaintenance/updateItem2/{id}', [MasterMaintenanceController::class, 'updateItem2']);
 
 Route::post('/masterMaintenance/getData',[MasterMaintenanceController::class,'getData']);
 Route::post('/masterMaintenance/editItems',[MasterMaintenanceController::class,'editItems']);
@@ -75,6 +76,7 @@ Route::post('/masterMaintenance/getItem2',[MasterMaintenanceController::class,'g
 Route::post('/masterMaintenance/products',[MasterMaintenanceController::class,'products']);
 Route::post('/masterMaintenance/colors',[MasterMaintenanceController::class,'colors']);
 
+
 // Route::get('/masterMaintenance/getCategories',[MasterMaintenanceController::class,'getCategories']);
 // // Route::get('/masterMaintenance/getItem1',[MasterMaintenanceController::class,'getItem1']);
 // Route::get('/masterMaintenance/getItem2',[MasterMaintenanceController::class,'getItem2']);
@@ -83,13 +85,5 @@ Route::post('/masterMaintenance/colors',[MasterMaintenanceController::class,'col
 
 Route::post('/masterMaintenance/deleteData',[MasterMaintenanceController::class,'deleteData']);
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// * * * * * * * * * * *             NEW             * * * * * * * * * * * * * 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Route::get('/getDataToilet',[ShiyoushoCatalogController::class,'getDataToilet']);
-Route::get('/getSubItems',[ShiyoushoCatalogController::class,'getSubItems']);
-Route::post('/getProducts',[ShiyoushoCatalogController::class,'getProducts']);
 

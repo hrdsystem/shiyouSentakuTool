@@ -52,7 +52,7 @@
                     :items="mastersData" 
                     :items-per-page="15" 
                     class="elevation-1" 
-                    @dblclick:row="($event, {item})=>getItem2(item)"
+                    @dblclick:row="($event, {item})=>getItem2(item.main_code)"
                 >
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
@@ -166,11 +166,11 @@
         </v-row>
 
         <!-- DIALOG FOR ADD AND EDIT FOR ITEM1-->
-        <v-dialog v-model="dialog" max-width="20%" persistent>
+        <v-dialog v-model="item1Dialog" max-width="20%" persistent>
                 <v-card>
                     <v-card-title style="background-color: #1E88E5; color: #ffffff;">{{action}} DATA
                         <v-spacer/>
-                        <v-icon color="#ffffff" @click="close()">mdi-close</v-icon>
+                        <v-icon color="#ffffff" @click="close1()">mdi-close</v-icon>
                     </v-card-title>
                     <v-card-text>
                         <br/>
@@ -277,7 +277,7 @@
             action2: '',
 
             // DIALOGS
-            dialog: false,
+            item1Dialog: false,
             item2Dialog: false,
             dialogDelete: false,
 
@@ -294,8 +294,8 @@
         },
 
         watch: {
-            dialog (val) {
-                val || this.close()
+            item1Dialog (val) {
+                val || this.close1()
             },
             // dialogDelete (val) {
             //     val || this.closeDelete()
@@ -307,36 +307,41 @@
         },
 
         methods: {
-            close2() {
-                this.item2Dialog = false
-            },
-            close() {
-                this.dialog = false
+            /////////////////////////////////////////////////////////////////
+            //    *   *   *   *   * FUNTCTION FOR ITEM1 *   *   *   *   *  //
+            /////////////////////////////////////////////////////////////////
+            getItem1(){
+                axios({
+                    method:'get',
+                    url:'api/masterMaintenance/getItem1',
+                }).then((res)=>{
+                    this.mastersData = res.data;
+                    console.log(res.data, 'getItem1...')
+                })
             },
 
             addItem1() {
                 this.category = 2
                 this.code = ""
                 this.itemName = ""
-                this.dialog = true
+                this.item1Dialog = true
                 this.action = 'ADD NEW'
             },
-            closeDialogItem1(){
-                this.dialog = false
+            close1() {
+                this.item1Dialog = false
             },
             closeEditDialog1(){
                 this.category = ""
                 this.code = ""
                 this.itemName = ""
-                this.dialog = false
+                this.item1Dialog = false
                 this.action = 'EDIT'
             },
-
 
             editItem1(id){
                 // console.log(id, 'IDDDD')
                 this.id = id
-                this.dialog = true
+                this.item1Dialog = true
                 this.action = 'EDIT'
                 axios({
                     method:'get',
@@ -348,15 +353,13 @@
                     this.itemName = res.data.item_name
                 })
             },
-            
-
 
             saveItem1(){
                 // console.log(this.category, this.code, this.itemName)
                 // console.log(this.action)
                 this.id
                 console.log(this.id)
-                this.close()
+                this.close1()
                 let data = {}
                 if(this.action == "ADD NEW"){
                     data = {
@@ -366,32 +369,31 @@
                         item_name: this.itemName
                     }
                     axios({
-                    method : 'post',
-                    url: 'api/masterMaintenance/updateData',
-                    data: data
-                }).then(res=>{
-                    this.getItem1()
-                    console.log(res.data,'saveItem1...')
-                    if(res.data == 'Existing'){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Item is Already Existing!',
-                            footer: 'Click OK to continue!'
-                        })
-                    }else{
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Item Saved',
-                            footer: 'Click OK to continue!'
-                        })
-                    }
-                })
+                        method : 'post',
+                        url: 'api/masterMaintenance/updateData',
+                        data: data
+                    }).then(res=>{
+                        this.getItem1()
+                        if(res.data == 'Existing'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ITEM 1 IS ALREADY EXISTING!',
+                                footer: 'CLICK OK TO CONTINUE!'
+                            })
+                        }else{
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'ITEM 1 SAVED',
+                                footer: 'CLICK OK TO CONTINUE!'
+                            })
+                        }
+                    })
                 }else if(this.action == "EDIT"){
                     Swal.fire({
-                        title:'Are you sure you want update this data?',
+                        title:'ARE YOU SURE YOU WANT TO UPDATE THIS ITEM 1 DATA?',
                         icon:'question',
                         showCancelButton:true,
-                        confirmButtonColor:'grey',
+                        confirmButtonColor:'primary',
                         cancelButtonColor:'#d33',
                         confirmButtonText:'Yes'
                     }).then((result) => {
@@ -404,12 +406,31 @@
                                     item_name:this.itemName
                                     }
                             }).then((res)=>{
-                                console.log(res.data, 'updated')
+                                // console.log(res.data, 'updated')
                                 this.getItem1()
                             })
                         }
                     })
                 }
+            },
+
+            /////////////////////////////////////////////////////////////////
+            //    *   *   *   *   * FUNTCTION FOR ITEM2 *   *   *   *   *  //
+            /////////////////////////////////////////////////////////////////
+            getItem2(item){
+                let obj = {
+                    item1 : item
+                }
+                this.disabledItem2btn = false;
+                axios({
+                    method:'post',
+                    url:'api/masterMaintenance/getItem2',
+                    data : obj
+                    // data:{main_items_code:item.main_code}
+                }).then((res)=>{
+                    this.mastersSubData = res.data;
+                    console.log(res.data );
+                })
             },
 
             addItem2() {
@@ -421,39 +442,69 @@
                 this.item2Dialog = true
                 this.action2 = 'ADD NEW'
             },
+            close2() {
+                this.item2Dialog = false
+            },
 
             saveItem2(){
-                if(this.action2 == 'ADD NEW')
-                axios({
-                    method: 'post',
-                    url: 'api/mastermaintenance/saveItem2',
-                    data:{
-                        category_code: this.category2,
-                        main_items_code: this.mainCode,
-                        code: this.code2,
-                        item_name:this.itemName2
+                this.id
+                console.log(this.id)
+                this.close2()
+                let data = {}
+                if(this.action2 == 'ADD NEW') {
+                    data = {
+                        category_code : this.category2,
+                        main_items_code : this.mainCode,
+                        code : this.code2,
+                        item_name : this.itemName2
                     }
-                }).then((res)=>{
-                    this.getItem2();
-                    if(res.data == 'Existing'){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Item is Already Existing!',
-                            footer: 'Click OK to continue!'
-                        })
-                    }else{
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Item Saved',
-                            footer: 'Click OK to continue!'
-                        })
-                    }
-                    this.item2Dialog = false
-                })
+                    axios({
+                        method: 'post',
+                        url: 'api/mastermaintenance/saveItem2',
+                        data:data
+                    }).then((res)=>{
+                        this.getItem2(this.mainCode)
+                        if(res.data == 'Existing'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'ITEM2 IS ALREADY EXISTING!',
+                                footer: 'CLICK OK TO CONTINUE!'
+                            })
+                        }else{
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'ITEM 2 SAVED',
+                                footer: 'CLICK OK TO CONTINUE!'
+                            })
+                        }
+                    })
+                }else if(this.action == "EDIT"){
+                    Swal.fire({
+                        title:'ARE YOU SURE YOU WANT TO UPDATE THIS ITEM 2 DATA?',
+                        icon:'question',
+                        showCancelButton:true,
+                        confirmButtonColor:'primary',
+                        cancelButtonColor:'#d33',
+                        confirmButtonText:'Yes'
+                    }).then((result) => {
+                        if (result.isConfirmed){
+                            axios({
+                                method: 'post',
+                                url: `api/masterMaintenance/updateItem2/${this.id}`,
+                                data:{
+                                    code:this.code,
+                                    item_name:this.itemName
+                                }
+                            }).then((res)=>{
+                                // console.log(res.data, 'updated')
+                                this.getItem2(this.mainCode)
+                            })
+                        }
+                    })
+                }
             },
 
             editItem2(id){
-                console.log(id, 'IDDDD')
                 this.id = id
                 this.item2Dialog = true
                 this.action2 = 'EDIT'
@@ -461,7 +512,7 @@
                     method:'get',
                     url: `api/masterMaintenance/editItem2/${id}`,
                 }).then((res)=>{
-                    console.log(res.data, 'ID')
+                    console.log(res.data, 'editItem2')
                     this.category2 = res.data.category_code
                     this.mainCode = res.data.main_items_code
                     this.code2 = res.data.code
@@ -469,29 +520,9 @@
                 })
             },
 
-            getItem1(){
-                axios({
-                    method:'get',
-                    url:'api/masterMaintenance/getItem1',
-                }).then((res)=>{
-                    this.mastersData = res.data;
-                    console.log(res.data, 'getItem1...')
-                })
-            },
 
-            getItem2(item){
-                console.log(item)
-                this.disabledItem2btn = false;
 
-                axios({
-                    method:'post',
-                    url:'api/masterMaintenance/getItem2',
-                    data:{main_items_code:item.main_code}
-                }).then((res)=>{
-                    this.mastersSubData = res.data;
-                    console.log(res.data );
-                })
-            },
+
 
             onResize() {
                 this.windowSize = { x: window.innerWidth, y: window.innerHeight };
