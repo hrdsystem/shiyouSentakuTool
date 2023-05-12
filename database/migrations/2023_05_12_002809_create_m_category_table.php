@@ -15,7 +15,13 @@ class CreateMCategoryTable extends Migration
     {
         Schema::create('m_category', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('code',10)->unique();
+            $table->string('category_name',50)->nullable();
+            $table->dateTime('Created_at')->useCurrent();
+            $table->dateTime('Updated_Date')->nullable();
+            $table->dateTime('Deleted_Date')->nullable();
+            $table->string('Updated_by',50)->nullable();
+            // $table->timestamps();
         });
     }
 
