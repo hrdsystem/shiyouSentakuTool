@@ -1153,5 +1153,46 @@ class ShiyoushoCatalogController extends Controller
 
         // next up colors
 
+        public function getSampleData(){
+            return DB::connection('mysql')
+            ->select(
+                DB::raw("SELECT 
+                    m_sub_items.main_items_code,
+                    m_sub_items.code,
+                    m_sub_items.icon,
+                    m_sub_items.item_name,
+                    m_products.sub_items_code,
+                    m_products.sub_items_code,
+                    m_products.code,
+                    m_products.product_name,
+                    m_products.price,
+                    m_products.maker_code,
+                    m_products.color_code,
+                    m_products.description,
+                    m_products.image_path,
+                    m_products.add_image
+                from m_sub_items 
+                inner join( 
+                    SELECT 
+                        m_products.sub_items_code,
+                        m_products.code,
+                        m_products.product_name,
+                        m_products.price,
+                        m_products.maker_code,
+                        m_products.color_code,
+                        m_products.description,
+                        m_products.image_path,
+                        m_products.add_image
+                    from m_products
+                    WHERE m_products.sub_items_code = '0600'
+                ) AS m_products 
+                on m_sub_items.code = m_products.sub_items_code 
+                where m_sub_items.main_items_code = '0200'    
+                and m_sub_items.code = '0600'")
+            );
+        }
+
+
+
 }
 

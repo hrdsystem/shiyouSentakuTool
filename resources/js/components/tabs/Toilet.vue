@@ -111,7 +111,7 @@
                 dense
                 v-for="(item, i) in sub_items"
                 :key="i"
-                @click="getProducts(item)"
+                @click="getSampleData(item)"
                 >
                 <!-- {{ item }} -->
                     <template v-slot:activator>
@@ -416,6 +416,15 @@ export default{
     },
 
     methods: {
+        getSampleData(){
+            axios({
+                method: 'get',
+                url: 'api/getSampleData'
+            }).then((res)=>{
+                console.log(res.data, 'SAMPLE DATA')
+            })
+        },
+
         getSubItems(){
             axios({
                 method: 'get',
@@ -529,7 +538,7 @@ export default{
 
     mounted(){
         this.getSubItems();
-        this.getProducts();
+        this.getSampleData();
         this.getData();
 
         // this.products.forEach(e1 => {
