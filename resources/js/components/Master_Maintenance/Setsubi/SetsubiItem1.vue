@@ -72,10 +72,10 @@
                         </thead>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem1(item.id)">
+                        <v-icon color="primary" class="mr-2" @click="editItem1(item)">
                             mdi-pencil
                         </v-icon>
-                        <v-icon disabled color="error" @click="deleteItem1(item)">
+                        <v-icon  color="error" @click="deleteItem1(item)">
                             mdi-delete
                         </v-icon>
                     </template>
@@ -149,10 +149,10 @@
                         </thead>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem2(item.id)">
+                        <v-icon color="primary" class="mr-2" @click="editItem2(item)">
                             mdi-pencil
                         </v-icon>
-                        <v-icon color="error" @click="deleteItem(item)">
+                        <v-icon color="error" @click="deleteItem2(item)">
                             mdi-delete
                         </v-icon>
                     </template>
@@ -175,15 +175,15 @@
                     <v-card-text>
                         <br/>
                         <!-- <span> -->
-                            <v-text-field  outlined dense rounded readonly label="Category Code" v-model="category"
+                            <v-text-field  outlined dense rounded readonly label="Category Code" v-model="item1Obj1.category"
                             ></v-text-field>
                             <!-- <v-text-field v-else-if="this.category == null" outlined dense rounded readonly label="Category Code" v-model="category"
                             ></v-text-field>
                         </span> -->
-                        <v-text-field outlined dense rounded label="Code" v-model="code" type="number"
+                        <v-text-field :readonly="disabledItem1()" outlined dense rounded label="Code" v-model="item1Obj1.code"
                         onKeyPress="if(this.value.length==4)return false;"
                         ></v-text-field>
-                        <v-text-field outlined dense rounded label="Item Name" v-model="itemName"></v-text-field>
+                        <v-text-field  outlined dense rounded label="Item Name" v-model="item1Obj1.itemName"></v-text-field>
                     </v-card-text>
                     <v-card-actions>
                         <v-btn
@@ -206,11 +206,11 @@
                 </v-card-title>
                 <v-card-text>
                     <br/>
-                    <v-text-field outlined dense rounded readonly label="Category Code" v-model="category2"></v-text-field>
-                    <v-text-field outlined dense rounded readonly label="Main Item Code" v-model="mainCode"></v-text-field>
-                    <v-text-field outlined dense rounded label="Code" type="number" v-model="code2" onKeyPress="if(this.value.length==4)return false;">
+                    <v-text-field outlined dense rounded readonly label="Category Code" v-model="item2Obj2.category2"></v-text-field>
+                    <v-text-field outlined dense rounded readonly label="Main Item Code" v-model="item2Obj2.mainCode"></v-text-field>
+                    <v-text-field outlined dense rounded :readonly="disabledItem2()" label="Code" v-model="item2Obj2.code2">
                     </v-text-field>
-                    <v-text-field outlined dense rounded label="Item Name" v-model="itemName2"></v-text-field>
+                    <v-text-field outlined dense rounded label="Item Name" v-model="item2Obj2.itemName2"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn @click="saveItem2()" block dense color="primary" style="height:35px !important">
@@ -260,16 +260,15 @@
                     text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
+            
+            item1Obj1 : {},
+            item2Obj2 : {},
 
             addEdit: {},
             id: -1,
-            mainCode: null,
-            itemName: null,
-            itemName2: null,
-            code: null,
-            code2: null,
-            category: null,
-            category2: null,
+            item1Code : "",
+
+
             disabledItem2btn: true,
             windowSize: { x: 0, y: 0 },
             loading: false,
@@ -279,7 +278,6 @@
             // DIALOGS
             item1Dialog: false,
             item2Dialog: false,
-            dialogDelete: false,
 
             mastersData: [],
             mastersSubData: [],
@@ -294,9 +292,11 @@
         },
 
         watch: {
-            item1Dialog (val) {
-                val || this.close1()
-            },
+
+
+            // item1Dialog (val) {
+            //     val || this.close1()
+            // },
             // dialogDelete (val) {
             //     val || this.closeDelete()
             // },
@@ -307,9 +307,9 @@
         },
 
         methods: {
-            /////////////////////////////////////////////////////////////////
-            //    *   *   *   *   * FUNTCTION FOR ITEM1 *   *   *   *   *  //
-            /////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////
+            //    *   *   *   *   *           *   *   *   *   *  //
+            ///////////////////////////////////////////////////////
             getItem1(){
                 axios({
                     method:'get',
@@ -319,105 +319,8 @@
                     console.log(res.data, 'getItem1...')
                 })
             },
-
-            addItem1() {
-                this.category = 2
-                this.code = ""
-                this.itemName = ""
-                this.item1Dialog = true
-                this.action = 'ADD NEW'
-            },
-            close1() {
-                this.item1Dialog = false
-            },
-            closeEditDialog1(){
-                this.category = ""
-                this.code = ""
-                this.itemName = ""
-                this.item1Dialog = false
-                this.action = 'EDIT'
-            },
-
-            editItem1(id){
-                // console.log(id, 'IDDDD')
-                this.id = id
-                this.item1Dialog = true
-                this.action = 'EDIT'
-                axios({
-                    method:'get',
-                    url: `api/masterMaintenance/editItems/${id}`,
-                }).then((res)=>{
-                    // console.log(res.data, 'ID')
-                    this.category = res.data.category_code
-                    this.code = res.data.code
-                    this.itemName = res.data.item_name
-                })
-            },
-
-            saveItem1(){
-                // console.log(this.category, this.code, this.itemName)
-                // console.log(this.action)
-                this.id
-                console.log(this.id)
-                this.close1()
-                let data = {}
-                if(this.action == "ADD NEW"){
-                    data = {
-                        action : this.action,
-                        category_code: this.category,
-                        CODE: this.code,
-                        item_name: this.itemName
-                    }
-                    axios({
-                        method : 'post',
-                        url: 'api/masterMaintenance/updateData',
-                        data: data
-                    }).then(res=>{
-                        this.getItem1()
-                        if(res.data == 'Existing'){
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'ITEM 1 IS ALREADY EXISTING!',
-                                footer: 'CLICK OK TO CONTINUE!'
-                            })
-                        }else{
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'ITEM 1 SAVED',
-                                footer: 'CLICK OK TO CONTINUE!'
-                            })
-                        }
-                    })
-                }else if(this.action == "EDIT"){
-                    Swal.fire({
-                        title:'ARE YOU SURE YOU WANT TO UPDATE THIS ITEM 1 DATA?',
-                        icon:'question',
-                        showCancelButton:true,
-                        confirmButtonColor:'primary',
-                        cancelButtonColor:'#d33',
-                        confirmButtonText:'Yes'
-                    }).then((result) => {
-                        if (result.isConfirmed){
-                            axios({
-                                method: 'post',
-                                url: `api/masterMaintenance/updateItem1/${this.id}`,
-                                data:{
-                                    code:this.code,
-                                    item_name:this.itemName
-                                    }
-                            }).then((res)=>{
-                                // console.log(res.data, 'updated')
-                                this.getItem1()
-                            })
-                        }
-                    })
-                }
-            },
-
-            /////////////////////////////////////////////////////////////////
-            //    *   *   *   *   * FUNTCTION FOR ITEM2 *   *   *   *   *  //
-            /////////////////////////////////////////////////////////////////
             getItem2(item){
+                this.item1Code = item
                 let obj = {
                     item1 : item
                 }
@@ -429,58 +332,157 @@
                     // data:{main_items_code:item.main_code}
                 }).then((res)=>{
                     this.mastersSubData = res.data;
-                    console.log(res.data );
                 })
             },
-
+            //    *   *   *   *   *      ADD     *   *   *   *   *  //
+            addItem1() {
+                this.item1Obj1.category = 2
+                this.item1Dialog = true
+                this.action = 'ADD NEW'
+            },
             addItem2() {
-                // console.log(this.mastersSubData[0].main_code)
-                this.category2 = 2
-                this.mainCode = this.mastersSubData[0].main_items_code
+                this.item2Obj2.category2 = 2
+                this.item2Obj2.mainCode = this.item1Code
+
+                console.log(this.item1Obj1,'asdaadsa')
+                this.item2Dialog = true
                 this.code2 = ""
                 this.itemName2 = ""
-                this.item2Dialog = true
                 this.action2 = 'ADD NEW'
             },
+            //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
+            close1() {
+                this.item1Obj1 = {}
+                this.item1Dialog = false
+            },
             close2() {
+                this.item2Obj2 = {}
                 this.item2Dialog = false
             },
-
-            saveItem2(){
+            //    *   *   *   *   *      EDIT     *   *   *   *   *  //
+            editItem1(item){
+                this.id = item.id
+                this.item1Dialog = true
+                this.action = 'EDIT'
+                this.item1Obj1.category = item.category_code
+                this.item1Obj1.code = item.main_code
+                this.item1Obj1.itemName = item.item_name
+            },
+            editItem2(item){
+                this.id = item.id
+                this.item2Dialog = true
+                this.action2 = 'EDIT'
+                this.item2Obj2.category2 = item.category_code
+                this.item2Obj2.mainCode = item.main_items_code
+                this.item2Obj2.code2 = item.sub_item_code
+                this.item2Obj2.itemName2 = item.sub_item_name
+            },
+            //    *   *   *   *   *      DISABLED     *   *   *   *   *  //
+            disabledItem1(){
+                if(this.action == "EDIT"){
+                    return true
+                }else{
+                    return false    
+                }
+            },
+            disabledItem2(){
+                if(this.action2 == "EDIT"){
+                    return true
+                }else{
+                    return false    
+                }
+            },
+            //    *   *   *   *   *      DELETE     *   *   *   *   *  //
+            deleteItem1(item){
+                Swal.fire({
+                    title: 'Are you sure you want to delete?',
+                    text: "You wont be able to revert this Item 1!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios ({
+                            method : 'POST',
+                            url : `api/masterMaintenance/deleteItem1/${item.id}`,
+                        }).then(r=>{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Item 1 is successfully deleted',
+                                timer: 1000,
+                            })
+                            this.getItem1()
+                        })
+                    }
+                })
+            },
+            deleteItem2(item){
+                Swal.fire({
+                    title: 'Are you sure you want to delete?',
+                    text: "You wont be able to revert this Item 2!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios ({
+                            method : 'POST',
+                            url : `api/masterMaintenance/deleteItem2/${item.id}`,
+                        }).then(r=>{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Item 2 is successfully deleted',
+                                timer: 1000,
+                            })
+                            this.getItem2(this.item2Obj2.mainCode);
+                        })
+                    }
+                })
+            },
+            //    *   *   *   *   *      SAVE and UPDATE ITEM 1     *   *   *   *   *  //
+            saveItem1(){
                 this.id
-                console.log(this.id)
-                this.close2()
                 let data = {}
-                if(this.action2 == 'ADD NEW') {
+                if(this.action == "ADD NEW"){
                     data = {
-                        category_code : this.category2,
-                        main_items_code : this.mainCode,
-                        code : this.code2,
-                        item_name : this.itemName2
+                        action : this.action,
+                        category_code: this.item1Obj1.category,
+                        CODE: this.item1Obj1.code,
+                        item_name: this.item1Obj1.itemName
                     }
                     axios({
-                        method: 'post',
-                        url: 'api/mastermaintenance/saveItem2',
-                        data:data
-                    }).then((res)=>{
-                        this.getItem2(this.mainCode)
+                        method : 'post',
+                        url: 'api/masterMaintenance/saveItem1',
+                        data: data
+                    }).then(res=>{
                         if(res.data == 'Existing'){
                             Swal.fire({
+                                showConfirmButton:false,
                                 icon: 'error',
-                                title: 'ITEM2 IS ALREADY EXISTING!',
-                                footer: 'CLICK OK TO CONTINUE!'
+                                title: 'Item 1 is already Existing!',
+                                timer: 1000,
                             })
+                            this.close1()
                         }else{
                             Swal.fire({
+                                showConfirmButton:false,
                                 icon: 'success',
-                                title: 'ITEM 2 SAVED',
-                                footer: 'CLICK OK TO CONTINUE!'
+                                title: 'Item 1 Saved',
+                                timer: 1000,
                             })
+                            this.getItem1()
+                            this.close1()
                         }
                     })
                 }else if(this.action == "EDIT"){
                     Swal.fire({
-                        title:'ARE YOU SURE YOU WANT TO UPDATE THIS ITEM 2 DATA?',
+                        title:'Aare you sure you want to update this item 2 data?',
                         icon:'question',
                         showCancelButton:true,
                         confirmButtonColor:'primary',
@@ -490,35 +492,113 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem2/${this.id}`,
+                                url: `api/masterMaintenance/updateItem1/${this.id}`,
                                 data:{
-                                    code:this.code,
-                                    item_name:this.itemName
-                                }
+                                    // code:this.code,
+                                    item_name:this.item1Obj1.itemName
+                                    }
                             }).then((res)=>{
-                                // console.log(res.data, 'updated')
-                                this.getItem2(this.mainCode)
+                                this.getItem1()
+                                if(res.data == 'Existing'){
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'error',
+                                        title: 'Item 1 is already existing',
+                                        timer: 1000,
+                                    })
+                                    this.close1()
+                                }else{
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'success',
+                                        title: 'Item 1 Updated',
+                                        timer: 1000,
+                                    })
+                                    this.getItem1();
+                                    this.close1()
+                                }
                             })
                         }
                     })
                 }
             },
+            //    *   *   *   *   *      SAVE and UPDATE ITEM 2     *   *   *   *   *  //
+            saveItem2(){
+                let data = {}
+                data = {
+                        action2 : this.action2,
+                        category_code : this.item2Obj2.category2,
+                        main_items_code : this.item2Obj2.mainCode,
+                        code : this.item2Obj2.code2,
+                        item_name : this.item2Obj2.itemName2
+                    }
+                if(this.action2 == 'ADD NEW') {
+                    axios({
+                        method: 'post',
+                        url: 'api/mastermaintenance/saveItem2',
+                        data:data
+                    }).then((res)=>{
+                        if(res.data == 'Existing'){
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'error',
+                                title: 'Item 2 is already existing',
+                                timer: 1000,
+                            })
+                            this.close2()
+                        }else{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Item 2 Saved',
+                                timer: 1000,
+                            })
+                            this.getItem2(this.item2Obj2.mainCode)
+                            this.close2()
+                        }
+                    })
+                }else if(this.action2 == "EDIT"){
+                    console.log(this.item2Obj2, 'DATAAAAAAAAAAAAAAAAAAAA');
 
-            editItem2(id){
-                this.id = id
-                this.item2Dialog = true
-                this.action2 = 'EDIT'
-                axios({
-                    method:'get',
-                    url: `api/masterMaintenance/editItem2/${id}`,
-                }).then((res)=>{
-                    console.log(res.data, 'editItem2')
-                    this.category2 = res.data.category_code
-                    this.mainCode = res.data.main_items_code
-                    this.code2 = res.data.code
-                    this.itemName2 = res.data.item_name
-                })
+                    Swal.fire({
+                        title:'Are you sure you want to update this item 2 data?',
+                        icon:'question',
+                        showCancelButton:true,
+                        confirmButtonColor:'primary',
+                        cancelButtonColor:'#d33',
+                        confirmButtonText:'Yes!'
+                    }).then((result) => {
+                        if (result.isConfirmed){
+                            axios({
+                                method: 'post',
+                                url: `api/masterMaintenance/updateItem2/${this.id}`,
+                                data: data
+                            }).then((res)=>{
+                                if(res.data == 'Existing'){
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'error',
+                                        title: 'Item 2 is already existing!',
+                                        timer: 1000,
+                                    })
+                                    this.close2()
+                                }else{
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'success',
+                                        title: 'Item 2 Updated!',
+                                        timer: 1000,
+                                    })
+                                    this.getItem2(this.item2Obj2.mainCode);
+                                    this.close2()
+                                }
+                            })
+                        }
+                    })
+                }
             },
+            //    *   *   *   *   *           *   *   *   *   *  //
+            //    *   *   *   *   *           *   *   *   *   *  //
 
 
 
