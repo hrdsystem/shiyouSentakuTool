@@ -529,7 +529,7 @@ export default{
 
     mounted(){
         this.getSubItems();
-        this.getProducts();
+        // this.getProducts();
         this.getData();
 
         // this.products.forEach(e1 => {
