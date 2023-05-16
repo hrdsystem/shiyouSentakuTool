@@ -47,7 +47,6 @@ import NaibuItem1 from './components/Master_Maintenance/Naibu/NaibuItem1'
 
 export default new VueRouter({
     mode: 'history',
-    base:'shiyou_sentaku_tool',
     routes: [
         {
             path: '/home',
