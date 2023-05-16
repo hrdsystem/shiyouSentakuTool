@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\imageMaster;
 use App\Models\MasterMaintenance;
+use App\Models\MSubItem;
+use App\Models\MMainItem;
 
 class MasterMaintenanceController extends Controller
 {
@@ -32,7 +34,6 @@ class MasterMaintenanceController extends Controller
 
 
     public function getItem1 () {
-        // return'sample';
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT
@@ -41,6 +42,7 @@ class MasterMaintenanceController extends Controller
                 category_code,
                 item_name
             FROM m_main_items
+            WHERE deleted_at IS NULL
             ORDER BY id DESC
             "
         )); 
@@ -60,12 +62,22 @@ class MasterMaintenanceController extends Controller
             FROM m_sub_items
             -- WHERE main_items_code = '$req->main_items_code'
             WHERE main_items_code = '$req->item1'
+            AND deleted_at IS NULL
             ORDER BY id DESC
             "
         ));
     }
 
-    public function products () {
+    public function getSubItem2 () {
+        // return $req; 
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+        ->table('m_sub_items')
+        ->where('category_code',2)
+        ->whereNull('deleted_at')
+        ->get();
+    }
+
+    public function getProducts () {
         // return $req; 
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
@@ -107,14 +119,14 @@ class MasterMaintenanceController extends Controller
     //             'category_code' => $request->category_code,
     //             'code' => $request->CODE,
     //             'item_name' => $request->item_name,
-    //             'Created_at' => date("Y-m-d H:i:s"),
-    //             'Updated_by' => 'Gatz'
+    //             'created_at' => date("Y-m-d H:i:s"),
+    //             'updated_by' => 'Gatz'
     //         ]);
     // }
 
-    ////////////////////////////////////////////////////////
-    //    *   *   *   *   * FUNTCTION1 *   *   *   *   *  //
-    ////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * FUNTCTIONS FOR ITEMS *   *   *   *   *  //
+    //////////////////////////////////////////////////////////////////
     public function saveItem1(Request $request){
         if($request->action == 'ADD NEW'){
             $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
@@ -131,7 +143,7 @@ class MasterMaintenanceController extends Controller
                     'category_code' => $request->category_code,
                     'code' => $request->CODE,
                     'item_name' => $request->item_name,
-                    'Updated_by' => 'Gatz'
+                    'updated_by' => 'Gatz'
                 ]);
                 return 'SAVED';
             }
@@ -155,8 +167,8 @@ class MasterMaintenanceController extends Controller
                 'main_items_code' => $request->main_items_code,
                 'code' => $request->code,
                 'item_name' => $request->item_name,
-                'Created_at' => date("Y-m-d H:i:s"),
-                'Updated_by' => 'Gatz'
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_by' => 'Gatz'
             ]);
             return 'SAVED';
         }
@@ -186,8 +198,8 @@ class MasterMaintenanceController extends Controller
             ->where('id',$request->id)
             ->update([
                 'item_name' => $request->item_name,
-                'Updated_Date'=> date('Y-m-d H:i:s'),
-                'Updated_by' => 'Gatz'
+                'updated_at'=> date('Y-m-d H:i:s'),
+                'updated_by' => 'Gatz'
             ]);
             return 'EDITED';
         }
@@ -203,27 +215,36 @@ class MasterMaintenanceController extends Controller
             ->where('id',$request->id)
             ->update([
                 'item_name' => $request->item_name,
-                'Updated_Date'=> date('Y-m-d H:i:s'),
-                'Updated_by' => 'Gatz'
+                'updated_at'=> date('Y-m-d H:i:s'),
+                'updated_by' => 'Gatz'
             ]);
             return 'EDITED';
         }
     }
-    
 
+    /////////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * FUNTCTIONS FOR PRODUCTS *   *   *   *   *  //
+    /////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////
+    //    *   *   *   *   * Soft Deletes *   *   *   *   *  //
+    //////////////////////////////////////////////////////////
     public function deleteItem1(Request $request){
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-        ->table('m_main_items')
-        ->where('id',$request->id)
+        return MMainItem::where('id',$request->id)
         ->delete();
     }
     public function deleteItem2(Request $request){
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-        ->table('m_sub_items')
-        ->where('id',$request->id)
+        return MSubItem::where('id',$request->id)
         ->delete();
-
-
     }
-
+    // }---------->  <----------{ \\
 }

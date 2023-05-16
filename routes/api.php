@@ -56,8 +56,6 @@ Route::get('/masterMaintenance/editItems/{id}',[MasterMaintenanceController::cla
 Route::post('/masterMaintenance/updateItem1/{id}', [MasterMaintenanceController::class, 'updateItem1']);
 Route::post('/masterMaintenance/deleteItem1/{id}',[MasterMaintenanceController::class,'deleteItem1']);
 
-
-
 /////////////////////////////////////////////////////////////////
 //    *   *   *   *   * FUNTCTION FOR ITEM2 *   *   *   *   *  //
 /////////////////////////////////////////////////////////////////
@@ -66,15 +64,14 @@ Route::get('/masterMaintenance/editItem2/{id}',[MasterMaintenanceController::cla
 Route::post('/masterMaintenance/updateItem2/{id}', [MasterMaintenanceController::class, 'updateItem2']);
 Route::post('/masterMaintenance/deleteItem2/{id}',[MasterMaintenanceController::class,'deleteItem2']);
 
-
-
 /////////////////////////////////////////////////////////////////
 //    *   *   *   *   * GETTING OF ITEMS *   *   *   *   *  //
 /////////////////////////////////////////////////////////////////
 Route::get('/masterMaintenance/getItem1',[MasterMaintenanceController::class,'getItem1']);
-Route::get('/masterMaintenance/getItem2',[MasterMaintenanceController::class,'getItem2']);
-Route::get('/masterMaintenance/products',[MasterMaintenanceController::class,'products']);
+Route::get('/masterMaintenance/getProducts',[MasterMaintenanceController::class,'getProducts']);
 Route::get('/masterMaintenance/colors',[MasterMaintenanceController::class,'colors']);
+Route::get('/masterMaintenance/getSubItem2',[MasterMaintenanceController::class,'getSubItem2']);
+
 
 Route::post('/masterMaintenance/getItem1',[MasterMaintenanceController::class,'getItem1']);
 Route::post('/masterMaintenance/getItem2',[MasterMaintenanceController::class,'getItem2']);
@@ -82,23 +79,6 @@ Route::post('/masterMaintenance/products',[MasterMaintenanceController::class,'p
 Route::post('/masterMaintenance/colors',[MasterMaintenanceController::class,'colors']);
 
 
-
-
-// Route::post('/masterMaintenance/getData',[MasterMaintenanceController::class,'getData']);
-// Route::post('/masterMaintenance/editItems',[MasterMaintenanceController::class,'editItems']);
-// Route::post('/masterMaintenance/updateData', [MasterMaintenanceController::class, 'updateData']);
-// Route::post('/masterMaintenance/saveData', [MasterMaintenanceController::class, 'saveData']);
-
-// Route::get('/masterMaintenance/getData',[MasterMaintenanceController::class,'getData']);
-// Route::get('/masterMaintenance/editItems',[MasterMaintenanceController::class,'editItems']);
-// Route::get('/masterMaintenance/updateData', [MasterMaintenanceController::class, 'updateData']);
-// Route::get('/masterMaintenance/saveData', [MasterMaintenanceController::class, 'saveData']);
-
-// Route::get('/masterMaintenance/getCategories',[MasterMaintenanceController::class,'getCategories']);
-// // Route::get('/masterMaintenance/getItem1',[MasterMaintenanceController::class,'getItem1']);
-// Route::get('/masterMaintenance/getItem2',[MasterMaintenanceController::class,'getItem2']);
-// Route::get('/masterMaintenance/products',[MasterMaintenanceController::class,'products']);
-// Route::get('/masterMaintenance/colors',[MasterMaintenanceController::class,'colors']);
 
 
 

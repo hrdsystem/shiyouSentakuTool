@@ -1,59 +1,39 @@
 <template>
     <v-container fluid v-resize="onResize">
-        <v-row>
-            <v-col>
-                <v-btn 
-                    rounded 
-                    small 
-                    outlined 
-                    class="text-none mt-2" 
-                    color="grey" 
-                    to="/setsubi_master"
-                >
+        <v-row no-gutter>
+            <v-col cols="3">
+                <v-btn rounded small outlined class="text-none mt-2" color="grey" to="/setsubi_master">
                     <v-icon>mdi-arrow-left-bold</v-icon>
                     <span>Back</span>
                 </v-btn>
             </v-col>
+            <v-col cols="3">
+                <v-tooltip left color="warning">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn fab style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem1('ADD')">
+                            <v-icon dark>mdi-plus</v-icon>
+                        </v-btn>
+                    </template>
+                        <span>Add New</span>
+                </v-tooltip>
+            </v-col>
+            <v-col cols="3">
+            </v-col>
+            <v-col cols="3">
+                <v-tooltip left color="warning">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn fab :disabled="disabledItem2btn" style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem2('ADD')">
+                            <v-icon dark>mdi-plus</v-icon>
+                        </v-btn>
+                    </template>
+                        <span>Add New</span>
+                </v-tooltip>
+            </v-col>
         </v-row>
         <v-row>
             <!-- = 1st Table = -->
-            <v-col>
-                <v-row>
-                    <v-col>
-                        <v-toolbar flat>
-                            <v-spacer/>
-                            <v-tooltip left color="warning">
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn 
-                                        fab  
-                                        style="
-                                            float: right; 
-                                            margin-bottom: 5px"
-                                        outlined 
-                                        x-small 
-                                        class="text-none mt-2" 
-                                        color="primary" 
-                                        v-bind="attrs" 
-                                        v-on="on" 
-                                        @click="addItem1('ADD')"
-                                    >
-                                        <v-icon dark>mdi-plus</v-icon>
-                                    </v-btn>
-                                </template>
-                                    <span>Add New</span>
-                            </v-tooltip>
-                        </v-toolbar>
-                    </v-col>
-                </v-row>
-
-                <v-data-table  
-                    hide-default-header
-                    :headers="headers" 
-                    :items="mastersData" 
-                    :items-per-page="15" 
-                    class="elevation-1" 
-                    @dblclick:row="($event, {item})=>getItem2(item.main_code)"
-                >
+            <v-col cols="6">
+                <v-data-table hide-default-header :headers="headers" :items="mastersData" :items-per-page="10" class="elevation-1" @dblclick:row="($event, {item})=>getItem2(item.main_code)">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -63,7 +43,6 @@
                                         color: white; 
                                         font-weight: normal
                                     "
-                                    id="border" 
                                     v-for="h in headers" 
                                 >
                                     <span class="header-text-color">{{h.text}}</span>
@@ -73,76 +52,22 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <v-icon color="primary" class="mr-2" @click="editItem1(item)">
-                            mdi-pencil
+                            mdi-pencil-outline
                         </v-icon>
                         <v-icon  color="error" @click="deleteItem1(item)">
-                            mdi-delete
+                            mdi-trash-can-outline
                         </v-icon>
-                    </template>
-                    <template v-slot:item.image="{ item }">
-                        <div class="pt-2">
-                            <img width="40px" @click="imageDialog(item)" :src="item.image" alt="alt">
-                        </div>
-                        <v-dialog v-model="imgDialog" width="330px" height="330px">
-                            <v-card style="padding: 0;" class="align-items-end">
-                                <v-img 
-                                    style="
-                                        margin: 0; 
-                                        height: 350px; 
-                                        max-width: 330px;
-                                    " 
-                                    :src="Dialogimg" 
-                                    hide-details 
-                                    alt=""/>
-                            </v-card>
-                        </v-dialog>
                     </template>
                 </v-data-table>
             </v-col>
-
+        
             <!-- = Sub Table = -->
-            <v-col>
-                <v-row>
-                    <v-col>
-                        <v-toolbar flat>
-                            <v-spacer/>
-                            <v-tooltip left color="warning">
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn 
-                                        fab 
-                                        :disabled="disabledItem2btn" 
-                                        style="
-                                            float: right; 
-                                            margin-bottom: 5px
-                                        " 
-                                        outlined 
-                                        x-small 
-                                        class="text-none mt-2" 
-                                        color="primary" 
-                                        v-bind="attrs" 
-                                        v-on="on" 
-                                        @click="addItem2('ADD')"
-                                    >
-                                        <v-icon dark>mdi-plus</v-icon>
-                                    </v-btn>
-                                </template>
-                                    <span>Add New</span>
-                            </v-tooltip>
-                        </v-toolbar>
-                    </v-col>
-                </v-row>
-
-                <v-data-table  
-                    hide-default-header 
-                    :headers="subheaders" 
-                    :items="mastersSubData" 
-                    class="elevation-1" 
-                >
+            <v-col cols="6">
+                <v-data-table hide-default-header :headers="subheaders" :items="mastersSubData" class="elevation-1">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
-                                <th style="background-color: #4c7cc8; color: white; font-weight: normal"
-                                id="border" v-for="h in headers" >
+                                <th style="background-color: #4c7cc8; color: white; font-weight: normal" v-for="h in headers">
                                     <span class="header-text-color">{{h.text}}</span>
                                 </th>
                             </tr>
@@ -150,16 +75,22 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <v-icon color="primary" class="mr-2" @click="editItem2(item)">
-                            mdi-pencil
+                            mdi-pencil-outline
                         </v-icon>
                         <v-icon color="error" @click="deleteItem2(item)">
-                            mdi-delete
+                            mdi-trash-can-outline
                         </v-icon>
                     </template>
-                    <template v-slot:item.image="{ item }">
-                        <div class="pt-2">
-                            <img width="40px" @click="imageDialog(item)" :src="item.image" alt="alt">
+                    <template v-slot:no-data>
+                        <div class="d-flex justify-center align-center">
+                            <v-img 
+                            max-height="600px"
+                            max-width="550"
+                            src="https://static.vecteezy.com/system/resources/previews/002/634/930/large_2x/documents-folder-outline-icon-vector.jpg">
+
+                        </v-img>
                         </div>
+                        
                     </template>
                 </v-data-table>
             </v-col>
@@ -174,12 +105,7 @@
                     </v-card-title>
                     <v-card-text>
                         <br/>
-                        <!-- <span> -->
-                            <v-text-field  outlined dense rounded readonly label="Category Code" v-model="item1Obj1.category"
-                            ></v-text-field>
-                            <!-- <v-text-field v-else-if="this.category == null" outlined dense rounded readonly label="Category Code" v-model="category"
-                            ></v-text-field>
-                        </span> -->
+                        <v-text-field  outlined dense rounded readonly label="Category Code" v-model="item1Obj1.category"></v-text-field>
                         <v-text-field :readonly="disabledItem1()" outlined dense rounded label="Code" v-model="item1Obj1.code"
                         onKeyPress="if(this.value.length==4)return false;"
                         ></v-text-field>
@@ -264,14 +190,7 @@
             item1Obj1 : {},
             item2Obj2 : {},
 
-            addEdit: {},
-            id: -1,
-            item1Code : "",
-
-
-            disabledItem2btn: true,
-            windowSize: { x: 0, y: 0 },
-            loading: false,
+            // ACTIONS
             action: '',
             action2: '',
 
@@ -279,27 +198,22 @@
             item1Dialog: false,
             item2Dialog: false,
 
+            // MASTERSDATA
             mastersData: [],
             mastersSubData: [],
-            editedIndex: -1,
-            editData:[],
+
+            id: -1,
+            item1Code : "",
+            disabledItem2btn: true,
+            windowSize: { x: 0, y: 0 },
         }),
 
         computed: {
-            formTitle () {
-                return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-            },
+            //
         },
 
         watch: {
-
-
-            // item1Dialog (val) {
-            //     val || this.close1()
-            // },
-            // dialogDelete (val) {
-            //     val || this.closeDelete()
-            // },
+            //
         },
 
         created () {
@@ -343,8 +257,6 @@
             addItem2() {
                 this.item2Obj2.category2 = 2
                 this.item2Obj2.mainCode = this.item1Code
-
-                console.log(this.item1Obj1,'asdaadsa')
                 this.item2Dialog = true
                 this.code2 = ""
                 this.itemName2 = ""
@@ -412,7 +324,7 @@
                                 showConfirmButton:false,
                                 icon: 'success',
                                 title: 'Item 1 is successfully deleted',
-                                timer: 1000,
+                                timer: 2000,
                             })
                             this.getItem1()
                         })
@@ -422,7 +334,7 @@
             deleteItem2(item){
                 Swal.fire({
                     title: 'Are you sure you want to delete?',
-                    text: "You wont be able to revert this Item 2!",
+                    text: "You wont be able to revert this Item!",
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -437,10 +349,12 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item 2 is successfully deleted',
-                                timer: 1000,
+                                title: 'Item successfully deleted',
+                                timer: 2000,
                             })
-                            this.getItem2(this.item2Obj2.mainCode);
+                            console.log(item,'LAGYAN KO DAW NG TEXT'); 
+
+                            this.getItem2(item.main_items_code)
                         })
                     }
                 })
@@ -466,7 +380,7 @@
                                 showConfirmButton:false,
                                 icon: 'error',
                                 title: 'Item 1 is already Existing!',
-                                timer: 1000,
+                                timer: 2000,
                             })
                             this.close1()
                         }else{
@@ -474,7 +388,7 @@
                                 showConfirmButton:false,
                                 icon: 'success',
                                 title: 'Item 1 Saved',
-                                timer: 1000,
+                                timer: 2000,
                             })
                             this.getItem1()
                             this.close1()
@@ -482,7 +396,7 @@
                     })
                 }else if(this.action == "EDIT"){
                     Swal.fire({
-                        title:'Aare you sure you want to update this item 2 data?',
+                        title:'Aare you sure you want to update this Item 1 data?',
                         icon:'question',
                         showCancelButton:true,
                         confirmButtonColor:'primary',
@@ -498,13 +412,12 @@
                                     item_name:this.item1Obj1.itemName
                                     }
                             }).then((res)=>{
-                                this.getItem1()
                                 if(res.data == 'Existing'){
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'error',
                                         title: 'Item 1 is already existing',
-                                        timer: 1000,
+                                        timer: 2000,
                                     })
                                     this.close1()
                                 }else{
@@ -512,7 +425,7 @@
                                         showConfirmButton:false,
                                         icon: 'success',
                                         title: 'Item 1 Updated',
-                                        timer: 1000,
+                                        timer: 2000,
                                     })
                                     this.getItem1();
                                     this.close1()
@@ -526,12 +439,12 @@
             saveItem2(){
                 let data = {}
                 data = {
-                        action2 : this.action2,
-                        category_code : this.item2Obj2.category2,
-                        main_items_code : this.item2Obj2.mainCode,
-                        code : this.item2Obj2.code2,
-                        item_name : this.item2Obj2.itemName2
-                    }
+                    action2 : this.action2,
+                    category_code : this.item2Obj2.category2,
+                    main_items_code : this.item2Obj2.mainCode,
+                    code : this.item2Obj2.code2,
+                    item_name : this.item2Obj2.itemName2
+                }
                 if(this.action2 == 'ADD NEW') {
                     axios({
                         method: 'post',
@@ -543,7 +456,7 @@
                                 showConfirmButton:false,
                                 icon: 'error',
                                 title: 'Item 2 is already existing',
-                                timer: 1000,
+                                timer: 2000,
                             })
                             this.close2()
                         }else{
@@ -551,15 +464,13 @@
                                 showConfirmButton:false,
                                 icon: 'success',
                                 title: 'Item 2 Saved',
-                                timer: 1000,
+                                timer: 2000,
                             })
                             this.getItem2(this.item2Obj2.mainCode)
                             this.close2()
                         }
                     })
                 }else if(this.action2 == "EDIT"){
-                    console.log(this.item2Obj2, 'DATAAAAAAAAAAAAAAAAAAAA');
-
                     Swal.fire({
                         title:'Are you sure you want to update this item 2 data?',
                         icon:'question',
@@ -579,7 +490,7 @@
                                         showConfirmButton:false,
                                         icon: 'error',
                                         title: 'Item 2 is already existing!',
-                                        timer: 1000,
+                                        timer: 2000,
                                     })
                                     this.close2()
                                 }else{
@@ -587,9 +498,11 @@
                                         showConfirmButton:false,
                                         icon: 'success',
                                         title: 'Item 2 Updated!',
-                                        timer: 1000,
+                                        timer: 2000,
                                     })
                                     this.getItem2(this.item2Obj2.mainCode);
+                                // console.log(this.getItem2(this.item2Obj2.mainCode),'LAGYAN KO DAW NG TEXT'); 
+
                                     this.close2()
                                 }
                             })
@@ -612,21 +525,21 @@
 </script>
 
 <style scoped>
-
-    #border {
+    .v-data-table ::v-deep th{
+        font-size: 11px !important;
+        background-color: #4c7cc8 !important;
+        color: white !important;
+        font-weight: normal;
         border: 1px solid rgba(199, 199, 199, 0.542);
         border: 1px solid rgba(199, 199, 199, 0.542);
-    }
-    th {
+        border-collapse: collapse;
         text-align: center !important;
-        padding: 0 !important;
-        font-size: 13px !important;
     }
-    td {
-        font-size: 13px !important;
-        padding: 3px !important;
+    .v-data-table ::v-deep td{
         border: 1px solid rgba(199, 199, 199, 0.542);
         border: 1px solid rgba(199, 199, 199, 0.542);
+        border-collapse: collapse;
+        font-size: 10.5px !important;
     }
 
 </style>
