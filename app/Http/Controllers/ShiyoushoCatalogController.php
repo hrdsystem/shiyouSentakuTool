@@ -1154,7 +1154,7 @@ class ShiyoushoCatalogController extends Controller
         // next up colors
 
         public function getSampleData(){
-            return DB::connection('mysql')->table('m_products')->get();
+            return DB::table('additional_ordering_industries')->get();
             // return DB::connection('mysql')
             // ->select(
             //     DB::raw("SELECT 
