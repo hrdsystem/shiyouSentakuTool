@@ -232,9 +232,9 @@
         },
 
         created () {
-            if (this.$route.path !== '/home') {
-                this.$router.push('/home');
-            }
+            // if (this.$route.path !== '/home') {
+            //     this.$router.push('/home');
+            // }
         },
 
 
