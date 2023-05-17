@@ -43,31 +43,31 @@
                                     <template v-slot:default>
                                         <thead>
                                             <tr>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     No.
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Type
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Images
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Item
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Product
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Color
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Price
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Description
                                                 </th>
-                                                <th class="text-center">
+                                                <th class="text-center s-header-title">
                                                     Actions
                                                 </th> 
                                             </tr>
@@ -75,19 +75,19 @@
                                         <tbody>
                                             <tr v-for="(item,i) in cartItems" :key="i">
                                                 <!-- {{ item }} -->
-                                                <td class="text-center">{{ i + 1 }}</td> 
-                                                <td class="text-center" style="width: 100px;">{{ item.type }}</td>
-                                                <td class="text-center" style="width: 20px;">
+                                                <td class="text-center s-mid-header">{{ i + 1 }}</td> 
+                                                <td class="text-center s-mid-header" style="width: 100px;">{{ item.type }}</td>
+                                                <td class="text-center s-mid-header" style="width: 20px;">
                                                     <!-- <img style="width: 80px; height: 80px;" :src="item.image" alt="">  -->
                                                     <!-- {{ item.image }} -->
                                                     <v-img max-height="100" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
                                                 </td>
-                                                <td class="text-center">{{ item.item }}</td>
-                                                <td class="text-center">{{ item.product }}</td>
-                                                <td class="text-center">{{ item.color ? item.color : 'default'}}</td>
-                                                <td class="text-center">{{ item.price }}</td>
-                                                <td class="text-center" style="width: 300px;">{{ item.description }}</td>
-                                                <td class="text-center">
+                                                <td class="text-center s-mid-header">{{ item.item }}</td>
+                                                <td class="text-center s-mid-header">{{ item.product }}</td>
+                                                <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td>
+                                                <td class="text-center s-mid-header">{{ item.price }}</td>
+                                                <td class="text-center s-mid-header" style="width: 300px;">{{ item.description }}</td>
+                                                <td class="text-center s-mid-header">
                                                     <v-btn @click="removeItem(item.id)" color="red lighten-2"> 削除
                                                         <v-icon>mdi-delete</v-icon>
                                                     </v-btn>
@@ -197,7 +197,8 @@
                         v-if="products[0]"
                         >
                         <!-- <div id="s-d"> -->
-                            <v-card @click="selectItem(item)" v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="520" height="350" elevation="0">
+                        <v-card v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px; position: relative !important; " width="520" height="350" elevation="0">
+                            <v-card @click="selectItem(item)" width="520" height="348" elevation="0">
                                 <!-- {{ item }} -->
                                 <v-col>
                                     <v-row>
@@ -281,18 +282,53 @@
 
                                             &nbsp;
 
-                                            <p class="s-sub-header">
+                                            <p class="s-sub-header"
+                                            style="display: -webkit-box;
+                                            max-width: 200px;
+                                            -webkit-line-clamp: 2;
+                                            -webkit-box-orient: vertical;
+                                            overflow: hidden;"
+                                            >
                                                 {{ item.description ? item.description : 'No Indicated Description' }}  
                                             </p>
-                                            <v-btn class="s-header" block @click="addToCart(item)">
-                                                <v-icon>
-                                                    mdi-cart
-                                                </v-icon>add
-                                            </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-col>
                             </v-card>
+                            <div style="position: absolute !important; top: 60%; left: 53%;">
+                                
+                                    <!-- <v-text-field 
+                                    v-model="item.qty"
+                                    type="number" 
+                                    min="1"
+                                    max="8"
+                                    >
+                                    </v-text-field> -->
+                                    <!-- {{ item.qty }} -->
+                                <div style="display: flex;">
+                                    <v-btn
+                                    class="s-sub-header"
+                                    elevation="0"
+                                    outlined>
+                                        <v-icon>
+                                            mdi-image-frame
+                                        </v-icon>プレビュー
+                                    </v-btn>
+                                    <v-btn 
+                                    class="s-sub-header"
+                                    elevation="0"
+                                    outlined 
+                                    @click="addToCart(item)">
+                                        <v-icon>
+                                            mdi-cart
+                                        </v-icon>add
+                                    </v-btn>
+                                </div>
+                                
+                            </div>
+                            
+                        </v-card >    
+                            
                         </div>
                         <div v-if="!products[0]">
                             <p>no items available as of the moment</p>
@@ -301,6 +337,7 @@
                         <template>
                             <div class="text-center">
                                 <v-dialog
+                                persistent
                                 v-model="itemDialog"
                                 width="500"
                                 >
@@ -319,11 +356,12 @@
                                                 </v-card-text>
                                             </v-col>
                                             <v-col>
-                                                <!-- <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${itemSelected.image_path}`)"></v-img> -->
+                                                <v-img v-if="itemSelected.image_path != undefined" max-height="250" max-width="250" :src="require(`../../images/toilet/${itemSelected.image_path}`)"></v-img>
+                                                <v-img v-else max-height="250" max-width="250" :src="require(`../../images/No_Image_Available.jpg`)"></v-img>
                                             </v-col>
                                         </v-row>
                                         <v-row>
-
+                                            
                                         </v-row>
                                     </v-col>
                                     
@@ -334,12 +372,23 @@
 
                                     <v-card-actions>
                                     <v-spacer></v-spacer>
+                                    <v-btn 
+                                        style="width: 100px;" 
+                                        outlined
+                                        @click="addToCart(itemSelected)">
+                                        <v-icon>
+                                            mdi-cart
+                                        </v-icon>add
+                                    </v-btn>
                                     <v-btn
                                         color="primary"
                                         text
-                                        @click="itemDialog = false"
+                                        @click="closeSelectedItem()"
                                     >
-                                        I accept
+                                    <v-icon>
+                                        mdi-close
+                                    </v-icon>
+                                        close
                                     </v-btn>
                                     </v-card-actions>
                                 </v-card>
@@ -360,6 +409,7 @@ export default{
             cartItemCount: 0,
             dialog: false,
             itemDialog: false,
+            qty: 0,
 
             sub_items: [],
             products: [],
@@ -374,99 +424,15 @@ export default{
                 // color_name: '',
                 price: '',
                 description: '',
+                qty: 1,
                 }
             ],
             itemSelected: [],
-
-            // sub_items :[
-            //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
-            //     {id: 2, category_code: 12, name: 'タオル掛け', icon:'mdi-align-vertical-top', products: []},
-            //     {id: 3, category_code: 12, name: 'ペーパーホルダー', icon:'mdi-paper-roll', products: []},
-            //     {id: 4, category_code: 12, name: 'トイレ収納 ', icon:'mdi-archive', products: []},
-            //     {id: 5, category_code: 12, name: '次の項目のサンプル', icon:'mdi-dots-horizontal-circle', products: []},
-            // ],
-
-            // products :[
-            //     {id: 1, item_id: 1, color_id: 1, title: '蛇口', 
-            //         img: require('../../images/toilet/toiletBowl/ベーシアハーモ(LIXIL).jpg'),
-            //         add_img: require('../../images/toilet/toiletBowl/30.jpg'),
-            //         price: '53,350円',
-            //         description: '※オート洗浄機能',
-            //         accessories_content: [],
-            //     color_content: []},
-            //     {id: 2, item_id: 1, color_id: 2, title: 'カバー', 
-            //         img: require('../../images/toilet/toiletBowl/F3A(ｵｰﾄ便器洗浄付) .jpg'),
-            //         add_img: require('../../images/toilet/toiletBowl/14.jpg'),
-            //         price: '45,650円',
-            //         description: '',
-            //         accessories_content: [],
-            //     color_content: []},
-            //     {id: 3, item_id: 1, color_id: 3, title: '丼鉢', 
-            //         img: require('../../images/toilet/toiletBowl/L150K.jpg'),
-            //         add_img: require('../../images/toilet/toiletBowl/CA193AC30020.jpg'),
-            //         price: '148,390円',
-            //         description: '※オート開閉･温風乾燥･オート洗浄･やわらかライト',
-            //     accessories_content: [],    
-            //     color_content: []},
-            //     {id: 4, item_id: 2,  title: 'タオルリング', 
-            //         img: require('../../images/toilet/toiletBowl/31.jpg'),
-            //         add_img: '',
-            //         price: '4,070 円',
-            //         description: '※標準個数: 平屋 : 2 ヵ所, ２階建て : 3 ヶ所, 3 階建て : 4 ヶ所',
-            //         accessories_content: [],
-            //     color_content: []},
-            //     {id: 5,item_id: 2,  title: 'バスタオル掛け', 
-            //         img: require('../../images/toilet/toiletBowl/33.jpg'),
-            //         add_img: '',
-            //         price: '4,400 円',
-            //         description: '※長さは 60cm です。',
-            //         accessories_content: [],
-            //     color_content: []},
-            //     {id: 6, item_id: 3,  title: '1連式', 
-            //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー1連式.jpg'),
-            //         add_img: '',
-            //         price: '',
-            //         description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
-            //         accessories_content: [],
-            //     color_content: []},
-            //     {id: 7, item_id: 3,  title: '2連式', 
-            //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー2連式.jpg'),
-            //         add_img: '',
-            //         price: '',
-            //         description: '※便器と同じメーカー品になります。（Panasonic製便器で2連式の時は TOTO製になります）',
-            //         accessories_content: [],
-            //     color_content: []},
-            //     {id: 8, item_id: 3,  title: 'シルバータイプ（TOTO）', 
-            //         img: require('../../images/toilet/toiletBowl/ペーパーホルダー_シルバータイプ.jpg'),
-            //         add_img: '',
-            //         price: '2,200円',
-            //         description: '※LIXIL/Panasonic製便器でも 選択可能です。',
-            //         accessories_content: [],
-            //     color_content: []}
-            // ],
-
-            // accessories: [
-            //     {},
-            // ],
-
-            // colors :[
-            //     {id: 1, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピュアホワイト.jpg')},
-            //     {id: 2, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/オフホワイト.jpg')},
-            //     {id: 3, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ブルーグレー.jpg')},
-            //     {id: 4, color_id: 1, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/ピンク.jpg')},
-            //     {id: 5, color_id: 2, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/white.jpg')},
-            //     {id: 6, color_id: 2, name: 'pink', color_img: require('../../images/toilet/ToiletBowlColors/pink.jpg')},
-            //     {id: 7, color_id: 2, name: 'ivory', color_img: require('../../images/toilet/ToiletBowlColors/ivory.jpg')},
-            //     {id: 8, color_id: 3, name: 'white', color_img: require('../../images/toilet/ToiletBowlColors/L150K.jpg')},
-            //     {id: 9, color_id: 3, name: 'ebony', color_img: require('../../images/toilet/ToiletBowlColors/ebony.jpg')},
-            //     {id: 10, color_id: 3, name: 'crimson', color_img: require('../../images/toilet/ToiletBowlColors/crimson.jpg')},
-            //     {id: 11, color_id: 3, name: 'gold', color_img: require('../../images/toilet/ToiletBowlColors/gold.jpg')},
-            //     {id: 12, color_id: 3, name: 'copper', color_img: require('../../images/toilet/ToiletBowlColors/copper.jpg')},
-            // ]
         }
     },
 
     methods: {
+
         getSubItems(){
             axios({
                 method: 'get',
@@ -479,20 +445,30 @@ export default{
         },
 
         getProducts(item){
+            this.products = []
+
+            console.log(this.products, 'product status')
+
             axios({
                 method: 'post',
                 url: 'api/getProducts',
                 data: item
             }).then (res => {
                 this.products = res.data;
-                console.log(res.data, 'products')
+                console.log(res.data, 'productss')
             })
+            
         },
 
         selectItem(item){
             console.log(item,'clicked!!')
             this.itemSelected = item;
             this.itemDialog = true;
+        },
+
+        closeSelectedItem(){
+            this.itemSelected = [];
+            this.itemDialog = false;
         },
 
         getData(){
@@ -505,10 +481,6 @@ export default{
             })
         },
 
-        // getToCart(item){
-        //     console.log(item, 'items to be cart-ed')
-        // },
-        
         addToCart(item){
             console.log(item, 'item')
 
@@ -521,6 +493,7 @@ export default{
                 // r.color_name = item.color;
                 r.price = item.price;
                 r.description = item.description;
+                r.qty = item.qty;
             })
 
             console.log(this.cart, 'cart')
@@ -582,8 +555,9 @@ export default{
 
     mounted(){
         this.getSubItems();
-        this.getProducts();
+        // this.getProducts();
         this.getData();
+        console.log(this.itemSelected, 'itemSelected');
 
         // this.products.forEach(e1 => {
         //     this.sub_items.forEach(e2 => {
