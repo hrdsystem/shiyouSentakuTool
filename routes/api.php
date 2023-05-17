@@ -93,7 +93,3 @@ Route::get('/getDataToilet',[ShiyoushoCatalogController::class,'getDataToilet'])
 Route::get('/getSubItems',[ShiyoushoCatalogController::class,'getSubItems']);
 Route::post('/getProducts',[ShiyoushoCatalogController::class,'getProducts']);
 
-Route::get('/getSampleData',[ShiyoushoCatalogController::class,'getSampleData']);
-// Route::get('/getSampleData', function() {
-//     return 'testing';e
-// });
