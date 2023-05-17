@@ -143,7 +143,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .select-size  input{
         display: none;
     }
