@@ -100,31 +100,34 @@ import axios from 'axios';
     export default {
         data: () => ({
             headers: [
-                { 
+                {
+                    // text: 'カテゴリーコード', value: 'house_type_code', align: 'center', sortable: false 
+                // },
+                // { 
                     // text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
-                },
-                { 
+                // },
+                // { 
                     // text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
-                },
-                { 
+                // },
+                // { 
                     // text: 'サブアイテムコード', value: 'sub_items_code', align: 'center', sortable: false 
-                },
-                { 
+                // },
+                // { 
                     // text: 'コード', value: 'CODE', align: 'center', sortable: false 
-                },
-                { 
+                // },
+                // { 
                     // text: '商品名', value: 'product_name', align: 'left', sortable: false 
-                },
-                { 
+                // },
+                // { 
                     // text: 'メーカーコード', value: 'manufacturer_name', align: 'center', sortable: false 
-                },
-                { 
+                // },
+                // { 
                     // text: 'カラーコード', value: 'color_name', align: 'center', sortable: false 
-                },
+                // },
                 // { 
                 //     text: '画像パス', value: 'image_path', align: 'left', sortable: false 
                 // },
-                { 
+                // { 
                     // text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
