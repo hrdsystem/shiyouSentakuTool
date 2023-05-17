@@ -859,6 +859,7 @@ import { mapState } from 'vuex';
                     url: 'api/getData'
                 }).then((res)=>{
                     this.cartItems = res.data
+                    //this.testonly
                     // this.cartItemCount = res.data.length
                     console.log(res.data.length)
                 })

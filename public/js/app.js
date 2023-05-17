@@ -3903,9 +3903,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getItems();
   },
   created: function created() {
-    if (this.$route.path !== '/home') {
-      this.$router.push('/home');
-    }
+    // if (this.$route.path !== '/home') {
+    //     this.$router.push('/home');
+    // }
   }
 });
 

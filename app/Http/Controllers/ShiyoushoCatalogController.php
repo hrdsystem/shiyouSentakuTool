@@ -1056,10 +1056,9 @@ class ShiyoushoCatalogController extends Controller
 
         public function getDataToilet()
         {
-            // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
             return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
-            ->table('cart')->get();
-            
+            ->DB::table('cart')
+            ->get();
         }
 
         public function saveCart(Request $req)
@@ -1099,8 +1098,7 @@ class ShiyoushoCatalogController extends Controller
         }
 
         public function getProducts(Request $request){
-            // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
             ->select(
                 DB::raw("SELECT 
                     m_sub_items.main_items_code,
@@ -1151,7 +1149,7 @@ class ShiyoushoCatalogController extends Controller
             // );
         }    
 
-        // next up colors
+        // colors
 
 }
 
