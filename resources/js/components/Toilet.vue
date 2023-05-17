@@ -1008,7 +1008,7 @@ import { mapState } from 'vuex';
     }
 </script>
 
-<style>
+<style scoped>
     /* html { overflow-y: hidden } */
 
     .swal2-popup {
