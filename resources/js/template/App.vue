@@ -166,7 +166,8 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
+    import axios from 'axios';
+import {mapActions} from 'vuex';
     export default {
         data: () => ({
             selectedItem:1,
@@ -210,8 +211,11 @@
                     {text:'外部', to: "/gaibu_master"},
                     {text:'設備', to: "/setsubi_master"},
                     {text:'内部', to: "/naibu_master"},
-                ], icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/any156'}, 
+                ], 
+                icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/any156'}, 
             ],
+            // categoryItems : []
+
             // masterCategories:[
             //     {text:'外部', to: "/gaibu_master"},
             //     {text:'設備', to: "/setsubi_master"},
@@ -221,6 +225,30 @@
         }),
 
         methods: {
+            getCategories() {
+                // let obj = {
+                //     subMenu : [],
+                //     icon : 'mdi-alpha-m-box-outline',
+                //     title: 'マスターメンテナンス',
+                //     to:'/any156'
+                // }
+                // axios({
+                //     method : 'get',
+                //     url : 'api/masterMaintenance/getCategories'
+                // }).then((res)=>{
+                //     // this.categoryItems = res.data
+                //     if(res.data.length != 0){
+                //         res.data.forEach(element => {
+                //             let obj1  = {}
+                //             obj1.text = element.category_name
+                //             obj1.value = element.CODE
+                //             obj.subMenu.push(obj1)
+                //         });
+                //         this.items.push(obj)
+                //     }
+                // })
+            },
+
             getItems(){
                 console.log(this.items,'items');
             }
@@ -229,6 +257,7 @@
 
         mounted() {
             this.getItems();
+            this.getCategories();
         },
 
         created () {

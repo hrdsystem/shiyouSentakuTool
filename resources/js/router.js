@@ -41,6 +41,7 @@ import GaibuItem1 from './components/Master_Maintenance/Gaibu/GaibuItem1'
 
 import SetsubiItem1 from './components/Master_Maintenance/Setsubi/SetsubiItem1'
 import SetsubiProducts from './components/Master_Maintenance/Setsubi/SetsubiProducts'
+import SetsubiSpecifications from './components/Master_Maintenance/Setsubi/SetsubiSpecifications'
 import SetsubiColors from './components/Master_Maintenance/Setsubi/SetsubiColors'
 
 import NaibuItem1 from './components/Master_Maintenance/Naibu/NaibuItem1'
@@ -102,6 +103,11 @@ export default new VueRouter({
             path: '/setsubi_master_products',
             name: '/setsubi_master_products',
             component : SetsubiProducts
+        },
+        {
+            path: '/setsubi_master_specification',
+            name: '/setsubi_master_specification',
+            component : SetsubiSpecifications
         },
         {
             path: '/setsubi_master_colors',

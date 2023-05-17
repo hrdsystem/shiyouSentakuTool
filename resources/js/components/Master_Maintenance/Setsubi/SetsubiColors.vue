@@ -99,10 +99,34 @@ import axios from 'axios';
                     method:'get',
                     url:'api/masterMaintenance/colors'
                 }).then((res)=>{
-                    console.log(res.data, 'COLORS')
+                    console.log(res.data, 'getColors...')
                     this.mastersData = res.data;
                 })
-            }
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            onResize() {
+                this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+            },
         }
     }
 </script>

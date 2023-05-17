@@ -73,10 +73,10 @@
                     <!-- <v-autocomplete style="margin-bottom: 10px;" hide-details :items="subItem" item-text="item_name" item-value="code" outlined dense rounded  label="Sub Items" v-model="ProductObj.subCode"></v-autocomplete> -->
                     <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Main Items Code" v-model="ProductObj.mainItem"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Sub Items Code" v-model="ProductObj.subCode"></v-text-field> -->
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Code" v-model="ProductObj.code"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.itemName"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Code" v-model="ProductObj.manufacturer_name"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Code" v-model="ProductObj.color_name"></v-text-field>
+                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Code" v-model="ProductObj.code"></v-text-field> -->
+                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.itemName"></v-text-field> -->
+                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Code" v-model="ProductObj.manufacturer_name"></v-text-field> -->
+                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Code" v-model="ProductObj.color_name"></v-text-field> -->
                     <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Image Path" v-model="ProductObj.imagePath"></v-text-field> -->
                     <!-- <v-file-input dense @change="Preview_image" v-model="ProductObj.imagePath">
                     </v-file-input> -->
@@ -100,32 +100,32 @@ import axios from 'axios';
     export default {
         data: () => ({
             headers: [
-                // { 
-                //     text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: 'サブアイテムコード', value: 'sub_items_code', align: 'center', sortable: false 
-                // },
                 { 
-                    text: 'コード', value: 'CODE', align: 'center', sortable: false 
+                    // text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: '商品名', value: 'product_name', align: 'left', sortable: false 
+                    // text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: 'メーカーコード', value: 'manufacturer_name', align: 'center', sortable: false 
+                    // text: 'サブアイテムコード', value: 'sub_items_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: 'カラーコード', value: 'color_name', align: 'center', sortable: false 
+                    // text: 'コード', value: 'CODE', align: 'center', sortable: false 
+                },
+                { 
+                    // text: '商品名', value: 'product_name', align: 'left', sortable: false 
+                },
+                { 
+                    // text: 'メーカーコード', value: 'manufacturer_name', align: 'center', sortable: false 
+                },
+                { 
+                    // text: 'カラーコード', value: 'color_name', align: 'center', sortable: false 
                 },
                 // { 
                 //     text: '画像パス', value: 'image_path', align: 'left', sortable: false 
                 // },
                 { 
-                    text: '行動', value: 'actions', align: 'center', sortable: false 
+                    // text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
             
@@ -150,53 +150,52 @@ import axios from 'axios';
         },
 
         created () {
-            this.getProducts();
+            // this.getProducts();
         },
 
         methods: {
             ///////////////////////////////////////////////////////
             //    *   *   *   *   *           *   *   *   *   *  //
             ///////////////////////////////////////////////////////
-            setSubItem2(item){
-                this.subitem = []
-                let a = this.subItemTemp.filter(r=>{
-                    return r.main_items_code == item
-                })
-                this.subItem = a
-            },    
-            getProducts(){
-                axios({
-                    method:'get',
-                    url:'api/masterMaintenance/getProducts',
-                }).then((res)=>{
-                    this.mastersProductsData = res.data;
-                    axios({
-                        method:'get',
-                        url:'api/masterMaintenance/getSetsubiItem1',
-                    }).then((r)=>{
-                        this.mainItem = r.data;
-                        axios({
-                            method:'get',
-                            url:'api/masterMaintenance/getSubItem2',
-                        }).then((rec)=>{
-                            this.subItemTemp = rec.data;
-                        })
-                    })
-                })
-                
-            },
+            // setSubItem2(item){
+            //     this.subitem = []
+            //     let a = this.subItemTemp.filter(r=>{
+            //         return r.main_items_code == item
+            //     })
+            //     this.subItem = a
+            // },    
+            // getProducts(){
+            //     axios({
+            //         method:'get',
+            //         url:'api/masterMaintenance/getProducts',
+            //     }).then((res)=>{
+            //         this.mastersProductsData = res.data;
+            //         axios({
+            //             method:'get',
+            //             url:'api/masterMaintenance/getSetsubiItem1',
+            //         }).then((r)=>{
+            //             this.mainItem = r.data;
+            //             axios({
+            //                 method:'get',
+            //                 url:'api/masterMaintenance/getSubItem2',
+            //             }).then((rec)=>{
+            //                 this.subItemTemp = rec.data;
+            //             })
+            //         })
+            //     })
+            // },
             //    *   *   *   *   *      ADD     *   *   *   *   *  //
             addProduct() {
                 // console.log(this.ProductObj,'hello world')
                 this.ProductDialog = true
                 this.ProductObj.category = 2
-                // this.ProductObj.mainCode = ''
-                // this.ProductObj.subCode  = ''
+                this.ProductObj.mainCode = ''
+                this.ProductObj.subCode  = ''
                 this.ProductObj.code = ""
                 this.ProductObj.itemName = ""
                 this.ProductObj.manufacturer_name = ""
                 this.ProductObj.color_name = ""
-                // this.ProductObj.imagePath = ""
+                this.ProductObj.imagePath = ""
                 this.action = 'ADD NEW'
             },
             //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
@@ -210,16 +209,7 @@ import axios from 'axios';
 
             saveProducts(){
                 console.log('Productsssssssssssssss');
-                // this.id
-                // let data = {}
-                // if (this.action == "ADD NEW"){
-                //     data = {
-                //         action : this.action,
-                //         category_code: this.ProductObj.category,
-                //         CODE: this.ProductObj.code,
-                //         item_name: this.ProductObj.itemName
-                //     }
-                // }
+
             },
 
 
