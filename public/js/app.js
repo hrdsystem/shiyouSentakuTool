@@ -3626,6 +3626,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cartItemCount: 0,
       dialog: false,
+      itemDialog: false,
       sub_items: [],
       products: [],
       cartItems: [],
@@ -3638,7 +3639,8 @@ __webpack_require__.r(__webpack_exports__);
         // color_name: '',
         price: '',
         description: ''
-      }]
+      }],
+      itemSelected: []
 
       // sub_items :[
       //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
@@ -3752,6 +3754,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectItem: function selectItem(item) {
       console.log(item, 'clicked!!');
+      this.itemSelected = item;
+      this.itemDialog = true;
     },
     getData: function getData() {
       var _this3 = this;
@@ -6875,7 +6879,9 @@ var render = function render() {
       elevation: "0"
     }
   }, [_c("h1", {
-    staticClass: "s-title"
+    staticStyle: {
+      "font-weight": "800"
+    }
   }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("v-badge", {
     staticStyle: {
       "margin-top": "10px"
@@ -7018,10 +7024,7 @@ var render = function render() {
           return [_c("v-list-item-icon", {
             staticClass: "pt-1"
           }, [_c("v-icon", [_vm._v(_vm._s(item.icon))])], 1), _vm._v(" "), _c("v-list-item-title", {
-            staticClass: "s-sub-header",
-            staticStyle: {
-              color: "black"
-            }
+            staticClass: "s-sub-header"
           }, [_c("h3", [_vm._v(_vm._s(item.item_name))])])];
         },
         proxy: true
@@ -7076,7 +7079,7 @@ var render = function render() {
           var active = _ref4.active;
           return [_c("v-list-item-action", {
             staticStyle: {
-              display: "block:  !important"
+              display: "block: !important"
             }
           }, [_c("v-checkbox", {
             attrs: {
@@ -7219,7 +7222,32 @@ var render = function render() {
           }
         }
       }, [_c("v-icon", [_vm._v("\n                                                mdi-cart\n                                            ")]), _vm._v("add\n                                        ")], 1)], 2)], 1)], 1)], 1);
-    }), 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e()], 1);
+    }), 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e(), _vm._v(" "), [_c("div", {
+      staticClass: "text-center"
+    }, [_c("v-dialog", {
+      attrs: {
+        width: "500"
+      },
+      model: {
+        value: _vm.itemDialog,
+        callback: function callback($$v) {
+          _vm.itemDialog = $$v;
+        },
+        expression: "itemDialog"
+      }
+    }, [_c("v-card", [_c("v-col", [_c("v-row", [_c("v-card-title", {
+      staticClass: "text-left s-title"
+    }, [_vm._v("\n                                            " + _vm._s(_vm.itemSelected.product_name) + "\n                                        ")])], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", [_vm._v("\n                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                                            ")])], 1), _vm._v(" "), _c("v-col")], 1), _vm._v(" "), _c("v-row")], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+      attrs: {
+        color: "primary",
+        text: ""
+      },
+      on: {
+        click: function click($event) {
+          _vm.itemDialog = false;
+        }
+      }
+    }, [_vm._v("\n                                    I accept\n                                ")])], 1)], 1)], 1)], 1)]], 2);
   }), 1)]], 2);
 };
 var staticRenderFns = [];

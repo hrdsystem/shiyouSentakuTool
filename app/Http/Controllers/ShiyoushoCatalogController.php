@@ -1084,7 +1084,7 @@ class ShiyoushoCatalogController extends Controller
             // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
             return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
             ->table('m_sub_items')
-            ->where('main_items_code','=','0200')
+            ->where('main_items_code','0200')
             ->get();
         } 
 
@@ -1092,7 +1092,9 @@ class ShiyoushoCatalogController extends Controller
             
             // $id = DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
             $id = DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
-            ->table('cart')->where('id', $id)->delete();
+            ->table('cart')
+            ->where('id', $id)
+            ->delete();
             return response()->json($id . ' ' . 'is successfully deleted');
         }
 

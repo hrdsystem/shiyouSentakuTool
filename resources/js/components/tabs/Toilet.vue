@@ -2,7 +2,7 @@
     <div>
         <!-- <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;"> -->
         <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;">
-            <h1 class="s-title">トイレ</h1>
+            <h1 style="font-weight: 800;">トイレ</h1>
             <v-spacer></v-spacer>
             <v-badge
                 style="margin-top: 10px;"
@@ -118,7 +118,7 @@
                         <v-list-item-icon class="pt-1">
                             <v-icon>{{item.icon}}</v-icon>
                         </v-list-item-icon>
-                        <v-list-item-title class="s-sub-header" style="color: black;">
+                        <v-list-item-title class="s-sub-header" >
                             <h3>{{item.item_name}}</h3>
                         </v-list-item-title>
                     </template>
@@ -155,7 +155,7 @@
                         </v-list-item>
                         <v-list-item>
                             <template v-slot:default="{ active }">
-                                <v-list-item-action style="display: block:  !important;">
+                                <v-list-item-action style="display: block: !important;">
                                     <v-checkbox
                                         :input-value="active"
                                         color="primary"
@@ -297,6 +297,55 @@
                         <div v-if="!products[0]">
                             <p>no items available as of the moment</p>
                         </div>
+
+                        <template>
+                            <div class="text-center">
+                                <v-dialog
+                                v-model="itemDialog"
+                                width="500"
+                                >
+
+                                <v-card>
+                                    <v-col>
+                                        <v-row>
+                                            <v-card-title class="text-left s-title">
+                                                {{itemSelected.product_name}}
+                                            </v-card-title>
+                                        </v-row>
+                                        <v-row>
+                                            <v-col>
+                                                <v-card-text>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                </v-card-text>
+                                            </v-col>
+                                            <v-col>
+                                                <!-- <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${itemSelected.image_path}`)"></v-img> -->
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+
+                                        </v-row>
+                                    </v-col>
+                                    
+
+                                    <v-divider></v-divider>
+
+                                    <v-divider></v-divider>
+
+                                    <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                        color="primary"
+                                        text
+                                        @click="itemDialog = false"
+                                    >
+                                        I accept
+                                    </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                                </v-dialog>
+                            </div>
+                        </template>
                 </v-list-group>
             </v-list>
         </template>
@@ -310,6 +359,7 @@ export default{
         return {
             cartItemCount: 0,
             dialog: false,
+            itemDialog: false,
 
             sub_items: [],
             products: [],
@@ -326,6 +376,7 @@ export default{
                 description: '',
                 }
             ],
+            itemSelected: [],
 
             // sub_items :[
             //     {id: 1, category_code: 12, name: '便器', icon:'mdi-toilet', products: []},
@@ -440,6 +491,8 @@ export default{
 
         selectItem(item){
             console.log(item,'clicked!!')
+            this.itemSelected = item;
+            this.itemDialog = true;
         },
 
         getData(){
