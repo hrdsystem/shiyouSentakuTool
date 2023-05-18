@@ -169,19 +169,11 @@ class MasterMaintenanceController extends Controller
     //         ]);
     // }
 
-    public function editItems(Request $id){
-        // return $id; 
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-        ->table('m_main_items')
-        ->find($id->id); 
-    }
-
-
-    public function updateData(Request $request){
-            // info($data);
-            // return $request;
+    //////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * FUNTCTIONS FOR ITEMS *   *   *   *   *  //
+    //////////////////////////////////////////////////////////////////
+    public function saveItem1(Request $request){
         if($request->action == 'ADD NEW'){
-            //        *     *     *      SAVE     *     *     *        //
             $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_main_items')
             ->where('category_code',$request->category_code)
@@ -200,32 +192,6 @@ class MasterMaintenanceController extends Controller
                 ]);
                 return 'SAVED';
             }
-        }else{
-            //        *     *     *      UPDATE     *     *     *        //
-            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-            ->table('m_main_items')
-            ->where('category_code',$request->category_code)
-            ->where('code',$request->CODE)
-            ->where('item_name',$request->item_name)
-            ->get();
-            if(count($data) > 0){
-                return 'Existing';
-            }else{
-                DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-                ->table('m_main_items')
-                ->insert([
-                    'category_code' => $request->category_code,
-                    'code' => $request->CODE,
-                    'item_name' => $request->item_name,
-                    'Updated_Date'=> date('Y-m-d H:i:s'),
-                    'Updated_by' => 'Gatz'
-                ]);
-                DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-                ->table('m_main_items')
-                ->where('id',$request->productId)
-                ->delete();
-                return 'EDITED';
-            }
         }
     }
     public function saveItem2(Request $request){
@@ -236,11 +202,11 @@ class MasterMaintenanceController extends Controller
         ->where('code',$request->code)
         ->get();
 
-        
-    public function saveData(Request $request){
-        return $request; 
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-            ->table('m_main_items')
+        if(count($data) > 0){
+            return 'Existing';
+        }else{
+            $data =  DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+            ->table('m_sub_items')
             ->insert([
                 'category_code' => $request->category_code,
                 'main_items_code' => $request->main_items_code,
@@ -275,19 +241,20 @@ class MasterMaintenanceController extends Controller
         }
     }
 
-
     public function editItems(Request $id){
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-        ->table('master_maintenance')
-        ->where('id',$request->id)
-        // ->get();
-        ->delete();
+        ->table('m_main_items')
+        ->find($id->id); 
+    }
+    public function editItem2(Request $id){
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+        ->table('m_sub_items')
+        ->find($id->id); 
     }
 
-    //update function for item 1
-    public function updateItem1(Request $request, $id){
-        // return $id;
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+
+    public function updateItem1(Request $request){
+        $data= DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->table('m_main_items')
         ->where('id', $request->id)
         ->get();
@@ -303,33 +270,23 @@ class MasterMaintenanceController extends Controller
             return 'EDITED';
         }
     }
-
-    public function saveItem2(Request $request){
-        // return $request;
-
-        $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+    public function updateItem2(Request $request, $id){
+        $data= DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+        ->table('m_sub_items')
+        ->where('id', $request->id)
+        ->get();
+        if(count($data) > 0){
+            DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_sub_items')
-            ->where('category_code',$request->category_code)
-            ->where('main_items_code', $request->main_items_code)
-            ->where('code',$request->code)
-            ->where('item_name',$request->item_name)
-            ->get();
-            if(count($data) > 0){
-                // info($data);`
-                return 'Existing';
-            }else{
-                $data =  DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-                ->table('m_sub_items')
-                ->insert([
-                    'category_code' => $request->category_code,
-                    'main_items_code' => $request->main_items_code,
-                    'code' => $request->code,
-                    'item_name' => $request->item_name,
-                    'Created_at' => date("Y-m-d H:i:s"),
-                    'Updated_by' => 'Gatz'
-                ]);
-                return 'SAVED';
-            }
+            ->where('id',$request->id)
+            ->update([
+                'item_name' => $request->item_name,
+                'updated_at'=> date('Y-m-d H:i:s'),
+                'updated_by' => 'Gatz'
+            ]);
+            return 'EDITED';
+        }
+    }
 
     /////////////////////////////////////////////////////////////////////
     //    *   *   *   *   * FUNTCTIONS FOR PRODUCTS *   *   *   *   *  //
@@ -351,12 +308,9 @@ class MasterMaintenanceController extends Controller
         return MMainItem::where('id',$request->id)
         ->delete();
     }
-
-    public function editItem2(Request $id){
-        // return $id; 
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-        ->table('m_sub_items')
-        ->find($id->id); 
+    public function deleteItem2(Request $request){
+        return MSubItem::where('id',$request->id)
+        ->delete();
     }
     // }---------->  <----------{ \\
 
