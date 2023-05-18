@@ -83,7 +83,3 @@ Route::post('/masterMaintenance/colors',[MasterMaintenanceController::class,'col
 
 
 
-Route::get('/getSampleData',[ShiyoushoCatalogController::class,'getSampleData']);
-// Route::get('/getSampleData', function() {
-//     return 'testing';e
-// });
