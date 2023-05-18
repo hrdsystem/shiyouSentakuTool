@@ -6883,11 +6883,21 @@ var render = function render() {
           }, [_vm._v(_vm._s(item.color ? item.color : "default"))]), _vm._v(" "), _c("td", {
             staticClass: "text-center s-mid-header"
           }, [_vm._v(_vm._s(item.price))]), _vm._v(" "), _c("td", {
-            staticClass: "text-center s-mid-header",
+            staticClass: "text-center",
             staticStyle: {
               width: "300px"
             }
-          }, [_vm._v(_vm._s(item.description))]), _vm._v(" "), _c("td", {
+          }, [item.description.length > 70 ? _c("div", {
+            staticClass: "s-mid-header",
+            staticStyle: {
+              "overflow-y": "scroll !important",
+              height: "90px !important",
+              "margin-top": "5px",
+              "margin-bottom": "5px"
+            }
+          }, [_vm._v("\n                                                    " + _vm._s(item.description) + "\n                                                ")]) : _vm._e(), _vm._v(" "), item.description.length < 70 ? _c("div", {
+            staticClass: "s-mid-header"
+          }, [_vm._v("\n                                                    " + _vm._s(item.description) + "\n                                                ")]) : _vm._e()]), _vm._v(" "), _c("td", {
             staticClass: "text-center s-mid-header"
           }, [_c("v-btn", {
             attrs: {
@@ -7160,7 +7170,8 @@ var render = function render() {
   }, [_c("v-dialog", {
     attrs: {
       persistent: "",
-      width: "500"
+      width: "900",
+      height: "700"
     },
     model: {
       value: _vm.itemDialog,
@@ -7169,12 +7180,36 @@ var render = function render() {
       },
       expression: "itemDialog"
     }
-  }, [_c("v-card", [_c("v-col", [_c("v-row", [_c("v-card-title", {
-    staticClass: "text-left s-title"
-  }, [_vm._v("\n                                    " + _vm._s(_vm.itemSelected.product_name) + "\n                                ")])], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", [_vm._v("\n                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                                    ")])], 1), _vm._v(" "), _c("v-col", [_vm.itemSelected.image_path != undefined ? _c("v-img", {
+  }, [_c("v-card", [_c("v-col", [_c("v-row", [_c("v-col", {
+    staticStyle: {
+      display: "flex"
+    }
+  }, [_c("v-card-title", [_c("h3", {
+    staticClass: "text-left s-mid-header"
+  }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-icon", {
     attrs: {
-      "max-height": "250",
-      "max-width": "250",
+      "x-large": ""
+    }
+  }, [_vm._v("mdi-menu-right")]), _vm._v(" "), _c("h3", {
+    staticClass: "text-left s-mid-header"
+  }, [_vm._v(_vm._s(_vm.itemSelected.item_name))]), _vm._v(" "), _c("v-icon", {
+    attrs: {
+      "x-large": ""
+    }
+  }, [_vm._v("mdi-menu-right")]), _vm._v(" \n                                         \n                                        "), _c("h3", {
+    staticClass: "text-left s-header-title"
+  }, [_vm._v(_vm._s(_vm.itemSelected.product_name))])], 1)], 1)], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", {
+    staticStyle: {
+      "padding-top": "0"
+    }
+  }, [_c("p", {
+    staticClass: "s-sub-header"
+  }, [_vm._v(_vm._s(_vm.itemSelected.description))]), _vm._v(" "), _c("p", {
+    staticClass: "s-header-title"
+  }, [_vm._v("代金: " + _vm._s(_vm.itemSelected.price))])])], 1), _vm._v(" "), _c("v-col", [_vm.itemSelected.image_path != undefined ? _c("v-img", {
+    attrs: {
+      "max-height": "400",
+      "max-width": "400",
       src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(_vm.itemSelected.image_path))
     }
   }) : _c("v-img", {
@@ -7183,7 +7218,7 @@ var render = function render() {
       "max-width": "250",
       src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg")
     }
-  })], 1)], 1), _vm._v(" "), _c("v-row")], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+  })], 1)], 1), _vm._v(" "), _c("v-row")], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
     staticStyle: {
       width: "100px"
     },
