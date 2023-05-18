@@ -10,6 +10,29 @@ use App\Models\MMainItem;
 
 class MasterMaintenanceController extends Controller
 {
+
+
+    //////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * GAIBU FUNCTIONS   *   *   *   *   *  //
+    ////////////////////////////////////////////////////////////////
+    public function getGaibuItem1 () {
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+        ->select(DB::raw(
+            "SELECT
+                id,
+                CODE as main_code,
+                category_code,
+                item_name
+            FROM m_main_items
+            WHERE deleted_at IS NULL
+            AND category_code = '1'
+            ORDER BY id DESC
+            "
+        )); 
+    }
+    //////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * SETSUBI FUNCTIONS   *   *   *   *   *  //
+    ////////////////////////////////////////////////////////////////
     public function getCategories () {  
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
@@ -27,14 +50,12 @@ class MasterMaintenanceController extends Controller
             "SELECT
                 *
             FROM master_maintenance
-            
             "
         ));
     }
 
 
-    public function getItem1 () {
-        // return'sample';
+    public function getSetsubiItem1 () {
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT
@@ -44,13 +65,14 @@ class MasterMaintenanceController extends Controller
                 item_name
             FROM m_main_items
             WHERE deleted_at IS NULL
+            AND category_code = '2'
             ORDER BY id DESC
             "
         )); 
     }
 
 
-    public function getItem2 (Request $req) {
+    public function getSetsubiItem2 (Request $req) {
         // return $req; 
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
@@ -78,34 +100,47 @@ class MasterMaintenanceController extends Controller
         ->get();
     }
 
-    public function getSubItem2 () {
-        // return $req; 
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-        ->table('m_sub_items')
-        ->where('category_code',2)
-        ->whereNull('deleted_at')
-        ->get();
-    }
-
     public function getProducts () {
         // return $req; 
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT 
-                id,
-                category_code,
-                main_items_code,
-                sub_items_code,
-                CODE,
-                product_name,
-                maker_code,
-                color_code,
-                image_path
-            FROM m_products
+                -- P.id,
+                P.category_code,
+                P.CODE,
+                P.product_name,
+                P.maker_code,
+                M.manufacturer_name,
+                P.color_code,
+                C.color_name
+            FROM shiyou_sentaku_main_test.m_products AS P
+                LEFT JOIN shiyou_sentaku_main_test.m_colors AS C
+                    ON C.color_code = P.color_code
+                LEFT JOIN shiyou_sentaku_main_test.m_manufacturers AS M
+                    ON M.code = P.maker_code
+                WHERE P.category_code = 2
             "
         ));
     }
 
+    // public function getSpecifications () {
+    //     // return $req; 
+    //     return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+    //     ->select(DB::raw(
+    //         "SELECT 
+    //             id,
+    //             category_code,
+    //             main_items_code,
+    //             sub_items_code,
+    //             CODE,
+    //             product_name,
+    //             maker_code,
+    //             color_code,
+    //             image_path
+    //         FROM m_products
+    //         "
+    //     ));
+    // }
 
     public function colors () {
         // return $req; 
@@ -201,7 +236,7 @@ class MasterMaintenanceController extends Controller
         ->where('code',$request->code)
         ->get();
 
-
+        
     public function saveData(Request $request){
         return $request; 
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
@@ -217,11 +252,31 @@ class MasterMaintenanceController extends Controller
             return 'SAVED';
         }
     }
+    public function saveProducts(Request $request){
+        if($request->action == 'ADD NEW'){
+            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+            ->table('m_main_items')
+            ->where('category_code',$request->category_code)
+            ->where('code',$request->CODE)
+            ->get();
+            if(count($data) > 0){
+                return 'Existing';
+            }else{
+                $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+                ->table('m_main_items')
+                ->insert([
+                    'category_code' => $request->category_code,
+                    'code' => $request->CODE,
+                    'item_name' => $request->item_name,
+                    'updated_by' => 'Gatz'
+                ]);
+                return 'SAVED';
+            }
+        }
+    }
 
 
-    //        *     *     *      DELETE     *     *     *        //
-    public function deleteData(Request $request){
-        // return $request;
+    public function editItems(Request $id){
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->table('master_maintenance')
         ->where('id',$request->id)
@@ -304,4 +359,27 @@ class MasterMaintenanceController extends Controller
         ->find($id->id); 
     }
     // }---------->  <----------{ \\
+
+
+    //////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * NAIBU FUNCTIONS   *   *   *   *   *  //
+    ////////////////////////////////////////////////////////////////
+
+
+    public function getNaibuItem1 () {
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+        ->select(DB::raw(
+            "SELECT
+                id,
+                CODE as main_code,
+                category_code,
+                item_name
+            FROM m_main_items
+            WHERE deleted_at IS NULL
+            AND category_code = '3'
+            ORDER BY id DESC
+            "
+        )); 
+    }
+
 }

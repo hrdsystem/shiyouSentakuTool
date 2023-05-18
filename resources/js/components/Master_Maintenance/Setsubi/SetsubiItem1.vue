@@ -33,7 +33,7 @@
         <v-row>
             <!-- = 1st Table = -->
             <v-col cols="6">
-                <v-data-table hide-default-header :headers="headers" :items="mastersData" :items-per-page="10" class="elevation-1" @dblclick:row="($event, {item})=>getItem2(item.main_code)">
+                <v-data-table hide-default-header :headers="headers" :items="mastersData" :items-per-page="10" class="elevation-1" @dblclick:row="($event, {item})=>getSetsubiItem2(item.main_code)">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -105,7 +105,7 @@
                     </v-card-title>
                     <v-card-text>
                         <br/>
-                        <v-text-field  outlined dense rounded readonly label="Category Code" v-model="item1Obj1.category"></v-text-field>
+                        <v-text-field  outlined dense rounded label="Category Code" readonly v-model="item1Obj1.category"></v-text-field>
                         <v-text-field :readonly="disabledItem1()" outlined dense rounded label="Code" v-model="item1Obj1.code"
                         onKeyPress="if(this.value.length==4)return false;"
                         ></v-text-field>
@@ -214,26 +214,27 @@
 
         watch: {
             //
+            
         },
 
         created () {
-            this.getItem1();
+            this.getSetsubiItem1();
         },
 
         methods: {
             ///////////////////////////////////////////////////////
             //    *   *   *   *   *           *   *   *   *   *  //
             ///////////////////////////////////////////////////////
-            getItem1(){
+            getSetsubiItem1(){
                 axios({
                     method:'get',
-                    url:'api/masterMaintenance/getItem1',
+                    url:'/api/masterMaintenance/getSetsubiItem1',
                 }).then((res)=>{
                     this.mastersData = res.data;
-                    console.log(res.data, 'getItem1...')
+                    console.log(res.data, 'getSetsubiItem1...')
                 })
             },
-            getItem2(item){
+            getSetsubiItem2(item){
                 this.item1Code = item
                 let obj = {
                     item1 : item
@@ -241,11 +242,12 @@
                 this.disabledItem2btn = false;
                 axios({
                     method:'post',
-                    url:'api/masterMaintenance/getItem2',
+                    url:'/api/masterMaintenance/getSetsubiItem2',
                     data : obj
                     // data:{main_items_code:item.main_code}
                 }).then((res)=>{
                     this.mastersSubData = res.data;
+                    console.log(res.data, 'getSetsubiItem2...')
                 })
             },
             //    *   *   *   *   *      ADD     *   *   *   *   *  //
@@ -318,7 +320,7 @@
                     if (result.isConfirmed) {
                         axios ({
                             method : 'POST',
-                            url : `api/masterMaintenance/deleteItem1/${item.id}`,
+                            url : `/api/masterMaintenance/deleteItem1/${item.id}`,
                         }).then(r=>{
                             Swal.fire({
                                 showConfirmButton:false,
@@ -326,7 +328,7 @@
                                 title: 'Item 1 is successfully deleted',
                                 timer: 2000,
                             })
-                            this.getItem1()
+                            this.getSetsubiItem1()
                         })
                     }
                 })
@@ -344,7 +346,7 @@
                     if (result.isConfirmed) {
                         axios ({
                             method : 'POST',
-                            url : `api/masterMaintenance/deleteItem2/${item.id}`,
+                            url : `/api/masterMaintenance/deleteItem2/${item.id}`,
                         }).then(r=>{
                             Swal.fire({
                                 showConfirmButton:false,
@@ -354,7 +356,7 @@
                             })
                             console.log(item,'LAGYAN KO DAW NG TEXT'); 
 
-                            this.getItem2(item.main_items_code)
+                            this.getSetsubiItem2(item.main_items_code)
                         })
                     }
                 })
@@ -372,7 +374,7 @@
                     }
                     axios({
                         method : 'post',
-                        url: 'api/masterMaintenance/saveItem1',
+                        url: '/api/masterMaintenance/saveItem1',
                         data: data
                     }).then(res=>{
                         if(res.data == 'Existing'){
@@ -390,7 +392,7 @@
                                 title: 'Item 1 Saved',
                                 timer: 2000,
                             })
-                            this.getItem1()
+                            this.getSetsubiItem1()
                             this.close1()
                         }
                     })
@@ -406,7 +408,7 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem1/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem1/${this.id}`,
                                 data:{
                                     // code:this.code,
                                     item_name:this.item1Obj1.itemName
@@ -427,7 +429,7 @@
                                         title: 'Item 1 Updated',
                                         timer: 2000,
                                     })
-                                    this.getItem1();
+                                    this.getSetsubiItem1();
                                     this.close1()
                                 }
                             })
@@ -448,7 +450,7 @@
                 if(this.action2 == 'ADD NEW') {
                     axios({
                         method: 'post',
-                        url: 'api/mastermaintenance/saveItem2',
+                        url: '/api/mastermaintenance/saveItem2',
                         data:data
                     }).then((res)=>{
                         if(res.data == 'Existing'){
@@ -466,7 +468,7 @@
                                 title: 'Item 2 Saved',
                                 timer: 2000,
                             })
-                            this.getItem2(this.item2Obj2.mainCode)
+                            this.getSetsubiItem2(this.item2Obj2.mainCode)
                             this.close2()
                         }
                     })
@@ -482,7 +484,7 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem2/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem2/${this.id}`,
                                 data: data
                             }).then((res)=>{
                                 if(res.data == 'Existing'){
@@ -500,8 +502,8 @@
                                         title: 'Item 2 Updated!',
                                         timer: 2000,
                                     })
-                                    this.getItem2(this.item2Obj2.mainCode);
-                                // console.log(this.getItem2(this.item2Obj2.mainCode),'LAGYAN KO DAW NG TEXT'); 
+                                    this.getSetsubiItem2(this.item2Obj2.mainCode);
+                                // console.log(this.getSetsubiItem2(this.item2Obj2.mainCode),'LAGYAN KO DAW NG TEXT'); 
 
                                     this.close2()
                                 }

@@ -6,38 +6,13 @@
             elevation="0" 
             color="primary" 
         >
-            <!-- <v-app-bar-nav-icon color="black" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
-            <!-- <v-toolbar-title 
-                style = "text-align: left !important; display: flex; padding-top: 15px;"
-                >
-                
-                <h3 style="font-family: 'Noto Sans JP', sans-serif;  
-                font-size: 25px; 
-                font-weight: 700;
-                color: white;">
-                <a style="text-decoration: none; color: white;" href="/home">
-                    仕様選択ツール
-                </a>
-                <b style="color: #1976d2;">.</b></h3> 
-
-                <p style="font-size: 25px; color: white">&nbsp;(Shiyou Sentaku Tool)</p>  
-            </v-toolbar-title> -->
-            <!-- <v-btn icon><v-icon>mdi-cart</v-icon></v-btn>
-            <v-btn icon><v-icon>mdi-account</v-icon></v-btn> -->
-
-
             <v-toolbar-title 
                 style = "text-align: left !important; display: flex; padding-top: 15px;"
-                >
-                <h3 style="font-family: 'Noto Sans JP', sans-serif;  
-                font-size: 25px; 
-                font-weight: 700;
-                color: white;">仕様選択ツール</h3> 
-
+            >
+                <h3 style="font-family: 'Noto Sans JP', sans-serif; font-size: 25px; font-weight: 700; color: white;">仕様選択ツール</h3> 
                 <p style="font-size: 25px; color: white">&nbsp;(Shiyou Sentaku Tool)</p>  
             </v-toolbar-title>
         </v-app-bar>
-
 
         <!-- expand-on-hover -->
         <v-navigation-drawer
@@ -46,92 +21,12 @@
             app
             clipped
         >
-            <!-- <v-list dense >  -->
-                <!-- <v-subheader>LIST COMPONENTS:</v-subheader> -->
-                <!-- <v-list-item
-                    :to="'home'"
-                    @click="selectCategory()"
-                >
-                    <v-list-item-title>BAWANG</v-list-item-title>
-                    <v-list-item-title>PAMINTA</v-list-item-title>
-                    <v-list-item-title>SIBUYAS</v-list-item-title>
-                </v-list-item>
-            </v-list> -->
             <v-list
                 dense
                 nav
             >
-                <!-- <v-list-item-group
-                    v-model="selectedItem"
-                    
-                >
-                    <v-card class="mb-1" light v-for="(item, index) in items" :key="index" dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
-                        <v-list-item
-                            link
-                            active-class="active"
-                            :to="item.to"
-                        >
-                            <v-list-item-icon>
-                                <v-icon>{{ item.icon }}</v-icon>
-                            </v-list-item-icon>
-
-                            <v-list-item-content>
-                                <v-list-item-title>{{ item.title }}</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>  
-                    </v-card>
-                </v-list-item-group> -->
-
-                <!-- <v-card class="mb-1" light dense style="border: 1x solid black; background-color: #1976d2;font-size: 12px; cursor: default;">
-                    <v-list-group 
-                        v-for="(category, i) in categories"
-                        :key="i"
-                        v-if="category.subMenu.length > 0" 
-                    >
-                        <template v-slot:activator>
-                            <v-list-item-icon>
-                                <v-icon>{{category.icon}}</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>{{category.text}}</v-list-item-title>
-                        </template>
-                        <v-list-item
-                            v-for="(item, i) in category.subMenu"
-                            :key="i"
-                            :to="'home'"
-                            @click="selectCategory(item)"
-                        >
-                            <v-list-item-title v-text="item.item_name"></v-list-item-title>
-                        </v-list-item>
-                    </v-list-group>
-
-                    <v-list-item link v-for="(category, i) in categories" :key="i+'a'" v-if="category.subMenu.length == 0">
-                        <v-list-item-icon>
-                            <v-icon>{{category.icon}}</v-icon>
-                        </v-list-item-icon>
-                        <v-list-item-title>{{category.text}}</v-list-item-title> 
-                    </v-list-item> -->
-
-                    <!-- <v-list-group>
-                        <template v-slot:activator>
-                            <v-list-item-icon>
-                                <v-icon>mdi-alpha-m-box-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-title>マスターメンテナンス</v-list-item-title>
-                        </template>
-                        <v-list-item
-                            v-for="(item, i) in masterCategories"
-                            :key="i"
-                            link
-                            :to="item.to"
-                        >
-                            <v-list-item-title v-text="item.text"></v-list-item-title>
-                        </v-list-item>
-                    </v-list-group>
-                </v-card> -->
-
                 <v-list-item-group v-model="selectedItem">
-                    <v-card class="mb-1" light v-for="(item, index) in items" :key="index" 
-                    dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
+                    <v-card class="mb-1" light v-for="(item, index) in items" :key="index" dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item v-if="item.subMenu == 0" link active-class="active" :to="item.to">
                             <v-list-item-icon>
                                 <v-icon>{{ item.icon }}</v-icon>
@@ -157,9 +52,8 @@
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
-        
-        
 
+        
         <v-main class="ma-2">
             <router-view></router-view>
         </v-main>
@@ -167,13 +61,13 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
+    import axios from 'axios';
+import {mapActions, mapState} from 'vuex';
     export default {
         data: () => ({
             selectedItem:1,
             drawer: null,
             items: [
-
                 {subMenu:[], icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},
                 {subMenu:[], icon:'mdi-alpha-w-box-outline', title: '窓', to:'/any1'},
                 {subMenu:[], icon:'mdi-alpha-b-box-outline', title: 'バルコニー', to:'/any2'},
@@ -193,8 +87,11 @@
                     {text:'外部', to: "/gaibu_master"},
                     {text:'設備', to: "/setsubi_master"},
                     {text:'内部', to: "/naibu_master"},
-                ], icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/any156'}, 
+                ], 
+                icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/any156'}, 
             ],
+            // categoryItems : []
+
             // masterCategories:[
             //     {text:'外部', to: "/gaibu_master"},
             //     {text:'設備', to: "/setsubi_master"},
@@ -204,14 +101,39 @@
         }),
 
         methods: {
-            getItems(){
-                console.log(this.items,'items');
-            }
+            // getCategories() {
+                // let obj = {
+                //     subMenu : [],
+                //     icon : 'mdi-alpha-m-box-outline',
+                //     title: 'マスターメンテナンス',
+                //     to:'/any156'
+                // }
+                // axios({
+                //     method : 'get',
+                //     url : 'api/masterMaintenance/getCategories'
+                // }).then((res)=>{
+                //     // this.categoryItems = res.data
+                //     if(res.data.length != 0){
+                //         res.data.forEach(element => {
+                //             let obj1  = {}
+                //             obj1.text = element.category_name
+                //             obj1.value = element.CODE
+                //             obj.subMenu.push(obj1)
+                //         });
+                //         this.items.push(obj)
+                //     }
+                // })
+            // },
+
+            // getItems(){
+            //     console.log(this.items,'items');
+            // },
             
         },
 
         mounted() {
-            this.getItems();
+            // this.getItems();
+            // this.getCategories();
         },
 
         created () {
@@ -229,6 +151,6 @@
         background-color: #0080ff;
         margin-bottom: 4px;
         border: 1px solid #0080ff;
-        color: white !important;
+        color: black !important;
     }
 </style>
