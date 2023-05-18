@@ -97,7 +97,7 @@ import axios from 'axios';
             getColors(){
                 axios({
                     method:'get',
-                    url:'api/masterMaintenance/colors'
+                    url:'/api/masterMaintenance/colors'
                 }).then((res)=>{
                     console.log(res.data, 'getColors...')
                     this.mastersData = res.data;

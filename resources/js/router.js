@@ -93,31 +93,31 @@ export default new VueRouter({
             path: '/gaibu_master_item1',
             name: '/gaibu_master_item1',
             component : GaibuItem1
-        },
+        },//
         {
-            path: '/setsubi_master_item1',
+            path: '/setsubi_master/setsubi_master_item1',
             name: '/setsubi_master_item1',
             component : SetsubiItem1
         },
         {
-            path: '/setsubi_master_products',
+            path: '/setsubi_master/setsubi_master_products',
             name: '/setsubi_master_products',
             component : SetsubiProducts
         },
         {
-            path: '/setsubi_master_specification',
+            path: '/setsubi_master/setsubi_master_specification',
             name: '/setsubi_master_specification',
             component : SetsubiSpecifications
         },
         {
-            path: '/setsubi_master_colors',
+            path: '/setsubi_master/setsubi_master_colors',
             name: '/setsubi_master_colors',
             component : SetsubiColors
-        },
+        },//
         {
             path: '/naibu_master_item1',
             name: '/naibu_master_item1',
             component : NaibuItem1
-        },
+        },//
     ],
 });

@@ -75,8 +75,8 @@
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Sub Items Code" v-model="ProductObj.subCode"></v-text-field> -->
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Code" v-model="ProductObj.code"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.itemName"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Code" v-model="ProductObj.manufacturer_name"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Code" v-model="ProductObj.color_name"></v-text-field>
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Name" v-model="ProductObj.manufacturer_name"></v-text-field>
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Name" v-model="ProductObj.color_name"></v-text-field>
                     <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Image Path" v-model="ProductObj.imagePath"></v-text-field> -->
                     <!-- <v-file-input dense @change="Preview_image" v-model="ProductObj.imagePath">
                     </v-file-input> -->
@@ -100,15 +100,6 @@ import axios from 'axios';
     export default {
         data: () => ({
             headers: [
-                // { 
-                //     text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: 'サブアイテムコード', value: 'sub_items_code', align: 'center', sortable: false 
-                // },
                 { 
                     text: 'コード', value: 'CODE', align: 'center', sortable: false 
                 },
@@ -121,9 +112,6 @@ import axios from 'axios';
                 { 
                     text: 'カラーコード', value: 'color_name', align: 'center', sortable: false 
                 },
-                // { 
-                //     text: '画像パス', value: 'image_path', align: 'left', sortable: false 
-                // },
                 { 
                     text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
@@ -167,17 +155,17 @@ import axios from 'axios';
             getProducts(){
                 axios({
                     method:'get',
-                    url:'api/masterMaintenance/getProducts',
+                    url:'/api/masterMaintenance/getProducts',
                 }).then((res)=>{
                     this.mastersProductsData = res.data;
                     axios({
                         method:'get',
-                        url:'api/masterMaintenance/getSetsubiItem1',
+                        url:'/api/masterMaintenance/getSetsubiItem1',
                     }).then((r)=>{
                         this.mainItem = r.data;
                         axios({
                             method:'get',
-                            url:'api/masterMaintenance/getSubItem2',
+                            url:'/api/masterMaintenance/getSubItem2',
                         }).then((rec)=>{
                             this.subItemTemp = rec.data;
                         })
@@ -189,14 +177,10 @@ import axios from 'axios';
             addProduct() {
                 // console.log(this.ProductObj,'hello world')
                 this.ProductDialog = true
-                this.ProductObj.category = 2
-                // this.ProductObj.mainCode = ''
-                // this.ProductObj.subCode  = ''
                 this.ProductObj.code = ""
                 this.ProductObj.itemName = ""
                 this.ProductObj.manufacturer_name = ""
                 this.ProductObj.color_name = ""
-                // this.ProductObj.imagePath = ""
                 this.action = 'ADD NEW'
             },
             //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
@@ -209,17 +193,83 @@ import axios from 'axios';
             },
 
             saveProducts(){
-                console.log('Productsssssssssssssss');
-                // this.id
-                // let data = {}
-                // if (this.action == "ADD NEW"){
-                //     data = {
-                //         action : this.action,
-                //         category_code: this.ProductObj.category,
-                //         CODE: this.ProductObj.code,
-                //         item_name: this.ProductObj.itemName
-                //     }
-                // }
+                // console.log('Productsssssssssssssss');
+                this.id
+                let data = {}
+                if(this.action == "ADD NEW"){
+                    data = {
+                        action : this.action,
+                        CODE: this.ProductObj.code,
+                        item_name: this.ProductObj.itemName,
+                        manufacturer_name: this.ProductObj.manufacturer_name,
+                        color_name: this.ProductObj.color_name
+                    }
+                    axios({
+                        method : 'post',
+                        url: '/api/masterMaintenance/saveProducts',
+                        data: data
+                    }).then(res=>{
+                        if(res.data == 'Existing'){
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'error',
+                                title: 'Products Already Existing!',
+                                timer: 2000,
+                            })
+                            this.closeProduct()
+                        }else{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Products Saved',
+                                timer: 2000,
+                            })
+                            this.getProducts();
+                            this.closeProduct()
+                        }
+                    })
+                }else if(this.action == "EDIT"){
+                    console.log('EDIT Productsssssssssssssss');
+
+                    // Swal.fire({
+                    //     title:'Aare you sure you want to update this Item 1 data?',
+                    //     icon:'question',
+                    //     showCancelButton:true,
+                    //     confirmButtonColor:'primary',
+                    //     cancelButtonColor:'#d33',
+                    //     confirmButtonText:'Yes'
+                    // }).then((result) => {
+                    //     if (result.isConfirmed){
+                    //         axios({
+                    //             method: 'post',
+                    //             url: `/api/masterMaintenance/updateItem1/${this.id}`,
+                    //             data:{
+                    //                 // code:this.code,
+                    //                 item_name:this.item1Obj1.itemName
+                    //                 }
+                    //         }).then((res)=>{
+                    //             if(res.data == 'Existing'){
+                    //                 Swal.fire({
+                    //                     showConfirmButton:false,
+                    //                     icon: 'error',
+                    //                     title: 'Item 1 is already existing',
+                    //                     timer: 2000,
+                    //                 })
+                    //                 this.closeProduct()
+                    //             }else{
+                    //                 Swal.fire({
+                    //                     showConfirmButton:false,
+                    //                     icon: 'success',
+                    //                     title: 'Item 1 Updated',
+                    //                     timer: 2000,
+                    //                 })
+                    //                 this.getProducts();;
+                    //                 this.closeProduct()
+                    //             }
+                    //         })
+                    //     }
+                    // })
+                }
             },
 
 

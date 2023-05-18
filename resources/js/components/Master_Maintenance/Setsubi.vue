@@ -131,28 +131,28 @@
                     {
                         title : 'Item',
                         kanji : "項目分類マスタ保守",
-                        path : '/setsubi_master_item1'
+                        path : '/setsubi_master/setsubi_master_item1'
                     }
                 ],
                 PRODUCTS : [
                     {
                         title : 'Product',
                         kanji : "製品",
-                        path : '/setsubi_master_products'
+                        path : '/setsubi_master/setsubi_master_products'
                     }
                 ],
                 SPECIFICATION : [
                     {
                         title : 'Specifications',
                         kanji : "仕様",
-                        path : '/setsubi_master_specification'
+                        path : '/setsubi_master/setsubi_master_specification'
                     }
                 ],
                 COLORS : [
                     {
                         title : 'Color',
                         kanji : "色",
-                        path : '/setsubi_master_colors'
+                        path : '/setsubi_master/setsubi_master_colors'
                     }
                 ],
                 masterCategories:[

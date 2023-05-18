@@ -94,6 +94,14 @@ Route::get('/masterMaintenance/getGaibuItem1',[MasterMaintenanceController::clas
     Route::post('/masterMaintenance/updateItem2/{id}', [MasterMaintenanceController::class, 'updateItem2']);
     Route::post('/masterMaintenance/deleteItem2/{id}',[MasterMaintenanceController::class,'deleteItem2']);
 
+    /////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * FUNCTIONS FOR PRODUCTS *   *   *   *   *  //
+    /////////////////////////////////////////////////////////////////
+    Route::post('/masterMaintenance/saveProducts', [MasterMaintenanceController::class, 'saveProducts']);
+    Route::get('/masterMaintenance/editProducts/{id}',[MasterMaintenanceController::class,'editProducts']);
+    Route::post('/masterMaintenance/updateProducts/{id}', [MasterMaintenanceController::class, 'updateProducts']);
+    Route::post('/masterMaintenance/deleteProducts/{id}',[MasterMaintenanceController::class,'deleteItem1']);
+
 
 /////////////////////////////////////////////////////////////////
 //    *   *   *   *   * FOR NAIBU FUNCTIONS *   *   *   *   *  //

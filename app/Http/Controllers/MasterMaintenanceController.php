@@ -218,7 +218,28 @@ class MasterMaintenanceController extends Controller
             return 'SAVED';
         }
     }
-
+    public function saveProducts(Request $request){
+        if($request->action == 'ADD NEW'){
+            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+            ->table('m_main_items')
+            ->where('category_code',$request->category_code)
+            ->where('code',$request->CODE)
+            ->get();
+            if(count($data) > 0){
+                return 'Existing';
+            }else{
+                $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+                ->table('m_main_items')
+                ->insert([
+                    'category_code' => $request->category_code,
+                    'code' => $request->CODE,
+                    'item_name' => $request->item_name,
+                    'updated_by' => 'Gatz'
+                ]);
+                return 'SAVED';
+            }
+        }
+    }
 
     public function editItems(Request $id){
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')

@@ -105,7 +105,7 @@
                     </v-card-title>
                     <v-card-text>
                         <br/>
-                        <v-text-field  outlined dense rounded label="Category Code" v-model="item1Obj1.category"></v-text-field>
+                        <v-text-field  outlined dense rounded label="Category Code" readonly v-model="item1Obj1.category"></v-text-field>
                         <v-text-field :readonly="disabledItem1()" outlined dense rounded label="Code" v-model="item1Obj1.code"
                         onKeyPress="if(this.value.length==4)return false;"
                         ></v-text-field>
@@ -228,7 +228,7 @@
             getSetsubiItem1(){
                 axios({
                     method:'get',
-                    url:'api/masterMaintenance/getSetsubiItem1',
+                    url:'/api/masterMaintenance/getSetsubiItem1',
                 }).then((res)=>{
                     this.mastersData = res.data;
                     console.log(res.data, 'getSetsubiItem1...')
@@ -242,7 +242,7 @@
                 this.disabledItem2btn = false;
                 axios({
                     method:'post',
-                    url:'api/masterMaintenance/getSetsubiItem2',
+                    url:'/api/masterMaintenance/getSetsubiItem2',
                     data : obj
                     // data:{main_items_code:item.main_code}
                 }).then((res)=>{
@@ -320,7 +320,7 @@
                     if (result.isConfirmed) {
                         axios ({
                             method : 'POST',
-                            url : `api/masterMaintenance/deleteItem1/${item.id}`,
+                            url : `/api/masterMaintenance/deleteItem1/${item.id}`,
                         }).then(r=>{
                             Swal.fire({
                                 showConfirmButton:false,
@@ -346,7 +346,7 @@
                     if (result.isConfirmed) {
                         axios ({
                             method : 'POST',
-                            url : `api/masterMaintenance/deleteItem2/${item.id}`,
+                            url : `/api/masterMaintenance/deleteItem2/${item.id}`,
                         }).then(r=>{
                             Swal.fire({
                                 showConfirmButton:false,
@@ -374,7 +374,7 @@
                     }
                     axios({
                         method : 'post',
-                        url: 'api/masterMaintenance/saveItem1',
+                        url: '/api/masterMaintenance/saveItem1',
                         data: data
                     }).then(res=>{
                         if(res.data == 'Existing'){
@@ -408,7 +408,7 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem1/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem1/${this.id}`,
                                 data:{
                                     // code:this.code,
                                     item_name:this.item1Obj1.itemName
@@ -450,7 +450,7 @@
                 if(this.action2 == 'ADD NEW') {
                     axios({
                         method: 'post',
-                        url: 'api/mastermaintenance/saveItem2',
+                        url: '/api/mastermaintenance/saveItem2',
                         data:data
                     }).then((res)=>{
                         if(res.data == 'Existing'){
@@ -484,7 +484,7 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem2/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem2/${this.id}`,
                                 data: data
                             }).then((res)=>{
                                 if(res.data == 'Existing'){

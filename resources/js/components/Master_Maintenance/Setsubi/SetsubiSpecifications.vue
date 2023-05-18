@@ -61,7 +61,7 @@
 
         <v-dialog v-model="ProductDialog" max-width="20%" persistent>
             <v-card>
-                <v-card-title style="background-color: #1E88E5; color: #ffffff;">
+                <v-card-title style="background-color: #4c7cc8 !important; color: white !important;">
                         {{ action }} DATA
                     <v-spacer/>
                     <v-icon color="#ffffff" @click="closeProduct()">mdi-close</v-icon>
@@ -84,7 +84,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-btn
-                        @click="saveProducts()" block dense color="primary" style="height: 35px !important"
+                        @click="saveProducts()" block dense style="height: 35px !important; background-color: #4c7cc8 !important;"
                     >
                         <v-icon>mdi-content-save</v-icon>
                         SAVE
@@ -101,34 +101,34 @@ import axios from 'axios';
         data: () => ({
             headers: [
                 {
-                    // text: 'カテゴリーコード', value: 'house_type_code', align: 'center', sortable: false 
-                // },
-                // { 
-                    // text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
-                // },
-                // { 
-                    // text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
-                // },
-                // { 
-                    // text: 'サブアイテムコード', value: 'sub_items_code', align: 'center', sortable: false 
-                // },
-                // { 
-                    // text: 'コード', value: 'CODE', align: 'center', sortable: false 
-                // },
-                // { 
-                    // text: '商品名', value: 'product_name', align: 'left', sortable: false 
-                // },
-                // { 
-                    // text: 'メーカーコード', value: 'manufacturer_name', align: 'center', sortable: false 
-                // },
-                // { 
-                    // text: 'カラーコード', value: 'color_name', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: '画像パス', value: 'image_path', align: 'left', sortable: false 
-                // },
-                // { 
-                    // text: '行動', value: 'actions', align: 'center', sortable: false 
+                    text: '住宅タイプコード', value: 'house_type_code', align: 'left', sortable: false 
+                },
+                { 
+                    text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
+                },
+                { 
+                    text: '本体コード', value: 'main_items_code', align: 'center', sortable: false 
+                },
+                { 
+                    text: 'サブアイテムコード', value: 'sub_items_code', align: 'center', sortable: false 
+                },
+                { 
+                    text: 'コード', value: 'CODE', align: 'center', sortable: false 
+                },
+                { 
+                    text: '商品名', value: 'product_name', align: 'left', sortable: false 
+                },
+                { 
+                    text: 'メーカーコード', value: 'manufacturer_name', align: 'left', sortable: false 
+                },
+                { 
+                    text: 'カラーコード', value: 'color_name', align: 'left', sortable: false 
+                },
+                { 
+                    text: '画像パス', value: 'image_path', align: 'left', sortable: false 
+                },
+                { 
+                    text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
             
