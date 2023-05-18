@@ -3903,9 +3903,9 @@ __webpack_require__.r(__webpack_exports__);
     this.getItems();
   },
   created: function created() {
-    // if (this.$route.path !== '/home') {
-    //     this.$router.push('/home');
-    // }
+    if (this.$route.path !== '/home') {
+      this.$router.push('/home');
+    }
   }
 });
 
@@ -6907,7 +6907,7 @@ var render = function render() {
     attrs: {
       dense: ""
     }
-  }, _vm._l(_vm.sub_items, function (item, i) {
+  }, [_vm._l(_vm.sub_items, function (item, i) {
     return _c("v-list-group", {
       key: i,
       attrs: {
@@ -7154,58 +7154,58 @@ var render = function render() {
           }
         }
       }, [_c("v-icon", [_vm._v("\n                                        mdi-cart\n                                    ")]), _vm._v("add\n                                ")], 1)], 1)])], 1);
-    }), 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e(), _vm._v(" "), [_c("div", {
-      staticClass: "text-center"
-    }, [_c("v-dialog", {
-      attrs: {
-        persistent: "",
-        width: "500"
+    }), 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e()], 1);
+  }), _vm._v(" "), [_c("div", {
+    staticClass: "text-center"
+  }, [_c("v-dialog", {
+    attrs: {
+      persistent: "",
+      width: "500"
+    },
+    model: {
+      value: _vm.itemDialog,
+      callback: function callback($$v) {
+        _vm.itemDialog = $$v;
       },
-      model: {
-        value: _vm.itemDialog,
-        callback: function callback($$v) {
-          _vm.itemDialog = $$v;
-        },
-        expression: "itemDialog"
+      expression: "itemDialog"
+    }
+  }, [_c("v-card", [_c("v-col", [_c("v-row", [_c("v-card-title", {
+    staticClass: "text-left s-title"
+  }, [_vm._v("\n                                    " + _vm._s(_vm.itemSelected.product_name) + "\n                                ")])], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", [_vm._v("\n                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                                    ")])], 1), _vm._v(" "), _c("v-col", [_vm.itemSelected.image_path != undefined ? _c("v-img", {
+    attrs: {
+      "max-height": "250",
+      "max-width": "250",
+      src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(_vm.itemSelected.image_path))
+    }
+  }) : _c("v-img", {
+    attrs: {
+      "max-height": "250",
+      "max-width": "250",
+      src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg")
+    }
+  })], 1)], 1), _vm._v(" "), _c("v-row")], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    staticStyle: {
+      width: "100px"
+    },
+    attrs: {
+      outlined: ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.addToCart(_vm.itemSelected);
       }
-    }, [_c("v-card", [_c("v-col", [_c("v-row", [_c("v-card-title", {
-      staticClass: "text-left s-title"
-    }, [_vm._v("\n                                            " + _vm._s(_vm.itemSelected.product_name) + "\n                                        ")])], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", [_vm._v("\n                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n                                            ")])], 1), _vm._v(" "), _c("v-col", [_vm.itemSelected.image_path != undefined ? _c("v-img", {
-      attrs: {
-        "max-height": "250",
-        "max-width": "250",
-        src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(_vm.itemSelected.image_path))
+    }
+  }, [_c("v-icon", [_vm._v("\n                                mdi-cart\n                            ")]), _vm._v("add\n                        ")], 1), _vm._v(" "), _c("v-btn", {
+    attrs: {
+      color: "primary",
+      text: ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.closeSelectedItem();
       }
-    }) : _c("v-img", {
-      attrs: {
-        "max-height": "250",
-        "max-width": "250",
-        src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg")
-      }
-    })], 1)], 1), _vm._v(" "), _c("v-row")], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
-      staticStyle: {
-        width: "100px"
-      },
-      attrs: {
-        outlined: ""
-      },
-      on: {
-        click: function click($event) {
-          return _vm.addToCart(_vm.itemSelected);
-        }
-      }
-    }, [_c("v-icon", [_vm._v("\n                                        mdi-cart\n                                    ")]), _vm._v("add\n                                ")], 1), _vm._v(" "), _c("v-btn", {
-      attrs: {
-        color: "primary",
-        text: ""
-      },
-      on: {
-        click: function click($event) {
-          return _vm.closeSelectedItem();
-        }
-      }
-    }, [_c("v-icon", [_vm._v("\n                                    mdi-close\n                                ")]), _vm._v("\n                                    close\n                                ")], 1)], 1)], 1)], 1)], 1)]], 2);
-  }), 1)]], 2);
+    }
+  }, [_c("v-icon", [_vm._v("\n                            mdi-close\n                        ")]), _vm._v("\n                            close\n                        ")], 1)], 1)], 1)], 1)], 1)]], 2)]], 2);
 };
 var staticRenderFns = [];
 render._withStripped = true;
