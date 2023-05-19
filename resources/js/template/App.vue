@@ -32,7 +32,7 @@
                 <h3 style="font-family: 'Noto Sans JP', sans-serif;  
                 font-size: 25px; 
                 font-weight: 700;
-                color: white;">仕様選択ツール</h3> 
+                color: white;">仕様選択ツール<b style="color: #1976d2;"></b></h3> 
 
                 <p style="font-size: 25px; color: white">&nbsp;(Shiyou Sentaku Tool)</p>  
             </v-toolbar-title>
@@ -168,6 +168,7 @@
 
 <script>
     import {mapActions} from 'vuex';
+    import Swal from 'sweetalert2'
     export default {
         data: () => ({
             selectedItem:1,
@@ -206,7 +207,7 @@
         methods: {
             getItems(){
                 console.log(this.items,'items');
-            }
+            },
             
         },
 
