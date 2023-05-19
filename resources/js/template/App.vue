@@ -131,7 +131,7 @@
 
                 <v-list-item-group v-model="selectedItem">
                     <v-card class="mb-1" light v-for="(item, index) in items" :key="index" 
-                    dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
+                    dense style="border-radius: 0; border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item v-if="item.subMenu == 0" link active-class="active" :to="item.to">
                             <v-list-item-icon>
                                 <v-icon>{{ item.icon }}</v-icon>
