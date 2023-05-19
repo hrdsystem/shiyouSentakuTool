@@ -260,8 +260,8 @@
                 this.item2Obj2.category2 = 2
                 this.item2Obj2.mainCode = this.item1Code
                 this.item2Dialog = true
-                this.code2 = ""
-                this.itemName2 = ""
+                this.item2Obj2.code2 = ""
+                this.item2Obj2.itemName2 = ""
                 this.action2 = 'ADD NEW'
             },
             //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
@@ -310,7 +310,7 @@
             deleteItem1(item){
                 Swal.fire({
                     title: 'Are you sure you want to delete?',
-                    text: "You wont be able to revert this Item 1!",
+                    text: "You wont be able to revert this Item!",
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -325,9 +325,10 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item 1 is successfully deleted',
+                                title: 'Successfully Deleted!',
                                 timer: 2000,
                             })
+                            console.log(item,'deleteItem1');
                             this.getSetsubiItem1()
                         })
                     }
@@ -336,7 +337,7 @@
             deleteItem2(item){
                 Swal.fire({
                     title: 'Are you sure you want to delete?',
-                    text: "You wont be able to revert this Item!",
+                    text: "You wont be able to revert this Item!!",
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -351,11 +352,10 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item successfully deleted',
+                                title: 'Successfully Deleted!!',
                                 timer: 2000,
                             })
-                            console.log(item,'LAGYAN KO DAW NG TEXT'); 
-
+                            console.log(item,'deleteItem2');
                             this.getSetsubiItem2(item.main_items_code)
                         })
                     }
@@ -381,7 +381,7 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'error',
-                                title: 'Item 1 is already Existing!',
+                                title: 'Already Existing!',
                                 timer: 2000,
                             })
                             this.close1()
@@ -389,7 +389,7 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item 1 Saved',
+                                title: 'Successfully Saved!',
                                 timer: 2000,
                             })
                             this.getSetsubiItem1()
@@ -398,7 +398,7 @@
                     })
                 }else if(this.action == "EDIT"){
                     Swal.fire({
-                        title:'Aare you sure you want to update this Item 1 data?',
+                        title:'Are you sure you want to update this item data?',
                         icon:'question',
                         showCancelButton:true,
                         confirmButtonColor:'primary',
@@ -418,7 +418,7 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'error',
-                                        title: 'Item 1 is already existing',
+                                        title: 'Already Existing!',
                                         timer: 2000,
                                     })
                                     this.close1()
@@ -426,10 +426,11 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'success',
-                                        title: 'Item 1 Updated',
+                                        title: 'Successfully Updated!',
                                         timer: 2000,
                                     })
                                     this.getSetsubiItem1();
+                                    console.log(res.data,'updateItem1');
                                     this.close1()
                                 }
                             })
@@ -457,7 +458,7 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'error',
-                                title: 'Item 2 is already existing',
+                                title: 'Already Existing!!',
                                 timer: 2000,
                             })
                             this.close2()
@@ -465,7 +466,7 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item 2 Saved',
+                                title: 'Successfully Saved!',
                                 timer: 2000,
                             })
                             this.getSetsubiItem2(this.item2Obj2.mainCode)
@@ -474,7 +475,7 @@
                     })
                 }else if(this.action2 == "EDIT"){
                     Swal.fire({
-                        title:'Are you sure you want to update this item 2 data?',
+                        title:'Are you sure you want to update this item data?',
                         icon:'question',
                         showCancelButton:true,
                         confirmButtonColor:'primary',
@@ -491,7 +492,7 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'error',
-                                        title: 'Item 2 is already existing!',
+                                        title: 'Already Existing!!',
                                         timer: 2000,
                                     })
                                     this.close2()
@@ -499,12 +500,11 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'success',
-                                        title: 'Item 2 Updated!',
+                                        title: 'Successfully Updated!!',
                                         timer: 2000,
                                     })
                                     this.getSetsubiItem2(this.item2Obj2.mainCode);
-                                // console.log(this.getSetsubiItem2(this.item2Obj2.mainCode),'LAGYAN KO DAW NG TEXT'); 
-
+                                    console.log(res.data,'updateItem2');
                                     this.close2()
                                 }
                             })

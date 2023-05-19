@@ -53,6 +53,7 @@ Route::post('/masterMaintenance/getData/{id}',[MasterMaintenanceController::clas
     /////////////////////////////////////////////////////////////////
     Route::get('/masterMaintenance/getSetsubiItem1',[MasterMaintenanceController::class,'getSetsubiItem1']);
     Route::post('/masterMaintenance/getSetsubiItem2',[MasterMaintenanceController::class,'getSetsubiItem2']);
+    Route::get('/masterMaintenance/getSubItem2',[MasterMaintenanceController::class,'getSubItem2']);
     Route::get('/masterMaintenance/getProducts',[MasterMaintenanceController::class,'getProducts']);
     Route::get('/masterMaintenance/getSpecifications',[MasterMaintenanceController::class,'getSpecifications']);
     Route::get('/masterMaintenance/colors',[MasterMaintenanceController::class,'colors']);
