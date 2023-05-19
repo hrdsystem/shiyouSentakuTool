@@ -26,7 +26,7 @@
         <v-row>
             <v-col>
                 <!-- = Table = -->
-                <v-data-table  hide-default-header :headers="headers" :items="mastersProductsData" :items-per-page="10" class="elevation-1" style="max-width: 100%;" :search="search">
+                <v-data-table  hide-default-header :headers="headers" :items="mastersProductsData" item-key="id" :items-per-page="10" class="elevation-1" style="max-width: 100%;" :search="search">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -68,14 +68,16 @@
                 </v-card-title>
                 <v-card-text>
                     <br/>
-                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded readonly label="Category Code" v-model="ProductObj.category"></v-text-field> -->
-                    <!-- <v-autocomplete style="margin-bottom: 10px;" hide-details @change="setSubItem2(ProductObj.mainCode)" :items="mainItem" item-text="item_name" item-value="main_code" outlined dense rounded  label="Main Items Code" v-model="ProductObj.mainCode"></v-autocomplete> -->
-                    <!-- <v-autocomplete style="margin-bottom: 10px;" hide-details :items="subItem" item-text="item_name" item-value="code" outlined dense rounded  label="Sub Items" v-model="ProductObj.subCode"></v-autocomplete> -->
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded readonly label="Category Code" v-model="ProductObj.category"></v-text-field>
+                    <v-autocomplete style="margin-bottom: 10px;" hide-details @change="setSubItem2(ProductObj.mainCode)" :items="mainItem" item-text="item_name" item-value="main_code" outlined dense rounded  label="Main Items Code" v-model="ProductObj.mainCode" return-value></v-autocomplete>
+                    <v-autocomplete style="margin-bottom: 10px;" hide-details :items="subItem" item-text="item_name" item-value="code" outlined dense rounded  label="Sub Items Code" v-model="ProductObj.subCode" return-value></v-autocomplete>
                     <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Main Items Code" v-model="ProductObj.mainItem"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Sub Items Code" v-model="ProductObj.subCode"></v-text-field> -->
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Code" v-model="ProductObj.code"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.itemName"></v-text-field>
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.product_name"></v-text-field>
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Code" v-model="ProductObj.maker_code"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Name" v-model="ProductObj.manufacturer_name"></v-text-field>
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Code" v-model="ProductObj.maker_code"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Name" v-model="ProductObj.color_name"></v-text-field>
                     <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Image Path" v-model="ProductObj.imagePath"></v-text-field> -->
                     <!-- <v-file-input dense @change="Preview_image" v-model="ProductObj.imagePath">
@@ -96,10 +98,26 @@
 </template>
 
 <script>
-import axios from 'axios';
+    import Swal from "sweetalert2";
+    import axios from 'axios';
     export default {
         data: () => ({
             headers: [
+                { 
+                    text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
+                },
+                // { 
+                //     text: 'コード', value: 'main_code', align: 'center', sortable: false 
+                // },
+                // { 
+                //     text: '項目名', value: 'item_name', align: 'centered', sortable: false 
+                // },
+                // { 
+                //     text: 'コード', value: 'sub_item_code', align: 'center', sortable: false 
+                // },
+                // { 
+                //     text: 'サブアイテム名', value: 'sub_item_name', align: 'centered', sortable: false 
+                // },
                 { 
                     text: 'コード', value: 'CODE', align: 'center', sortable: false 
                 },
@@ -107,11 +125,17 @@ import axios from 'axios';
                     text: '商品名', value: 'product_name', align: 'left', sortable: false 
                 },
                 { 
-                    text: 'メーカーコード', value: 'manufacturer_name', align: 'center', sortable: false 
+                    text: 'メーカーコード', value: 'maker_code', align: 'center', sortable: false 
                 },
                 { 
-                    text: 'カラーコード', value: 'color_name', align: 'center', sortable: false 
+                    text: 'メーカー名', value: 'manufacturer_name', align: 'center', sortable: false 
                 },
+                // { 
+                //     text: 'カラーコード', value: 'color_code', align: 'center', sortable: false 
+                // },
+                // { 
+                //     text: '色の名前', value: 'color_name', align: 'center', sortable: false 
+                // },
                 { 
                     text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
@@ -157,16 +181,19 @@ import axios from 'axios';
                     method:'get',
                     url:'/api/masterMaintenance/getProducts',
                 }).then((res)=>{
+                    console.log(res.data,'getProducts...');
                     this.mastersProductsData = res.data;
                     axios({
                         method:'get',
                         url:'/api/masterMaintenance/getSetsubiItem1',
                     }).then((r)=>{
+                        console.log(res.data,'getSetsubiItem1...');
                         this.mainItem = r.data;
                         axios({
                             method:'get',
                             url:'/api/masterMaintenance/getSubItem2',
                         }).then((rec)=>{
+                            console.log(res.data,'getSubItem2...');
                             this.subItemTemp = rec.data;
                         })
                     })
@@ -175,11 +202,16 @@ import axios from 'axios';
             },
             //    *   *   *   *   *      ADD     *   *   *   *   *  //
             addProduct() {
-                // console.log(this.ProductObj,'hello world')
+                console.log(this.ProductObj,'hello world')
+                this.ProductObj.category = 2
                 this.ProductDialog = true
+                this.ProductObj.mainCode = ""
+                this.ProductObj.subCode = ""
                 this.ProductObj.code = ""
-                this.ProductObj.itemName = ""
+                this.ProductObj.product_name = ""
+                this.ProductObj.maker_code = ""
                 this.ProductObj.manufacturer_name = ""
+                this.ProductObj.color_code = ""
                 this.ProductObj.color_name = ""
                 this.action = 'ADD NEW'
             },
@@ -199,9 +231,14 @@ import axios from 'axios';
                 if(this.action == "ADD NEW"){
                     data = {
                         action : this.action,
+                        mainCode: this.ProductObj.mainCode,
+                        subCode: this.ProductObj.subCode,
                         CODE: this.ProductObj.code,
                         item_name: this.ProductObj.itemName,
+                        product_name: this.ProductObj.product_name,
+                        maker_code: this.ProductObj.maker_code,
                         manufacturer_name: this.ProductObj.manufacturer_name,
+                        color_code: this.ProductObj.color_code,
                         color_name: this.ProductObj.color_name
                     }
                     axios({
@@ -225,6 +262,7 @@ import axios from 'axios';
                                 timer: 2000,
                             })
                             this.getProducts();
+                            console.log(res.data,'saveProducts');
                             this.closeProduct()
                         }
                     })
@@ -264,6 +302,7 @@ import axios from 'axios';
                     //                     timer: 2000,
                     //                 })
                     //                 this.getProducts();;
+                    //                 console.log(res.data,'updateItem1');
                     //                 this.closeProduct()
                     //             }
                     //         })

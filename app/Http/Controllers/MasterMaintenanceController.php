@@ -105,8 +105,14 @@ class MasterMaintenanceController extends Controller
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT 
-                -- P.id,
+                P.id,
                 P.category_code,
+                P.main_items_code,
+                P.sub_items_code,
+                -- MI.item_name,
+                -- SI.item_name,
+                MI.item_name AS Main_Item,
+                SI.item_name AS Sub_Item,
                 P.CODE,
                 P.product_name,
                 P.maker_code,
@@ -115,10 +121,38 @@ class MasterMaintenanceController extends Controller
                 C.color_name
             FROM shiyou_sentaku_main_test.m_products AS P
                 LEFT JOIN shiyou_sentaku_main_test.m_colors AS C
-                    ON C.color_code = P.color_code
+                    ON P.color_code = C.color_code
                 LEFT JOIN shiyou_sentaku_main_test.m_manufacturers AS M
-                    ON M.code = P.maker_code
-                WHERE P.category_code = 2
+                    ON P.maker_code = M.code 
+                LEFT JOIN shiyou_sentaku_main_test.m_main_items AS MI
+                    ON P.main_items_code = MI.code 
+                LEFT JOIN shiyou_sentaku_main_test.m_sub_items AS SI
+                    ON P.sub_items_code = SI.code 
+            WHERE P.category_code = 2
+                
+            -- SELECT 
+            --     P.id,
+            --     P.category_code,
+            --     P.main_items_code,
+            --     P.sub_items_code,
+            --     MI.item_name AS Main_Item,
+            --     SI.item_name AS Sub_Item,
+            --     P.CODE,
+            --     P.product_name,
+            --     P.maker_code,
+            --     M.manufacturer_name,
+            --     P.color_code
+            -- FROM shiyou_sentaku_main_test.m_products AS P
+            --     LEFT JOIN shiyou_sentaku_main_test.m_main_items AS MI
+            --             ON P.main_items_code = MI.code 
+            --     LEFT JOIN shiyou_sentaku_main_test.m_sub_items AS SI
+            --         ON P.sub_items_code = SI.code 
+            --         AND MI.code = SI.main_items_code
+            --     LEFT JOIN shiyou_sentaku_main_test.m_manufacturers AS M
+            --             ON P.maker_code = M.code 
+            --     -- LEFT JOIN shiyou_sentaku_main_test.m_colors AS C
+            --     --     ON P.color_code = C.color_code
+            -- WHERE P.category_code = 2
             "
         ));
     }
@@ -218,28 +252,6 @@ class MasterMaintenanceController extends Controller
             return 'SAVED';
         }
     }
-    public function saveProducts(Request $request){
-        if($request->action == 'ADD NEW'){
-            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-            ->table('m_main_items')
-            ->where('category_code',$request->category_code)
-            ->where('code',$request->CODE)
-            ->get();
-            if(count($data) > 0){
-                return 'Existing';
-            }else{
-                $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
-                ->table('m_main_items')
-                ->insert([
-                    'category_code' => $request->category_code,
-                    'code' => $request->CODE,
-                    'item_name' => $request->item_name,
-                    'updated_by' => 'Gatz'
-                ]);
-                return 'SAVED';
-            }
-        }
-    }
 
     public function editItems(Request $id){
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
@@ -291,6 +303,29 @@ class MasterMaintenanceController extends Controller
     /////////////////////////////////////////////////////////////////////
     //    *   *   *   *   * FUNTCTIONS FOR PRODUCTS *   *   *   *   *  //
     /////////////////////////////////////////////////////////////////////
+    public function saveProducts(Request $request){
+        return $request; 
+        if($request->action == 'ADD NEW'){
+            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+            ->table('m_main_items')
+            ->where('category_code',$request->category_code)
+            ->where('code',$request->CODE)
+            ->get();
+            if(count($data) > 0){
+                return 'Existing';
+            }else{
+                $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
+                ->table('m_main_items')
+                ->insert([
+                    'category_code' => $request->category_code,
+                    'code' => $request->CODE,
+                    'item_name' => $request->item_name,
+                    'updated_by' => 'Gatz'
+                ]);
+                return 'SAVED';
+            }
+        }
+    }
 
 
 
