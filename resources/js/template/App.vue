@@ -27,6 +27,72 @@
             >
                 <v-list-item-group v-model="selectedItem">
                     <v-card class="mb-1" light v-for="(item, index) in items" :key="index" dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
+                        <v-list-item
+                            link
+                            active-class="active"
+                            :to="item.to"
+                        >
+                            <v-list-item-icon>
+                                <v-icon>{{ item.icon }}</v-icon>
+                            </v-list-item-icon>
+
+                            <v-list-item-content>
+                                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>  
+                    </v-card>
+                </v-list-item-group> -->
+
+                <!-- <v-card class="mb-1" light dense style="border: 1x solid black; background-color: #1976d2;font-size: 12px; cursor: default;">
+                    <v-list-group 
+                        v-for="(category, i) in categories"
+                        :key="i"
+                        v-if="category.subMenu.length > 0" 
+                    >
+                        <template v-slot:activator>
+                            <v-list-item-icon>
+                                <v-icon>{{category.icon}}</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>{{category.text}}</v-list-item-title>
+                        </template>
+                        <v-list-item
+                            v-for="(item, i) in category.subMenu"
+                            :key="i"
+                            :to="'home'"
+                            @click="selectCategory(item)"
+                        >
+                            <v-list-item-title v-text="item.item_name"></v-list-item-title>
+                        </v-list-item>
+                    </v-list-group>
+
+                    <v-list-item link v-for="(category, i) in categories" :key="i+'a'" v-if="category.subMenu.length == 0">
+                        <v-list-item-icon>
+                            <v-icon>{{category.icon}}</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>{{category.text}}</v-list-item-title> 
+                    </v-list-item> -->
+
+                    <!-- <v-list-group>
+                        <template v-slot:activator>
+                            <v-list-item-icon>
+                                <v-icon>mdi-alpha-m-box-outline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-title>マスターメンテナンス</v-list-item-title>
+                        </template>
+                        <v-list-item
+                            v-for="(item, i) in masterCategories"
+                            :key="i"
+                            link
+                            :to="item.to"
+                        >
+                            <v-list-item-title v-text="item.text"></v-list-item-title>
+                        </v-list-item>
+                    </v-list-group>
+                </v-card> -->
+
+                <v-list-item-group v-model="selectedItem">
+                    <v-card class="mb-1" light v-for="(item, index) in items" :key="index" 
+                    dense style="border-radius: 0; border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item v-if="item.subMenu == 0" link active-class="active" :to="item.to">
                             <v-list-item-icon>
                                 <v-icon>{{ item.icon }}</v-icon>

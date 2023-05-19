@@ -95,7 +95,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center s-mid-header">
-                                                    <v-btn @click="removeItem(item.id)" color="red lighten-2"> 削除
+                                                    <v-btn tile @click="removeItem(item.id)" color="red lighten-2"> 削除
                                                         <v-icon>mdi-delete</v-icon>
                                                     </v-btn>
                                                 </td>
@@ -194,6 +194,7 @@
                         width="100"
                         small
                         outlined
+                        tile
                         >メモ</v-btn>
                     </v-card>
                     <v-card v-if="!products[0]">
@@ -316,16 +317,21 @@
                                     <v-btn
                                     class="s-sub-header"
                                     elevation="0"
-                                    outlined>
+                                    outlined
+                                    tile
+                                    >
                                         <v-icon>
                                             mdi-image-frame
                                         </v-icon>プレビュー
                                     </v-btn>
+                                    &nbsp;
                                     <v-btn 
                                     class="s-sub-header"
                                     elevation="0"
                                     outlined 
-                                    @click="addToCart(item)">
+                                    tile
+                                    @click="addToCart(item)"
+                                    >
                                         <v-icon>
                                             mdi-cart
                                         </v-icon>add
@@ -350,59 +356,60 @@
                         width="900"
                         height="700"
                         >
-
-                        <v-card>
-                            <v-col>
-                                <v-row>
-                                    <v-col>
-                                        <v-card-title>
-                                            <div style="display: flex;">
-                                                <h4 class="text-left s-mid-header" style="font-size: 15px;">トイレ</h4>
-                                                <v-icon x-large>mdi-menu-right</v-icon> 
-                                                <h4 class="text-left s-mid-header" style="font-size: 15px;">
-                                                    {{itemSelected.item_name}}
-                                                </h4>
-                                            </div>
-                                            <br>
-                                            <h3 class="text-left s-header-title">{{itemSelected.product_name}}</h3>
-                                        </v-card-title>
-                                    </v-col>
-                                </v-row>
-                                <v-row>
-                                    <v-col>
-                                        <v-card-text style="padding-top: 0;">
-                                            <p class="s-header-title">代金: {{ itemSelected.price }}</p>
-                                            <p class="s-sub-header">{{ itemSelected.description }}</p>
-                                        </v-card-text>
-                                    </v-col>
-                                    <v-col>
-                                        <v-img v-if="itemSelected.image_path != undefined" max-height="400" max-width="400" :src="require(`../../images/toilet/${itemSelected.image_path}`)"></v-img>
-                                        <v-img v-else max-height="250" max-width="250" :src="require(`../../images/No_Image_Available.jpg`)"></v-img>
-                                    </v-col>
-                                </v-row>
-                            </v-col>
-
+                        <v-card class="pr-5 pl-5">
+                            <v-row>
+                                <v-col>
+                                    <v-row>
+                                        <v-col>
+                                            <v-card-text>
+                                                <div style="display: flex; padding-top: 6px;">
+                                                    <h4 class="text-left s-mid-header" style="font-size: 15px;">トイレ</h4>
+                                                    <v-icon>mdi-menu-right</v-icon> 
+                                                    <h4 class="text-left s-mid-header" style="font-size: 15px;">
+                                                        {{itemSelected.item_name}}
+                                                    </h4>
+                                                </div>
+                                                &nbsp;
+                                                <div>
+                                                    <h1 class="text-left s-header-title pt-2" style="font-size: 40px; line-height: 100%;">{{itemSelected.product_name}}</h1>
+                                                </div>
+                                            </v-card-text>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col>
+                                            <v-card-text style="padding-top: 0;">
+                                                <p class="s-header-title">価格: {{ itemSelected.price }}</p>
+                                                <p class="s-sub-header">{{ itemSelected.description }}</p>
+                                            </v-card-text>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                                <v-col>
+                                    <v-card-text class="text-right ml-2">
+                                        <v-btn icon @click="closeSelectedItem()" class="close">
+                                            <v-icon>mdi-close</v-icon>
+                                        </v-btn>
+                                    </v-card-text>
+                                    <v-img v-if="itemSelected.image_path != undefined" max-height="400" max-width="400" :src="require(`../../images/toilet/${itemSelected.image_path}`)"></v-img>
+                                    <v-img v-else max-height="250" max-width="250" :src="require(`../../images/No_Image_Available.jpg`)"></v-img>
+                                    &nbsp;
+                                </v-col>
+                            </v-row>
+                           
                             <v-divider></v-divider>
 
                             <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn 
+                                class="mr-1"
                                 style="width: 100px;" 
                                 outlined
+                                tile
                                 @click="addToCart(itemSelected)">
                                 <v-icon>
                                     mdi-cart
                                 </v-icon>add
-                            </v-btn>
-                            <v-btn
-                                color="primary"
-                                text
-                                @click="closeSelectedItem()"
-                            >
-                            <v-icon>
-                                mdi-close
-                            </v-icon>
-                                close
                             </v-btn>
                             </v-card-actions>
                         </v-card>

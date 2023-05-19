@@ -38,7 +38,6 @@
     background: linear-gradient(#ffffff, #eeeeee);
     /* background-color: #98c4f0; */
 }
-
 .swal2-popup {
     /* font-family: 'Mochiy Pop P One', sans-serif !important; */
     font-family: 'Noto Sans JP', sans-serif !important;
@@ -46,6 +45,12 @@
 }
 .v-btn--outlined{
     border: 1px solid #919191;
+}
+.close {
+    transition: transform .7s ease-in-out;
+}
+.close:hover {
+    transform: rotate(90deg);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
