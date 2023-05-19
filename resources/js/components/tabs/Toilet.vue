@@ -350,17 +350,19 @@
                         width="900"
                         height="700"
                         >
-
                         <v-card>
                             <v-col>
                                 <v-row>
-                                    <v-col style="display: flex;">
+                                    <v-col>
                                         <v-card-title>
-                                            <h3 class="text-left s-mid-header">トイレ</h3>
-                                            <v-icon x-large>mdi-menu-right</v-icon> 
-                                            <h3 class="text-left s-mid-header">{{itemSelected.item_name}}</h3>
-                                            <v-icon x-large>mdi-menu-right</v-icon> 
-                                            &nbsp;
+                                            <div style="display: flex;">
+                                                <h4 class="text-left s-mid-header" style="font-size: 15px;">トイレ</h4>
+                                                <v-icon>mdi-menu-right</v-icon> 
+                                                <h4 class="text-left s-mid-header" style="font-size: 15px;">
+                                                    {{itemSelected.item_name}}
+                                                </h4>
+                                            </div>
+                                            <br>
                                             <h3 class="text-left s-header-title">{{itemSelected.product_name}}</h3>
                                         </v-card-title>
                                     </v-col>
@@ -368,18 +370,14 @@
                                 <v-row>
                                     <v-col>
                                         <v-card-text style="padding-top: 0;">
+                                            <p class="s-header-title">価格: {{ itemSelected.price }}</p>
                                             <p class="s-sub-header">{{ itemSelected.description }}</p>
-                                            
-                                            <p class="s-header-title">代金: {{ itemSelected.price }}</p>
                                         </v-card-text>
                                     </v-col>
                                     <v-col>
                                         <v-img v-if="itemSelected.image_path != undefined" max-height="400" max-width="400" :src="require(`../../images/toilet/${itemSelected.image_path}`)"></v-img>
                                         <v-img v-else max-height="250" max-width="250" :src="require(`../../images/No_Image_Available.jpg`)"></v-img>
                                     </v-col>
-                                </v-row>
-                                <v-row>
-                                    
                                 </v-row>
                             </v-col>
 
