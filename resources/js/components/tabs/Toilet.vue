@@ -354,6 +354,7 @@
                             <v-col>
                                 <v-row>
                                     <v-col>
+                                    <v-col>
                                         <v-card-title>
                                             <div style="display: flex;">
                                                 <h4 class="text-left s-mid-header" style="font-size: 15px;">トイレ</h4>
