@@ -71,13 +71,13 @@
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded readonly label="Category Code" v-model="ProductObj.category"></v-text-field>
                     <v-autocomplete style="margin-bottom: 10px;" hide-details @change="setSubItem2(ProductObj.mainCode)" :items="mainItem" item-text="item_name" item-value="main_code" outlined dense rounded  label="Main Items Code" v-model="ProductObj.mainCode" return-value></v-autocomplete>
                     <v-autocomplete style="margin-bottom: 10px;" hide-details :items="subItem" item-text="item_name" item-value="code" outlined dense rounded  label="Sub Items Code" v-model="ProductObj.subCode" return-value></v-autocomplete>
-                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Main Items Code" v-model="ProductObj.mainItem"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Sub Items Code" v-model="ProductObj.subCode"></v-text-field> -->
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Main Items Code" v-model="ProductObj.mainItem"></v-text-field>
+                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Sub Items Code" v-model="ProductObj.subCode"></v-text-field> -->
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Code" v-model="ProductObj.code"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.product_name"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Code" v-model="ProductObj.maker_code"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Name" v-model="ProductObj.manufacturer_name"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Code" v-model="ProductObj.maker_code"></v-text-field>
+                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Has Color" v-model="ProductObj.has_color"></v-text-field>
                     <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Name" v-model="ProductObj.color_name"></v-text-field>
                     <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Image Path" v-model="ProductObj.imagePath"></v-text-field> -->
                     <!-- <v-file-input dense @change="Preview_image" v-model="ProductObj.imagePath">
@@ -106,36 +106,21 @@
                 { 
                     text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
                 },
-                // { 
-                //     text: 'コード', value: 'main_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: '項目名', value: 'item_name', align: 'centered', sortable: false 
-                // },
-                // { 
-                //     text: 'コード', value: 'sub_item_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: 'サブアイテム名', value: 'sub_item_name', align: 'centered', sortable: false 
-                // },
                 { 
                     text: 'コード', value: 'CODE', align: 'center', sortable: false 
                 },
                 { 
                     text: '商品名', value: 'product_name', align: 'left', sortable: false 
                 },
-                { 
-                    text: 'メーカーコード', value: 'maker_code', align: 'center', sortable: false 
-                },
+                // { 
+                //     text: 'メーカーコード', value: 'maker_code', align: 'center', sortable: false 
+                // },
                 { 
                     text: 'メーカー名', value: 'manufacturer_name', align: 'center', sortable: false 
                 },
-                // { 
-                //     text: 'カラーコード', value: 'color_code', align: 'center', sortable: false 
-                // },
-                // { 
-                //     text: '色の名前', value: 'color_name', align: 'center', sortable: false 
-                // },
+                { 
+                    text: '色がある', value: 'has_color', align: 'center', sortable: false 
+                },
                 { 
                     text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
@@ -205,14 +190,15 @@
                 console.log(this.ProductObj,'hello world')
                 this.ProductObj.category = 2
                 this.ProductDialog = true
-                this.ProductObj.mainCode = ""
-                this.ProductObj.subCode = ""
+                // this.ProductObj.mainCode = ""
+                // this.ProductObj.subCode = ""
                 this.ProductObj.code = ""
                 this.ProductObj.product_name = ""
                 this.ProductObj.maker_code = ""
                 this.ProductObj.manufacturer_name = ""
-                this.ProductObj.color_code = ""
-                this.ProductObj.color_name = ""
+                this.ProductObj.has_color = ""
+                // this.ProductObj.color_code = ""
+                // this.ProductObj.color_name = ""
                 this.action = 'ADD NEW'
             },
             //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
@@ -231,15 +217,16 @@
                 if(this.action == "ADD NEW"){
                     data = {
                         action : this.action,
-                        mainCode: this.ProductObj.mainCode,
-                        subCode: this.ProductObj.subCode,
+                        // mainCode: this.ProductObj.mainCode,
+                        // subCode: this.ProductObj.subCode,
                         CODE: this.ProductObj.code,
-                        item_name: this.ProductObj.itemName,
+                        // item_name: this.ProductObj.itemName,
                         product_name: this.ProductObj.product_name,
                         maker_code: this.ProductObj.maker_code,
                         manufacturer_name: this.ProductObj.manufacturer_name,
-                        color_code: this.ProductObj.color_code,
-                        color_name: this.ProductObj.color_name
+                        has_color: this.ProductObj.has_color,
+                        // color_code: this.ProductObj.color_code,
+                        // color_name: this.ProductObj.color_name
                     }
                     axios({
                         method : 'post',

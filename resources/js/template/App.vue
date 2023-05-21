@@ -25,7 +25,7 @@
                 dense
                 nav
             >
-                <v-list-item-group v-model="selectedItem">
+                <!-- <v-list-item-group v-model="selectedItem">
                     <v-card class="mb-1" light v-for="(item, index) in items" :key="index" dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item
                             link

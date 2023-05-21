@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\imageMaster;
-use App\Models\MasterMaintenance;
+// use App\Models\imageMaster;
+// use App\Models\MasterMaintenance;
 use App\Models\MSubItem;
 use App\Models\MMainItem;
 
@@ -105,12 +105,12 @@ class MasterMaintenanceController extends Controller
         return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT 
-                P.id,
+                -- P.id,
                 P.category_code,
                 P.main_items_code,
                 P.sub_items_code,
-                -- MI.item_name,
-                -- SI.item_name,
+                MI.item_name,
+                SI.item_name,
                 MI.item_name AS Main_Item,
                 SI.item_name AS Sub_Item,
                 P.CODE,
