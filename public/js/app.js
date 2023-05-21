@@ -3626,6 +3626,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cartItemCount: 0,
       dialog: false,
+      dialog2: false,
       itemDialog: false,
       qty: 0,
       sub_items: [],
@@ -3789,6 +3790,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6780,9 +6784,7 @@ var render = function render() {
       elevation: "0"
     }
   }, [_c("h1", {
-    staticStyle: {
-      "font-weight": "800"
-    }
+    staticClass: "s-title"
   }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("v-badge", {
     staticStyle: {
       "margin-top": "10px"
@@ -6901,6 +6903,7 @@ var render = function render() {
             staticClass: "text-center s-mid-header"
           }, [_c("v-btn", {
             attrs: {
+              tile: "",
               color: "red lighten-2"
             },
             on: {
@@ -6943,7 +6946,7 @@ var render = function render() {
     }, [_vm._v(" "), _vm.products[0] ? _c("v-card", {
       staticStyle: {
         display: "flex",
-        "padding-right": "50%"
+        "padding-right": "40%"
       }
     }, [_c("v-list-item", {
       scopedSlots: _vm._u([{
@@ -6979,7 +6982,10 @@ var render = function render() {
               color: "primary"
             }
           })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
-            staticClass: "s-sub-header"
+            staticClass: "s-sub-header",
+            staticStyle: {
+              width: "400px"
+            }
           }, [_vm._v("設計に相談したい")])], 1)];
         }
       }], null, true)
@@ -7030,7 +7036,8 @@ var render = function render() {
       attrs: {
         width: "100",
         small: "",
-        outlined: ""
+        outlined: "",
+        tile: ""
       }
     }, [_vm._v("メモ")])], 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("v-card") : _vm._e(), _vm._v(" "), _vm.products[0] ? _c("div", {
       attrs: {
@@ -7067,7 +7074,7 @@ var render = function render() {
           display: "flex"
         }
       }, [_c("v-list-item-title", {
-        staticClass: "s-title",
+        staticClass: "s-header-title",
         staticStyle: {
           "font-size": "20px"
         }
@@ -7150,13 +7157,15 @@ var render = function render() {
         staticClass: "s-sub-header",
         attrs: {
           elevation: "0",
-          outlined: ""
+          outlined: "",
+          tile: ""
         }
-      }, [_c("v-icon", [_vm._v("\n                                        mdi-image-frame\n                                    ")]), _vm._v("プレビュー\n                                ")], 1), _vm._v(" "), _c("v-btn", {
+      }, [_c("v-icon", [_vm._v("\n                                        mdi-image-frame\n                                    ")]), _vm._v("プレビュー\n                                ")], 1), _vm._v("\n                                 \n                                "), _c("v-btn", {
         staticClass: "s-sub-header",
         attrs: {
           elevation: "0",
-          outlined: ""
+          outlined: "",
+          tile: ""
         },
         on: {
           click: function click($event) {
@@ -7180,33 +7189,50 @@ var render = function render() {
       },
       expression: "itemDialog"
     }
-  }, [_c("v-card", [_c("v-col", [_c("v-row", [_c("v-col", {
+  }, [_c("v-card", {
+    staticClass: "pr-5 pl-5"
+  }, [_c("v-row", [_c("v-col", [_c("v-row", [_c("v-col", [_c("v-card-text", [_c("div", {
     staticStyle: {
-      display: "flex"
+      display: "flex",
+      "padding-top": "6px"
     }
-  }, [_c("v-card-title", [_c("h3", {
-    staticClass: "text-left s-mid-header"
-  }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-icon", {
-    attrs: {
-      "x-large": ""
+  }, [_c("h4", {
+    staticClass: "text-left s-mid-header",
+    staticStyle: {
+      "font-size": "15px"
     }
-  }, [_vm._v("mdi-menu-right")]), _vm._v(" "), _c("h3", {
-    staticClass: "text-left s-mid-header"
-  }, [_vm._v(_vm._s(_vm.itemSelected.item_name))]), _vm._v(" "), _c("v-icon", {
-    attrs: {
-      "x-large": ""
+  }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-icon", [_vm._v("mdi-menu-right")]), _vm._v(" "), _c("h4", {
+    staticClass: "text-left s-mid-header",
+    staticStyle: {
+      "font-size": "15px"
     }
-  }, [_vm._v("mdi-menu-right")]), _vm._v(" \n                                         \n                                        "), _c("h3", {
-    staticClass: "text-left s-header-title"
-  }, [_vm._v(_vm._s(_vm.itemSelected.product_name))])], 1)], 1)], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", {
+  }, [_vm._v("\n                                                        " + _vm._s(_vm.itemSelected.item_name) + "\n                                                    ")])], 1), _vm._v("\n                                                 \n                                                "), _c("div", [_c("h1", {
+    staticClass: "text-left s-header-title pt-2",
+    staticStyle: {
+      "font-size": "40px",
+      "line-height": "100%"
+    }
+  }, [_vm._v(_vm._s(_vm.itemSelected.product_name))])])])], 1)], 1), _vm._v(" "), _c("v-row", [_c("v-col", [_c("v-card-text", {
     staticStyle: {
       "padding-top": "0"
     }
   }, [_c("p", {
-    staticClass: "s-sub-header"
-  }, [_vm._v(_vm._s(_vm.itemSelected.description))]), _vm._v(" "), _c("p", {
     staticClass: "s-header-title"
-  }, [_vm._v("代金: " + _vm._s(_vm.itemSelected.price))])])], 1), _vm._v(" "), _c("v-col", [_vm.itemSelected.image_path != undefined ? _c("v-img", {
+  }, [_vm._v("価格: " + _vm._s(_vm.itemSelected.price))]), _vm._v(" "), _c("p", {
+    staticClass: "s-sub-header"
+  }, [_vm._v(_vm._s(_vm.itemSelected.description))])])], 1)], 1)], 1), _vm._v(" "), _c("v-col", [_c("v-card-text", {
+    staticClass: "text-right ml-2"
+  }, [_c("v-btn", {
+    staticClass: "close",
+    attrs: {
+      icon: ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.closeSelectedItem();
+      }
+    }
+  }, [_c("v-icon", [_vm._v("mdi-close")])], 1)], 1), _vm._v(" "), _vm.itemSelected.image_path != undefined ? _c("v-img", {
     attrs: {
       "max-height": "400",
       "max-width": "400",
@@ -7218,29 +7244,68 @@ var render = function render() {
       "max-width": "250",
       src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg")
     }
-  })], 1)], 1), _vm._v(" "), _c("v-row")], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+  }), _vm._v("\n                                     \n                                    "), _c("div", {
+    staticStyle: {
+      display: "flex",
+      "justify-content": "start"
+    }
+  }, [_c("v-img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
+      "max-height": "120",
+      "max-width": "120"
+    }
+  })], 1), _vm._v("\n                                     \n                                    "), _c("div", {
+    staticStyle: {
+      display: "flex",
+      "justify-content": "start"
+    }
+  }, [_c("v-img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
+      "max-height": "120",
+      "max-width": "120"
+    }
+  }), _vm._v(" "), _c("v-img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
+      "max-height": "120",
+      "max-width": "120"
+    }
+  }), _vm._v(" "), _c("v-img", {
+    attrs: {
+      src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
+      "max-height": "120",
+      "max-width": "120"
+    }
+  })], 1), _vm._v("\n                                     \n                                ")], 1)], 1), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-card-actions", [_c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    staticClass: "mr-1",
     staticStyle: {
       width: "100px"
     },
     attrs: {
-      outlined: ""
+      outlined: "",
+      tile: ""
     },
     on: {
       click: function click($event) {
         return _vm.addToCart(_vm.itemSelected);
       }
     }
-  }, [_c("v-icon", [_vm._v("\n                                mdi-cart\n                            ")]), _vm._v("add\n                        ")], 1), _vm._v(" "), _c("v-btn", {
+  }, [_c("v-icon", [_vm._v("\n                                    mdi-cart\n                                ")]), _vm._v("add\n                            ")], 1)], 1)], 1)], 1), _vm._v(" "), [_c("div", {
+    staticClass: "text-center"
+  }, [_c("v-dialog", {
     attrs: {
-      color: "primary",
-      text: ""
+      width: "500"
     },
-    on: {
-      click: function click($event) {
-        return _vm.closeSelectedItem();
-      }
+    model: {
+      value: _vm.dialog2,
+      callback: function callback($$v) {
+        _vm.dialog2 = $$v;
+      },
+      expression: "dialog2"
     }
-  }, [_c("v-icon", [_vm._v("\n                            mdi-close\n                        ")]), _vm._v("\n                            close\n                        ")], 1)], 1)], 1)], 1)], 1)]], 2)]], 2);
+  }, [_c("v-text-field"), _vm._v(" "), _c("v-card")], 1)], 1)]], 2)]], 2)]], 2);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -7287,7 +7352,11 @@ var render = function render() {
       "font-weight": "700",
       color: "white"
     }
-  }, [_vm._v("仕様選択ツール")]), _vm._v(" "), _c("p", {
+  }, [_vm._v("仕様選択ツール"), _c("b", {
+    staticStyle: {
+      color: "#1976d2"
+    }
+  })]), _vm._v(" "), _c("p", {
     staticStyle: {
       "font-size": "25px",
       color: "white"
@@ -7323,6 +7392,7 @@ var render = function render() {
       key: index,
       staticClass: "mb-1",
       staticStyle: {
+        "border-radius": "0",
         border: "1px #0080ff solid",
         background: "linear-gradient(#ffffff, #eeeeee)",
         "font-size": "12px",

@@ -28249,6 +28249,10 @@
     font-family: 'Klee One';
     font-weight: 600;
 }
+.s-title{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+}
 .s-header-title{
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 800;
@@ -28265,15 +28269,11 @@
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 300;
 }
-.s-title{
-    font-family: 'Mochiy Pop P One', sans-serif;
-}
 .v-list-group__header{
     border-bottom : 1px solid #1f1f1f;
     background: linear-gradient(#ffffff, #eeeeee);
     /* background-color: #98c4f0; */
 }
-
 .swal2-popup {
     /* font-family: 'Mochiy Pop P One', sans-serif !important; */
     font-family: 'Noto Sans JP', sans-serif !important;
@@ -28281,6 +28281,12 @@
 }
 .v-btn--outlined{
     border: 1px solid #919191;
+}
+.close {
+    transition: transform .7s ease-in-out;
+}
+.close:hover {
+    transform: rotate(90deg);
 }
 /* font-family: 'Klee One', cursive; */
 /* font-family: 'Noto Sans JP', sans-serif; */
