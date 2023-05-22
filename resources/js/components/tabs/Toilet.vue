@@ -17,7 +17,9 @@
                 </v-btn> -->
                 <template>
                     <div class="text-right">
+                        
                         <v-dialog
+                            persistent
                             v-model="dialog"
                             
                         >
@@ -36,8 +38,16 @@
                                     </v-btn>
                                 </v-badge>
                             </template>
-
+                            
                             <v-card class="d-none d-sm-block">
+                                <div style="display: flex; padding-left: 25px; padding-right: 25px; padding-top: 25px;">
+                                    <h2 class="text-left s-header">あなたのカート ( {{ cartItems.length }} )</h2>
+                                    <v-spacer></v-spacer>
+                                    <v-btn icon @click="dialog = false;" class="close" style="margin-top: 5px; margin-right: 8px;">
+                                        <v-icon large>mdi-close</v-icon>
+                                    </v-btn>
+                                </div>
+
                                 <v-simple-table style="padding: 25px;">
                                     <template v-slot:default>
                                         <thead>
@@ -105,49 +115,63 @@
                             </v-card>
 
                             <v-card class="d-block d-sm-none">
+                                <div style="display: flex;">
+                                    <h2 class="text-left s-header" style="padding-left: 15px; padding-top: 5px; padding-bottom: 5px;">あなたのカート ( {{ cartItems.length }} )</h2>
+                                    <v-divider></v-divider>
+                                    <v-btn icon @click="dialog = false;" class="close" style="margin-top: 5px; margin-right: 8px;">
+                                        <v-icon large>mdi-close</v-icon>
+                                    </v-btn>
+                                </div>
                                 
-                                <v-simple-table style="padding: 10px;">
-                                    <template v-slot:default>
-                                        <thead>
-                                            <tr>
-                                               
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important;" height="200">
-                                                <td style="padding: 0 8px">
-                                                    <v-img max-height="140" max-width="140" :src="require(`../../images/toilet/${item.image}`)"></v-img>
-                                                </td>
-                                                <td style="padding: 0 8px">
-                                                    <div>
-                                                        <p class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.type }}</p>
-                                                        <p class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.item }}</p>
-                                                        <p class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.product }}</p>
-                                                        <td class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.price }}</td>
-                                                    </div>
-                                                </td>
-                                                    
-                                                <!-- <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td> -->
+                                <v-card>
+                                    <v-simple-table style="padding: 10px;">
+                                        <template v-slot:default>
+                                            <thead>
+                                                <tr>
                                                 
-                                                <!-- <td class="text-center" style="width: 300px;">
-                                                    <div class="s-mid-header" v-if="item.description.length > 70" style="overflow-y: scroll !important; height:90px !important; margin-top: 5px; margin-bottom: 5px;">
-                                                        {{ item.description }}
-                                                    </div>
-                                                    <div class="s-mid-header" v-if="item.description.length < 70">
-                                                        {{ item.description }}
-                                                    </div>
-                                                </td> -->
-                                                <td class="text-center s-mid-header" style="padding: 0 8px">
-                                                    <v-btn tile @click="removeItem(item.id)" color="red lighten-2"> 削除
-                                                        <v-icon>mdi-delete</v-icon>
-                                                    </v-btn>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </template>
-                                </v-simple-table>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important;" height="150">
+                                                    <td style="padding: 0 8px">
+                                                        <v-img max-height="140" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
+                                                    </td>
+                                                    <td style="padding: 0 8px">
+                                                        <div>
+                                                            <p class="text-left s-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.product }}</p>
+                                                            <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.item }}</p>
+                                                            <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.type }}</p>
+                                                            <td class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.price }}</td>
+                                                        </div>
+                                                    </td>
+                                                    <!-- <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td> -->
+                                                    
+                                                    <!-- <td class="text-center" style="width: 300px;">
+                                                        <div class="s-mid-header" v-if="item.description.length > 70" style="overflow-y: scroll !important; height:90px !important; margin-top: 5px; margin-bottom: 5px;">
+                                                            {{ item.description }}
+                                                        </div>
+                                                        <div class="s-mid-header" v-if="item.description.length < 70">
+                                                            {{ item.description }}
+                                                        </div>
+                                                    </td> -->
+                                                    <td class="text-center s-mid-header" style="padding: 0 8px">
+                                                        <v-btn tile @click="removeItem(item.id)" color="red lighten-2">
+                                                            <v-icon>mdi-delete</v-icon>
+                                                        </v-btn>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </template>
+                                    </v-simple-table>
+                                    <!-- <v-btn @click="CartItems()" block color="#3fd168" class="s-header">
+                                        <v-icon>mdi-cart-arrow-right</v-icon>
+                                        &nbsp;
+                                        チェックアウト</v-btn>
+                                    &nbsp; -->
+                                </v-card>
                             </v-card>
+                            
                         </v-dialog>
                     </div>
                 </template>
@@ -644,6 +668,9 @@ export default{
     },
 
     methods: {
+        CartItems(){
+            console.log(this.cartItems)
+        },
 
         getSubItems(){
             axios({
