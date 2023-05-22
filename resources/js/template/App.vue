@@ -4,9 +4,9 @@
             app 
             clipped-left
             elevation="0" 
-            color="primary" 
+            color="primary"
         >
-            <!-- <v-app-bar-nav-icon color="black" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
+            <v-app-bar-nav-icon color="black" class="d-flex d-sm d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
             <!-- <v-toolbar-title 
                 style = "text-align: left !important; display: flex; padding-top: 15px;"
                 >
@@ -27,7 +27,7 @@
 
 
             <v-toolbar-title 
-                style = "text-align: left !important; display: flex; padding-top: 15px;"
+                style = "text-align: left !important; display: flex; padding-top: 15px; padding-left: 0 !important;"
                 >
                 <h3 style="font-family: 'Noto Sans JP', sans-serif;  
                 font-size: 25px; 
@@ -41,7 +41,6 @@
 
         <!-- expand-on-hover -->
         <v-navigation-drawer
-            permanent
             v-model="drawer"
             app
             clipped
@@ -130,6 +129,7 @@
                 </v-card> -->
 
                 <v-list-item-group v-model="selectedItem">
+                    <h2 class="s-header text-center" style="margin-bottom: 5px;">カテゴリ</h2>
                     <v-card class="mb-1" light v-for="(item, index) in items" :key="index" 
                     dense style="border-radius: 0; border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item v-if="item.subMenu == 0" link active-class="active" :to="item.to">
@@ -157,8 +157,6 @@
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
-        
-        
 
         <v-main class="ma-2">
             <router-view></router-view>
@@ -172,7 +170,7 @@
     export default {
         data: () => ({
             selectedItem:1,
-            drawer: null,
+            drawer: true,
             items: [
 
                 {subMenu:[], icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},

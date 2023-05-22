@@ -19,8 +19,7 @@
                     <div class="text-right">
                         <v-dialog
                             v-model="dialog"
-                            width="1280"
-                            heigth="700"
+                            
                         >
                             <template v-slot:activator="{ on, attrs } ">
                                 <v-badge
@@ -38,7 +37,7 @@
                                 </v-badge>
                             </template>
 
-                            <v-card>
+                            <v-card class="d-none d-sm-block">
                                 <v-simple-table style="padding: 25px;">
                                     <template v-slot:default>
                                         <thead>
@@ -104,6 +103,51 @@
                                     </template>
                                 </v-simple-table>
                             </v-card>
+
+                            <v-card class="d-block d-sm-none">
+                                
+                                <v-simple-table style="padding: 10px;">
+                                    <template v-slot:default>
+                                        <thead>
+                                            <tr>
+                                               
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important;" height="200">
+                                                <td style="padding: 0 8px">
+                                                    <v-img max-height="140" max-width="140" :src="require(`../../images/toilet/${item.image}`)"></v-img>
+                                                </td>
+                                                <td style="padding: 0 8px">
+                                                    <div>
+                                                        <p class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.type }}</p>
+                                                        <p class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.item }}</p>
+                                                        <p class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.product }}</p>
+                                                        <td class="text-left s-mid-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.price }}</td>
+                                                    </div>
+                                                </td>
+                                                    
+                                                <!-- <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td> -->
+                                                
+                                                <!-- <td class="text-center" style="width: 300px;">
+                                                    <div class="s-mid-header" v-if="item.description.length > 70" style="overflow-y: scroll !important; height:90px !important; margin-top: 5px; margin-bottom: 5px;">
+                                                        {{ item.description }}
+                                                    </div>
+                                                    <div class="s-mid-header" v-if="item.description.length < 70">
+                                                        {{ item.description }}
+                                                    </div>
+                                                </td> -->
+                                                <td class="text-center s-mid-header" style="padding: 0 8px">
+                                                    <v-btn tile @click="removeItem(item.id)" color="red lighten-2"> 削除
+                                                        <v-icon>mdi-delete</v-icon>
+                                                    </v-btn>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </template>
+                                </v-simple-table>
+                            </v-card>
                         </v-dialog>
                     </div>
                 </template>
@@ -130,8 +174,8 @@
                         </v-list-item-title>
                     </template>
 
-                    <!-- <v-card v-show="item.products[0] != undefined" style="display: flex; padding-right: 50%;">-->
-                    <v-card v-if="products[0]" style="display: flex; padding-right: 40%;">
+                    <!-- start of show SM and Above -->
+                    <v-card v-if="products[0]" style="display: flex; padding-right: 40%;" class="d-none d-sm-none d-md-flex">
                         <v-list-item>
                             <template v-slot:default="{ active }">
                                 <v-list-item-action style="display: block:  !important;">
@@ -197,151 +241,272 @@
                         tile
                         >メモ</v-btn>
                     </v-card>
-                    <v-card v-if="!products[0]">
+                    <v-card v-if="!products[0]" class="d-none d-sm-none d-md-flex">
                     </v-card>
-                    
+
+                    <!-- end of show SM and Above -->
+                    <!-- start of show XS only -->
+
+                    <v-card v-if="products[0]" class="d-block d-sm-block d-md-none" height="250">
+                        <v-list-item>
+                            <template v-slot:default="{ active }">
+                                <v-list-item-action>
+                                    <v-checkbox
+                                        :input-value="active"
+                                        color="primary"
+                                    ></v-checkbox>
+                                </v-list-item-action>
+
+                                <v-list-item-content>
+                                <v-list-item-title class="s-sub-header">要</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                        </v-list-item>
+                        <v-list-item>
+                            <template v-slot:default="{ active }">
+                                <v-list-item-action>
+                                    <v-checkbox
+                                        :input-value="active"
+                                        color="primary"
+                                    ></v-checkbox>
+                                </v-list-item-action>
+
+                                <v-list-item-content>
+                                <v-list-item-title class="s-sub-header" style="width: 400px;">設計に相談したい</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                        </v-list-item>
+                        <v-list-item>
+                            <template v-slot:default="{ active }">
+                                <v-list-item-action>
+                                    <v-checkbox
+                                        :input-value="active"
+                                        color="primary"
+                                    ></v-checkbox>
+                                </v-list-item-action>
+
+                                <v-list-item-content>
+                                <v-list-item-title class="s-sub-header">不要</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                        </v-list-item>
+                        <v-list-item>
+                            <template v-slot:default="{ active }">
+                                <v-list-item-action>
+                                    <v-checkbox
+                                        :input-value="active"
+                                        color="primary"
+                                    ></v-checkbox>
+                                </v-list-item-action>
+
+                                <v-list-item-content>
+                                <v-list-item-title class="s-sub-header">追加</v-list-item-title>
+                                </v-list-item-content>
+                            </template>
+                        </v-list-item>
+                        <v-btn
+                        style="margin-top: 10px; margin-left: 20px; background-color: whitesmoke;"
+                        class="s-title"
+                        width="100"
+                        small
+                        outlined
+                        tile
+                        >メモ</v-btn>
+                    </v-card>
+                    <v-card v-if="!products[0]" class="d-block d-sm-block d-lg-none">
+                    </v-card>
+                    <!-- end of show XS only -->
 
                         <div id="s-d"
                         v-if="products[0]"
                         >
-                        <!-- <div id="s-d"> -->
-                        <v-card v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px; position: relative !important; " width="520" height="350" elevation="0">
-                            <v-card @click="selectItem(item)" width="520" height="348" elevation="0">
-                                <!-- {{ item }} -->
-                                <v-col>
-                                    <v-row>
-                                        <v-col style="display: flex;">
-                                            <v-list-item-title class="s-header-title" style="font-size: 20px;">{{ item.product_name }}</v-list-item-title>
-                                            <v-spacer/>
-                                            <template>
-                                                <div class="text-left">
-                                                    <v-menu
-                                                    :close-on-content-click="false"
-                                                    :nudge-width="50"
-                                                    offset-y
-                                                    location="start"
-                                                    style="background-color: white;"
-                                                    >
-                                                    <template v-slot:activator="{ on, attrs }">
-                                                        <v-btn
-                                                        v-bind="attrs"
-                                                        v-on="on"
-                                                        icon
+                            <v-card v-for="(item, i) in products" :key="i" style="border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px; position: relative !important; " width="520" height="400" elevation="0">
+                                <v-card @click="selectItem(item)" width="520" height="398" elevation="0">
+                                    <!-- {{ item }} -->
+                                    <v-col>
+                                        <v-row>
+                                            <v-col style="display: flex;">
+                                                <v-list-item-title class="s-header-title" style="font-size: 20px;">{{ item.product_name }}</v-list-item-title>
+                                                <v-spacer/>
+                                                <template>
+                                                    <div class="text-left">
+                                                        <v-menu
+                                                        :close-on-content-click="false"
+                                                        :nudge-width="50"
+                                                        offset-y
+                                                        location="start"
+                                                        style="background-color: white;"
                                                         >
-                                                        <v-icon color="#FF8F00">mdi-crown</v-icon>
-                                                        </v-btn>
-                                                    </template>
-                                                        <v-card style="background-color: white;" elevation="0">
-                                                            <p class="s-header">"I want to put a mark of popularity.
-                                                            <br> Gold, silver, copper, etc. in the crown mark."</p>
-                                                        </v-card>
-                                                    </v-menu>
-                                                </div>
-                                            </template>
-                                        </v-col>
-                                    </v-row>
-                                    <v-row>
-                                        <v-col style="display: flex;">
-                                            <!-- {{ item.image_path }} -->
-                                            <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
-                                            <!-- <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img> -->
-                                            <!-- <v-img v-else="img.image_path == undefined" max-height="250" max-width="250" :src="require('../images/No_Image_Available.jpg')"></v-img> -->
-                                        </v-col>
-                                        <v-col>
-                                            <template>
-                                                <div class="text-left">
-                                                    <!-- <v-menu
-                                                    :close-on-content-click="false"
-                                                    offset-x
+                                                        <template v-slot:activator="{ on, attrs }">
+                                                            <v-btn
+                                                            v-bind="attrs"
+                                                            v-on="on"
+                                                            icon
+                                                            >
+                                                            <v-icon color="#FF8F00">mdi-crown</v-icon>
+                                                            </v-btn>
+                                                        </template>
+                                                            <v-card style="background-color: white;" elevation="0">
+                                                                <p class="s-header">"I want to put a mark of popularity.
+                                                                <br> Gold, silver, copper, etc. in the crown mark."</p>
+                                                            </v-card>
+                                                        </v-menu>
+                                                    </div>
+                                                </template>
+                                            </v-col>
+                                        </v-row>
+                                        <v-row>
+                                            <h5 class="s-header d-flex d-sm-none" style="margin-left: 12px;">価格: 
+                                                    <!-- <v-icon style="font-size: 15px; ">
+                                                        mdi-currency-jpy
+                                                    </v-icon> -->
+                                                    {{ item.price ? item.price : 'No Indicated Value'}}
+                                                </h5>
+                                            <v-col style="display: flex;">
+                                                <!-- {{ item.image_path }} -->
+                                                <v-img class="d-flex d-sm-none" max-height="230" :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
+                                                <v-img class="d-none d-sm-flex" max-height="250" max-width="250"  :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
+                                                <!-- <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img> -->
+                                                <!-- <v-img v-else="img.image_path == undefined" max-height="250" max-width="250" :src="require('../images/No_Image_Available.jpg')"></v-img> -->
+                                            </v-col>
+                                            <v-col>
+                                                <template>
+                                                    <div class="text-left">
+                                                        <!-- <v-menu
+                                                        :close-on-content-click="false"
+                                                        offset-x
+                                                        >
+                                                        <template v-slot:activator="{ on, attrs }">
+                                                            <v-btn
+                                                            small
+                                                            color="indigo"
+                                                            dark
+                                                            v-bind="attrs"
+                                                            v-on="on"
+                                                            > 
+                                                            採用
+                                                            </v-btn>
+                                                        </template>
+                                                            <div v-if="item.color_content[0] != undefined" id="s-s">
+                                                                <v-card v-for="(item, a) in item.color_content" :key="a" style="text-align:center; cursor:pointer; border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="100" height="100" elevation="0">
+                                                                    <v-img style="width: 100%; height: 100%; object-fit: cover;" :src="item.color_img" :alt="item.name" id="s-s-h"/>
+                                                                </v-card>
+                                                            </div>   
+                                                            <div v-if="item.color_content[0] == undefined" id="s-s">
+                                                                <v-card style="text-align:center; cursor:pointer; border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="100" height="100" elevation="0">
+                                                                    <v-img style="width: 100%; height: 100%; object-fit: cover;" src="../../images/default.jpg" alt="default image" id="s-s-h"/>
+                                                                </v-card>
+                                                            </div>   
+                                                        </v-menu> -->
+                                                    </div>
+                                                </template>
+                                                
+                                                &nbsp;
+
+                                                <h5 class="s-header d-none d-sm-flex">価格: 
+                                                    <v-icon style="font-size: 15px; margin-bottom: 3px;">
+                                                        mdi-currency-jpy
+                                                    </v-icon>
+                                                    {{ item.price ? item.price : 'No Indicated Value'}}
+                                                </h5>
+
+                                                &nbsp;
+
+                                                <div class="d-none d-sm-flex" style="padding: 0 !important; margin: 0 !important;">
+                                                    <p class="s-sub-header "
+                                                    style="display: -webkit-box;
+                                                    max-width: 200px;
+                                                    -webkit-line-clamp: 2;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;"
                                                     >
-                                                    <template v-slot:activator="{ on, attrs }">
-                                                        <v-btn
-                                                        small
-                                                        color="indigo"
-                                                        dark
-                                                        v-bind="attrs"
-                                                        v-on="on"
-                                                        > 
-                                                        採用
-                                                        </v-btn>
-                                                    </template>
-                                                        <div v-if="item.color_content[0] != undefined" id="s-s">
-                                                            <v-card v-for="(item, a) in item.color_content" :key="a" style="text-align:center; cursor:pointer; border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="100" height="100" elevation="0">
-                                                                <v-img style="width: 100%; height: 100%; object-fit: cover;" :src="item.color_img" :alt="item.name" id="s-s-h"/>
-                                                            </v-card>
-                                                        </div>   
-                                                        <div v-if="item.color_content[0] == undefined" id="s-s">
-                                                            <v-card style="text-align:center; cursor:pointer; border: 1px solid #ddd; flex-wrap: wrap; justify-content: center; gap: 10px;" width="100" height="100" elevation="0">
-                                                                <v-img style="width: 100%; height: 100%; object-fit: cover;" src="../../images/default.jpg" alt="default image" id="s-s-h"/>
-                                                            </v-card>
-                                                        </div>   
-                                                    </v-menu> -->
+                                                        {{ item.description ? item.description : 'No Indicated Description' }}  
+                                                    </p>
                                                 </div>
-                                            </template>
-                                            
-                                            &nbsp;
 
-                                            <h5 class="s-header">価格: 
-                                                <v-icon style="font-size: 15px; margin-bottom: 3px;">
-                                                    mdi-currency-jpy
-                                                </v-icon>
-                                                {{ item.price ? item.price : 'No Indicated Value'}}
-                                            </h5>
+                                            </v-col>
+                                        </v-row>
+                                    </v-col>
+                                </v-card>
 
-                                            &nbsp;
+                                <!-- start of show SM and Above -->
 
-                                            <p class="s-sub-header"
-                                            style="display: -webkit-box;
-                                            max-width: 200px;
-                                            -webkit-line-clamp: 2;
-                                            -webkit-box-orient: vertical;
-                                            overflow: hidden;"
-                                            >
-                                                {{ item.description ? item.description : 'No Indicated Description' }}  
-                                            </p>
-                                        </v-col>
-                                    </v-row>
-                                </v-col>
-                            </v-card>
-                            <div style="position: absolute !important; top: 60%; left: 53%;">
+                                <div class="d-none d-sm-flex" style="position: absolute !important; top: 60%; left: 53%;">
                                 
-                                    <!-- <v-text-field 
-                                    v-model="item.qty"
-                                    type="number" 
-                                    min="1"
-                                    max="8"
-                                    >
-                                    </v-text-field> -->
-                                    <!-- {{ item.qty }} -->
-                                <div style="display: flex;">
-                                    <v-btn
-                                    class="s-sub-header"
-                                    elevation="0"
-                                    outlined
-                                    tile
-                                    >
-                                        <v-icon>
-                                            mdi-image-frame
-                                        </v-icon>プレビュー
-                                    </v-btn>
-                                    &nbsp;
-                                    <v-btn 
-                                    class="s-sub-header"
-                                    elevation="0"
-                                    outlined 
-                                    tile
-                                    @click="addToCart(item)"
-                                    >
-                                        <v-icon>
-                                            mdi-cart
-                                        </v-icon>add
-                                    </v-btn>
+                                        <!-- <v-text-field 
+                                        v-model="item.qty"
+                                        type="number" 
+                                        min="1"
+                                        max="8"
+                                        >
+                                        </v-text-field> -->
+                                        <!-- {{ item.qty }} -->
+                                    <div style="display: block;">
+                                        <v-btn
+                                        class="s-sub-header"
+                                        elevation="0"
+                                        outlined
+                                        tile
+                                        >
+                                            <v-icon>
+                                                mdi-image-frame
+                                            </v-icon>プレビュー
+                                        </v-btn>
+                                        &nbsp;
+                                        <v-btn 
+                                        class="s-sub-header"
+                                        elevation="0"
+                                        outlined 
+                                        tile
+                                        @click="addToCart(item)"
+                                        >
+                                            <v-icon>
+                                                mdi-cart
+                                            </v-icon>add
+                                        </v-btn>
+                                    </div>
                                 </div>
+
+                                <!-- end of show SM and Above -->
+                                <!-- start of show XS only -->
+
+                                <div class="d-flex d-sm-none" style="margin-left: 15px; position: absolute !important; top: 85%"> 
                                 
-                            </div>
-                            
-                        </v-card >    
-                            
+                                        <!-- <v-text-field 
+                                        v-model="item.qty"
+                                        type="number" 
+                                        min="1"
+                                        max="8"
+                                        >
+                                        </v-text-field> -->
+                                        <!-- {{ item.qty }} -->
+                                    <div style="display: block;">
+                                        <v-btn
+                                        class="s-sub-header"
+                                        elevation="0"
+                                        outlined
+                                        tile
+                                        >
+                                            <v-icon>
+                                                mdi-image-frame
+                                            </v-icon>プレビュー
+                                        </v-btn>
+                                        &nbsp;
+                                        <v-btn 
+                                        class="s-sub-header"
+                                        elevation="0"
+                                        outlined 
+                                        tile
+                                        @click="addToCart(item)"
+                                        >
+                                            <v-icon>
+                                                mdi-cart
+                                            </v-icon>add
+                                        </v-btn>
+                                    </div>
+                                </div>
+                                <!-- end of show XS only -->
+                            </v-card >    
                         </div>
                         <div v-if="!products[0]">
                             <p>no items available as of the moment</p>
