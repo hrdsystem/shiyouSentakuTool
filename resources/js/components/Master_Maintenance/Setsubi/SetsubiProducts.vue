@@ -1,42 +1,57 @@
 <template>
     <v-container fluid v-resize="onResize">
         <v-row no-gutter>
-            <v-col >
+            <v-col>
                 <v-btn rounded small outlined class="text-none mt-2" color="grey" to="/setsubi_master">
                     <v-icon>mdi-arrow-left-bold</v-icon>
                     <span>Back</span>
                 </v-btn>
             </v-col>
             <v-col>
-                <v-text-field hide-details outlined dense v-model="search" placeholder="Search . . ." append-icon="mdi-magnify" color="gray">
+                <v-text-field hide-details outlined dense v-model="search" placeholder="Search . . ."
+                    append-icon="mdi-magnify" color="gray">
                 </v-text-field>
             </v-col>
             <v-col>
                 <v-tooltip left color="warning">
                     <template v-slot:activator="{ on, attrs }">
-                        <v-btn fab  style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addProduct('ADD')">
+                        <v-btn fab style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2"
+                            color="primary" v-bind="attrs" v-on="on" @click="addProduct('ADD')">
                             <v-icon dark>mdi-plus</v-icon>
                         </v-btn>
                     </template>
-                        <span>Add New</span>
+                    <span>Add New</span>
                 </v-tooltip>
             </v-col>
         </v-row>
-        
+
         <v-row>
             <v-col>
                 <!-- = Table = -->
-                <v-data-table  hide-default-header :headers="headers" :items="mastersProductsData" item-key="id" :items-per-page="10" class="elevation-1" style="max-width: 100%;" :search="search">
+                <v-data-table hide-default-header :headers="headers" :items="productItems" :items-per-page="10"
+                    class="elevation-1" style="max-width: 100%;" :search="search">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
                                 <th style="background-color: #4c7cc8; color: white; font-weight: normal"
-                                v-for="(h, i) in headers" :key="i + 'a'" >
-                                    <span class="header-text-color">{{h.text}}</span>
+                                    v-for="(h, i) in headers" :key="i + 'a'">
+                                    <span class="header-text-color">{{ h.text }}</span>
                                 </th>
                             </tr>
                         </thead>
                     </template>
+                    <template v-slot:item.has_color="{ item }">
+                        <v-checkbox hide-details dense :input-value="item.has_color == 0 ? false : true" readonly
+                            v-model="item.has_color">
+                        </v-checkbox>
+                    </template>
+
+                    <template v-slot:item.color_list="{ item }">
+                        <v-btn hide-details dense :disabled="item.has_color == 0 ? true : false" icon>
+                            <v-icon color="success">mdi-arrow-right</v-icon>
+                        </v-btn>
+                    </template>
+
                     <template v-slot:item.actions="{ item }">
                         <v-icon color="primary" class="mr-2" @click="editItem(item)">
                             mdi-pencil-outline
@@ -45,49 +60,40 @@
                             mdi-trash-can-outline
                         </v-icon>
                     </template>
-                    <!-- <template v-slot:item.image="{ item }">
-                        <div class="pt-2">
-                            <img width="40px" @click="imageDialog(item)" :src="item.image" alt="alt">
-                        </div>
-                        <v-dialog v-model="imgDialog" width="330px" height="330px">
-                            <v-card style="padding: 0;" class="align-items-end">
-                                <v-img style="margin: 0; height: 350px; max-width: 330px;" :src="Dialogimg" hide-details alt=""/>
-                            </v-card>
-                        </v-dialog>
-                    </template> -->
                 </v-data-table>
             </v-col>
         </v-row>
 
-        <v-dialog v-model="ProductDialog" max-width="20%" persistent>
+        <v-dialog v-model="ProductDialog" width="500px" persistent>
             <v-card>
-                <v-card-title style="background-color: #1E88E5; color: #ffffff;">
-                        {{ action }} DATA
-                    <v-spacer/>
+                <v-card-title style="background-color: #4c7cc8 !important; color: white !important;">
+                    {{ action }} DATA
+                    <v-spacer />
                     <v-icon color="#ffffff" @click="closeProduct()">mdi-close</v-icon>
                 </v-card-title>
                 <v-card-text>
-                    <br/>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded readonly label="Category Code" v-model="ProductObj.category"></v-text-field>
-                    <v-autocomplete style="margin-bottom: 10px;" hide-details @change="setSubItem2(ProductObj.mainCode)" :items="mainItem" item-text="item_name" item-value="main_code" outlined dense rounded  label="Main Items Code" v-model="ProductObj.mainCode" return-value></v-autocomplete>
-                    <v-autocomplete style="margin-bottom: 10px;" hide-details :items="subItem" item-text="item_name" item-value="code" outlined dense rounded  label="Sub Items Code" v-model="ProductObj.subCode" return-value></v-autocomplete>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Main Items Code" v-model="ProductObj.mainItem"></v-text-field>
-                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Sub Items Code" v-model="ProductObj.subCode"></v-text-field> -->
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Code" v-model="ProductObj.code"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Product Name" v-model="ProductObj.product_name"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Code" v-model="ProductObj.maker_code"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Maker Name" v-model="ProductObj.manufacturer_name"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Has Color" v-model="ProductObj.has_color"></v-text-field>
-                    <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Color Name" v-model="ProductObj.color_name"></v-text-field>
-                    <!-- <v-text-field style="margin-bottom: 10px;" hide-details outlined dense rounded label="Image Path" v-model="ProductObj.imagePath"></v-text-field> -->
-                    <!-- <v-file-input dense @change="Preview_image" v-model="ProductObj.imagePath">
-                    </v-file-input> -->
-                        <!-- <v-img :src="url"></v-img> -->
+                    <br />
+                    <v-text-field :error-messages="checkProductCodeIfExist" @input="test()" type="number" outlined dense rounded
+                        label="Code" v-model="obj.code"></v-text-field>
+
+                    <v-text-field outlined dense rounded
+                        label="Product Name" v-model="obj.product_name"></v-text-field>
+
+                    <v-select 
+                        :items="manufacturers" item-text="manufacturer_name" item-value="code" outlined dense rounded label="Manufacturer" v-model="obj.manufacture_code"></v-select>
+
+                    <v-text-field  outlined dense rounded
+                        label="Image Path" v-model="obj.image_path"></v-text-field>
+                    
+                    <v-row style="margin: 10px; margin-bottom: -10px; margin-top: -10px;">
+                        <v-simple-checkbox v-model="obj.has_color" dense  readonly></v-simple-checkbox>
+                        <span style="padding: 3px;">彼の色</span>
+                    </v-row>
+
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn
-                        @click="saveProducts()" block dense color="primary" style="height: 35px !important"
-                    >
+                    <v-btn @click="save()" dark block dense :disabled="validateFields"
+                        style="height: 35px !important; background-color: #4c7cc8 !important;">
                         <v-icon>mdi-content-save</v-icon>
                         SAVE
                     </v-btn>
@@ -98,233 +104,167 @@
 </template>
 
 <script>
-    import Swal from "sweetalert2";
-    import axios from 'axios';
-    export default {
-        data: () => ({
-            headers: [
-                { 
-                    text: 'カテゴリーコード', value: 'category_code', align: 'center', sortable: false 
-                },
-                { 
-                    text: 'コード', value: 'CODE', align: 'center', sortable: false 
-                },
-                { 
-                    text: '商品名', value: 'product_name', align: 'left', sortable: false 
-                },
-                // { 
-                //     text: 'メーカーコード', value: 'maker_code', align: 'center', sortable: false 
-                // },
-                { 
-                    text: 'メーカー名', value: 'manufacturer_name', align: 'center', sortable: false 
-                },
-                { 
-                    text: '色がある', value: 'has_color', align: 'center', sortable: false 
-                },
-                { 
-                    text: '行動', value: 'actions', align: 'center', sortable: false 
-                },
-            ],
-            
-            search:'',
-            ProductObj : {},
-            action : '',
-            image: null,
-            ProductDialog : false,
-            mastersProductsData : [],
-            id: -1,
-            mainItem : [],
-            subItem: [],
-            subItemTemp :[]
-        }),
+import Swal from "sweetalert2";
+import axios from 'axios';
+import {orderBy} from 'lodash';
+export default {
+    data: () => ({
+        headers: [
+            {
+                text: 'コード', value: 'code', align: 'center', sortable: false
+            },
+            {
+                text: '商品名', value: 'product_name', align: 'left', sortable: false
+            },
+            {
+                text: 'メーカーコード', value: 'manufacturer_name', align: 'left', sortable: false
+            },
+            {
+                text: 'HAS COLOR', value: 'has_color', align: 'center', sortable: false
+            },
+            {
+                text: '', value: 'color_list', align: 'center', sortable: false
+            },
+            {
+                text: '画像パス', value: 'image_path', align: 'left', sortable: false
+            },
+            {
+                text: '行動', value: 'actions', align: 'center', sortable: false
+            },
+        ],
 
-        computed: {
-            //
+        search: '',
+        obj: {},
+        action: '',
+        image: null,
+        ProductDialog: false,
+        specifications: [],
+        id: -1,
+        productItems: [],
+        manufacturers:[],
+        selectedProduct: {},
+    }),
+
+    computed: {
+        checkProductCodeIfExist(){
+            let data = this.productItems.filter(r=> {
+                return r.code == this.obj.code
+            } )
+            if(data.length > 0){
+                return 'Code Already Exist'
+            }else{
+                return ''
+            }
         },
 
-        watch : {
-            //
-        },
-
-        created () {
-            this.getProducts();
-        },
-
-        methods: {
-            ///////////////////////////////////////////////////////
-            //    *   *   *   *   *           *   *   *   *   *  //
-            ///////////////////////////////////////////////////////
-            setSubItem2(item){
-                this.subitem = []
-                let a = this.subItemTemp.filter(r=>{
-                    return r.main_items_code == item
-                })
-                this.subItem = a
-            },    
-            getProducts(){
-                axios({
-                    method:'get',
-                    url:'/api/masterMaintenance/getProducts',
-                }).then((res)=>{
-                    console.log(res.data,'getProducts...');
-                    this.mastersProductsData = res.data;
-                    axios({
-                        method:'get',
-                        url:'/api/masterMaintenance/getSetsubiItem1',
-                    }).then((r)=>{
-                        console.log(res.data,'getSetsubiItem1...');
-                        this.mainItem = r.data;
-                        axios({
-                            method:'get',
-                            url:'/api/masterMaintenance/getSubItem2',
-                        }).then((rec)=>{
-                            console.log(res.data,'getSubItem2...');
-                            this.subItemTemp = rec.data;
-                        })
-                    })
-                })
-                
-            },
-            //    *   *   *   *   *      ADD     *   *   *   *   *  //
-            addProduct() {
-                console.log(this.ProductObj,'hello world')
-                this.ProductObj.category = 2
-                this.ProductDialog = true
-                // this.ProductObj.mainCode = ""
-                // this.ProductObj.subCode = ""
-                this.ProductObj.code = ""
-                this.ProductObj.product_name = ""
-                this.ProductObj.maker_code = ""
-                this.ProductObj.manufacturer_name = ""
-                this.ProductObj.has_color = ""
-                // this.ProductObj.color_code = ""
-                // this.ProductObj.color_name = ""
-                this.action = 'ADD NEW'
-            },
-            //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
-            closeProduct() {
-                this.ProductObj = {}
-                this.ProductDialog = false
-            },
-            Preview_image() {
-                // 
-            },
-
-            saveProducts(){
-                // console.log('Productsssssssssssssss');
-                this.id
-                let data = {}
-                if(this.action == "ADD NEW"){
-                    data = {
-                        action : this.action,
-                        // mainCode: this.ProductObj.mainCode,
-                        // subCode: this.ProductObj.subCode,
-                        CODE: this.ProductObj.code,
-                        // item_name: this.ProductObj.itemName,
-                        product_name: this.ProductObj.product_name,
-                        maker_code: this.ProductObj.maker_code,
-                        manufacturer_name: this.ProductObj.manufacturer_name,
-                        has_color: this.ProductObj.has_color,
-                        // color_code: this.ProductObj.color_code,
-                        // color_name: this.ProductObj.color_name
-                    }
-                    axios({
-                        method : 'post',
-                        url: '/api/masterMaintenance/saveProducts',
-                        data: data
-                    }).then(res=>{
-                        if(res.data == 'Existing'){
-                            Swal.fire({
-                                showConfirmButton:false,
-                                icon: 'error',
-                                title: 'Products Already Existing!',
-                                timer: 2000,
-                            })
-                            this.closeProduct()
-                        }else{
-                            Swal.fire({
-                                showConfirmButton:false,
-                                icon: 'success',
-                                title: 'Products Saved',
-                                timer: 2000,
-                            })
-                            this.getProducts();
-                            console.log(res.data,'saveProducts');
-                            this.closeProduct()
-                        }
-                    })
-                }else if(this.action == "EDIT"){
-                    console.log('EDIT Productsssssssssssssss');
-
-                    // Swal.fire({
-                    //     title:'Aare you sure you want to update this Item 1 data?',
-                    //     icon:'question',
-                    //     showCancelButton:true,
-                    //     confirmButtonColor:'primary',
-                    //     cancelButtonColor:'#d33',
-                    //     confirmButtonText:'Yes'
-                    // }).then((result) => {
-                    //     if (result.isConfirmed){
-                    //         axios({
-                    //             method: 'post',
-                    //             url: `/api/masterMaintenance/updateItem1/${this.id}`,
-                    //             data:{
-                    //                 // code:this.code,
-                    //                 item_name:this.item1Obj1.itemName
-                    //                 }
-                    //         }).then((res)=>{
-                    //             if(res.data == 'Existing'){
-                    //                 Swal.fire({
-                    //                     showConfirmButton:false,
-                    //                     icon: 'error',
-                    //                     title: 'Item 1 is already existing',
-                    //                     timer: 2000,
-                    //                 })
-                    //                 this.closeProduct()
-                    //             }else{
-                    //                 Swal.fire({
-                    //                     showConfirmButton:false,
-                    //                     icon: 'success',
-                    //                     title: 'Item 1 Updated',
-                    //                     timer: 2000,
-                    //                 })
-                    //                 this.getProducts();;
-                    //                 console.log(res.data,'updateItem1');
-                    //                 this.closeProduct()
-                    //             }
-                    //         })
-                    //     }
-                    // })
-                }
-            },
-
-
-
-            
-
-            onResize() {
-                this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-            },
+        validateFields(){
+            if(this.checkProductCodeIfExist == 'Code Already Exist' || 
+            !this.obj.code || !this.obj.product_name){
+                return true
+            }
         }
+    },
+
+    watch: {
+        //
+    },
+
+    created() {
+
+        axios({
+            method: 'get',
+            url: '/api/masterMaintenance/getProductList'
+        }).then(res => {
+            this.productItems = res.data
+        })
+
+        axios({
+            method: 'get',
+            url: '/api/masterMaintenance/getManufacturers'
+        }).then(res => {
+            this.manufacturers = res.data
+        })
+    },
+
+    methods: {
+        test(){
+            this.obj = {...this.obj}
+        },
+
+        ///////////////////////////////////////////////////////
+        //    *   *   *   *   *           *   *   *   *   *  //
+        ///////////////////////////////////////////////////////
+
+        //    *   *   *   *   *      ADD     *   *   *   *   *  //
+        addProduct() {
+            // console.log(this.ProductObj,'hello world')
+            this.ProductDialog = true
+            this.obj.code = ''
+            this.obj.product_name = ''
+            this.obj.manufacture_code = ''
+            this.obj.img_path = ''
+            this.action = 'ADD NEW'
+        },
+        //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
+        closeProduct() {
+            this.obj = {}
+            this.ProductDialog = false
+        },
+
+        Preview_image() {
+            // 
+        },
+
+        save() {
+            if(this.action == "ADD NEW"){
+                axios({
+                    method : 'post',
+                    url : '/api/masterMaintenance/saveProduct',
+                    data : this.obj
+                }).then(res => {
+                    this.obj.manufacturer_name =this.manufacturers.find(r => r.code == this.obj.manufacture_code).manufacturer_name 
+                    console.log(this.obj,'Save');
+                    this.productItems.push(this.obj)
+                    this.productItems = orderBy(this.productItems,['code','asc'])
+                    // console.log(this.obj);
+                    Swal.fire({
+                        showConfirmButton:false,
+                        icon: 'success',
+                        title: 'Successfully Saved!',
+                        timer: 2000,
+                    })
+                    this.closeProduct()
+                })
+            }
+        },
+
+
+
+
+
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
     }
+}
 </script>
 
 <style scoped>
-    .v-data-table ::v-deep th{
-        font-size: 11px !important;
-        background-color: #4c7cc8 !important;
-        color: white !important;
-        font-weight: normal;
-        border: 1px solid rgba(199, 199, 199, 0.542);
-        border: 1px solid rgba(199, 199, 199, 0.542);
-        border-collapse: collapse;
-        text-align: center !important;
-    }
-    .v-data-table ::v-deep td{
-        border: 1px solid rgba(199, 199, 199, 0.542);
-        border: 1px solid rgba(199, 199, 199, 0.542);
-        border-collapse: collapse;
-        font-size: 10.5px !important;
-    }
-    
+.v-data-table ::v-deep th {
+    font-size: 11px !important;
+    background-color: #4c7cc8 !important;
+    color: white !important;
+    font-weight: normal;
+    border: 1px solid rgba(199, 199, 199, 0.542);
+    border: 1px solid rgba(199, 199, 199, 0.542);
+    border-collapse: collapse;
+    text-align: center !important;
+}
+
+.v-data-table ::v-deep td {
+    border: 1px solid rgba(199, 199, 199, 0.542);
+    border: 1px solid rgba(199, 199, 199, 0.542);
+    border-collapse: collapse;
+    font-size: 10.5px !important;
+}
 </style>

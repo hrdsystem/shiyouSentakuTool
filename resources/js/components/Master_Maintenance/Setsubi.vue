@@ -65,7 +65,7 @@
             <!-- ========== -->
             <!-- =COLORS= -->
             <!-- ========== -->
-            <!-- <v-col  v-for="(item, i) in COLORS" :key="'C'+ i" cols="3" >
+            <v-col  v-for="(item, i) in COLORS" :key="'C'+ i" cols="3" >
                 <v-card class="pa-1" rounded width="" flat>
                     <v-toolbar>
                         <v-row align="center" justify="center" >
@@ -90,12 +90,12 @@
                         </v-row>
                     </v-toolbar>
                 </v-card>
-            </v-col> -->
+            </v-col>
 
             <!-- ========== -->
             <!-- =SPECIFICATION= -->
             <!-- ========== -->
-            <!-- <v-col  v-for="(item, i) in SPECIFICATION" :key="'B'+ i" cols="3" >
+            <v-col  v-for="(item, i) in SPECIFICATION" :key="'B'+ i" cols="3" >
                 <v-card class="pa-1" rounded width="" flat>
                     <v-toolbar>
                         <v-row align="center" justify="center" >
@@ -120,7 +120,7 @@
                         </v-row>
                     </v-toolbar>
                 </v-card>
-            </v-col> -->
+            </v-col>
         </v-row>
     </div>
 </template>

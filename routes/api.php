@@ -79,6 +79,7 @@ Route::get('/masterMaintenance/getGaibuItem1',[MasterMaintenanceController::clas
 //    *   *   *   *   * FOR SETSUBI FUNCTIONS *   *   *   *   *  //
 /////////////////////////////////////////////////////////////////
 
+
     /////////////////////////////////////////////////////////////////
     //    *   *   *   *   * FUNCTIONS FOR ITEM1 *   *   *   *   *  //
     /////////////////////////////////////////////////////////////////
@@ -86,6 +87,7 @@ Route::get('/masterMaintenance/getGaibuItem1',[MasterMaintenanceController::clas
     Route::get('/masterMaintenance/editItems/{id}',[MasterMaintenanceController::class,'editItems']);
     Route::post('/masterMaintenance/updateItem1/{id}', [MasterMaintenanceController::class, 'updateItem1']);
     Route::post('/masterMaintenance/deleteItem1/{id}',[MasterMaintenanceController::class,'deleteItem1']);
+
 
     /////////////////////////////////////////////////////////////////
     //    *   *   *   *   * FUNCTIONS FOR ITEM2 *   *   *   *   *  //
@@ -95,16 +97,40 @@ Route::get('/masterMaintenance/getGaibuItem1',[MasterMaintenanceController::clas
     Route::post('/masterMaintenance/updateItem2/{id}', [MasterMaintenanceController::class, 'updateItem2']);
     Route::post('/masterMaintenance/deleteItem2/{id}',[MasterMaintenanceController::class,'deleteItem2']);
 
-    /////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////
     //    *   *   *   *   * FUNCTIONS FOR PRODUCTS *   *   *   *   *  //
-    /////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////
     Route::post('/masterMaintenance/saveProducts', [MasterMaintenanceController::class, 'saveProducts']);
     Route::get('/masterMaintenance/editProducts/{id}',[MasterMaintenanceController::class,'editProducts']);
     Route::post('/masterMaintenance/updateProducts/{id}', [MasterMaintenanceController::class, 'updateProducts']);
     Route::post('/masterMaintenance/deleteProducts/{id}',[MasterMaintenanceController::class,'deleteItem1']);
 
 
+
+    Route::get('/masterMaintenance/getProductList',[MasterMaintenanceController::class,'getProductList']);
+    Route::get('/masterMaintenance/getManufacturers',[MasterMaintenanceController::class,'getManufacturers']);
+    Route::post('/masterMaintenance/saveProduct',[MasterMaintenanceController::class,'saveProduct']);
+
+    /////////////////////////////////////////////////////////////////////////
+    //    *   *   *   *   * FUNCTIONS FOR SPECIFICATION *   *   *   *   *  //
+    /////////////////////////////////////////////////////////////////////////
+    Route::get('/masterMaintenance/getSpecifications',[MasterMaintenanceController::class,'getSpecifications']);
+    Route::get('/masterMaintenance/getHouseTypes',[MasterMaintenanceController::class,'getHouseTypes']);
+    Route::get('/masterMaintenance/getMainItems',[MasterMaintenanceController::class,'getMainItems']);
+    Route::post('/masterMaintenance/getSubItems',[MasterMaintenanceController::class,'getSubItems']);
+
+
 /////////////////////////////////////////////////////////////////
 //    *   *   *   *   * FOR NAIBU FUNCTIONS *   *   *   *   *  //
 /////////////////////////////////////////////////////////////////
 Route::get('/masterMaintenance/getNaibuItem1',[MasterMaintenanceController::class,'getNaibuItem1']);
+
+
+
+
+
+
+
+
+
