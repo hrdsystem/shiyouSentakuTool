@@ -9,7 +9,7 @@ use App\Models\MasterMaintenance;
 class MasterMaintenanceController extends Controller
 {
     public function getCategories () {  
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT
                 CODE,
@@ -20,7 +20,7 @@ class MasterMaintenanceController extends Controller
 
     
     public function getData () {  
-        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT
                 *
@@ -33,7 +33,7 @@ class MasterMaintenanceController extends Controller
 
     public function getItem1 () {
         // return'sample';
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT
                 id,
@@ -48,7 +48,7 @@ class MasterMaintenanceController extends Controller
 
     public function getItem2 (Request $req) {
         // return $req; 
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT
             id,
@@ -65,7 +65,7 @@ class MasterMaintenanceController extends Controller
 
     public function products () {
         // return $req; 
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT 
                 id,
@@ -85,7 +85,7 @@ class MasterMaintenanceController extends Controller
 
     public function colors () {
         // return $req; 
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->select(DB::raw(
             "SELECT 
                 id,
@@ -100,7 +100,7 @@ class MasterMaintenanceController extends Controller
 
     public function editItems(Request $id){
         // return $id; 
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->table('m_main_items')
         ->find($id->id); 
     }
@@ -111,8 +111,7 @@ class MasterMaintenanceController extends Controller
             // return $request;
         if($request->action == 'ADD NEW'){
             //        *     *     *      SAVE     *     *     *        //
-            // $test = 'sample';
-            $data = DB::connection('mysql')
+            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_main_items')
             ->where('category_code',$request->category_code)
             ->where('code',$request->CODE)
@@ -122,7 +121,7 @@ class MasterMaintenanceController extends Controller
                 // info($data);
                 return 'Existing';
             }else{
-                $data = DB::connection('mysql')
+                $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
                 ->table('m_main_items')
                 ->insert([
                     'category_code' => $request->category_code,
@@ -134,7 +133,7 @@ class MasterMaintenanceController extends Controller
             }
         }else{
             //        *     *     *      UPDATE     *     *     *        //
-            $data = DB::connection('mysql')
+            $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_main_items')
             ->where('category_code',$request->category_code)
             ->where('code',$request->CODE)
@@ -143,7 +142,7 @@ class MasterMaintenanceController extends Controller
             if(count($data) > 0){
                 return 'Existing';
             }else{
-                DB::connection('mysql')
+                DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
                 ->table('m_main_items')
                 ->insert([
                     'category_code' => $request->category_code,
@@ -152,7 +151,7 @@ class MasterMaintenanceController extends Controller
                     'Updated_Date'=> date('Y-m-d H:i:s'),
                     'Updated_by' => 'Gatz'
                 ]);
-                DB::connection('mysql')
+                DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
                 ->table('m_main_items')
                 ->where('id',$request->productId)
                 ->delete();
@@ -164,7 +163,7 @@ class MasterMaintenanceController extends Controller
 
     public function saveData(Request $request){
         return $request; 
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_main_items')
             ->insert([
                 'category_code' => $request->category_code,
@@ -179,7 +178,7 @@ class MasterMaintenanceController extends Controller
     //        *     *     *      DELETE     *     *     *        //
     public function deleteData(Request $request){
         // return $request;
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->table('master_maintenance')
         ->where('id',$request->id)
         // ->get();
@@ -189,7 +188,7 @@ class MasterMaintenanceController extends Controller
     //update function for item 1
     public function updateItem1(Request $request, $id){
         // return $id;
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->table('m_main_items')
         ->where('id', $request->id)
         ->update([
@@ -204,7 +203,7 @@ class MasterMaintenanceController extends Controller
     public function saveItem2(Request $request){
         // return $request;
 
-        $data = DB::connection('mysql')
+        $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_sub_items')
             ->where('category_code',$request->category_code)
             ->where('main_items_code', $request->main_items_code)
@@ -215,7 +214,7 @@ class MasterMaintenanceController extends Controller
                 // info($data);`
                 return 'Existing';
             }else{
-                $data =  DB::connection('mysql')
+                $data =  DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
                 ->table('m_sub_items')
                 ->insert([
                     'category_code' => $request->category_code,
@@ -233,7 +232,7 @@ class MasterMaintenanceController extends Controller
 
     public function editItem2(Request $id){
         // return $id; 
-        return DB::connection('mysql')
+        return DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
         ->table('m_sub_items')
         ->find($id->id); 
     }

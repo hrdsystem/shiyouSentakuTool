@@ -4,9 +4,9 @@
             app 
             clipped-left
             elevation="0" 
-            color="primary" 
+            color="primary"
         >
-            <!-- <v-app-bar-nav-icon color="black" @click="drawer = !drawer"></v-app-bar-nav-icon> -->
+            <v-app-bar-nav-icon color="black" class="d-flex d-sm d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
             <!-- <v-toolbar-title 
                 style = "text-align: left !important; display: flex; padding-top: 15px;"
                 >
@@ -27,12 +27,12 @@
 
 
             <v-toolbar-title 
-                style = "text-align: left !important; display: flex; padding-top: 15px;"
+                style = "text-align: left !important; display: flex; padding-top: 15px; padding-left: 0 !important;"
                 >
                 <h3 style="font-family: 'Noto Sans JP', sans-serif;  
                 font-size: 25px; 
                 font-weight: 700;
-                color: white;">仕様選択ツール</h3> 
+                color: white;">仕様選択ツール<b style="color: #1976d2;"></b></h3> 
 
                 <p style="font-size: 25px; color: white">&nbsp;(Shiyou Sentaku Tool)</p>  
             </v-toolbar-title>
@@ -41,7 +41,6 @@
 
         <!-- expand-on-hover -->
         <v-navigation-drawer
-            permanent
             v-model="drawer"
             app
             clipped
@@ -130,7 +129,9 @@
                 </v-card> -->
 
                 <v-list-item-group v-model="selectedItem">
-                    <v-card class="mb-1" light v-for="(item, index) in items" :key="index" dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
+                    <h2 class="s-header text-center" style="margin-bottom: 5px;">カテゴリ</h2>
+                    <v-card class="mb-1" light v-for="(item, index) in items" :key="index" 
+                    dense style="border-radius: 0; border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item v-if="item.subMenu == 0" link active-class="active" :to="item.to">
                             <v-list-item-icon>
                                 <v-icon>{{ item.icon }}</v-icon>
@@ -156,8 +157,6 @@
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
-        
-        
 
         <v-main class="ma-2">
             <router-view></router-view>
@@ -167,29 +166,12 @@
 
 <script>
     import {mapActions} from 'vuex';
+    import Swal from 'sweetalert2'
     export default {
         data: () => ({
             selectedItem:1,
-            drawer: null,
+            drawer: true,
             items: [
-                // { icon:'mdi-alpha-g-box-outline', title: '選択した設備仕様を確認'},
-                // { icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},
-                // { icon:'mdi-alpha-w-box-outline', title: '窓', to:'/any1'},
-                // { icon:'mdi-alpha-b-box-outline', title: 'バルコニー', to:'/any2'},
-                // { icon:'mdi-alpha-o-box-outline', title: '外まわり', to:'/any3'},
-                // { icon:'mdi-alpha-f-box-outline', title: '玄関', to:'/any4'},
-                // { icon:'mdi-alpha-r-box-outline', title: '洋室', to:'/any5'},
-                // { icon:'mdi-alpha-s-box-outline', title: '階段', to:'/any6'},
-                // { icon:'mdi-alpha-j-box-outline', title: '和室', to:'/any7'},
-                // { icon:'mdi-alpha-k-box-outline', title: 'キッチン', to:'/any8'},
-                // { icon:'mdi-alpha-u-box-outline', title: 'ユーティリティ', to:'/any9'},
-                // { icon:'mdi-alpha-u-box-outline', title: '浴室', to:'/any10'},
-                // { icon:'mdi-alpha-t-box-outline', title: 'トイレ', to:'/toilet'},
-                // { icon:'mdi-alpha-i-box-outline',title: '玄関ホール', to:'/any12'},
-                // { icon:'mdi-alpha-l-box-outline', title: 'リビング', to:'/any13'},
-                // { icon:'mdi-alpha-z-box-outline', title: '収納', to:'/any14'},
-                // { icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/master_maintenance_tool'},
-
 
                 {subMenu:[], icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},
                 {subMenu:[], icon:'mdi-alpha-w-box-outline', title: '窓', to:'/any1'},
@@ -223,7 +205,7 @@
         methods: {
             getItems(){
                 console.log(this.items,'items');
-            }
+            },
             
         },
 
@@ -232,9 +214,9 @@
         },
 
         created () {
-            // if (this.$route.path !== '/home') {
-            //     this.$router.push('/home');
-            // }
+            if (this.$route.path !== '/home') {
+                this.$router.push('/home');
+            }
         },
 
 

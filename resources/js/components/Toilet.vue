@@ -859,7 +859,6 @@ import { mapState } from 'vuex';
                     url: 'api/getData'
                 }).then((res)=>{
                     this.cartItems = res.data
-                    //this.testonly
                     // this.cartItemCount = res.data.length
                     console.log(res.data.length)
                 })
@@ -1008,7 +1007,7 @@ import { mapState } from 'vuex';
     }
 </script>
 
-<style>
+<style scoped>
     /* html { overflow-y: hidden } */
 
     .swal2-popup {
