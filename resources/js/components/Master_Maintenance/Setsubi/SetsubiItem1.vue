@@ -33,7 +33,7 @@
         <v-row>
             <!-- = 1st Table = -->
             <v-col cols="6">
-                <v-data-table hide-default-header :headers="headers" :items="mastersData" :items-per-page="10" class="elevation-1" @dblclick:row="($event, {item})=>getItem2(item.main_code)">
+                <v-data-table hide-default-header :headers="headers" :items="mastersData" :items-per-page="10" class="elevation-1" @dblclick:row="($event, {item})=>getSetsubiItem2(item.main_code)">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -105,7 +105,7 @@
                     </v-card-title>
                     <v-card-text>
                         <br/>
-                        <v-text-field  outlined dense rounded readonly label="Category Code" v-model="item1Obj1.category"></v-text-field>
+                        <v-text-field  outlined dense rounded label="Category Code" readonly v-model="item1Obj1.category"></v-text-field>
                         <v-text-field :readonly="disabledItem1()" outlined dense rounded label="Code" v-model="item1Obj1.code"
                         onKeyPress="if(this.value.length==4)return false;"
                         ></v-text-field>
@@ -214,26 +214,27 @@
 
         watch: {
             //
+            
         },
 
         created () {
-            this.getItem1();
+            this.getSetsubiItem1();
         },
 
         methods: {
             ///////////////////////////////////////////////////////
             //    *   *   *   *   *           *   *   *   *   *  //
             ///////////////////////////////////////////////////////
-            getItem1(){
+            getSetsubiItem1(){
                 axios({
                     method:'get',
-                    url:'api/masterMaintenance/getItem1',
+                    url:'/api/masterMaintenance/getSetsubiItem1',
                 }).then((res)=>{
                     this.mastersData = res.data;
-                    console.log(res.data, 'getItem1...')
+                    console.log(res.data, 'getSetsubiItem1...')
                 })
             },
-            getItem2(item){
+            getSetsubiItem2(item){
                 this.item1Code = item
                 let obj = {
                     item1 : item
@@ -241,11 +242,12 @@
                 this.disabledItem2btn = false;
                 axios({
                     method:'post',
-                    url:'api/masterMaintenance/getItem2',
+                    url:'/api/masterMaintenance/getSetsubiItem2',
                     data : obj
                     // data:{main_items_code:item.main_code}
                 }).then((res)=>{
                     this.mastersSubData = res.data;
+                    console.log(res.data, 'getSetsubiItem2...')
                 })
             },
             //    *   *   *   *   *      ADD     *   *   *   *   *  //
@@ -258,8 +260,8 @@
                 this.item2Obj2.category2 = 2
                 this.item2Obj2.mainCode = this.item1Code
                 this.item2Dialog = true
-                this.code2 = ""
-                this.itemName2 = ""
+                this.item2Obj2.code2 = ""
+                this.item2Obj2.itemName2 = ""
                 this.action2 = 'ADD NEW'
             },
             //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
@@ -308,32 +310,6 @@
             deleteItem1(item){
                 Swal.fire({
                     title: 'Are you sure you want to delete?',
-                    text: "You wont be able to revert this Item 1!",
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes!, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        axios ({
-                            method : 'POST',
-                            url : `api/masterMaintenance/deleteItem1/${item.id}`,
-                        }).then(r=>{
-                            Swal.fire({
-                                showConfirmButton:false,
-                                icon: 'success',
-                                title: 'Item 1 is successfully deleted',
-                                timer: 2000,
-                            })
-                            this.getItem1()
-                        })
-                    }
-                })
-            },
-            deleteItem2(item){
-                Swal.fire({
-                    title: 'Are you sure you want to delete?',
                     text: "You wont be able to revert this Item!",
                     icon: 'question',
                     showCancelButton: true,
@@ -344,17 +320,43 @@
                     if (result.isConfirmed) {
                         axios ({
                             method : 'POST',
-                            url : `api/masterMaintenance/deleteItem2/${item.id}`,
+                            url : `/api/masterMaintenance/deleteItem1/${item.id}`,
                         }).then(r=>{
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item successfully deleted',
+                                title: 'Successfully Deleted!',
                                 timer: 2000,
                             })
-                            console.log(item,'LAGYAN KO DAW NG TEXT'); 
-
-                            this.getItem2(item.main_items_code)
+                            console.log(item,'deleteItem1');
+                            this.getSetsubiItem1()
+                        })
+                    }
+                })
+            },
+            deleteItem2(item){
+                Swal.fire({
+                    title: 'Are you sure you want to delete?',
+                    text: "You wont be able to revert this Item!!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios ({
+                            method : 'POST',
+                            url : `/api/masterMaintenance/deleteItem2/${item.id}`,
+                        }).then(r=>{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Successfully Deleted!!',
+                                timer: 2000,
+                            })
+                            console.log(item,'deleteItem2');
+                            this.getSetsubiItem2(item.main_items_code)
                         })
                     }
                 })
@@ -372,14 +374,14 @@
                     }
                     axios({
                         method : 'post',
-                        url: 'api/masterMaintenance/saveItem1',
+                        url: '/api/masterMaintenance/saveItem1',
                         data: data
                     }).then(res=>{
                         if(res.data == 'Existing'){
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'error',
-                                title: 'Item 1 is already Existing!',
+                                title: 'Already Existing!',
                                 timer: 2000,
                             })
                             this.close1()
@@ -387,16 +389,16 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item 1 Saved',
+                                title: 'Successfully Saved!',
                                 timer: 2000,
                             })
-                            this.getItem1()
+                            this.getSetsubiItem1()
                             this.close1()
                         }
                     })
                 }else if(this.action == "EDIT"){
                     Swal.fire({
-                        title:'Aare you sure you want to update this Item 1 data?',
+                        title:'Are you sure you want to update this item data?',
                         icon:'question',
                         showCancelButton:true,
                         confirmButtonColor:'primary',
@@ -406,7 +408,7 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem1/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem1/${this.id}`,
                                 data:{
                                     // code:this.code,
                                     item_name:this.item1Obj1.itemName
@@ -416,7 +418,7 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'error',
-                                        title: 'Item 1 is already existing',
+                                        title: 'Already Existing!',
                                         timer: 2000,
                                     })
                                     this.close1()
@@ -424,10 +426,11 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'success',
-                                        title: 'Item 1 Updated',
+                                        title: 'Successfully Updated!',
                                         timer: 2000,
                                     })
-                                    this.getItem1();
+                                    this.getSetsubiItem1();
+                                    console.log(res.data,'updateItem1');
                                     this.close1()
                                 }
                             })
@@ -448,14 +451,14 @@
                 if(this.action2 == 'ADD NEW') {
                     axios({
                         method: 'post',
-                        url: 'api/mastermaintenance/saveItem2',
+                        url: '/api/mastermaintenance/saveItem2',
                         data:data
                     }).then((res)=>{
                         if(res.data == 'Existing'){
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'error',
-                                title: 'Item 2 is already existing',
+                                title: 'Already Existing!!',
                                 timer: 2000,
                             })
                             this.close2()
@@ -463,16 +466,16 @@
                             Swal.fire({
                                 showConfirmButton:false,
                                 icon: 'success',
-                                title: 'Item 2 Saved',
+                                title: 'Successfully Saved!',
                                 timer: 2000,
                             })
-                            this.getItem2(this.item2Obj2.mainCode)
+                            this.getSetsubiItem2(this.item2Obj2.mainCode)
                             this.close2()
                         }
                     })
                 }else if(this.action2 == "EDIT"){
                     Swal.fire({
-                        title:'Are you sure you want to update this item 2 data?',
+                        title:'Are you sure you want to update this item data?',
                         icon:'question',
                         showCancelButton:true,
                         confirmButtonColor:'primary',
@@ -482,14 +485,14 @@
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem2/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem2/${this.id}`,
                                 data: data
                             }).then((res)=>{
                                 if(res.data == 'Existing'){
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'error',
-                                        title: 'Item 2 is already existing!',
+                                        title: 'Already Existing!!',
                                         timer: 2000,
                                     })
                                     this.close2()
@@ -497,12 +500,11 @@
                                     Swal.fire({
                                         showConfirmButton:false,
                                         icon: 'success',
-                                        title: 'Item 2 Updated!',
+                                        title: 'Successfully Updated!!',
                                         timer: 2000,
                                     })
-                                    this.getItem2(this.item2Obj2.mainCode);
-                                // console.log(this.getItem2(this.item2Obj2.mainCode),'LAGYAN KO DAW NG TEXT'); 
-
+                                    this.getSetsubiItem2(this.item2Obj2.mainCode);
+                                    console.log(res.data,'updateItem2');
                                     this.close2()
                                 }
                             })

@@ -1057,17 +1057,16 @@ class ShiyoushoCatalogController extends Controller
         public function getDataToilet()
         {
             // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
-            // return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
-            // 
-            return DB::table('cart')
-            ->get();
+            return DB::connection('mysql')
+            ->table('cart')->get();
+            
         }
 
         public function saveCart(Request $req)
         {
             // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
-            // return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
-            return DB::table('cart')
+            return DB::connection('mysql')
+            ->table('cart')
             ->insert([
                 "type" => $req[0]['type'],
                 "image" => $req[0]['image'],
@@ -1082,8 +1081,9 @@ class ShiyoushoCatalogController extends Controller
         }
 
         public function getSubItems(){
+            return 'test';
             // return DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('mysql')
             ->table('m_sub_items')
             ->where('main_items_code','0200')
             ->get();
@@ -1092,7 +1092,7 @@ class ShiyoushoCatalogController extends Controller
         public function removeItem($id){ //back-end deletion
             
             // $id = DB::connection('HRDAPPS31(j_shiyou_sentaku_main)')
-            $id = DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            $id = DB::connection('mysql')
             ->table('cart')
             ->where('id', $id)
             ->delete();
@@ -1153,48 +1153,6 @@ class ShiyoushoCatalogController extends Controller
         }    
 
         // next up colors
-
-        public function getSampleData(){
-            return DB::table('additional_ordering_industries')->get();
-            // return DB::connection('mysql')
-            // ->select(
-            //     DB::raw("SELECT 
-            //         m_sub_items.main_items_code,
-            //         m_sub_items.code,
-            //         m_sub_items.icon,
-            //         m_sub_items.item_name,
-            //         m_products.sub_items_code,
-            //         m_products.sub_items_code,
-            //         m_products.code,
-            //         m_products.product_name,
-            //         m_products.price,
-            //         m_products.maker_code,
-            //         m_products.color_code,
-            //         m_products.description,
-            //         m_products.image_path,
-            //         m_products.add_image
-            //     from m_sub_items 
-            //     inner join( 
-            //         SELECT 
-            //             m_products.sub_items_code,
-            //             m_products.code,
-            //             m_products.product_name,
-            //             m_products.price,
-            //             m_products.maker_code,
-            //             m_products.color_code,
-            //             m_products.description,
-            //             m_products.image_path,
-            //             m_products.add_image
-            //         from m_products
-            //         WHERE m_products.sub_items_code = '0600'
-            //     ) AS m_products 
-            //     on m_sub_items.code = m_products.sub_items_code 
-            //     where m_sub_items.main_items_code = '0200'    
-            //     and m_sub_items.code = '0600'")
-            // );
-        }
-
-
 
 }
 
