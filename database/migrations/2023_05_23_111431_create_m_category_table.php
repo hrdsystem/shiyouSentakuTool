@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMColorsTable extends Migration
+class CreateMCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateMColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_colors', function (Blueprint $table) {
+        Schema::create('m_category', function (Blueprint $table) {
             $table->id();
-            $table->string('color_code',10);
-            $table->string('color_name',50);
-            $table->string('image_path',225)->nullable();
+            $table->string('code',10);
+            $table->string('category_name',50);
             $table->dateTime('Created_at')->useCurrent();
             $table->dateTime('Updated_Date')->nullable();
             $table->dateTime('Deleted_Date')->nullable();
             $table->string('Updated_by',50)->nullable();
-            // $table->timestamps();
         });
     }
 
@@ -33,6 +31,6 @@ class CreateMColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_colors');
+        Schema::dropIfExists('m_category');
     }
 }

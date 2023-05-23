@@ -41,6 +41,7 @@ import GaibuItem1 from './components/Master_Maintenance/Gaibu/GaibuItem1'
 
 import SetsubiItem1 from './components/Master_Maintenance/Setsubi/SetsubiItem1'
 import SetsubiProducts from './components/Master_Maintenance/Setsubi/SetsubiProducts'
+import SetsubiSpecifications from './components/Master_Maintenance/Setsubi/SetsubiSpecifications'
 import SetsubiColors from './components/Master_Maintenance/Setsubi/SetsubiColors'
 
 import NaibuItem1 from './components/Master_Maintenance/Naibu/NaibuItem1'
@@ -92,26 +93,31 @@ export default new VueRouter({
             path: '/gaibu_master_item1',
             name: '/gaibu_master_item1',
             component : GaibuItem1
-        },
+        },//
         {
-            path: '/setsubi_master_item1',
+            path: '/setsubi_master/setsubi_master_item1',
             name: '/setsubi_master_item1',
             component : SetsubiItem1
         },
         {
-            path: '/setsubi_master_products',
+            path: '/setsubi_master/setsubi_master_products',
             name: '/setsubi_master_products',
             component : SetsubiProducts
         },
         {
-            path: '/setsubi_master_colors',
+            path: '/setsubi_master/setsubi_master_specification',
+            name: '/setsubi_master_specification',
+            component : SetsubiSpecifications
+        },
+        {
+            path: '/setsubi_master/setsubi_master_colors',
             name: '/setsubi_master_colors',
             component : SetsubiColors
-        },
+        },//
         {
             path: '/naibu_master_item1',
             name: '/naibu_master_item1',
             component : NaibuItem1
-        },
+        },//
     ],
 });

@@ -1,32 +1,24 @@
 <template>
     <v-container fluid v-resize="onResize">
-        <v-row>
+        <v-row no-gutter>
             <v-col>
                 <v-btn rounded small outlined class="text-none mt-2" color="grey" to="/setsubi_master">
                     <v-icon>mdi-arrow-left-bold</v-icon>
                     <span>Back</span>
                 </v-btn>
+                <v-tooltip left color="warning">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn fab  style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem1('ADD')"
+                        >
+                            <v-icon dark>mdi-plus</v-icon>
+                        </v-btn>
+                    </template>
+                        <span>Add New</span>
+                </v-tooltip>
             </v-col>
         </v-row>
-        <v-row>
+        <v-row >
             <v-col>
-                <v-row>
-                    <v-col>
-                        <v-toolbar flat>
-                            <v-spacer/>
-                            <v-tooltip left color="warning">
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn fab  style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem1('ADD')"
-                                    >
-                                        <v-icon dark>mdi-plus</v-icon>
-                                    </v-btn>
-                                </template>
-                                    <span>Add New</span>
-                            </v-tooltip>
-                        </v-toolbar>
-                    </v-col>
-                </v-row>
-
                 <v-data-table  hide-default-header :headers="headers" :items="mastersData" class="elevation-1 processTable" style="max-width: 100%;">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
@@ -40,10 +32,10 @@
                     </template>
                     <template v-slot:item.actions="{ item }">
                         <v-icon color="primary" class="mr-2" @click="editItem(item)">
-                            mdi-pencil
+                            mdi-pencil-outline
                         </v-icon>
                         <v-icon color="error" @click="deleteItem(item)">
-                            mdi-delete
+                            mdi-trash-can-outline
                         </v-icon>
                     </template>
                     <template v-slot:item.image="{ item }">
@@ -105,30 +97,56 @@ import axios from 'axios';
             getColors(){
                 axios({
                     method:'get',
-                    url:'api/masterMaintenance/colors'
+                    url:'/api/masterMaintenance/colors'
                 }).then((res)=>{
-                    console.log(res.data, 'COLORS')
+                    console.log(res.data, 'getColors...')
                     this.mastersData = res.data;
                 })
-            }
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            onResize() {
+                this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+            },
         }
     }
 </script>
 
 <style scoped>
-    #border {
+    .v-data-table ::v-deep th{
+        font-size: 11px !important;
+        background-color: #4c7cc8 !important;
+        color: white !important;
+        font-weight: normal;
         border: 1px solid rgba(199, 199, 199, 0.542);
         border: 1px solid rgba(199, 199, 199, 0.542);
-    }
-    th {
+        border-collapse: collapse;
         text-align: center !important;
-        padding: 0 !important;
-        font-size: 13px !important;
     }
-    td {
-        font-size: 13px !important;
-        padding: 3px !important;
+    .v-data-table ::v-deep td{
         border: 1px solid rgba(199, 199, 199, 0.542);
         border: 1px solid rgba(199, 199, 199, 0.542);
+        border-collapse: collapse;
+        font-size: 10.5px !important;
     }
+
 </style>

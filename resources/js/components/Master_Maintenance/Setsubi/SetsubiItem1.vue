@@ -1,59 +1,39 @@
 <template>
     <v-container fluid v-resize="onResize">
-        <v-row>
-            <v-col>
-                <v-btn 
-                    rounded 
-                    small 
-                    outlined 
-                    class="text-none mt-2" 
-                    color="grey" 
-                    to="/setsubi_master"
-                >
+        <v-row no-gutter>
+            <v-col cols="3">
+                <v-btn rounded small outlined class="text-none mt-2" color="grey" to="/setsubi_master">
                     <v-icon>mdi-arrow-left-bold</v-icon>
                     <span>Back</span>
                 </v-btn>
             </v-col>
+            <v-col cols="3">
+                <v-tooltip left color="warning">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn fab style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem1('ADD')">
+                            <v-icon dark>mdi-plus</v-icon>
+                        </v-btn>
+                    </template>
+                        <span>Add New</span>
+                </v-tooltip>
+            </v-col>
+            <v-col cols="3">
+            </v-col>
+            <v-col cols="3">
+                <v-tooltip left color="warning">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn fab :disabled="disabledItem2btn" style="float: right; margin-bottom: 5px" outlined x-small class="text-none mt-2" color="primary" v-bind="attrs" v-on="on" @click="addItem2('ADD')">
+                            <v-icon dark>mdi-plus</v-icon>
+                        </v-btn>
+                    </template>
+                        <span>Add New</span>
+                </v-tooltip>
+            </v-col>
         </v-row>
         <v-row>
             <!-- = 1st Table = -->
-            <v-col>
-                <v-row>
-                    <v-col>
-                        <v-toolbar flat>
-                            <v-spacer/>
-                            <v-tooltip left color="warning">
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn 
-                                        fab  
-                                        style="
-                                            float: right; 
-                                            margin-bottom: 5px"
-                                        outlined 
-                                        x-small 
-                                        class="text-none mt-2" 
-                                        color="primary" 
-                                        v-bind="attrs" 
-                                        v-on="on" 
-                                        @click="addItem1('ADD')"
-                                    >
-                                        <v-icon dark>mdi-plus</v-icon>
-                                    </v-btn>
-                                </template>
-                                    <span>Add New</span>
-                            </v-tooltip>
-                        </v-toolbar>
-                    </v-col>
-                </v-row>
-
-                <v-data-table  
-                    hide-default-header
-                    :headers="headers" 
-                    :items="mastersData" 
-                    :items-per-page="15" 
-                    class="elevation-1" 
-                    @dblclick:row="($event, {item})=>getItem2(item)"
-                >
+            <v-col cols="6">
+                <v-data-table hide-default-header :headers="headers" :items="mastersData" :items-per-page="10" class="elevation-1" @dblclick:row="($event, {item})=>getSetsubiItem2(item.main_code)">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
@@ -63,7 +43,6 @@
                                         color: white; 
                                         font-weight: normal
                                     "
-                                    id="border" 
                                     v-for="h in headers" 
                                 >
                                     <span class="header-text-color">{{h.text}}</span>
@@ -72,118 +51,65 @@
                         </thead>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem1(item.id)">
-                            mdi-pencil
+                        <v-icon color="primary" class="mr-2" @click="editItem1(item)">
+                            mdi-pencil-outline
                         </v-icon>
-                        <v-icon disabled color="error" @click="deleteItem1(item)">
-                            mdi-delete
+                        <v-icon  color="error" @click="deleteItem1(item)">
+                            mdi-trash-can-outline
                         </v-icon>
-                    </template>
-                    <template v-slot:item.image="{ item }">
-                        <div class="pt-2">
-                            <img width="40px" @click="imageDialog(item)" :src="item.image" alt="alt">
-                        </div>
-                        <v-dialog v-model="imgDialog" width="330px" height="330px">
-                            <v-card style="padding: 0;" class="align-items-end">
-                                <v-img 
-                                    style="
-                                        margin: 0; 
-                                        height: 350px; 
-                                        max-width: 330px;
-                                    " 
-                                    :src="Dialogimg" 
-                                    hide-details 
-                                    alt=""/>
-                            </v-card>
-                        </v-dialog>
                     </template>
                 </v-data-table>
             </v-col>
-
+        
             <!-- = Sub Table = -->
-            <v-col>
-                <v-row>
-                    <v-col>
-                        <v-toolbar flat>
-                            <v-spacer/>
-                            <v-tooltip left color="warning">
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-btn 
-                                        fab 
-                                        :disabled="disabledItem2btn" 
-                                        style="
-                                            float: right; 
-                                            margin-bottom: 5px
-                                        " 
-                                        outlined 
-                                        x-small 
-                                        class="text-none mt-2" 
-                                        color="primary" 
-                                        v-bind="attrs" 
-                                        v-on="on" 
-                                        @click="addItem2('ADD')"
-                                    >
-                                        <v-icon dark>mdi-plus</v-icon>
-                                    </v-btn>
-                                </template>
-                                    <span>Add New</span>
-                            </v-tooltip>
-                        </v-toolbar>
-                    </v-col>
-                </v-row>
-
-                <v-data-table  
-                    hide-default-header 
-                    :headers="subheaders" 
-                    :items="mastersSubData" 
-                    class="elevation-1" 
-                >
+            <v-col cols="6">
+                <v-data-table hide-default-header :headers="subheaders" :items="mastersSubData" class="elevation-1">
                     <template v-slot:header="{ props: { headers } }">
                         <thead style="background-color: #1E88E5;">
                             <tr>
-                                <th style="background-color: #4c7cc8; color: white; font-weight: normal"
-                                id="border" v-for="h in headers" >
+                                <th style="background-color: #4c7cc8; color: white; font-weight: normal" v-for="h in headers">
                                     <span class="header-text-color">{{h.text}}</span>
                                 </th>
                             </tr>
                         </thead>
                     </template>
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem2(item.id)">
-                            mdi-pencil
+                        <v-icon color="primary" class="mr-2" @click="editItem2(item)">
+                            mdi-pencil-outline
                         </v-icon>
-                        <v-icon color="error" @click="deleteItem(item)">
-                            mdi-delete
+                        <v-icon color="error" @click="deleteItem2(item)">
+                            mdi-trash-can-outline
                         </v-icon>
                     </template>
-                    <template v-slot:item.image="{ item }">
-                        <div class="pt-2">
-                            <img width="40px" @click="imageDialog(item)" :src="item.image" alt="alt">
+                    <template v-slot:no-data>
+                        <div class="d-flex justify-center align-center">
+                            <v-img 
+                            max-height="600px"
+                            max-width="550"
+                            src="https://static.vecteezy.com/system/resources/previews/002/634/930/large_2x/documents-folder-outline-icon-vector.jpg">
+
+                        </v-img>
                         </div>
+                        
                     </template>
                 </v-data-table>
             </v-col>
         </v-row>
 
         <!-- DIALOG FOR ADD AND EDIT FOR ITEM1-->
-        <v-dialog v-model="dialog" max-width="20%" persistent>
+        <v-dialog v-model="item1Dialog" max-width="20%" persistent>
                 <v-card>
                     <v-card-title style="background-color: #1E88E5; color: #ffffff;">{{action}} DATA
                         <v-spacer/>
-                        <v-icon color="#ffffff" @click="close()">mdi-close</v-icon>
+                        <v-icon color="#ffffff" @click="close1()">mdi-close</v-icon>
                     </v-card-title>
                     <v-card-text>
                         <br/>
-                        <!-- <span> -->
-                            <v-text-field  outlined dense rounded readonly label="Category Code" v-model="category"
-                            ></v-text-field>
-                            <!-- <v-text-field v-else-if="this.category == null" outlined dense rounded readonly label="Category Code" v-model="category"
-                            ></v-text-field>
-                        </span> -->
-                        <v-text-field outlined dense rounded label="Code" v-model="code" type="number"
+                        <v-text-field  outlined dense rounded label="Category Code" readonly v-model="item1Obj1.category"></v-text-field>
+                        <v-text-field :readonly="disabledItem1()" outlined dense rounded label="Code" v-model="item1Obj1.code"
                         onKeyPress="if(this.value.length==4)return false;"
                         ></v-text-field>
-                        <v-text-field outlined dense rounded label="Item Name" v-model="itemName"></v-text-field>
+                        <v-text-field  outlined dense rounded label="Item Name" v-model="item1Obj1.itemName"></v-text-field>
                     </v-card-text>
                     <v-card-actions>
                         <v-btn
@@ -206,11 +132,11 @@
                 </v-card-title>
                 <v-card-text>
                     <br/>
-                    <v-text-field outlined dense rounded readonly label="Category Code" v-model="category2"></v-text-field>
-                    <v-text-field outlined dense rounded readonly label="Main Item Code" v-model="mainCode"></v-text-field>
-                    <v-text-field outlined dense rounded label="Code" type="number" v-model="code2" onKeyPress="if(this.value.length==4)return false;">
+                    <v-text-field outlined dense rounded readonly label="Category Code" v-model="item2Obj2.category2"></v-text-field>
+                    <v-text-field outlined dense rounded readonly label="Main Item Code" v-model="item2Obj2.mainCode"></v-text-field>
+                    <v-text-field outlined dense rounded :readonly="disabledItem2()" label="Code" v-model="item2Obj2.code2">
                     </v-text-field>
-                    <v-text-field outlined dense rounded label="Item Name" v-model="itemName2"></v-text-field>
+                    <v-text-field outlined dense rounded label="Item Name" v-model="item2Obj2.itemName2"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-btn @click="saveItem2()" block dense color="primary" style="height:35px !important">
@@ -260,238 +186,338 @@
                     text: '行動', value: 'actions', align: 'center', sortable: false 
                 },
             ],
+            
+            item1Obj1 : {},
+            item2Obj2 : {},
 
-            addEdit: {},
-            id: -1,
-            mainCode: null,
-            itemName: null,
-            itemName2: null,
-            code: null,
-            code2: null,
-            category: null,
-            category2: null,
-            disabledItem2btn: true,
-            windowSize: { x: 0, y: 0 },
-            loading: false,
+            // ACTIONS
             action: '',
             action2: '',
 
             // DIALOGS
-            dialog: false,
+            item1Dialog: false,
             item2Dialog: false,
-            dialogDelete: false,
 
+            // MASTERSDATA
             mastersData: [],
             mastersSubData: [],
-            editedIndex: -1,
-            editData:[],
+
+            id: -1,
+            item1Code : "",
+            disabledItem2btn: true,
+            windowSize: { x: 0, y: 0 },
         }),
 
         computed: {
-            formTitle () {
-                return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-            },
+            //
         },
 
         watch: {
-            dialog (val) {
-                val || this.close()
-            },
-            // dialogDelete (val) {
-            //     val || this.closeDelete()
-            // },
+            //
+            
         },
 
         created () {
-            this.getItem1();
+            this.getSetsubiItem1();
         },
 
         methods: {
-            close2() {
-                this.item2Dialog = false
-            },
-            close() {
-                this.dialog = false
-            },
-
-            addItem1() {
-                this.category = 2
-                this.code = ""
-                this.itemName = ""
-                this.dialog = true
-                this.action = 'ADD NEW'
-            },
-            closeDialogItem1(){
-                this.dialog = false
-            },
-            closeEditDialog1(){
-                this.category = ""
-                this.code = ""
-                this.itemName = ""
-                this.dialog = false
-                this.action = 'EDIT'
-            },
-
-
-            editItem1(id){
-                // console.log(id, 'IDDDD')
-                this.id = id
-                this.dialog = true
-                this.action = 'EDIT'
+            ///////////////////////////////////////////////////////
+            //    *   *   *   *   *           *   *   *   *   *  //
+            ///////////////////////////////////////////////////////
+            getSetsubiItem1(){
                 axios({
                     method:'get',
-                    url: `api/masterMaintenance/editItems/${id}`,
+                    url:'/api/masterMaintenance/getSetsubiItem1',
                 }).then((res)=>{
-                    // console.log(res.data, 'ID')
-                    this.category = res.data.category_code
-                    this.code = res.data.code
-                    this.itemName = res.data.item_name
+                    this.mastersData = res.data;
+                    console.log(res.data, 'getSetsubiItem1...')
                 })
             },
-            
-
-
+            getSetsubiItem2(item){
+                this.item1Code = item
+                let obj = {
+                    item1 : item
+                }
+                this.disabledItem2btn = false;
+                axios({
+                    method:'post',
+                    url:'/api/masterMaintenance/getSetsubiItem2',
+                    data : obj
+                    // data:{main_items_code:item.main_code}
+                }).then((res)=>{
+                    this.mastersSubData = res.data;
+                    console.log(res.data, 'getSetsubiItem2...')
+                })
+            },
+            //    *   *   *   *   *      ADD     *   *   *   *   *  //
+            addItem1() {
+                this.item1Obj1.category = 2
+                this.item1Dialog = true
+                this.action = 'ADD NEW'
+            },
+            addItem2() {
+                this.item2Obj2.category2 = 2
+                this.item2Obj2.mainCode = this.item1Code
+                this.item2Dialog = true
+                this.item2Obj2.code2 = ""
+                this.item2Obj2.itemName2 = ""
+                this.action2 = 'ADD NEW'
+            },
+            //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
+            close1() {
+                this.item1Obj1 = {}
+                this.item1Dialog = false
+            },
+            close2() {
+                this.item2Obj2 = {}
+                this.item2Dialog = false
+            },
+            //    *   *   *   *   *      EDIT     *   *   *   *   *  //
+            editItem1(item){
+                this.id = item.id
+                this.item1Dialog = true
+                this.action = 'EDIT'
+                this.item1Obj1.category = item.category_code
+                this.item1Obj1.code = item.main_code
+                this.item1Obj1.itemName = item.item_name
+            },
+            editItem2(item){
+                this.id = item.id
+                this.item2Dialog = true
+                this.action2 = 'EDIT'
+                this.item2Obj2.category2 = item.category_code
+                this.item2Obj2.mainCode = item.main_items_code
+                this.item2Obj2.code2 = item.sub_item_code
+                this.item2Obj2.itemName2 = item.sub_item_name
+            },
+            //    *   *   *   *   *      DISABLED     *   *   *   *   *  //
+            disabledItem1(){
+                if(this.action == "EDIT"){
+                    return true
+                }else{
+                    return false    
+                }
+            },
+            disabledItem2(){
+                if(this.action2 == "EDIT"){
+                    return true
+                }else{
+                    return false    
+                }
+            },
+            //    *   *   *   *   *      DELETE     *   *   *   *   *  //
+            deleteItem1(item){
+                Swal.fire({
+                    title: 'Are you sure you want to delete?',
+                    text: "You wont be able to revert this Item!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios ({
+                            method : 'POST',
+                            url : `/api/masterMaintenance/deleteItem1/${item.id}`,
+                        }).then(r=>{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Successfully Deleted!',
+                                timer: 2000,
+                            })
+                            console.log(item,'deleteItem1');
+                            this.getSetsubiItem1()
+                        })
+                    }
+                })
+            },
+            deleteItem2(item){
+                Swal.fire({
+                    title: 'Are you sure you want to delete?',
+                    text: "You wont be able to revert this Item!!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes!, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios ({
+                            method : 'POST',
+                            url : `/api/masterMaintenance/deleteItem2/${item.id}`,
+                        }).then(r=>{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Successfully Deleted!!',
+                                timer: 2000,
+                            })
+                            console.log(item,'deleteItem2');
+                            this.getSetsubiItem2(item.main_items_code)
+                        })
+                    }
+                })
+            },
+            //    *   *   *   *   *      SAVE and UPDATE ITEM 1     *   *   *   *   *  //
             saveItem1(){
-                // console.log(this.category, this.code, this.itemName)
-                // console.log(this.action)
                 this.id
-                console.log(this.id)
-                this.close()
                 let data = {}
                 if(this.action == "ADD NEW"){
                     data = {
                         action : this.action,
-                        category_code: this.category,
-                        CODE: this.code,
-                        item_name: this.itemName
+                        category_code: this.item1Obj1.category,
+                        CODE: this.item1Obj1.code,
+                        item_name: this.item1Obj1.itemName
                     }
                     axios({
-                    method : 'post',
-                    url: 'api/masterMaintenance/updateData',
-                    data: data
-                }).then(res=>{
-                    this.getItem1()
-                    console.log(res.data,'saveItem1...')
-                    if(res.data == 'Existing'){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Item is Already Existing!',
-                            footer: 'Click OK to continue!'
-                        })
-                    }else{
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Item Saved',
-                            footer: 'Click OK to continue!'
-                        })
-                    }
-                })
+                        method : 'post',
+                        url: '/api/masterMaintenance/saveItem1',
+                        data: data
+                    }).then(res=>{
+                        if(res.data == 'Existing'){
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'error',
+                                title: 'Already Existing!',
+                                timer: 2000,
+                            })
+                            this.close1()
+                        }else{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Successfully Saved!',
+                                timer: 2000,
+                            })
+                            this.getSetsubiItem1()
+                            this.close1()
+                        }
+                    })
                 }else if(this.action == "EDIT"){
                     Swal.fire({
-                        title:'Are you sure you want update this data?',
+                        title:'Are you sure you want to update this item data?',
                         icon:'question',
                         showCancelButton:true,
-                        confirmButtonColor:'grey',
+                        confirmButtonColor:'primary',
                         cancelButtonColor:'#d33',
                         confirmButtonText:'Yes'
                     }).then((result) => {
                         if (result.isConfirmed){
                             axios({
                                 method: 'post',
-                                url: `api/masterMaintenance/updateItem1/${this.id}`,
+                                url: `/api/masterMaintenance/updateItem1/${this.id}`,
                                 data:{
-                                    code:this.code,
-                                    item_name:this.itemName
+                                    // code:this.code,
+                                    item_name:this.item1Obj1.itemName
                                     }
                             }).then((res)=>{
-                                console.log(res.data, 'updated')
-                                this.getItem1()
+                                if(res.data == 'Existing'){
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'error',
+                                        title: 'Already Existing!',
+                                        timer: 2000,
+                                    })
+                                    this.close1()
+                                }else{
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'success',
+                                        title: 'Successfully Updated!',
+                                        timer: 2000,
+                                    })
+                                    this.getSetsubiItem1();
+                                    console.log(res.data,'updateItem1');
+                                    this.close1()
+                                }
                             })
                         }
                     })
                 }
             },
-
-            addItem2() {
-                // console.log(this.mastersSubData[0].main_code)
-                this.category2 = 2
-                this.mainCode = this.mastersSubData[0].main_items_code
-                this.code2 = ""
-                this.itemName2 = ""
-                this.item2Dialog = true
-                this.action2 = 'ADD NEW'
-            },
-
+            //    *   *   *   *   *      SAVE and UPDATE ITEM 2     *   *   *   *   *  //
             saveItem2(){
-                if(this.action2 == 'ADD NEW')
-                axios({
-                    method: 'post',
-                    url: 'api/mastermaintenance/saveItem2',
-                    data:{
-                        category_code: this.category2,
-                        main_items_code: this.mainCode,
-                        code: this.code2,
-                        item_name:this.itemName2
-                    }
-                }).then((res)=>{
-                    this.getItem2();
-                    if(res.data == 'Existing'){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Item is Already Existing!',
-                            footer: 'Click OK to continue!'
-                        })
-                    }else{
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Item Saved',
-                            footer: 'Click OK to continue!'
-                        })
-                    }
-                    this.item2Dialog = false
-                })
+                let data = {}
+                data = {
+                    action2 : this.action2,
+                    category_code : this.item2Obj2.category2,
+                    main_items_code : this.item2Obj2.mainCode,
+                    code : this.item2Obj2.code2,
+                    item_name : this.item2Obj2.itemName2
+                }
+                if(this.action2 == 'ADD NEW') {
+                    axios({
+                        method: 'post',
+                        url: '/api/mastermaintenance/saveItem2',
+                        data:data
+                    }).then((res)=>{
+                        if(res.data == 'Existing'){
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'error',
+                                title: 'Already Existing!!',
+                                timer: 2000,
+                            })
+                            this.close2()
+                        }else{
+                            Swal.fire({
+                                showConfirmButton:false,
+                                icon: 'success',
+                                title: 'Successfully Saved!',
+                                timer: 2000,
+                            })
+                            this.getSetsubiItem2(this.item2Obj2.mainCode)
+                            this.close2()
+                        }
+                    })
+                }else if(this.action2 == "EDIT"){
+                    Swal.fire({
+                        title:'Are you sure you want to update this item data?',
+                        icon:'question',
+                        showCancelButton:true,
+                        confirmButtonColor:'primary',
+                        cancelButtonColor:'#d33',
+                        confirmButtonText:'Yes!'
+                    }).then((result) => {
+                        if (result.isConfirmed){
+                            axios({
+                                method: 'post',
+                                url: `/api/masterMaintenance/updateItem2/${this.id}`,
+                                data: data
+                            }).then((res)=>{
+                                if(res.data == 'Existing'){
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'error',
+                                        title: 'Already Existing!!',
+                                        timer: 2000,
+                                    })
+                                    this.close2()
+                                }else{
+                                    Swal.fire({
+                                        showConfirmButton:false,
+                                        icon: 'success',
+                                        title: 'Successfully Updated!!',
+                                        timer: 2000,
+                                    })
+                                    this.getSetsubiItem2(this.item2Obj2.mainCode);
+                                    console.log(res.data,'updateItem2');
+                                    this.close2()
+                                }
+                            })
+                        }
+                    })
+                }
             },
+            //    *   *   *   *   *           *   *   *   *   *  //
+            //    *   *   *   *   *           *   *   *   *   *  //
 
-            editItem2(id){
-                console.log(id, 'IDDDD')
-                this.id = id
-                this.item2Dialog = true
-                this.action2 = 'EDIT'
-                axios({
-                    method:'get',
-                    url: `api/masterMaintenance/editItem2/${id}`,
-                }).then((res)=>{
-                    console.log(res.data, 'ID')
-                    this.category2 = res.data.category_code
-                    this.mainCode = res.data.main_items_code
-                    this.code2 = res.data.code
-                    this.itemName2 = res.data.item_name
-                })
-            },
 
-            getItem1(){
-                axios({
-                    method:'get',
-                    url:'api/masterMaintenance/getItem1',
-                }).then((res)=>{
-                    this.mastersData = res.data;
-                    console.log(res.data, 'getItem1...')
-                })
-            },
 
-            getItem2(item){
-                console.log(item)
-                this.disabledItem2btn = false;
 
-                axios({
-                    method:'post',
-                    url:'api/masterMaintenance/getItem2',
-                    data:{main_items_code:item.main_code}
-                }).then((res)=>{
-                    this.mastersSubData = res.data;
-                    console.log(res.data );
-                })
-            },
 
             onResize() {
                 this.windowSize = { x: window.innerWidth, y: window.innerHeight };
@@ -501,21 +527,21 @@
 </script>
 
 <style scoped>
-
-    #border {
+    .v-data-table ::v-deep th{
+        font-size: 11px !important;
+        background-color: #4c7cc8 !important;
+        color: white !important;
+        font-weight: normal;
         border: 1px solid rgba(199, 199, 199, 0.542);
         border: 1px solid rgba(199, 199, 199, 0.542);
-    }
-    th {
+        border-collapse: collapse;
         text-align: center !important;
-        padding: 0 !important;
-        font-size: 13px !important;
     }
-    td {
-        font-size: 13px !important;
-        padding: 3px !important;
+    .v-data-table ::v-deep td{
         border: 1px solid rgba(199, 199, 199, 0.542);
         border: 1px solid rgba(199, 199, 199, 0.542);
+        border-collapse: collapse;
+        font-size: 10.5px !important;
     }
 
 </style>

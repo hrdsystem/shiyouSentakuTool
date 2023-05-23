@@ -15,16 +15,14 @@ class CreateMSubItemsTable extends Migration
     {
         Schema::create('m_sub_items', function (Blueprint $table) {
             $table->id();
-            $table->string('category_code', 10);
-            $table->string('main_items_code', 10);
-            $table->string('code', 10);
-            $table->string('icon', 10);
-            $table->string('item_name', 50);
-            $table->dateTime('Created_at')->useCurrent();
-            $table->dateTime('Updated_Date')->nullable();
-            $table->dateTime('Deleted_Date')->nullable();
-            $table->string('Updated_by',50)->nullable();
-            // $table->timestamps();
+            $table->string('category_code',10)->nullable();
+            $table->string('main_items_code',10)->nullable();
+            $table->string('code',10);
+            $table->string('item_name',50);
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
+            $table->string('updated_by',50)->nullable();
         });
     }
 

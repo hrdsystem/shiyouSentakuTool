@@ -43,6 +43,19 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'mysql'=> [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
         // 'mysql' => [
         //     'driver' => 'mysql',
         //     'url' => env('DATABASE_URL'),
@@ -96,18 +109,31 @@ return [
         //     'prefix_indexes' => true, 
         // ],
 
-        'HRDAPPS31(shiyou_sentaku_main_test2)'=> [ 
+        'HRDAPPS31(shiyou_sentaku_main_test)'=> [ 
             'driver' => 'mysql', 
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST_1', 'HRDAPPS31'), 
             'port' => env('DB_PORT_1', '3314'), 
-            'database' => env('DB_DATABASE_1', 'shiyou_sentaku_main_test2'), 
+            'database' => env('DB_DATABASE_1', 'shiyou_sentaku_main_test'), 
             'username' => env('DB_USERNAME_1', 'romel006995'), 
             'password' => env('DB_PASSWORD_1', '006995'), 
             'charset' => 'utf8', 
             'prefix' => '', 
             'prefix_indexes' => true, 
         ],
+
+        // 'mysql'=> [ 
+        //     'driver' => 'mysql', 
+        //     'url' => env('DATABASE_URL'),
+        //     'host' => env('DB_HOST_1', 'HRDAPPS31'), 
+        //     'port' => env('DB_PORT_1', '3314'), 
+        //     'database' => env('DB_DATABASE_1', 'shiyou_sentaku_main_test2'), 
+        //     'username' => env('DB_USERNAME_1', 'romel006995'), 
+        //     'password' => env('DB_PASSWORD_1', '006995'), 
+        //     'charset' => 'utf8', 
+        //     'prefix' => '', 
+        //     'prefix_indexes' => true, 
+        // ],
 
         // 'HRDAPPS31(shiyou_sentaku_main)'=> [
         //     'driver' => 'mysql',
