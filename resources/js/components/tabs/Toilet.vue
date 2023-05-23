@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;"> -->
-        <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;">
+        <v-card elevation="0" style="display: flex; padding-right: 10px;">
             <h1 class="s-title">トイレ</h1>
             <v-spacer></v-spacer>
             <v-badge
@@ -135,32 +135,32 @@
                                             </thead>
 
                                             <tbody>
-                                                <tr @click="getItemDetailsMobile(item)" v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important;" height="150">
-                                                    <td style="padding: 0 8px">
+                                                <tr v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important; position: relative;" height="150">
+                                                    <div @click="getItemDetailsMobile(item)" style="display: flex; cursor: pointer;">
+                                                        
                                                         <v-img max-height="140" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
-                                                    </td>
-                                                    <td style="padding: 0 8px">
-                                                        <div>
+                                                        <div class="ml-2">
                                                             <p class="text-left s-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.product }}</p>
                                                             <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.item }}</p>
                                                             <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.type }}</p>
-                                                            <td class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">
+                                                            <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">
                                                                 <v-icon>mdi-tag-multiple</v-icon> 
-                                                                {{ item.price }}</td>
+                                                                {{ item.price }}</p>
                                                         </div>
-                                                    </td>
-                                                    <!-- <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td> -->
-                                                    
-                                                    <!-- <td class="text-center" style="width: 300px;">
-                                                        <div class="s-mid-header" v-if="item.description.length > 70" style="overflow-y: scroll !important; height:90px !important; margin-top: 5px; margin-bottom: 5px;">
-                                                            {{ item.description }}
-                                                        </div>
-                                                        <div class="s-mid-header" v-if="item.description.length < 70">
-                                                            {{ item.description }}
-                                                        </div>
-                                                    </td> -->
-                                                    <td class="text-center s-mid-header" style="padding: 0 8px">
-                                                        <v-btn tile @click="removeItem(item.id)" color="red lighten-2">
+                                                        
+                                                        <!-- <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td> -->
+                                                        
+                                                        <!-- <td class="text-center" style="width: 300px;">
+                                                            <div class="s-mid-header" v-if="item.description.length > 70" style="overflow-y: scroll !important; height:90px !important; margin-top: 5px; margin-bottom: 5px;">
+                                                                {{ item.description }}
+                                                            </div>
+                                                            <div class="s-mid-header" v-if="item.description.length < 70">
+                                                                {{ item.description }}
+                                                            </div>
+                                                        </td> -->
+                                                    </div>
+                                                    <td class="text-center s-mid-header" style="padding: 0 8px; ">
+                                                        <v-btn style="position: absolute !important; top: 25%; left: 75%;" tile @click="removeItem(item.id)" color="red lighten-2">
                                                             <v-icon>mdi-delete</v-icon>
                                                         </v-btn>
                                                     </td>
