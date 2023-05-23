@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@mdi/font": "^6.5.95",
+        "compression-webpack-plugin": "^10.0.0",
         "sweetalert2": "^11.7.3",
         "vue-inner-image-zoom": "^1.1.1",
         "vue-loader": "^15.9.8",
