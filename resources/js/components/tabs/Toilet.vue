@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;"> -->
-        <v-card elevation="0" style="display: flex; padding-left: 50px; padding-right: 50px;">
+        <v-card elevation="0" style="display: flex; padding-right: 10px;">
             <h1 class="s-title">トイレ</h1>
             <v-spacer></v-spacer>
             <v-badge
@@ -136,7 +136,7 @@
 
                                             <tbody>
                                                 <tr v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important; position: relative;" height="150">
-                                                    <div @click="getItemDetailsMobile(item)" style="display: flex;">
+                                                    <div @click="getItemDetailsMobile(item)" style="display: flex; cursor: pointer;">
                                                         
                                                         <v-img max-height="140" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
                                                         <div class="ml-2">
@@ -160,7 +160,7 @@
                                                         </td> -->
                                                     </div>
                                                     <td class="text-center s-mid-header" style="padding: 0 8px; ">
-                                                        <v-btn style="position: absolute !important; top: 25%; left: 70%;" tile @click="removeItem(item.id)" color="red lighten-2">
+                                                        <v-btn style="position: absolute !important; top: 25%; left: 75%;" tile @click="removeItem(item.id)" color="red lighten-2">
                                                             <v-icon>mdi-delete</v-icon>
                                                         </v-btn>
                                                     </td>
