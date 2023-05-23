@@ -15,14 +15,13 @@ class CreateMMainItemsTable extends Migration
     {
         Schema::create('m_main_items', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 10)->unique();
-            $table->string('category_code', 10);
-            $table->string('item_name', 50);
-            $table->dateTime('Created_at');
-            $table->dateTime('Update_Date');
-            $table->dateTime('Deleted_Date');
-            $table->string('Updated_by', 50);
-            // $table->timestamps();
+            $table->string('code',10);
+            $table->string('category_code',10)->nullable();
+            $table->string('item_name',50)->nullable();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
+            $table->string('updated_by',50)->nullable();
         });
     }
 

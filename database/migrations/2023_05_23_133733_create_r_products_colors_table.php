@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMMainItemsTable extends Migration
+class CreateRProductsColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,21 @@ class CreateMMainItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_main_items', function (Blueprint $table) {
+        Schema::create('r_products_colors', function (Blueprint $table) {
             $table->id();
-            $table->string('code',10)->unique();
-            $table->string('category_code',10);
-            $table->string('item_name',50);
+            $table->string('house_type_code',50);
+            $table->string('category_code',50);
+            $table->string('main_item_code',50);
+            $table->string('sub_item_code',50);
+            $table->string('classification1_code',50);
+            $table->string('classification2_code',50);
+            $table->string('classification3_code',50);
+            $table->string('product_code',50);
+            $table->string('color_code',50);
             $table->dateTime('Created_at')->useCurrent();
             $table->dateTime('Updated_Date')->nullable();
             $table->dateTime('Deleted_Date')->nullable();
             $table->string('Updated_by',50)->nullable();
-            // $table->timestamps();
         });
     }
 
@@ -33,6 +38,6 @@ class CreateMMainItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_main_items');
+        Schema::dropIfExists('r_products_colors');
     }
 }

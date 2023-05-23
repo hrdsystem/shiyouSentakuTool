@@ -38,32 +38,17 @@
             </v-toolbar-title>
         </v-app-bar>
 
-
         <!-- expand-on-hover -->
         <v-navigation-drawer
             v-model="drawer"
             app
             clipped
         >
-            <!-- <v-list dense >  -->
-                <!-- <v-subheader>LIST COMPONENTS:</v-subheader> -->
-                <!-- <v-list-item
-                    :to="'home'"
-                    @click="selectCategory()"
-                >
-                    <v-list-item-title>BAWANG</v-list-item-title>
-                    <v-list-item-title>PAMINTA</v-list-item-title>
-                    <v-list-item-title>SIBUYAS</v-list-item-title>
-                </v-list-item>
-            </v-list> -->
             <v-list
                 dense
                 nav
             >
-                <!-- <v-list-item-group
-                    v-model="selectedItem"
-                    
-                >
+                <!-- <v-list-item-group v-model="selectedItem">
                     <v-card class="mb-1" light v-for="(item, index) in items" :key="index" dense style="border: 1x solid black; border: 1px #0080ff solid; background: linear-gradient(#ffffff, #eeeeee); font-size: 12px; cursor: default;">
                         <v-list-item
                             link
@@ -158,6 +143,7 @@
             </v-list>
         </v-navigation-drawer>
 
+        
         <v-main class="ma-2">
             <router-view></router-view>
         </v-main>
@@ -172,7 +158,6 @@
             selectedItem:1,
             drawer: true,
             items: [
-
                 {subMenu:[], icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},
                 {subMenu:[], icon:'mdi-alpha-w-box-outline', title: '窓', to:'/any1'},
                 {subMenu:[], icon:'mdi-alpha-b-box-outline', title: 'バルコニー', to:'/any2'},
@@ -192,8 +177,11 @@
                     {text:'外部', to: "/gaibu_master"},
                     {text:'設備', to: "/setsubi_master"},
                     {text:'内部', to: "/naibu_master"},
-                ], icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/any156'}, 
+                ], 
+                icon:'mdi-alpha-m-box-outline', title: 'マスターメンテナンス', to:'/any156'}, 
             ],
+            // categoryItems : []
+
             // masterCategories:[
             //     {text:'外部', to: "/gaibu_master"},
             //     {text:'設備', to: "/setsubi_master"},
@@ -203,20 +191,45 @@
         }),
 
         methods: {
-            getItems(){
-                console.log(this.items,'items');
-            },
+            // getCategories() {
+                // let obj = {
+                //     subMenu : [],
+                //     icon : 'mdi-alpha-m-box-outline',
+                //     title: 'マスターメンテナンス',
+                //     to:'/any156'
+                // }
+                // axios({
+                //     method : 'get',
+                //     url : 'api/masterMaintenance/getCategories'
+                // }).then((res)=>{
+                //     // this.categoryItems = res.data
+                //     if(res.data.length != 0){
+                //         res.data.forEach(element => {
+                //             let obj1  = {}
+                //             obj1.text = element.category_name
+                //             obj1.value = element.CODE
+                //             obj.subMenu.push(obj1)
+                //         });
+                //         this.items.push(obj)
+                //     }
+                // })
+            // },
+
+            // getItems(){
+            //     console.log(this.items,'items');
+            // },
             
         },
 
         mounted() {
-            this.getItems();
+            // this.getItems();
+            // this.getCategories();
         },
 
         created () {
-            if (this.$route.path !== '/home') {
-                this.$router.push('/home');
-            }
+            // if (this.$route.path !== '/home') {
+            //     this.$router.push('/home');
+            // }
         },
 
 
@@ -228,6 +241,6 @@
         background-color: #0080ff;
         margin-bottom: 4px;
         border: 1px solid #0080ff;
-        color: white !important;
+        color: black !important;
     }
 </style>
