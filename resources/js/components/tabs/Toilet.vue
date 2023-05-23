@@ -94,7 +94,9 @@
                                                 <td class="text-center s-mid-header">{{ item.item }}</td>
                                                 <td class="text-center s-mid-header">{{ item.product }}</td>
                                                 <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td>
-                                                <td class="text-center s-mid-header">{{ item.price }}</td>
+                                                <td class="text-center s-mid-header">
+                                                    <v-icon>mdi-tag-multiple</v-icon> 
+                                                    {{ item.price }}</td>
                                                 <td class="text-center" style="width: 300px;">
                                                     <div class="s-mid-header" v-if="item.description.length > 70" style="overflow-y: scroll !important; height:90px !important; margin-top: 5px; margin-bottom: 5px;">
                                                         {{ item.description }}
@@ -133,7 +135,7 @@
                                             </thead>
 
                                             <tbody>
-                                                <tr v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important;" height="150">
+                                                <tr @click="getItemDetailsMobile(item)" v-for="(item,i) in cartItems" :key="i" style="margin-bottom: 0 !important;" height="150">
                                                     <td style="padding: 0 8px">
                                                         <v-img max-height="140" max-width="100" :src="require(`../../images/toilet/${item.image}`)"></v-img>
                                                     </td>
@@ -142,7 +144,9 @@
                                                             <p class="text-left s-header" style="font-size: 15px; margin-bottom: 0 !important;">{{ item.product }}</p>
                                                             <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.item }}</p>
                                                             <p class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.type }}</p>
-                                                            <td class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">{{ item.price }}</td>
+                                                            <td class="text-left s-mid-header" style="font-size: 12px; margin-bottom: 0 !important;">
+                                                                <v-icon>mdi-tag-multiple</v-icon> 
+                                                                {{ item.price }}</td>
                                                         </div>
                                                     </td>
                                                     <!-- <td class="text-center s-mid-header">{{ item.color ? item.color : 'default'}}</td> -->
@@ -180,7 +184,6 @@
         
         <template>
             <v-list dense >
-                
                 <v-list-group
                 no-action
                 dense
@@ -389,7 +392,7 @@
                                             <v-col style="display: flex;">
                                                 <!-- {{ item.image_path }} -->
                                                 <v-img class="d-flex d-sm-none" max-height="230" :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
-                                                <v-img class="d-none d-sm-flex" max-height="250" max-width="250"  :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
+                                                <v-img class="d-none d-sm-flex" max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img>
                                                 <!-- <v-img  max-height="250" max-width="250" :src="require(`../../images/toilet/${item.image_path}`)"></v-img> -->
                                                 <!-- <v-img v-else="img.image_path == undefined" max-height="250" max-width="250" :src="require('../images/No_Image_Available.jpg')"></v-img> -->
                                             </v-col>
@@ -552,11 +555,19 @@
                                             <v-col>
                                                 <v-card-text>
                                                     <div style="display: flex; padding-top: 6px;">
-                                                        <h4 class="text-left s-mid-header" style="font-size: 15px;">トイレ</h4>
+                                                        <h4 class="d-none d-sm-block text-left s-mid-header" style="font-size: 15px;">トイレ</h4>
+                                                        <h4 class="d-block d-sm-none text-left s-mid-header mt-1" style="font-size: 15px;">トイレ</h4>
                                                         <v-icon>mdi-menu-right</v-icon> 
-                                                        <h4 class="text-left s-mid-header" style="font-size: 15px;">
+                                                        <h4 class="d-none d-sm-block text-left s-mid-header" style="font-size: 15px;">
                                                             {{itemSelected.item_name}}
                                                         </h4>
+                                                        <h4 class="d-block d-sm-none text-left s-mid-header mt-1" style="font-size: 15px;">
+                                                            {{itemSelected.item_name}}
+                                                        </h4>
+                                                        <v-spacer/>
+                                                        <v-btn icon @click="closeSelectedItem()" class="d-block d-sm-none close">
+                                                            <v-icon>mdi-close</v-icon>
+                                                        </v-btn>
                                                     </div>
                                                     &nbsp;
                                                     <div>
@@ -575,7 +586,7 @@
                                         </v-row>
                                     </v-col>
                                     <v-col>
-                                        <v-card-text class="text-right ml-2">
+                                        <v-card-text class="d-none d-sm-block text-right ml-2">
                                             <v-btn icon @click="closeSelectedItem()" class="close">
                                                 <v-icon>mdi-close</v-icon>
                                             </v-btn>
@@ -584,15 +595,16 @@
                                         <v-img v-else max-height="250" max-width="250" :src="require(`../../images/No_Image_Available.jpg`)"></v-img>
                                         &nbsp;
                                         <div style="display: flex; justify-content: start;">
-                                            
-                                            <v-img :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img>
+                                            <!-- <p class="s-header" style="background-color: #463011; color: white; padding: 5px 10px; font-size: 13px; text-orientation: upright; width: 35px;">アクセサリー</p> -->
+                                            <v-img style="border: 1px solid #ddd;" :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img>
                                         </div>
                                         &nbsp;
-                                        <div style="display: flex; justify-content: start;">
-                                            
-                                            <v-img :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img> 
-                                            <v-img :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img>
-                                            <v-img :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img>
+                                        
+                                        <div style="display: flex; justify-content: start; flex-wrap: wrap; margin-right: 5px;">
+                                            <!-- <p class="s-header" style="background-color: #463011; color: white; padding: 5px 10px; font-size: 13px; text-orientation: upright; width: 35px;">色の選択</p> -->
+                                            <v-img style="border: 1px solid #ddd;" :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img> 
+                                            <v-img style="border: 1px solid #ddd;" :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img>
+                                            <v-img style="border: 1px solid #ddd;" :src="require(`../../images/No_Image_Available.jpg`)" max-height="120" max-width="120"></v-img>
                                         </div>
                                         &nbsp;
                                     </v-col>
@@ -619,12 +631,41 @@
                         <template>
                             <div class="text-center">
                                 <v-dialog
-                                v-model="dialog2"
-                                width="500"
+                                persistent
+                                v-model="getItemDetailsMobileDialog"
+                                height="700"
+                                width="400"
                                 >
-                                    <v-text-field></v-text-field>
-                                <v-card>
-                                    
+                                <v-card style="overflow-y: auto;">
+
+                                    <div style="position: relative !important;">
+                                        <v-img v-if="getCartMobileItems.image != undefined" max-height="400" max-width="400" :src="require(`../../images/toilet/${getCartMobileItems.image}`)">
+                                            <v-btn icon @click="getItemDetailsMobileDialog = false;" class="close" style="position: absolute !important; top: 10px !important; right: 10px !important;">
+                                                <v-icon large>mdi-close</v-icon>
+                                            </v-btn>
+                                        </v-img>
+                                        <v-img v-else max-height="250" max-width="250" :src="require(`../../images/No_Image_Available.jpg`)">
+                                            <v-btn icon @click="getItemDetailsMobileDialog = false;" class="close" style="position: absolute !important; top: 0 !important; left: 20px !important;">
+                                                <v-icon large>mdi-close</v-icon>
+                                            </v-btn>
+                                        </v-img>
+                                        <h1 class="s-header ml-3">{{ getCartMobileItems.product }}</h1>
+                                        <p class="s-mid-header ml-3">
+                                            <v-icon>mdi-tag-multiple</v-icon> 
+                                            {{ getCartMobileItems.price }}
+                                        </p>
+                                        <p class="s-sub-header ml-3" style="font-size: 14px;">{{ getCartMobileItems.description }}</p>
+                                        <p class="s-header ml-3 mb-0">タイプ :</p>
+                                        <p class="s-sub-header ml-5">{{ getCartMobileItems.type }}</p>
+                                        <p class="s-header ml-3 mb-0">アイテム :</p>
+                                        <p class="s-sub-header ml-5">{{ getCartMobileItems.item }}</p>
+                                        <p class="s-header ml-3 mb-0">アクセサリー :</p>
+                                        <div>
+                                            <v-img v-if="getCartMobileItems.accessories_image != undefined" max-height="400" max-width="400" :src="require(`../../images/toilet/${getCartMobileItems.accessories_image}`)"></v-img>
+                                            <p v-else class="s-sub-header ml-5" style="font-size: 14px;">※no accessories attached for this item.</p>
+                                        </div>
+                                        
+                                    </div>
                                 </v-card>
                                 </v-dialog>
                             </div>
@@ -645,6 +686,7 @@ export default{
             dialog: false,
             dialog2: false,
             itemDialog: false,
+            getItemDetailsMobileDialog: false,
             qty: 0,
 
             sub_items: [],
@@ -664,10 +706,21 @@ export default{
                 }
             ],
             itemSelected: [],
+            getCartMobileItems: [],
         }
     },
 
     methods: {
+
+        // * * * * * MOBILE * * * * * //
+        getItemDetailsMobile(item){
+            console.log(item, 'items to show details')
+            this.getCartMobileItems = item;
+            console.log(this.getCartMobileItems, 'asdasdasd')
+            this.getItemDetailsMobileDialog = true;
+
+        },
+
         CartItems(){
             console.log(this.cartItems)
         },

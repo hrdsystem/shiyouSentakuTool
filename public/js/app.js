@@ -3628,6 +3628,7 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       dialog2: false,
       itemDialog: false,
+      getItemDetailsMobileDialog: false,
       qty: 0,
       sub_items: [],
       products: [],
@@ -3643,10 +3644,21 @@ __webpack_require__.r(__webpack_exports__);
         description: '',
         qty: 1
       }],
-      itemSelected: []
+      itemSelected: [],
+      getCartMobileItems: []
     };
   },
   methods: {
+    // * * * * * MOBILE * * * * * //
+    getItemDetailsMobile: function getItemDetailsMobile(item) {
+      console.log(item, 'items to show details');
+      this.getCartMobileItems = item;
+      console.log(this.getCartMobileItems, 'asdasdasd');
+      this.getItemDetailsMobileDialog = true;
+    },
+    CartItems: function CartItems() {
+      console.log(this.cartItems);
+    },
     getSubItems: function getSubItems() {
       var _this = this;
       axios({
@@ -3798,7 +3810,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       selectedItem: 1,
-      drawer: null,
+      drawer: true,
       items: [{
         subMenu: [],
         icon: 'mdi-alpha-e-box-outline',
@@ -6798,8 +6810,7 @@ var render = function render() {
     staticClass: "text-right"
   }, [_c("v-dialog", {
     attrs: {
-      width: "1280",
-      heigth: "700"
+      persistent: ""
     },
     scopedSlots: _vm._u([{
       key: "activator",
@@ -6830,7 +6841,36 @@ var render = function render() {
       },
       expression: "dialog"
     }
-  }, [_vm._v(" "), _c("v-card", [_c("v-simple-table", {
+  }, [_vm._v(" "), _c("v-card", {
+    staticClass: "d-none d-sm-block"
+  }, [_c("div", {
+    staticStyle: {
+      display: "flex",
+      "padding-left": "25px",
+      "padding-right": "25px",
+      "padding-top": "25px"
+    }
+  }, [_c("h2", {
+    staticClass: "text-left s-header"
+  }, [_vm._v("あなたのカート ( " + _vm._s(_vm.cartItems.length) + " )")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    staticClass: "close",
+    staticStyle: {
+      "margin-top": "5px",
+      "margin-right": "8px"
+    },
+    attrs: {
+      icon: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.dialog = false;
+      }
+    }
+  }, [_c("v-icon", {
+    attrs: {
+      large: ""
+    }
+  }, [_vm._v("mdi-close")])], 1)], 1), _vm._v(" "), _c("v-simple-table", {
     staticStyle: {
       padding: "25px"
     },
@@ -6884,7 +6924,7 @@ var render = function render() {
             staticClass: "text-center s-mid-header"
           }, [_vm._v(_vm._s(item.color ? item.color : "default"))]), _vm._v(" "), _c("td", {
             staticClass: "text-center s-mid-header"
-          }, [_vm._v(_vm._s(item.price))]), _vm._v(" "), _c("td", {
+          }, [_c("v-icon", [_vm._v("mdi-tag-multiple")]), _vm._v(" \n                                                " + _vm._s(item.price))], 1), _vm._v(" "), _c("td", {
             staticClass: "text-center",
             staticStyle: {
               width: "300px"
@@ -6916,7 +6956,117 @@ var render = function render() {
       },
       proxy: true
     }])
-  })], 1)], 1)], 1)]], 2)], 1), _vm._v(" "), [_c("v-list", {
+  })], 1), _vm._v(" "), _c("v-card", {
+    staticClass: "d-block d-sm-none"
+  }, [_c("div", {
+    staticStyle: {
+      display: "flex"
+    }
+  }, [_c("h2", {
+    staticClass: "text-left s-header",
+    staticStyle: {
+      "padding-left": "15px",
+      "padding-top": "5px",
+      "padding-bottom": "5px"
+    }
+  }, [_vm._v("あなたのカート ( " + _vm._s(_vm.cartItems.length) + " )")]), _vm._v(" "), _c("v-divider"), _vm._v(" "), _c("v-btn", {
+    staticClass: "close",
+    staticStyle: {
+      "margin-top": "5px",
+      "margin-right": "8px"
+    },
+    attrs: {
+      icon: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.dialog = false;
+      }
+    }
+  }, [_c("v-icon", {
+    attrs: {
+      large: ""
+    }
+  }, [_vm._v("mdi-close")])], 1)], 1), _vm._v(" "), _c("v-card", [_c("v-simple-table", {
+    staticStyle: {
+      padding: "10px"
+    },
+    scopedSlots: _vm._u([{
+      key: "default",
+      fn: function fn() {
+        return [_c("thead", [_c("tr")]), _vm._v(" "), _c("tbody", _vm._l(_vm.cartItems, function (item, i) {
+          return _c("tr", {
+            key: i,
+            staticStyle: {
+              "margin-bottom": "0 !important"
+            },
+            attrs: {
+              height: "150"
+            },
+            on: {
+              click: function click($event) {
+                return _vm.getItemDetailsMobile(item);
+              }
+            }
+          }, [_c("td", {
+            staticStyle: {
+              padding: "0 8px"
+            }
+          }, [_c("v-img", {
+            attrs: {
+              "max-height": "140",
+              "max-width": "100",
+              src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(item.image))
+            }
+          })], 1), _vm._v(" "), _c("td", {
+            staticStyle: {
+              padding: "0 8px"
+            }
+          }, [_c("div", [_c("p", {
+            staticClass: "text-left s-header",
+            staticStyle: {
+              "font-size": "15px",
+              "margin-bottom": "0 !important"
+            }
+          }, [_vm._v(_vm._s(item.product))]), _vm._v(" "), _c("p", {
+            staticClass: "text-left s-mid-header",
+            staticStyle: {
+              "font-size": "12px",
+              "margin-bottom": "0 !important"
+            }
+          }, [_vm._v(_vm._s(item.item))]), _vm._v(" "), _c("p", {
+            staticClass: "text-left s-mid-header",
+            staticStyle: {
+              "font-size": "12px",
+              "margin-bottom": "0 !important"
+            }
+          }, [_vm._v(_vm._s(item.type))]), _vm._v(" "), _c("td", {
+            staticClass: "text-left s-mid-header",
+            staticStyle: {
+              "font-size": "12px",
+              "margin-bottom": "0 !important"
+            }
+          }, [_c("v-icon", [_vm._v("mdi-tag-multiple")]), _vm._v(" \n                                                            " + _vm._s(item.price))], 1)])]), _vm._v(" "), _c("td", {
+            staticClass: "text-center s-mid-header",
+            staticStyle: {
+              padding: "0 8px"
+            }
+          }, [_c("v-btn", {
+            attrs: {
+              tile: "",
+              color: "red lighten-2"
+            },
+            on: {
+              click: function click($event) {
+                return _vm.removeItem(item.id);
+              }
+            }
+          }, [_c("v-icon", [_vm._v("mdi-delete")])], 1)], 1)]);
+        }), 0)];
+      },
+      proxy: true
+    }])
+  })], 1)], 1)], 1)], 1)]], 2)], 1), _vm._v(" "), [_c("v-list", {
     attrs: {
       dense: ""
     }
@@ -6944,6 +7094,7 @@ var render = function render() {
         proxy: true
       }], null, true)
     }, [_vm._v(" "), _vm.products[0] ? _c("v-card", {
+      staticClass: "d-none d-sm-none d-md-flex",
       staticStyle: {
         display: "flex",
         "padding-right": "40%"
@@ -7039,7 +7190,92 @@ var render = function render() {
         outlined: "",
         tile: ""
       }
-    }, [_vm._v("メモ")])], 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("v-card") : _vm._e(), _vm._v(" "), _vm.products[0] ? _c("div", {
+    }, [_vm._v("メモ")])], 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("v-card", {
+      staticClass: "d-none d-sm-none d-md-flex"
+    }) : _vm._e(), _vm._v(" "), _vm.products[0] ? _c("v-card", {
+      staticClass: "d-block d-sm-block d-md-none",
+      attrs: {
+        height: "250"
+      }
+    }, [_c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref6) {
+          var active = _ref6.active;
+          return [_c("v-list-item-action", [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("要")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref7) {
+          var active = _ref7.active;
+          return [_c("v-list-item-action", [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header",
+            staticStyle: {
+              width: "400px"
+            }
+          }, [_vm._v("設計に相談したい")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref8) {
+          var active = _ref8.active;
+          return [_c("v-list-item-action", [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("不要")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-list-item", {
+      scopedSlots: _vm._u([{
+        key: "default",
+        fn: function fn(_ref9) {
+          var active = _ref9.active;
+          return [_c("v-list-item-action", [_c("v-checkbox", {
+            attrs: {
+              "input-value": active,
+              color: "primary"
+            }
+          })], 1), _vm._v(" "), _c("v-list-item-content", [_c("v-list-item-title", {
+            staticClass: "s-sub-header"
+          }, [_vm._v("追加")])], 1)];
+        }
+      }], null, true)
+    }), _vm._v(" "), _c("v-btn", {
+      staticClass: "s-title",
+      staticStyle: {
+        "margin-top": "10px",
+        "margin-left": "20px",
+        "background-color": "whitesmoke"
+      },
+      attrs: {
+        width: "100",
+        small: "",
+        outlined: "",
+        tile: ""
+      }
+    }, [_vm._v("メモ")])], 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("v-card", {
+      staticClass: "d-block d-sm-block d-lg-none"
+    }) : _vm._e(), _vm._v(" "), _vm.products[0] ? _c("div", {
       attrs: {
         id: "s-d"
       }
@@ -7055,13 +7291,13 @@ var render = function render() {
         },
         attrs: {
           width: "520",
-          height: "350",
+          height: "400",
           elevation: "0"
         }
       }, [_c("v-card", {
         attrs: {
           width: "520",
-          height: "348",
+          height: "398",
           elevation: "0"
         },
         on: {
@@ -7092,9 +7328,9 @@ var render = function render() {
         },
         scopedSlots: _vm._u([{
           key: "activator",
-          fn: function fn(_ref6) {
-            var on = _ref6.on,
-              attrs = _ref6.attrs;
+          fn: function fn(_ref10) {
+            var on = _ref10.on,
+              attrs = _ref10.attrs;
             return [_c("v-btn", _vm._g(_vm._b({
               attrs: {
                 icon: ""
@@ -7115,11 +7351,23 @@ var render = function render() {
         }
       }, [_c("p", {
         staticClass: "s-header"
-      }, [_vm._v('"I want to put a mark of popularity.\n                                                        '), _c("br"), _vm._v(' Gold, silver, copper, etc. in the crown mark."')])])], 1)], 1)]], 2)], 1), _vm._v(" "), _c("v-row", [_c("v-col", {
+      }, [_vm._v('"I want to put a mark of popularity.\n                                                            '), _c("br"), _vm._v(' Gold, silver, copper, etc. in the crown mark."')])])], 1)], 1)]], 2)], 1), _vm._v(" "), _c("v-row", [_c("h5", {
+        staticClass: "s-header d-flex d-sm-none",
+        staticStyle: {
+          "margin-left": "12px"
+        }
+      }, [_vm._v("価格: \n                                                "), _vm._v("\n                                                " + _vm._s(item.price ? item.price : "No Indicated Value") + "\n                                            ")]), _vm._v(" "), _c("v-col", {
         staticStyle: {
           display: "flex"
         }
       }, [_c("v-img", {
+        staticClass: "d-flex d-sm-none",
+        attrs: {
+          "max-height": "230",
+          src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(item.image_path))
+        }
+      }), _vm._v(" "), _c("v-img", {
+        staticClass: "d-none d-sm-flex",
         attrs: {
           "max-height": "250",
           "max-width": "250",
@@ -7127,14 +7375,20 @@ var render = function render() {
         }
       })], 1), _vm._v(" "), _c("v-col", [[_c("div", {
         staticClass: "text-left"
-      })], _vm._v("\n                                        \n                                         \n\n                                        "), _c("h5", {
-        staticClass: "s-header"
-      }, [_vm._v("価格: \n                                            "), _c("v-icon", {
+      })], _vm._v("\n                                            \n                                             \n\n                                            "), _c("h5", {
+        staticClass: "s-header d-none d-sm-flex"
+      }, [_vm._v("価格: \n                                                "), _c("v-icon", {
         staticStyle: {
           "font-size": "15px",
           "margin-bottom": "3px"
         }
-      }, [_vm._v("\n                                                mdi-currency-jpy\n                                            ")]), _vm._v("\n                                            " + _vm._s(item.price ? item.price : "No Indicated Value") + "\n                                        ")], 1), _vm._v("\n\n                                         \n\n                                        "), _c("p", {
+      }, [_vm._v("\n                                                    mdi-currency-jpy\n                                                ")]), _vm._v("\n                                                " + _vm._s(item.price ? item.price : "No Indicated Value") + "\n                                            ")], 1), _vm._v("\n\n                                             \n\n                                            "), _c("div", {
+        staticClass: "d-none d-sm-flex",
+        staticStyle: {
+          padding: "0 !important",
+          margin: "0 !important"
+        }
+      }, [_c("p", {
         staticClass: "s-sub-header",
         staticStyle: {
           display: "-webkit-box",
@@ -7143,7 +7397,8 @@ var render = function render() {
           "-webkit-box-orient": "vertical",
           overflow: "hidden"
         }
-      }, [_vm._v("\n                                            " + _vm._s(item.description ? item.description : "No Indicated Description") + "  \n                                        ")])], 2)], 1)], 1)], 1), _vm._v(" "), _c("div", {
+      }, [_vm._v("\n                                                    " + _vm._s(item.description ? item.description : "No Indicated Description") + "  \n                                                ")])])], 2)], 1)], 1)], 1), _vm._v(" "), _c("div", {
+        staticClass: "d-none d-sm-flex",
         staticStyle: {
           position: "absolute !important",
           top: "60%",
@@ -7151,7 +7406,7 @@ var render = function render() {
         }
       }, [_c("div", {
         staticStyle: {
-          display: "flex"
+          display: "block"
         }
       }, [_c("v-btn", {
         staticClass: "s-sub-header",
@@ -7160,7 +7415,7 @@ var render = function render() {
           outlined: "",
           tile: ""
         }
-      }, [_c("v-icon", [_vm._v("\n                                        mdi-image-frame\n                                    ")]), _vm._v("プレビュー\n                                ")], 1), _vm._v("\n                                 \n                                "), _c("v-btn", {
+      }, [_c("v-icon", [_vm._v("\n                                            mdi-image-frame\n                                        ")]), _vm._v("プレビュー\n                                    ")], 1), _vm._v("\n                                     \n                                    "), _c("v-btn", {
         staticClass: "s-sub-header",
         attrs: {
           elevation: "0",
@@ -7172,7 +7427,37 @@ var render = function render() {
             return _vm.addToCart(item);
           }
         }
-      }, [_c("v-icon", [_vm._v("\n                                        mdi-cart\n                                    ")]), _vm._v("add\n                                ")], 1)], 1)])], 1);
+      }, [_c("v-icon", [_vm._v("\n                                            mdi-cart\n                                        ")]), _vm._v("add\n                                    ")], 1)], 1)]), _vm._v(" "), _c("div", {
+        staticClass: "d-flex d-sm-none",
+        staticStyle: {
+          "margin-left": "15px",
+          position: "absolute !important",
+          top: "85%"
+        }
+      }, [_c("div", {
+        staticStyle: {
+          display: "block"
+        }
+      }, [_c("v-btn", {
+        staticClass: "s-sub-header",
+        attrs: {
+          elevation: "0",
+          outlined: "",
+          tile: ""
+        }
+      }, [_c("v-icon", [_vm._v("\n                                            mdi-image-frame\n                                        ")]), _vm._v("プレビュー\n                                    ")], 1), _vm._v("\n                                     \n                                    "), _c("v-btn", {
+        staticClass: "s-sub-header",
+        attrs: {
+          elevation: "0",
+          outlined: "",
+          tile: ""
+        },
+        on: {
+          click: function click($event) {
+            return _vm.addToCart(item);
+          }
+        }
+      }, [_c("v-icon", [_vm._v("\n                                            mdi-cart\n                                        ")]), _vm._v("add\n                                    ")], 1)], 1)])], 1);
     }), 1) : _vm._e(), _vm._v(" "), !_vm.products[0] ? _c("div", [_c("p", [_vm._v("no items available as of the moment")])]) : _vm._e()], 1);
   }), _vm._v(" "), [_c("div", {
     staticClass: "text-center"
@@ -7197,16 +7482,36 @@ var render = function render() {
       "padding-top": "6px"
     }
   }, [_c("h4", {
-    staticClass: "text-left s-mid-header",
+    staticClass: "d-none d-sm-block text-left s-mid-header",
+    staticStyle: {
+      "font-size": "15px"
+    }
+  }, [_vm._v("トイレ")]), _vm._v(" "), _c("h4", {
+    staticClass: "d-block d-sm-none text-left s-mid-header mt-1",
     staticStyle: {
       "font-size": "15px"
     }
   }, [_vm._v("トイレ")]), _vm._v(" "), _c("v-icon", [_vm._v("mdi-menu-right")]), _vm._v(" "), _c("h4", {
-    staticClass: "text-left s-mid-header",
+    staticClass: "d-none d-sm-block text-left s-mid-header",
     staticStyle: {
       "font-size": "15px"
     }
-  }, [_vm._v("\n                                                        " + _vm._s(_vm.itemSelected.item_name) + "\n                                                    ")])], 1), _vm._v("\n                                                 \n                                                "), _c("div", [_c("h1", {
+  }, [_vm._v("\n                                                        " + _vm._s(_vm.itemSelected.item_name) + "\n                                                    ")]), _vm._v(" "), _c("h4", {
+    staticClass: "d-block d-sm-none text-left s-mid-header mt-1",
+    staticStyle: {
+      "font-size": "15px"
+    }
+  }, [_vm._v("\n                                                        " + _vm._s(_vm.itemSelected.item_name) + "\n                                                    ")]), _vm._v(" "), _c("v-spacer"), _vm._v(" "), _c("v-btn", {
+    staticClass: "d-block d-sm-none close",
+    attrs: {
+      icon: ""
+    },
+    on: {
+      click: function click($event) {
+        return _vm.closeSelectedItem();
+      }
+    }
+  }, [_c("v-icon", [_vm._v("mdi-close")])], 1)], 1), _vm._v("\n                                                 \n                                                "), _c("div", [_c("h1", {
     staticClass: "text-left s-header-title pt-2",
     staticStyle: {
       "font-size": "40px",
@@ -7221,7 +7526,7 @@ var render = function render() {
   }, [_vm._v("価格: " + _vm._s(_vm.itemSelected.price))]), _vm._v(" "), _c("p", {
     staticClass: "s-sub-header"
   }, [_vm._v(_vm._s(_vm.itemSelected.description))])])], 1)], 1)], 1), _vm._v(" "), _c("v-col", [_c("v-card-text", {
-    staticClass: "text-right ml-2"
+    staticClass: "d-none d-sm-block text-right ml-2"
   }, [_c("v-btn", {
     staticClass: "close",
     attrs: {
@@ -7250,29 +7555,43 @@ var render = function render() {
       "justify-content": "start"
     }
   }, [_c("v-img", {
+    staticStyle: {
+      border: "1px solid #ddd"
+    },
     attrs: {
       src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
       "max-height": "120",
       "max-width": "120"
     }
-  })], 1), _vm._v("\n                                     \n                                    "), _c("div", {
+  })], 1), _vm._v("\n                                     \n                                    \n                                    "), _c("div", {
     staticStyle: {
       display: "flex",
-      "justify-content": "start"
+      "justify-content": "start",
+      "flex-wrap": "wrap",
+      "margin-right": "5px"
     }
   }, [_c("v-img", {
+    staticStyle: {
+      border: "1px solid #ddd"
+    },
     attrs: {
       src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
       "max-height": "120",
       "max-width": "120"
     }
   }), _vm._v(" "), _c("v-img", {
+    staticStyle: {
+      border: "1px solid #ddd"
+    },
     attrs: {
       src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
       "max-height": "120",
       "max-width": "120"
     }
   }), _vm._v(" "), _c("v-img", {
+    staticStyle: {
+      border: "1px solid #ddd"
+    },
     attrs: {
       src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg"),
       "max-height": "120",
@@ -7296,16 +7615,106 @@ var render = function render() {
     staticClass: "text-center"
   }, [_c("v-dialog", {
     attrs: {
-      width: "500"
+      persistent: "",
+      height: "700",
+      width: "400"
     },
     model: {
-      value: _vm.dialog2,
+      value: _vm.getItemDetailsMobileDialog,
       callback: function callback($$v) {
-        _vm.dialog2 = $$v;
+        _vm.getItemDetailsMobileDialog = $$v;
       },
-      expression: "dialog2"
+      expression: "getItemDetailsMobileDialog"
     }
-  }, [_c("v-text-field"), _vm._v(" "), _c("v-card")], 1)], 1)]], 2)]], 2)]], 2);
+  }, [_c("v-card", {
+    staticStyle: {
+      "overflow-y": "auto"
+    }
+  }, [_c("div", {
+    staticStyle: {
+      position: "relative !important"
+    }
+  }, [_vm.getCartMobileItems.image != undefined ? _c("v-img", {
+    attrs: {
+      "max-height": "400",
+      "max-width": "400",
+      src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(_vm.getCartMobileItems.image))
+    }
+  }, [_c("v-btn", {
+    staticClass: "close",
+    staticStyle: {
+      position: "absolute !important",
+      top: "10px !important",
+      right: "10px !important"
+    },
+    attrs: {
+      icon: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.getItemDetailsMobileDialog = false;
+      }
+    }
+  }, [_c("v-icon", {
+    attrs: {
+      large: ""
+    }
+  }, [_vm._v("mdi-close")])], 1)], 1) : _c("v-img", {
+    attrs: {
+      "max-height": "250",
+      "max-width": "250",
+      src: __webpack_require__(/*! ../../images/No_Image_Available.jpg */ "./resources/js/images/No_Image_Available.jpg")
+    }
+  }, [_c("v-btn", {
+    staticClass: "close",
+    staticStyle: {
+      position: "absolute !important",
+      top: "0 !important",
+      left: "20px !important"
+    },
+    attrs: {
+      icon: ""
+    },
+    on: {
+      click: function click($event) {
+        _vm.getItemDetailsMobileDialog = false;
+      }
+    }
+  }, [_c("v-icon", {
+    attrs: {
+      large: ""
+    }
+  }, [_vm._v("mdi-close")])], 1)], 1), _vm._v(" "), _c("h1", {
+    staticClass: "s-header ml-3"
+  }, [_vm._v(_vm._s(_vm.getCartMobileItems.product))]), _vm._v(" "), _c("p", {
+    staticClass: "s-mid-header ml-3"
+  }, [_c("v-icon", [_vm._v("mdi-tag-multiple")]), _vm._v(" \n                                        " + _vm._s(_vm.getCartMobileItems.price) + "\n                                    ")], 1), _vm._v(" "), _c("p", {
+    staticClass: "s-sub-header ml-3",
+    staticStyle: {
+      "font-size": "14px"
+    }
+  }, [_vm._v(_vm._s(_vm.getCartMobileItems.description))]), _vm._v(" "), _c("p", {
+    staticClass: "s-header ml-3 mb-0"
+  }, [_vm._v("タイプ :")]), _vm._v(" "), _c("p", {
+    staticClass: "s-sub-header ml-5"
+  }, [_vm._v(_vm._s(_vm.getCartMobileItems.type))]), _vm._v(" "), _c("p", {
+    staticClass: "s-header ml-3 mb-0"
+  }, [_vm._v("アイテム :")]), _vm._v(" "), _c("p", {
+    staticClass: "s-sub-header ml-5"
+  }, [_vm._v(_vm._s(_vm.getCartMobileItems.item))]), _vm._v(" "), _c("p", {
+    staticClass: "s-header ml-3 mb-0"
+  }, [_vm._v("アクセサリー :")]), _vm._v(" "), _c("div", [_vm.getCartMobileItems.accessories_image != undefined ? _c("v-img", {
+    attrs: {
+      "max-height": "400",
+      "max-width": "400",
+      src: __webpack_require__("./resources/js/images/toilet sync recursive ^\\.\\/.*$")("./".concat(_vm.getCartMobileItems.accessories_image))
+    }
+  }) : _c("p", {
+    staticClass: "s-sub-header ml-5",
+    staticStyle: {
+      "font-size": "14px"
+    }
+  }, [_vm._v("※no accessories attached for this item.")])], 1)], 1)])], 1)], 1)]], 2)]], 2)]], 2);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -7339,11 +7748,22 @@ var render = function render() {
       elevation: "0",
       color: "primary"
     }
-  }, [_c("v-toolbar-title", {
+  }, [_c("v-app-bar-nav-icon", {
+    staticClass: "d-flex d-sm d-md-none",
+    attrs: {
+      color: "black"
+    },
+    on: {
+      click: function click($event) {
+        _vm.drawer = !_vm.drawer;
+      }
+    }
+  }), _vm._v(" "), _c("v-toolbar-title", {
     staticStyle: {
       "text-align": "left !important",
       display: "flex",
-      "padding-top": "15px"
+      "padding-top": "15px",
+      "padding-left": "0 !important"
     }
   }, [_c("h3", {
     staticStyle: {
@@ -7363,7 +7783,6 @@ var render = function render() {
     }
   }, [_vm._v(" (Shiyou Sentaku Tool)")])])], 1), _vm._v(" "), _c("v-navigation-drawer", {
     attrs: {
-      permanent: "",
       app: "",
       clipped: ""
     },
@@ -7387,7 +7806,12 @@ var render = function render() {
       },
       expression: "selectedItem"
     }
-  }, _vm._l(_vm.items, function (item, index) {
+  }, [_c("h2", {
+    staticClass: "s-header text-center",
+    staticStyle: {
+      "margin-bottom": "5px"
+    }
+  }, [_vm._v("カテゴリ")]), _vm._v(" "), _vm._l(_vm.items, function (item, index) {
     return _c("v-card", {
       key: index,
       staticClass: "mb-1",
@@ -7433,7 +7857,7 @@ var render = function render() {
         }
       })], 1);
     })], 2)], 1);
-  }), 1)], 1)], 1), _vm._v(" "), _c("v-main", {
+  })], 2)], 1)], 1), _vm._v(" "), _c("v-main", {
     staticClass: "ma-2"
   }, [_c("router-view")], 1)], 1);
 };
@@ -8624,7 +9048,7 @@ module.exports = "/images/P_Pastel_Pink.jpg?fa1e1a357317e462a612eb3b928c0c62";
   \********************************************************/
 /***/ ((module) => {
 
-module.exports = "/images/S160.jpg?5855163e215585b96beb34f4dcc74282";
+module.exports = "/images/S160.jpg?8e485caa6ea2a6eb5f97b42280304830";
 
 /***/ }),
 
