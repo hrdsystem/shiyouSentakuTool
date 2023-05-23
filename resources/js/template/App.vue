@@ -170,7 +170,7 @@
     export default {
         data: () => ({
             selectedItem:1,
-            drawer: true,
+            drawer: false,
             items: [
 
                 {subMenu:[], icon:'mdi-alpha-e-box-outline', title: '外観', to:'/any'},
