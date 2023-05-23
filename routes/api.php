@@ -134,3 +134,11 @@ Route::get('/masterMaintenance/getNaibuItem1',[MasterMaintenanceController::clas
 
 
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+// * * * * * * * * * * *             NEW               * * * * * * * * * * * * * 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+Route::get('/getDataToilet',[ShiyoushoCatalogController::class,'getDataToilet']); 
+Route::get('/getSubItems',[ShiyoushoCatalogController::class,'getSubItems']); 
+Route::post('/getProducts',[ShiyoushoCatalogController::class,'getProducts']);
