@@ -272,12 +272,11 @@ class MasterMaintenanceController extends Controller
     }
 
     public function saveProduct(Request $req){
-        return $req;
         if($req->action == 'ADD NEW'){
             $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
             ->table('m_products')
-            ->where('category_code',$req->category_code)
-            ->where('code',$req->CODE)
+            ->where('category_code',2)
+            ->where('code',$req->code)
             ->get();
             if(count($data) > 0){
                 return 'Existing';
@@ -285,16 +284,23 @@ class MasterMaintenanceController extends Controller
                 $data = DB::connection('HRDAPPS31(shiyou_sentaku_main_test)')
                 ->table('m_products')
                 ->insert([
-                    'code' => $req->CODE,
+                    'category_code' => 2,
+                    'code' => $req->code,
                     'product_name' => $req->product_name,
-                    'manufacture_code' => $req->manufacture_code,
-                    'img_path' => $req->img_path,
+                    'maker_code' => $req->manufacture_code,
+                    'image_path' => $req->image_path,
+                    'has_color' => $req->has_color == true ? 1 : 0,
                     'updated_by' => 'Gatz'
                 ]);
                 return 'Saved';
             }
         }
     }
+
+
+
+
+
 
     ////////////////////////////////////////////////////////////////
     //  *  *  *   *   * SPECIFICATION FUNCTIONS *   *   *   *  *  //

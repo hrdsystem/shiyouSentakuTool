@@ -53,7 +53,7 @@
                     </template>
 
                     <template v-slot:item.actions="{ item }">
-                        <v-icon color="primary" class="mr-2" @click="editItem(item)">
+                        <v-icon color="primary" class="mr-2" @click="editProducts(item)">
                             mdi-pencil-outline
                         </v-icon>
                         <v-icon color="error" @click="deleteItem(item)">
@@ -67,7 +67,7 @@
         <v-dialog v-model="ProductDialog" width="500px" persistent>
             <v-card>
                 <v-card-title style="background-color: #4c7cc8 !important; color: white !important;">
-                    {{ action }} DATA
+                    {{ obj.action }} DATA
                     <v-spacer />
                     <v-icon color="#ffffff" @click="closeProduct()">mdi-close</v-icon>
                 </v-card-title>
@@ -134,8 +134,9 @@ export default {
         ],
 
         search: '',
-        obj: {},
-        action: '',
+        obj: {
+            action : ''
+        },
         image: null,
         ProductDialog: false,
         specifications: [],
@@ -170,30 +171,38 @@ export default {
     },
 
     created() {
+        this.getProductList()
 
-        axios({
-            method: 'get',
-            url: '/api/masterMaintenance/getProductList'
-        }).then(res => {
-            this.productItems = res.data
-        })
 
-        axios({
-            method: 'get',
-            url: '/api/masterMaintenance/getManufacturers'
-        }).then(res => {
-            this.manufacturers = res.data
-        })
     },
 
     methods: {
+        ///////////////////////////////////////////////////////
+        //    *   *   *   *   *           *   *   *   *   *  //
+        ///////////////////////////////////////////////////////
         test(){
             this.obj = {...this.obj}
         },
 
-        ///////////////////////////////////////////////////////
-        //    *   *   *   *   *           *   *   *   *   *  //
-        ///////////////////////////////////////////////////////
+        getProductList(){
+            axios({
+                method: 'get',
+                url: '/api/masterMaintenance/getProductList'
+            }).then(res => {
+                this.productItems = res.data
+                console.log(res.data,'getProductList');
+            })
+
+            axios({
+                method: 'get',
+                url: '/api/masterMaintenance/getManufacturers'
+            }).then(res => {
+                this.manufacturers = res.data
+                console.log(res.data,'getManufacturers');
+            })
+        },
+
+
 
         //    *   *   *   *   *      ADD     *   *   *   *   *  //
         addProduct() {
@@ -202,38 +211,48 @@ export default {
             this.obj.code = ''
             this.obj.product_name = ''
             this.obj.manufacture_code = ''
-            this.obj.img_path = ''
-            this.action = 'ADD NEW'
+            this.obj.image_path = ''
+            this.obj.action = 'ADD NEW'
         },
         //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
         closeProduct() {
             this.obj = {}
             this.ProductDialog = false
         },
-
+        //    *   *   *   *   *      CLOSE     *   *   *   *   *  //
+        editProducts() {
+            // this.id = item.id
+            // this.item1Dialog = true
+            // this.action = 'EDIT'
+            // this.item1Obj1.category = item.category_code
+            // this.item1Obj1.code = item.main_code
+            // this.item1Obj1.itemName = item.item_name
+        },
+        
         Preview_image() {
             // 
         },
 
         save() {
-            if(this.action == "ADD NEW"){
+            if(this.obj.action == "ADD NEW"){
                 axios({
                     method : 'post',
                     url : '/api/masterMaintenance/saveProduct',
                     data : this.obj
                 }).then(res => {
-                    this.obj.manufacturer_name =this.manufacturers.find(r => r.code == this.obj.manufacture_code).manufacturer_name 
-                    console.log(this.obj,'Save');
+                    this.obj.manufacturer_name = this.manufacturers.find(r => r.code == this.obj.manufacture_code).manufacturer_name 
+                        console.log(this.obj,'Save');
                     this.productItems.push(this.obj)
                     this.productItems = orderBy(this.productItems,['code','asc'])
-                    // console.log(this.obj);
+                        // console.log(this.obj);
                     Swal.fire({
                         showConfirmButton:false,
                         icon: 'success',
                         title: 'Successfully Saved!',
                         timer: 2000,
                     })
-                    this.closeProduct()
+                        // this.getProductList()
+                        this.closeProduct()
                 })
             }
         },
