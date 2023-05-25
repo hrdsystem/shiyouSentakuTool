@@ -13,12 +13,12 @@ export default {
     },
 
     created() {
-        axios({
-            method:'get',
-            url:'api/sampleOnly'
-        }).then((res)=>{
-            console.log(res.data, 'SAMPLE DATA ONLY')
-        })
+        // axios({
+        //     method:'get',
+        //     url:'api/sampleOnly'
+        // }).then((res)=>{
+        //     console.log(res.data, 'SAMPLE DATA ONLY')
+        // })
     },
 }
 </script>
