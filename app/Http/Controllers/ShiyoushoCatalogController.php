@@ -1056,7 +1056,7 @@ class ShiyoushoCatalogController extends Controller
 
         public function getDataToilet()
         {
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('mysql')
             // return DB::connection('mysql')
             ->table('cart')->get();
             
@@ -1064,7 +1064,7 @@ class ShiyoushoCatalogController extends Controller
 
         public function saveCart(Request $req)
         {
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('mysql')
             // return DB::connection('mysql')
             ->table('cart')
             ->insert([
@@ -1082,7 +1082,7 @@ class ShiyoushoCatalogController extends Controller
 
         public function getSubItems(){
             // return 'test';
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('mysql')
             // return DB::connection('mysql')
             ->table('m_sub_items')
             ->where('main_items_code','0200')
@@ -1091,7 +1091,7 @@ class ShiyoushoCatalogController extends Controller
 
         public function removeItem($id){ //back-end deletion
             
-            $id = DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            $id = DB::connection('mysql')
             // $id = DB::connection('mysql')
             ->table('cart')
             ->where('id', $id)
@@ -1100,8 +1100,8 @@ class ShiyoushoCatalogController extends Controller
         }
 
         public function getProducts(Request $request){
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
-            // return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('mysql')
+            // return DB::connection('mysql')
             ->select(
                 DB::raw("SELECT 
                     m_sub_items.main_items_code,
@@ -1157,7 +1157,7 @@ class ShiyoushoCatalogController extends Controller
 
         public function sampleOnly(){
             // return 'SAMPLE';
-            return DB::connection('HRDAPPS31(shiyou_sentaku_main_test2)')
+            return DB::connection('mysql')
             ->table('m_sub_items')
             ->where('main_items_code','0200')
             ->get();
