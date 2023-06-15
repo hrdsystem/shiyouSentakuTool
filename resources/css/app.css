@@ -1,0 +1,62 @@
+@import '~vuetify/dist/vuetify.min.css';
+@import '~@mdi/font/css/materialdesignicons.css';
+
+#s-d{
+    padding: 20px; display: flex; flex-wrap: wrap; gap: 10px;
+}
+#s-s{
+    max-height: 140px !important; min-height: 50px !important; overflow-y: auto; text-align: left !important; display: flex; flex-wrap: wrap; gap: 10px;
+}
+#s-s-h:hover{
+    border: solid #1f1f1f 2px;
+}
+.s-p{
+    font-family: 'Klee One';
+    font-weight: 600;
+}
+.s-title{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 900;
+}
+.s-header-title{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 800;
+}
+.s-header{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+}
+.s-mid-header{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+}
+.s-sub-header{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+}
+.v-list-group__header{
+    border-bottom : 1px solid #1f1f1f;
+    background: linear-gradient(#ffffff, #eeeeee);
+    /* background-color: #98c4f0; */
+}
+.swal2-popup {
+    /* font-family: 'Mochiy Pop P One', sans-serif !important; */
+    font-family: 'Noto Sans JP', sans-serif !important;
+    font-weight: 400 !important;
+}
+.v-btn--outlined{
+    border: 1px solid #919191;
+}
+.close {
+    transition: transform .7s ease-in-out;
+}
+.close:hover {
+    transform: rotate(90deg);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
+/* font-family: 'Klee One', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* font-family: 'Noto Sans JP', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+/* font-family: 'Mochiy Pop P One', sans-serif; */
